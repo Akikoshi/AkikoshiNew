@@ -1,0 +1,16 @@
+{
+    "name": "class152/pizza-mamamia",
+    "description": "Fachquali der Klasse 15/2 BFW Leipzig 2016",
+    "type": "project",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Christian Biedermann",
+            "email": "c.biedermann@web4train.local"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "twig/twig": "^1.24"
+    }
+}
