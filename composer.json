@@ -6,10 +6,19 @@
     "authors": [
         {
             "name": "Christian Biedermann",
-            "email": "c.biedermann@web4train.local"
+            "email": "c.biedermann@web4train.local",
+            "role": "developer"
         }
     ],
     "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "Class152\\PizzaMamamia\\": "/src"
+        },
+        "psr-4": {
+            "Class152\\PizzaMamamia\\": "/src"
+        }
+    },
     "require": {
         "twig/twig": "^1.24"
     }
