@@ -1,0 +1,28 @@
+{
+  "name": "pizza-mamamia",
+  "version": "0.0.1",
+  "description": "Fachqualification 15/2 BFW Leipzig",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab152.web4train.local:class152/pizza-project.git"
+  },
+  "keywords": [
+    "pizza",
+    "15/2"
+  ],
+  "author": "all@152.hier",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "jquery": "^3.1.0"
+  }
+}
