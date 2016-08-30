@@ -5,3 +5,7 @@ out
 gen
 node_modules
 .vagrant
+public/css
+public/js
+public/fonts
+
