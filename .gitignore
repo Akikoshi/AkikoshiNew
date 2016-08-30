@@ -3,4 +3,9 @@
 *.iml
 out
 gen
-.Vagrant
+node_modules
+.vagrant
+public/css
+public/js
+public/fonts
+
