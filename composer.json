@@ -12,11 +12,11 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "psr-0": {
-            "Class152\\PizzaMamamia\\": "/src"
-        },
         "psr-4": {
-            "Class152\\PizzaMamamia\\": "/src"
+            "Class152\\PizzaMamamia\\": "./src"
+        },
+        "psr-0": {
+            "Class152\\PizzaMamamia\\": "./src"
         }
     },
     "require": {
