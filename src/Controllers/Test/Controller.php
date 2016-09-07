@@ -16,7 +16,6 @@
 	{
 		public function indexAction()
 		{
-
 			new TwigRendering(
 				'Home/index.twig',
 				[
@@ -24,6 +23,5 @@
 					'actionName' => 'index',
 				]
 			);
-
 		}
 	}
