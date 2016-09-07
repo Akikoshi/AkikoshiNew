@@ -10,9 +10,19 @@
 
 
 	use Class152\PizzaMamamia\AbstractClasses\AbstractController;
+	use Class152\PizzaMamamia\Library\TwigRendering;
 
 	class Controller extends AbstractController
 	{
-
+		public function indexAction()
+		{
+			new TwigRendering(
+				'Home/index.twig',
+				[
+					'controllerName'=>'Home',
+					'actionName' => 'index',
+				]
+			);
+		}
 
 	}

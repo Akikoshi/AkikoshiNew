@@ -24,4 +24,17 @@ class Controller extends AbstractController
             ]
         );
     }
+
+    public function detailAction()
+    {
+	    new TwigRendering(
+		    'Campaigns/detail.twig',
+		    [
+			    'controllerName'=>'Campaigns',
+			    'actionName' => 'detail',
+		    ]
+	    );
+
+    }
+
 }
