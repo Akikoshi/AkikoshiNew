@@ -29,7 +29,6 @@
 
 		public function indexAction()
 		{
-
 			new TwigRendering(
 				'index.twig',
 				[
@@ -37,6 +36,5 @@
 					'actionName' => 'index',
 				]
 			);
-
 		}
 	}
