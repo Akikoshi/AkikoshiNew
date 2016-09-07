@@ -16,8 +16,8 @@
 	class Controller extends AbstractController
 	{
 		/**
-		 *
-         */
+		 * shows start page
+     */
 		public function indexAction()
 		{
 

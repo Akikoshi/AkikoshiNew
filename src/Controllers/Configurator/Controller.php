@@ -17,7 +17,7 @@ class Controller extends AbstractController
     public function indexAction()
     {
         new TwigRendering(
-            'Checkout/index.twig',
+            'Configurator/index.twig',
             [
                 'controllerName'=>'Configurator',
                 'actionName' => 'index',

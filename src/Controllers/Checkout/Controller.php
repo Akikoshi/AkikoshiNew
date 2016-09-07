@@ -25,7 +25,7 @@ class Controller extends AbstractController
         );
     }
     
-    public function confirmOrder(){
+    public function confirmorderAction(){
         new TwigRendering(
             'Checkout/confirmOrder.twig',
             [
