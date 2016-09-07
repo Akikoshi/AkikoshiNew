@@ -9,26 +9,10 @@
 	namespace Class152\PizzaMamamia\Controllers\Home;
 
 
-	use Class152\PizzaMamamia\Http\Request;
+	use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 
-	class Controller
+	class Controller extends AbstractController
 	{
-		/** @var Request */
-		protected $request;
 
-		/**
-		 * Controller constructor.
-		 *
-		 * @param \Class152\PizzaMamamia\Http\Request $request
-		 */
-		public function __construct( Request $request )
-		{
-			$this->request = $request;
-		}
-
-		public function indexAction()
-		{
-			echo __METHOD__ . "<br />";
-		}
 
 	}
