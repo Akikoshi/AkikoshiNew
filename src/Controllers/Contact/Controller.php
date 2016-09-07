@@ -2,11 +2,11 @@
 	/**
 	 * Created by PhpStorm.
 	 * User: cbiedermann
-	 * Date: 07.09.2016
-	 * Time: 09:12
+	 * Date: 05.09.2016
+	 * Time: 14:30
 	 */
 
-	namespace Class152\PizzaMamamia\Controllers\Test;
+	namespace Class152\PizzaMamamia\Controllers\Contact;
 
 
 	use Class152\PizzaMamamia\AbstractClasses\AbstractController;
@@ -17,9 +17,9 @@
 		public function indexAction()
 		{
 			new TwigRendering(
-				'Home/index.twig',
+				'Contact/index.twig',
 				[
-					'controllerName'=>'Home',
+					'controllerName'=>'Contact',
 					'actionName' => 'index',
 				]
 			);
