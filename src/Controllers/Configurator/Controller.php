@@ -6,7 +6,7 @@
  * Time: 11:23
  */
 
-namespace Controllers\Configurator;
+namespace Class152\PizzaMamamia\Controllers\Configurator;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
