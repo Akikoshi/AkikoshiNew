@@ -6,7 +6,7 @@
  * Time: 11:27
  */
 
-namespace Class152\PizzaMamamia\AbstractClasses\Controllers\Campaigns;
+namespace Class152\PizzaMamamia\Controllers\Campaigns;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
