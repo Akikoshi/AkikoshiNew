@@ -6,14 +6,29 @@ var sass = require('gulp-sass');
 
 // the paths to the files
 var config = {
+	defaultConfigDir: './Templates/Default',
 	defaultBootstrapDir: './Templates/Default/resources/bootstrap',
 	defaultCustomDir: './Templates/Default/resources/custom',
 	defaultJqueryDir: './Templates/Default/resources/jquery',
-	aqBootstrapDir: './Templates/Default/resources/bootstrap',
-	aqCustomDir: './Templates/Default/resources/custom',
-	aqJqueryDir: './Templates/Default/resources/jquery',
+	aqConfigDir: './Templates/AqPowered',
+	aqBootstrapDir: './Templates/AqPowered/resources/bootstrap',
+	aqCustomDir: './Templates/AqPowered/resources/custom',
+	aqJqueryDir: './Templates/AqPowered/resources/jquery',
+	templateConfigDir: './src/Configurations',
 	publicDir: './public'
 };
+
+// copying the template configuration for templates
+gulp.task(
+	'default:template',function(){
+		gulp.src( config.defaultConfigDir + '/TemplateConfig.php' )
+				.pipe( gulp.dest( config.templateConfigDir ) );
+	});
+gulp.task(
+	'aq:template',function(){
+		gulp.src( config.aqConfigDir + '/TemplateConfig.php' )
+				.pipe( gulp.dest( config.templateConfigDir ) );
+	});
 
 // copying the fonts from bootstrap into the public dir
 gulp.task(
@@ -121,8 +136,8 @@ gulp.task(
 	});
 
 // starts all tasks
-gulp.task('default',['default:js','default:css','default:fonts']);
-gulp.task('aq:default',['aq:js','aq:css','aq:fonts']);
+gulp.task('default',['default:js','default:css','default:fonts','default:template']);
+gulp.task('aq:default',['aq:js','aq:css','aq:fonts','aq:template']);
 
 // starts css task when a scss file is changed
 gulp.task('default:css:watch', function (  ) {
