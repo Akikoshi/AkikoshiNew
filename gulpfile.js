@@ -6,9 +6,9 @@ var sass = require('gulp-sass');
 
 // the paths to the files
 var config = {
-	bootstrapDir: './Templates/Default/resources/bootstrap',
-	customDir: './Templates/Default/resources/custom',
-	jqueryDir: './Templates/Default/resources/jquery',
+	bootstrapDir: './resources/bootstrap',
+	customDir: './resources/custom',
+	jqueryDir: './resources/jquery',
 	publicDir: './public'
 };
 
