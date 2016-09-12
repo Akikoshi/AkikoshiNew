@@ -9,6 +9,8 @@
 	namespace Class152\PizzaMamamia\Library;
 
 
+	use Class152\PizzaMamamia\Configurations\TemplateConfig;
+
 	class TwigRendering
 	{
 
@@ -18,7 +20,7 @@
 		public function __construct( string $template, array $variables )
 		{
 
-			$this->templatePath = __DIR__ . "/../../Templates/Default";
+			$this->templatePath = TemplateConfig::getPath();
 			$loader = new \Twig_Loader_Filesystem($this->templatePath);
 			$twig = new \Twig_Environment($loader, array(
 				// 'cache' => '/path/to/compilation_cache',
