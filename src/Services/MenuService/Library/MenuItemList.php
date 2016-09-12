@@ -43,6 +43,9 @@
 					);
 				}
 			}
+
+			$this->iteratorArray = $array;
+
 		}
 
 		/**
