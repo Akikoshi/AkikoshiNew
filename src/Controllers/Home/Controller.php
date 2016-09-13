@@ -12,6 +12,7 @@
 	use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 	use Class152\PizzaMamamia\Library\TwigRendering;
 	use Class152\PizzaMamamia\Services\MenuService\MenuService;
+	use Class152\PizzaMamamia\Services\StartPageService\StartPageService;
 
 	class Controller extends AbstractController
 	{
@@ -23,14 +24,20 @@
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
 
+			$startPageService = new StartPageService();
+
+			$slider = $startPageService->getSlider();
+
+
 			new TwigRendering(
 				'Home/index.twig',
 				[
 					'controllerName'=>'Home',
 					'actionName' => 'index',
-				  'mainMenu' => $mainMenu,
-				  'footerMenu' => $footerMenu,
-				  'accountMenu' => $accountMenu,
+				  	'mainMenu' => $mainMenu,
+				  	'footerMenu' => $footerMenu,
+				  	'accountMenu' => $accountMenu,
+					'slider' => $slider,
 				]
 			);
 		}

@@ -39,7 +39,7 @@
 		public function getMainMenu() : MenuItemList
 		{
 			$mainMenuFactory = new MainMenuFactory();
-			return $mainMenuFactory->getMianMenu();
+			return $mainMenuFactory->getMainMenu();
 		}
 
 
