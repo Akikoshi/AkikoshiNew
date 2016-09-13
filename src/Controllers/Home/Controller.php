@@ -18,21 +18,23 @@
 		public function indexAction()
 		{
 
-			$menuService = new MenuService();
+			$menuService = new MenuService($this->request);
 			$mainMenu = $menuService->getMainMenu();
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
+			$breadCrumb = $menuService->getBreadcrumbMenu();
 
 			new TwigRendering(
 				'Home/index.twig',
 				[
 					'controllerName'=>'Home',
 					'actionName' => 'index',
-				  'mainMenu' => $mainMenu,
-				  'footerMenu' => $footerMenu,
-				  'accountMenu' => $accountMenu,
+				  	'mainMenu' => $mainMenu,
+				 	'footerMenu' => $footerMenu,
+				  	'accountMenu' => $accountMenu,
+					'breadcrumbMenu' => $breadCrumb,
 				]
 			);
 		}
-
+		
 	}
