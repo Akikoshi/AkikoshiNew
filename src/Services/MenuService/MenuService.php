@@ -9,6 +9,8 @@
 	namespace Class152\PizzaMamamia\Services\MenuService;
 
 
+	use Class152\PizzaMamamia\Http\Request;
+	use Class152\PizzaMamamia\Services\MenuService\Library\BreadcrumbMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\FooterMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\ControllerMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\AccountMenuFactory;
@@ -17,6 +19,16 @@
 
 	class MenuService
 	{
+
+		/** @var Request  */
+		private $request;
+		
+		public function __construct(Request $request = null)
+		{
+			if ($request) {
+				$this->request = $request;
+			}
+		}
 
 		public function getControllerMenu() : MenuItemList
 		{
@@ -41,6 +53,10 @@
 			$mainMenuFactory = new MainMenuFactory();
 			return $mainMenuFactory->getMianMenu();
 		}
-
-
+		
+		public function getBreadcrumbMenu()
+		{
+			$breadcrumbMenuFactory = new BreadcrumbMenuFactory($this->request);
+			return $breadcrumbMenuFactory->getBreadcrumbMenu();
+		}
 	}

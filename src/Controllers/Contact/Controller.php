@@ -21,6 +21,8 @@
 			$mainMenu = $menuService->getMainMenu();
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
+			$breadCrumb = $menuService->getBreadcrumbMenu();
+			
 
 			new TwigRendering(
 				'Contact/index.twig',
@@ -30,6 +32,7 @@
 					'mainMenu' => $mainMenu,
 					'footerMenu' => $footerMenu,
 					'accountMenu' => $accountMenu,
+					'breadcrumbMenu' => $breadCrumb,
 				]
 			);
 		}
