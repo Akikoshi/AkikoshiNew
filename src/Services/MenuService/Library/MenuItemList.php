@@ -13,7 +13,7 @@
 	use Class152\PizzaMamamia\Services\MenuService\Exceptions\MenuItemListNeedsMenuItemsException;
 	use Class152\PizzaMamamia\Services\MenuService\Interfaces\MenuItemListInterface;
 
-	final class MenuItemList extends AbstractIterator implements MenuItemListInterface
+	final class MenuItemList extends AbstractIterator
 	{
 
 		/**

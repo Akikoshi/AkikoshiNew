@@ -6,31 +6,76 @@ var sass = require('gulp-sass');
 
 // the paths to the files
 var config = {
-	bootstrapDir: './resources/bootstrap',
-	customDir: './resources/custom',
-	jqueryDir: './resources/jquery',
+	defaultConfigDir: './Templates/Default',
+	defaultBootstrapDir: './Templates/Default/resources/bootstrap',
+	defaultCustomDir: './Templates/Default/resources/custom',
+	defaultJqueryDir: './Templates/Default/resources/jquery',
+	aqConfigDir: './Templates/AqPowered',
+	aqBootstrapDir: './Templates/AqPowered/resources/bootstrap',
+	aqCustomDir: './Templates/AqPowered/resources/custom',
+	aqJqueryDir: './Templates/AqPowered/resources/jquery',
+	templateConfigDir: './src/Configurations',
 	publicDir: './public'
 };
 
+// copying the template configuration for templates
+gulp.task(
+	'default:template',function(){
+		gulp.src( config.defaultConfigDir + '/TemplateConfig.php' )
+				.pipe( gulp.dest( config.templateConfigDir ) );
+	});
+gulp.task(
+	'aq:template',function(){
+		gulp.src( config.aqConfigDir + '/TemplateConfig.php' )
+				.pipe( gulp.dest( config.templateConfigDir ) );
+	});
+
 // copying the fonts from bootstrap into the public dir
 gulp.task(
-	'fonts',function(){
-	gulp.src( config.bootstrapDir + '/fonts/bootstrap/*' )
+	'default:fonts',function(){
+	gulp.src( config.defaultBootstrapDir + '/fonts/bootstrap/*' )
 		.pipe( gulp.dest( config.publicDir + '/fonts' ) );
 });
+gulp.task(
+	'aq:fonts',function(){
+		gulp.src( config.aqBootstrapDir + '/fonts/bootstrap/*' )
+				.pipe( gulp.dest( config.publicDir + '/fonts' ) );
+	});
 
 // merge, complile and compress all scss files to only on css
 gulp.task(
-	'css',
+	'default:css',
 	function (  ) {
 		var success = [false,false]
-		success[0] = gulp.src(config.customDir + '/scss/app.scss')
+		success[0] = gulp.src(config.defaultCustomDir + '/scss/app.scss')
 										 .pipe(
 											 sass().on( 'error', sass.logError )
 										 )
 										 .pipe( gulp.dest( config.publicDir + '/css') );
 
-		success[1] = gulp.src(config.customDir + '/scss/app.scss')
+		success[1] = gulp.src(config.defaultCustomDir + '/scss/app.scss')
+										 .pipe(
+											 sass({outputStyle: 'compressed'}).on( 'error', sass.logError )
+										 )
+										 .pipe(
+											 rename({suffix: ".min"})
+										 )
+										 .pipe( gulp.dest( config.publicDir + '/css') );
+
+		return success[0] && success[1];
+	}
+);
+gulp.task(
+	'aq:css',
+	function (  ) {
+		var success = [false,false]
+		success[0] = gulp.src(config.aqCustomDir + '/scss/app.scss')
+										 .pipe(
+											 sass().on( 'error', sass.logError )
+										 )
+										 .pipe( gulp.dest( config.publicDir + '/css') );
+
+		success[1] = gulp.src(config.aqCustomDir + '/scss/app.scss')
 										 .pipe(
 											 sass({outputStyle: 'compressed'}).on( 'error', sass.logError )
 										 )
@@ -43,42 +88,75 @@ gulp.task(
 	}
 );
 
+
 // merge and compress much js file to only once
 gulp.task(
-	'js',function () {
+	'default:js',function () {
 	return gulp.src([
-										config.jqueryDir + '/jquery.js',
-										config.bootstrapDir + '/javascripts/bootstrap/transition.js',
-										config.bootstrapDir + '/javascripts/bootstrap/alert.js',
-										config.bootstrapDir + '/javascripts/bootstrap/button.js',
-										config.bootstrapDir + '/javascripts/bootstrap/carousel.js',
-										config.bootstrapDir + '/javascripts/bootstrap/collapse.js',
-										config.bootstrapDir + '/javascripts/bootstrap/dropdown.js',
-										config.bootstrapDir + '/javascripts/bootstrap/modal.js',
-										config.bootstrapDir + '/javascripts/bootstrap/tab.js',
-										config.bootstrapDir + '/javascripts/bootstrap/affix.js',
-										config.bootstrapDir + '/javascripts/bootstrap/scrollspy.js',
-										config.bootstrapDir + '/javascripts/bootstrap/tooltip.js',
-										config.bootstrapDir + '/javascripts/bootstrap/popover.js',
-										config.customDir + '/js/*.js'
+										config.defaultJqueryDir + '/jquery.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/transition.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/alert.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/button.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/carousel.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/collapse.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/dropdown.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/modal.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/tab.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/affix.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/scrollspy.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/tooltip.js',
+										config.defaultBootstrapDir + '/javascripts/bootstrap/popover.js',
+										config.defaultCustomDir + '/js/*.js'
 									])
 						 .pipe( concat('app.min.js') )
 						 .pipe( uglify() )
 						 .pipe( gulp.dest( config.publicDir + '/js' ) );
 });
+gulp.task(
+	'aq:js',function () {
+		return gulp.src([
+											config.aqJqueryDir + '/jquery.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/transition.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/alert.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/button.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/carousel.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/collapse.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/dropdown.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/modal.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/tab.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/affix.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/scrollspy.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/tooltip.js',
+											config.aqBootstrapDir + '/javascripts/bootstrap/popover.js',
+											config.aqCustomDir + '/js/*.js'
+										])
+							 .pipe( concat('app.min.js') )
+							 .pipe( uglify() )
+							 .pipe( gulp.dest( config.publicDir + '/js' ) );
+	});
 
 // starts all tasks
-gulp.task('default',['js','css','fonts']);
+gulp.task('default',['default:js','default:css','default:fonts','default:template']);
+gulp.task('aq:default',['aq:js','aq:css','aq:fonts','aq:template']);
 
 // starts css task when a scss file is changed
-gulp.task('css:watch', function (  ) {
+gulp.task('default:css:watch', function (  ) {
 	gulp.watch([
-							 config.bootstrapDir + '/stylesheets/bootstrap/*.scss',
-							 config.customDir + '/scss/*.scss'
+							 config.defaultBootstrapDir + '/stylesheets/bootstrap/*.scss',
+							 config.defaultCustomDir + '/scss/*.scss'
+						 ], ['css'] );
+});
+gulp.task('aq:css:watch', function (  ) {
+	gulp.watch([
+							 config.aqBootstrapDir + '/stylesheets/bootstrap/*.scss',
+							 config.aqCustomDir + '/scss/*.scss'
 						 ], ['css'] );
 });
 
 // starts js task when a js file is changed
-gulp.task('js:watch', function (  ) {
-	gulp.watch(config.customDir + '/js/*.js',['js']);
+gulp.task('default:js:watch', function (  ) {
+	gulp.watch(config.defaultCustomDir + '/js/*.js',['js']);
+});
+gulp.task('aq:js:watch', function (  ) {
+	gulp.watch(config.aqCustomDir + '/js/*.js',['js']);
 });
