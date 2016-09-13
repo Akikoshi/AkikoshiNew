@@ -1,10 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cbiedermann
- * Date: 07.09.2016
- * Time: 14:19
- */
+	/**
+	 * Created by PhpStorm.
+	 * User: cbiedermann
+	 * Date: 07.09.2016
+	 * Time: 14:19
+	 */
 
 namespace Class152\PizzaMamamia\Controllers\Test;
 
@@ -18,10 +18,12 @@ class Controller extends AbstractController
 
     public function indexAction()
     {
-        $menuService = new MenuService();
+        $menuService = new MenuService($this->request);
+        $controllerMenu = $menuService->getControllerMenu();
         $mainMenu = $menuService->getMainMenu();
-        $footerMenu = $menuService->getFooterMenu();
         $accountMenu = $menuService->getAccountMenu();
+        $footerMenu = $menuService->getFooterMenu();
+        $breadCrumb = $menuService->getBreadcrumbMenu();
 
 
         new TwigRendering(
@@ -29,9 +31,11 @@ class Controller extends AbstractController
             [
                 'controllerName' => 'Test',
                 'actionName' => 'index',
+                'controllerMenu' => $controllerMenu,
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
+                'breadcrumbMenu' => $breadCrumb,
             ]
         );
 

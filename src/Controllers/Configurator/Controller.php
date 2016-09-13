@@ -17,10 +17,12 @@ class Controller extends AbstractController
 {
     public function indexAction()
     {
-        $menuService = new MenuService();
+        $menuService = new MenuService($this->request);
         $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
+        $breadCrumb = $menuService->getBreadcrumbMenu();
+        
         new TwigRendering(
             'Configurator/index.twig',
             [
@@ -29,6 +31,7 @@ class Controller extends AbstractController
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
+                'breadcrumbMenu' => $breadCrumb,
             ]
         );
     }

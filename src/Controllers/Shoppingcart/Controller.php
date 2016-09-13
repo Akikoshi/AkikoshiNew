@@ -17,11 +17,11 @@ class Controller extends AbstractController
 {
     public function indexAction()
     {
-        $menuService = new MenuService();
+        $menuService = new MenuService($this->request);
         $mainMenu = $menuService->getMainMenu();
-        $footerMenu = $menuService->getFooterMenu();
         $accountMenu = $menuService->getAccountMenu();
-
+        $footerMenu = $menuService->getFooterMenu();
+        $breadCrumb = $menuService->getBreadcrumbMenu();
         new TwigRendering(
             'Shoppingcart/index.twig',
             [
@@ -30,6 +30,7 @@ class Controller extends AbstractController
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
+                'breadcrumbMenu' => $breadCrumb,
             ]
         );
     }
