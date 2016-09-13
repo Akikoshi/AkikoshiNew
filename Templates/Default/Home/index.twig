@@ -1,95 +1,10 @@
 {% include '/_Parts/htmlHeader.twig' %}
 
-<div class="navbar-wrapper">
-	<div class="container">
+{% include '/Parts/mainMenu.twig' %}
 
-		<nav class="navbar navbar-inverse navbar-static-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Navigation ein-/ausblenden</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Projekt-Titel</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Start</a></li>
-						<li><a href="#ueber">Über</a></li>
-						<li><a href="#kontakt">Kontakt</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown-Menü <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Aktion</a></li>
-								<li><a href="#">Andere Aktion</a></li>
-								<li><a href="#">Irgendwas anderes</a></li>
-								<li role="separator" class="divider"></li>
-								<li class="dropdown-header">Nav-Überschrift</li>
-								<li><a href="#">Abgetrennter Link</a></li>
-								<li><a href="#">Noch ein abgetrennter Link</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+{% include '/Parts/breadcrumbs.twig' %}
 
-	</div>
-</div>
-
-
-<!-- Karussell
-================================================== -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<!-- Positionsanzeige -->
-	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-	</ol>
-	<div class="carousel-inner" role="listbox">
-		<div class="item active">
-			<img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Erste Folie">
-			<div class="container">
-				<div class="carousel-caption">
-					<h1>Beispiel-Überschrift.</h1>
-					<p>Hinweis: Falls du diese Seite über eine <code>file://</code>-URL anzeigst, werden die Glyphicon-Buttons für das nächste und vorherige Objekt links und rechts unter Umständen aufgrund von Browser-Sicherheitsregeln nicht vernünftig geladen/angezeigt.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Melde dich noch heute an</a></p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Zweite Folie">
-			<div class="container">
-				<div class="carousel-caption">
-					<h1>Noch eine Beispiel-Überschrift.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Mehr erfahren</a></p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Dritte Folie">
-			<div class="container">
-				<div class="carousel-caption">
-					<h1>Aller guten Dinge sind drei.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Galerie erkunden</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		<span class="sr-only">Zurück</span>
-	</a>
-	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		<span class="sr-only">Weiter</span>
-	</a>
-</div><!-- /.carousel -->
+{% include '/Home/_Parts/carousel.twig' %}
 
 
 <!-- Marketing-Botschaften und Präsentationsspalten
@@ -98,27 +13,7 @@
 
 <div class="container marketing">
 
-	<!-- Drei Spalten Text unter dem Karussell -->
-	<div class="row">
-		<div class="col-lg-4">
-			<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generisches Platzhalter-Bild" width="140" height="140">
-			<h2>Überschrift</h2>
-			<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-		</div><!-- /.col-lg-4 -->
-		<div class="col-lg-4">
-			<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generisches Platzhalter-Bild" width="140" height="140">
-			<h2>Überschrift</h2>
-			<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-		</div><!-- /.col-lg-4 -->
-		<div class="col-lg-4">
-			<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generisches Platzhalter-Bild" width="140" height="140">
-			<h2>Überschrift</h2>
-			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-		</div><!-- /.col-lg-4 -->
-	</div><!-- /.row -->
+{% include '/Home/_Parts/trippleTeaser.twig' %}
 
 
 	<!-- Präsentationsspalten -->
@@ -161,13 +56,8 @@
 
 	<hr class="featurette-divider">
 
-
-	<!-- FOOTER -->
-	<footer>
-		<p class="pull-right"><a href="#">Zurück nach oben</a></p>
-		<p>&copy; 2014 Firma &amp; Co. &middot; <a href="#">Datenschutz</a> &middot; <a href="#">AGB</a></p>
-	</footer>
-
 </div><!-- /.container -->
+
+{% include '/_Parts/footerMenu.twig' %}
 
 {% include '/_Parts/htmlFooter.twig' %}
