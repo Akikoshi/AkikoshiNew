@@ -1,15 +1,31 @@
-{% include '_Parts/htmlHeader.twig' %}
+{% include '/_Parts/htmlHeader.twig' %}
 
 {% include '/_Parts/mainMenu.twig' %}
 
-<h1>HALLO Welt {{ controllerName }} {{ actionName }}</h1>
+{% include '/_Parts/breadcrumb.twig' %}
 
-Hey
+{% include '/_Parts/pageHeader.twig' %}
 
-<ul>
-{% for menuItem in mainMenu %}
-	<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
-{% endfor %}
-</ul>
+<div class="container" style="min-height: 400px;">
+	<div class="row">
+		<div class="hidden-xs col-md-4">
+			{% include '/_Parts/sidebar.twig' %}
+		</div>
+		<div class="col-xs-12 col-md-8">
 
-{% include '_Parts/htmlFooter.twig' %}
+			<ul>
+				{% for menuItem in mainMenu %}
+					<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+				{% endfor %}
+			</ul>
+
+		</div>
+	</div>
+</div>
+
+{% include '/_Parts/footerMenu.twig' %}
+
+{% include '/_Parts/htmlFooter.twig' %}
+
+
+
