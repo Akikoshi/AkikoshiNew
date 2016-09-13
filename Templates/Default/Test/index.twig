@@ -13,11 +13,17 @@
 		</div>
 		<div class="col-xs-12 col-md-8">
 
-			<ul>
-				{% for menuItem in mainMenu %}
-					<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
-				{% endfor %}
-			</ul>
+<ul>
+{% for menuItem in mainMenu %}
+	<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+{% endfor %}
+</ul>
+<hr />
+<ul>
+	{% for menuItem in footerMenu %}
+		<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+	{% endfor %}
+</ul>
 
 		</div>
 	</div>
