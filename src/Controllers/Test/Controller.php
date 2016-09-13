@@ -10,7 +10,7 @@
 
 
 	use Class152\PizzaMamamia\AbstractClasses\AbstractController;
-	use Class152\PizzaMamamia\Library\ControllerMenu;
+	//use Class152\PizzaMamamia\Library\ControllerMenuFactory;
 	use Class152\PizzaMamamia\Library\TwigRendering;
 	use Class152\PizzaMamamia\Services\MenuService\MenuService;
 
