@@ -12,6 +12,8 @@ namespace Class152\PizzaMamamia\Controllers\Productdetails;
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
+use Class152\PizzaMamamia\Services\ProductService\Library\ProductFactory;
+use Class152\PizzaMamamia\Services\ProductService\ProductService;
 
 class Controller extends AbstractController
 {
@@ -21,6 +23,9 @@ class Controller extends AbstractController
         $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
+        
+        $productService = new ProductService();
+        $productItem = $productService->getProductItem();
 
         new TwigRendering(
             'Productdetails/index.twig',
@@ -30,6 +35,7 @@ class Controller extends AbstractController
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
+                'productItem'=> $productItem,
             ]
         );
     }
