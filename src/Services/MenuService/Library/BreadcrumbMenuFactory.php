@@ -49,24 +49,30 @@ class BreadcrumbMenuFactory
 
 	private function generateMenuItemList()
 	{
-		if ( $this->actionName != "" ) {
+		if ( strtolower( $this->controllerName ) != 'home' ) {
+			$menuItem = new MenuItem( 'Home', '/' );
+			$this->breadcrumbMenu->addItem( $menuItem );
+		}
+		if ( $this->actionName == "" ) {
 			$menuItem = new MenuItem( $this->controllerName, '' );
 			$this->breadcrumbMenu->addItem( $menuItem );
 		}
 		else {
 			$menuItem = new MenuItem( $this->controllerName, '/' . $this->controllerName );
 			$this->breadcrumbMenu->addItem( $menuItem );
-			$menuItem = new MenuItem( $this->actionName, '/' . $this->actionName );
+			$menuItem = new MenuItem( $this->actionName, '' );
 			$this->breadcrumbMenu->addItem( $menuItem );
 		}
 	}
+
 
 	private function getControllerName()
 	{
 		$this->controllerName = $this->request->getControllerName();
 	}
 
-	private function getNonIndexActionName()
+	private
+	function getNonIndexActionName()
 	{
 		$oActionName = $this->request->getActionName();
 		if ( $oActionName != "index" ) {

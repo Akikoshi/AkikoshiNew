@@ -23,11 +23,9 @@
 		/** @var Request  */
 		private $request;
 		
-		public function __construct(Request $request = null)
+		public function __construct(Request $request )
 		{
-			if ($request) {
 				$this->request = $request;
-			}
 		}
 
 		public function getControllerMenu() : MenuItemList
@@ -51,7 +49,7 @@
 		public function getMainMenu() : MenuItemList
 		{
 			$mainMenuFactory = new MainMenuFactory();
-			return $mainMenuFactory->getMianMenu();
+			return $mainMenuFactory->getMainMenu();
 		}
 		
 		public function getBreadcrumbMenu()

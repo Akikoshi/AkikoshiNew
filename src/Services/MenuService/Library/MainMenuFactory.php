@@ -167,7 +167,7 @@ class MainMenuFactory
         );
     }
     
-    public function getMianMenu()
+    public function getMainMenu()
     {
         return $this->mainMenu;
     }

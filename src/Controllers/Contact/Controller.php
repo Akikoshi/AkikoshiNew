@@ -17,7 +17,7 @@
 	{
 		public function indexAction()
 		{
-			$menuService = new MenuService();
+			$menuService = new MenuService($this->request);
 			$mainMenu = $menuService->getMainMenu();
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
