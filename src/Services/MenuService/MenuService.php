@@ -9,6 +9,7 @@
 	namespace Class152\PizzaMamamia\Services\MenuService;
 
 
+	use Class152\PizzaMamamia\Services\MenuService\Library\FooterMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\ControllerMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\MenuItemList;
 
@@ -21,9 +22,10 @@
 			return $controllerMenuFactory->getControllerMenu();
 		}
 
-		public function getFooterMenu()
+		public function getFooterMenu() : MenuItemList
 		{
-
+			$FooterMenuFactory = new FooterMenuFactory();
+			return $FooterMenuFactory->getControllerFooter();
 		}
 
 
