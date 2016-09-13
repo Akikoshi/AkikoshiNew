@@ -13,6 +13,7 @@
 
 	use Class152\PizzaMamamia\Services\MenuService\Library\AccountMenuFactory;
 
+	use Class152\PizzaMamamia\Services\MenuService\Library\MainMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\MenuItemList;
 
 	class MenuService
@@ -33,6 +34,12 @@
 		public function getFooterMenu()
 		{
 
+		}
+		
+		public function getMainMenu() : MenuItemList
+		{
+			$mainMenuFactory = new MainMenuFactory();
+			return $mainMenuFactory->getMianMenu();
 		}
 
 
