@@ -10,7 +10,6 @@ namespace Class152\PizzaMamamia\Controllers\Test;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
-use Class152\PizzaMamamia\Library\ControllerMenu;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
 
@@ -20,8 +19,9 @@ class Controller extends AbstractController
     public function indexAction()
     {
         $menuService = new MenuService();
-        $controllerMenu = $menuService->getControllerMenu();
+        $mainMenu = $menuService->getMainMenu();
         $footerMenu = $menuService->getFooterMenu();
+        $accountMenu = $menuService->getAccountMenu();
 
 
         new TwigRendering(
@@ -29,8 +29,9 @@ class Controller extends AbstractController
             [
                 'controllerName' => 'Test',
                 'actionName' => 'index',
-                'mainMenu' => $controllerMenu,
+                'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
+                'accountMenu' => $accountMenu,
             ]
         );
 

@@ -11,7 +11,6 @@ namespace Class152\PizzaMamamia\Controllers\Account;
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
-
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
 
 class Controller extends AbstractController
@@ -23,13 +22,18 @@ class Controller extends AbstractController
 
         $menuService = new MenuService();
         $accountMenu = $menuService->getAccountMenu();
+        $mainMenu = $menuService->getMainMenu();
+        $footerMenu = $menuService->getFooterMenu();
+        
 
         new TwigRendering(
             'Test/index.twig',
             [
                 'controllerName'=>'Account',
                 'actionName' => 'index',
-                'mainMenu' => $accountMenu,
+                'mainMenu' => $mainMenu,
+                'footerMenu' => $footerMenu,
+                'accountMenu' => $accountMenu,
             ]
         );
 
