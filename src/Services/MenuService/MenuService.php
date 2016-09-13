@@ -14,6 +14,7 @@
 	use Class152\PizzaMamamia\Services\MenuService\Library\AccountMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\MainMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\MenuItemList;
+    use Class152\PizzaMamamia\Services\MenuService\Library\CampaignsMenuFactory;
 
 	class MenuService
 	{
@@ -42,5 +43,10 @@
 			return $mainMenuFactory->getMianMenu();
 		}
 
+        public function getCampaignsMenu() : MenuItemList
+        {
+            $mainMenuFactory = new CampaignsMenuFactory();
+            return $mainMenuFactory->getCampaignsMenu();
+        }
 
-	}
+    }
