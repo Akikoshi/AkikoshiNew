@@ -11,21 +11,32 @@
 
 	use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 	use Class152\PizzaMamamia\Library\TwigRendering;
+	use Class152\PizzaMamamia\Services\MenuService\MenuService;
 
 
 	class Controller extends AbstractController
 	{
 		/**
 		 * shows start page
-     */
+     	*/
 		public function indexAction()
 		{
+
+			$menuService = new MenuService($this->request);
+			$mainMenu = $menuService->getMainMenu();
+			$accountMenu = $menuService->getAccountMenu();
+			$footerMenu = $menuService->getFooterMenu();
+			$breadCrumb = $menuService->getBreadcrumbMenu();
 
 			new TwigRendering(
 				'Informations/index.twig',
 				[
 					'controllerName'=>'Informations',
 					'actionName' => 'index',
+					'mainMenu' => $mainMenu,
+					'footerMenu' => $footerMenu,
+					'accountMenu' => $accountMenu,
+					'breadcrumbMenu' => $breadCrumb,
 				]
 			);
 

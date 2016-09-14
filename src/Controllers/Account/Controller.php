@@ -21,15 +21,21 @@ class Controller extends AbstractController
     public function indexAction()
     {
 
-        $menuService = new MenuService();
+        $menuService = new MenuService($this->request);
+        $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
+        $footerMenu = $menuService->getFooterMenu();
+        $breadCrumb = $menuService->getBreadcrumbMenu();
 
         new TwigRendering(
             'Test/index.twig',
             [
                 'controllerName'=>'Account',
                 'actionName' => 'index',
-                'mainMenu' => $accountMenu,
+                'mainMenu' => $mainMenu,
+                'footerMenu' => $footerMenu,
+                'accountMenu' => $accountMenu,
+                'breadcrumbMenu' => $breadCrumb,
             ]
         );
 
