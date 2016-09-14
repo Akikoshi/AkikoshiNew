@@ -25,8 +25,6 @@
 			$mainMenu = $menuService->getMainMenu();
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
-			$productService = new ProductService();
-			$productItem = $productService->getProductItem();
 
 			$breadCrumb = $menuService->getBreadcrumbMenu();
 
@@ -41,10 +39,6 @@
 				  'mainMenu' => $mainMenu,
 				  'footerMenu' => $footerMenu,
 				  'accountMenu' => $accountMenu,
-					'productItem'=> $productItem,
-				  	'mainMenu' => $mainMenu,
-				 	'footerMenu' => $footerMenu,
-				  	'accountMenu' => $accountMenu,
 					'breadcrumbMenu' => $breadCrumb,
 					'slider' => $slider,
 				]
