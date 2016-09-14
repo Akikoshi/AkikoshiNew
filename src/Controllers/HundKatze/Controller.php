@@ -6,7 +6,7 @@
  * Time: 10:45
  */
 
-namespace Class152\PizzaMamamia\Controllers\ProductList;
+namespace Class152\PizzaMamamia\Controllers\Productlist67876;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
