@@ -26,18 +26,20 @@
 			$breadCrumb = $menuService->getBreadcrumbMenu();
 
 			$startPageService = new StartPageService();
-			$slider = $startPageService->getSlider();
+			$sliderList = $startPageService->getSlider();
+			$campaignList = $startPageService->getCampaign();
 			
 			new TwigRendering(
 				'Home/index.twig',
 				[
 					'controllerName'=>'Home',
 					'actionName' => 'index',
-				  	'mainMenu' => $mainMenu,
-				 	'footerMenu' => $footerMenu,
-				  	'accountMenu' => $accountMenu,
+				  'mainMenu' => $mainMenu,
+				  'footerMenu' => $footerMenu,
+				  'accountMenu' => $accountMenu,
 					'breadcrumbMenu' => $breadCrumb,
-					'slider' => $slider,
+					'sliderList' => $sliderList,
+					'campaignList' => $campaignList,
 				]
 			);
 		}
