@@ -42,6 +42,18 @@ gulp.task(
 				.pipe( gulp.dest( config.publicDir + '/fonts' ) );
 	});
 
+// copying the fonts from bootstrap into the public dir
+gulp.task(
+	'default:images',function(){
+		gulp.src( config.defaultConfigDir + '/_images/*' )
+				.pipe( gulp.dest( config.publicDir + '/img' ) );
+	});
+gulp.task(
+	'aq:images',function(){
+		gulp.src( config.aqConfigDir + '/_images/*' )
+				.pipe( gulp.dest( config.publicDir + '/img' ) );
+	});
+
 // merge, complile and compress all scss files to only on css
 gulp.task(
 	'default:css',
@@ -136,27 +148,27 @@ gulp.task(
 	});
 
 // starts all tasks
-gulp.task('default',['default:js','default:css','default:fonts','default:template']);
-gulp.task('aq:default',['aq:js','aq:css','aq:fonts','aq:template']);
+gulp.task('default',['default:js','default:css','default:fonts','default:template','default:images']);
+gulp.task('aq:default',['aq:js','aq:css','aq:fonts','aq:template','aq:images']);
 
 // starts css task when a scss file is changed
 gulp.task('default:css:watch', function (  ) {
 	gulp.watch([
 							 config.defaultBootstrapDir + '/stylesheets/bootstrap/*.scss',
 							 config.defaultCustomDir + '/scss/*.scss'
-						 ], ['css'] );
+						 ], ['default:css'] );
 });
 gulp.task('aq:css:watch', function (  ) {
 	gulp.watch([
 							 config.aqBootstrapDir + '/stylesheets/bootstrap/*.scss',
 							 config.aqCustomDir + '/scss/*.scss'
-						 ], ['css'] );
+						 ], ['aq:css'] );
 });
 
 // starts js task when a js file is changed
 gulp.task('default:js:watch', function (  ) {
-	gulp.watch(config.defaultCustomDir + '/js/*.js',['js']);
+	gulp.watch(config.defaultCustomDir + '/js/*.js',['default:js']);
 });
 gulp.task('aq:js:watch', function (  ) {
-	gulp.watch(config.aqCustomDir + '/js/*.js',['js']);
+	gulp.watch(config.aqCustomDir + '/js/*.js',['aq:js']);
 });
