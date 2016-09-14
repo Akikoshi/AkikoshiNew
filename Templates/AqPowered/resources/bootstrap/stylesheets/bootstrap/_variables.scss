@@ -30,9 +30,10 @@ $body-bg: #fff !default;
 $text-color: $gray-dark !default;
 
 //** Global textual link color.
-$link-color: $brand-primary !default;
+$link-color: #000!default;
 //** Link hover color set via `darken()` function.
-$link-hover-color: darken($link-color, 15%) !default;
+$link-bg: none !default;
+$link-hover-color: #fff !default;
 //** Link hover decoration.
 $link-hover-decoration: underline !default;
 
@@ -76,7 +77,7 @@ $headings-color: inherit !default;
 
 // [converter] If $bootstrap-sass-asset-helper if used, provide path relative to the assets load path.
 // [converter] This is because some asset helpers, such as Sprockets, do not work with file-relative paths.
-$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "/fonts/") !default;
 
 //** File name for all font files.
 $icon-font-name: "glyphicons-halflings-regular" !default;
@@ -239,7 +240,7 @@ $dropdown-divider-bg: #e5e5e5 !default;
 //** Dropdown link text color.
 $dropdown-link-color: #080 !default;
 //** Hover color for dropdown links.
-$dropdown-link-hover-color: darken($gray-dark, 5%) !default;
+$dropdown-link-hover-color:#d20000 !default;
 //** Hover background for dropdown links.
 $dropdown-link-hover-bg: #f5f5f5 !default;
 
@@ -252,7 +253,7 @@ $dropdown-link-active-bg: $component-active-bg !default;
 $dropdown-link-disabled-color: $gray-light !default;
 
 //** Text color for headers within dropdown menus.
-$dropdown-header-color: $gray-light !default;
+$dropdown-header-color: #000 !default;
 
 //** Deprecated `$dropdown-caret-color` as of v3.1.0
 $dropdown-caret-color: #fff !default;
@@ -355,17 +356,17 @@ $navbar-padding-horizontal: floor(($grid-gutter-width / 2)) !default;
 $navbar-padding-vertical: (($navbar-height - $line-height-computed) / 2) !default;
 $navbar-collapse-max-height: 340px !default;
 
-$navbar-default-color: #fff !default;
-$navbar-default-bg: #080 !default;
+$navbar-default-color: #080 !default;
+$navbar-default-bg: #fff !default;
 $navbar-default-border: darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
-$navbar-default-link-color: #fff !default;
-$navbar-default-link-hover-color: #800 !default;
+$navbar-default-link-color: #080 !default;
+$navbar-default-link-hover-color: #d20000 !default;
 $navbar-default-link-hover-bg: transparent !default;
-$navbar-default-link-active-color: #fff !default;
+$navbar-default-link-active-color: #080 !default;
 $navbar-default-link-active-bg: darken($navbar-default-bg, 6.5%) !default;
-$navbar-default-link-disabled-color: #800 !default;
+$navbar-default-link-disabled-color: #D20000 !default;
 $navbar-default-link-disabled-bg: transparent !default;
 
 // Navbar brand label
@@ -374,8 +375,8 @@ $navbar-default-brand-hover-color: $navbar-default-link-hover-color !default;
 $navbar-default-brand-hover-bg: transparent !default;
 
 // Navbar toggle
-$navbar-default-toggle-hover-bg: #f00 !default;
-$navbar-default-toggle-icon-bar-bg: #f00 !default;
+$navbar-default-toggle-hover-bg: #D20000 !default;
+$navbar-default-toggle-icon-bar-bg: #D20000 !default;
 $navbar-default-toggle-border-color: #ddd !default;
 
 //=== Inverted navbar
@@ -417,10 +418,10 @@ $nav-disabled-link-hover-color: $gray-light !default;
 //== Tabs
 $nav-tabs-border-color: #ddd !default;
 
-$nav-tabs-link-hover-border-color: $gray-lighter !default;
+$nav-tabs-link-hover-border-color: #fff !default;
 
 $nav-tabs-active-link-hover-bg: $body-bg !default;
-$nav-tabs-active-link-hover-color: $gray !default;
+$nav-tabs-active-link-hover-color: #fff !default;
 $nav-tabs-active-link-hover-border-color: #ddd !default;
 
 $nav-tabs-justified-link-border-color: #ddd !default;
