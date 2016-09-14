@@ -23,146 +23,146 @@ class MainMenuFactory
 
         $subMenu = new MenuItemList();
         $subMenu->addItem(
-            new MenuItem('Alle einsehnen','/home/index?typ=1')
+            new MenuItem('Alle einsehnen', '/productlist/index')
         );
         
         $subMenu->addItem(
-            new MenuItem('Vegetarische Pizzas', '/home/index?typ=1&option=veg')
+            new MenuItem('Vegetarische Pizzas', '/productlist/index')
         );
         
         $subMenu->addItem(
-            new MenuItem('Klassiker','/home/index?typ=1&option=kla')
+            new MenuItem('Klassiker', '/productlist/index')
         );
 
         $this->mainMenu->addItem(
-            new MenuItem('Pizza','/home/index?typ=1',
+            new MenuItem('Pizza', '/productlist/index',
                 $subMenu)
         );
 //---------------------------------------------------------------------------------------------------------------------------
         $subMenu = new MenuItemList();
         $subMenu->addItem(
-            new MenuItem('Alle einsehnen','/home/index?typ=2')
+            new MenuItem('Alle einsehnen', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Vegetarische', '/home/index?typ=2&option=veN')
+            new MenuItem('Vegetarische', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Klassiker','/home/index?typ=2&option=klN')
+            new MenuItem('Klassiker', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Überbackenes','/home/index?typ=2&option=ueN')
+            new MenuItem('Überbackenes', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Saisonal','/home/index?typ=2&option=seN')
+            new MenuItem('Saisonal', '/productlist/index')
         );
 
         $this->mainMenu->addItem(
-            new MenuItem('Nudeln','/home/index?typ=1',
+            new MenuItem('Nudeln', '/productlist/index',
                 $subMenu)
         );
 //---------------------------------------------------------------------------------------------------------------------------
         $subMenu = new MenuItemList();
         $subMenu->addItem(
-            new MenuItem('Alle einsehnen','/home/index?typ=2')
+            new MenuItem('Alle einsehnen', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Anti Pasti', '/home/index?typ=2&option=Veg')
+            new MenuItem('Anti Pasti', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Klassiker','/home/index?typ=2&option=kla')
+            new MenuItem('Klassiker', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Burger','/home/index?typ=2&option=bur')
+            new MenuItem('Burger', '/productlist/index')
         );
 
         $this->mainMenu->addItem(
-            new MenuItem('Fingerfood','/home/index?typ=1',
+            new MenuItem('Fingerfood', '/productlist/index',
                 $subMenu)
         );
 //---------------------------------------------------------------------------------------------------------------------------
         $subMenu = new MenuItemList();
         $subMenu->addItem(
-            new MenuItem('Alle einsehnen','/home/index?typ=2')
+            new MenuItem('Alle einsehnen', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Vegetarisch', '/home/index?typ=2&option=Veg')
+            new MenuItem('Vegetarisch', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Klassiker','/home/index?typ=2&option=kla')
+            new MenuItem('Klassiker', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Laktosefrei','/home/index?typ=2&option=lak')
+            new MenuItem('Laktosefrei', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Warme','/home/index?typ=2&option=war')
+            new MenuItem('Warme', '/productlist/index')
         );
 
         $this->mainMenu->addItem(
-            new MenuItem('Salat','/home/index?typ=1',
+            new MenuItem('Salat', '/productlist/index',
                 $subMenu)
         );
 //---------------------------------------------------------------------------------------------------------------------------
         $subMenu = new MenuItemList();
         $subMenu->addItem(
-            new MenuItem('Alle einsehnen','/home/index?typ=2')
+            new MenuItem('Alle einsehnen', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Eis', '/home/index?typ=2&option=Veg')
+            new MenuItem('Eis', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Klassiker','/home/index?typ=2&option=kla')
+            new MenuItem('Klassiker', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Laktosefrei','/home/index?typ=2&option=lak')
+            new MenuItem('Laktosefrei', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Warme','/home/index?typ=2&option=war')
+            new MenuItem('Warme', '/productlist/index')
         );
 
         $this->mainMenu->addItem(
-            new MenuItem('Desserts','/home/index?typ=1',
+            new MenuItem('Desserts', '/productlist/index',
                 $subMenu)
         );
 //---------------------------------------------------------------------------------------------------------------------------
         $subMenu = new MenuItemList();
         $subSubMenu = new MenuItemList();
         $subMenu->addItem(
-            new MenuItem('Alle einsehnen','/home/index?typ=2')
+            new MenuItem('Alle einsehnen', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Nicht Alkoholische','/home/index?typ=2&option=nal')
+            new MenuItem('Nicht Alkoholische', '/productlist/index')
         );
 
         $subSubMenu->addItem(
-            new MenuItem('Koffeinhaltig','/home/index?typ=3&option=kof')
+            new MenuItem('Koffeinhaltig', '/productlist/index')
         );
 
         $subSubMenu->addItem(
-            new MenuItem('Koffeinfrei','/home/index?typ=3&option=koff')
+            new MenuItem('Koffeinfrei', '/productlist/index')
         );
 
         $subMenu->addItem(
-            new MenuItem('Alkoholische','/home/index?typ=2&option=alk')
-        );
+            new MenuItem('Alkoholische', '/productlist/index')
+        ); 
 
         $this->mainMenu->addItem(
-            new MenuItem('Getränke','/home/index?typ=1',
+            new MenuItem('Getränke', '/productlist/index',
                 $subMenu)
         );
     }

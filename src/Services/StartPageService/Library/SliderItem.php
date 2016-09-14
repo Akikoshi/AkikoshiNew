@@ -9,7 +9,9 @@
 namespace Class152\PizzaMamamia\Services\StartPageService\Library;
 
 
-class SliderItem
+use Class152\PizzaMamamia\Services\StartPageService\Interfaces\SliderItemInterface;
+
+class SliderItem implements SliderItemInterface
 {
     /** @var  string */
     private $picture;
