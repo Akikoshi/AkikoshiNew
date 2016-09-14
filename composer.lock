@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4183b136ea154d41e5ba28ac8b8119f3",
+    "hash": "f3ed5816c499833f17eba214cbdffdb5",
     "content-hash": "4fd8054152efebbe3ce77ebe444626dd",
     "packages": [
         {
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ffa2b812b07cceb163b30091aa54048b856d087b"
+                "reference": "c418d07c64bdf004635973f978c806a53a32b320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ffa2b812b07cceb163b30091aa54048b856d087b",
-                "reference": "ffa2b812b07cceb163b30091aa54048b856d087b",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c418d07c64bdf004635973f978c806a53a32b320",
+                "reference": "c418d07c64bdf004635973f978c806a53a32b320",
                 "shasum": ""
             },
             "require": {
@@ -66,7 +66,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-08-18 00:09:08"
+            "time": "2016-09-01 17:55:16"
         }
     ],
     "packages-dev": [],

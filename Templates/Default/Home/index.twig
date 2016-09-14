@@ -1,5 +1,63 @@
 {% include '/_Parts/htmlHeader.twig' %}
 
-<h1>HALLO Welt {{ controllerName }} {{ actionName }}</h1>
+{% include '/_Parts/mainMenu.twig' %}
+
+{% include '/_Parts/breadcrumb.twig' %}
+
+{% include '/Home/_Parts/carousel.twig' %}
+
+
+<!-- Marketing-Botschaften und Präsentationsspalten
+================================================== -->
+<!-- Der Rest der Seite wird in einem anderen Container verpackt, um den Inhalt schön zu zentrieren. -->
+
+<div class="container marketing">
+
+{% include '/Home/_Parts/trippleTeaser.twig' %}
+
+
+	<!-- Präsentationsspalten -->
+
+	<hr class="featurette-divider">
+
+	<div class="row featurette">
+		<div class="col-md-7">
+			<h2 class="featurette-heading">Tolle Überschrift. <span class="text-muted">Es wird dir den Verstand rauben.</span></h2>
+			<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+		</div>
+		<div class="col-md-5">
+			<img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto/#555:#333/text:Dritte Folie" alt="Generisches Platzhalter-Bild">
+		</div>
+	</div>
+
+	<hr class="featurette-divider">
+
+	<div class="row featurette">
+		<div class="col-md-7 col-md-push-5">
+			<h2 class="featurette-heading">Oh ja, es ist SO gut. <span class="text-muted">Sieh es dir selbst an.</span></h2>
+			<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+		</div>
+		<div class="col-md-5 col-md-pull-7">
+			<img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generisches Platzhalter-Bild">
+		</div>
+	</div>
+
+	<hr class="featurette-divider">
+
+	<div class="row featurette">
+		<div class="col-md-7">
+			<h2 class="featurette-heading">Und zum Schluss gibt es noch dies hier. <span class="text-muted">Schachmatt.</span></h2>
+			<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+		</div>
+		<div class="col-md-5">
+			<img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generisches Platzhalter-Bild">
+		</div>
+	</div>
+
+	<hr class="featurette-divider">
+
+</div><!-- /.container -->
+
+{% include '/_Parts/footerMenu.twig' %}
 
 {% include '/_Parts/htmlFooter.twig' %}

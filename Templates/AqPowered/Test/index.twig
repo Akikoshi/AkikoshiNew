@@ -1,0 +1,13 @@
+{% include '_Parts/htmlHeader.twig' %}
+
+<h1>HALLO Welt {{ controllerName }} {{ actionName }}</h1>
+
+Hey
+
+<ul>
+{% for menuItem in mainMenu %}
+	<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+{% endfor %}
+</ul>
+
+{% include '_Parts/htmlFooter.twig' %}
