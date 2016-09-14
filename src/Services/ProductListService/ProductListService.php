@@ -9,7 +9,10 @@
 namespace Class152\PizzaMamamia\Services\ProductListService;
 
 
+use Class152\PizzaMamamia\Services\ProductListService\Library\FilterListFactory;
 use Class152\PizzaMamamia\Services\ProductListService\Library\ProductListFactory;
+use Class152\PizzaMamamia\Services\ProductListService\Library\ProductListPaginator;
+use Class152\PizzaMamamia\Services\ProductListService\Library\SortListFactory;
 
 class ProductListService
 {
@@ -17,5 +20,17 @@ class ProductListService
     {
         $productFactory = new ProductListFactory();
         return $productFactory->getProductList();
+    }
+
+    public function getFilterList()
+    {
+        $filterListFactory = new FilterListFactory();
+        return $filterListFactory->getFilterList();
+    }
+    
+    public function getSortList()
+    {
+        $sortListFactory = new SortListFactory();
+        return $sortListFactory->getSortList();
     }
 }
