@@ -11,6 +11,9 @@ namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 class ProductListPaginator
 {
+    /*
+     * es ist noch keine wirkliche Logik eingebaut, teils im Controller und in der Twig verdrahtet
+     */
     private $productFactory;
 
     private $limit;
