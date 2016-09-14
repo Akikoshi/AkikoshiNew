@@ -1,10 +1,10 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: cbiedermann
-	 * Date: 07.09.2016
-	 * Time: 14:19
-	 */
+/**
+ * Created by PhpStorm.
+ * User: cbiedermann
+ * Date: 07.09.2016
+ * Time: 14:19
+ */
 
 namespace Class152\PizzaMamamia\Controllers\Test;
 
@@ -12,6 +12,8 @@ namespace Class152\PizzaMamamia\Controllers\Test;
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
+use Class152\PizzaMamamia\Services\ProductService\Library\ProductFactory;
+use Class152\PizzaMamamia\Services\ProductService\ProductService;
 
 class Controller extends AbstractController
 {
@@ -23,6 +25,8 @@ class Controller extends AbstractController
         $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
+        $productService = new ProductService();
+        $productItem = $productService->getProductItem();
         $breadCrumb = $menuService->getBreadcrumbMenu();
 
 
@@ -34,6 +38,7 @@ class Controller extends AbstractController
                 'controllerMenu' => $controllerMenu,
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
+                'productItem'=> $productItem,
                 'accountMenu' => $accountMenu,
                 'breadcrumbMenu' => $breadCrumb,
             ]

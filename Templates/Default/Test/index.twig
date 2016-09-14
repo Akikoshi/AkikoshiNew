@@ -24,7 +24,12 @@
 		<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
 	{% endfor %}
 </ul>
-
+			<hr />
+			<ul>
+				{% for productItem in productItem %}
+					<li><a href="{{ productItem.getUrl }}">{{ productItem.getText }}</a></li>
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
 </div>
