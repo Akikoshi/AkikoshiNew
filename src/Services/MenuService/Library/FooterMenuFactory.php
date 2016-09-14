@@ -19,19 +19,19 @@ class FooterMenuFactory
         $this->controllerFooter = new MenuItemList();
 
         $this->controllerFooter->addItem(
-            new MenuItem( 'AGB', '/agb/index' )
+            new MenuItem( 'AGB', '/informations/gbt' )
         );
 
         $this->controllerFooter->addItem(
-            new MenuItem( 'Impressum', '/impressum/index' )
+            new MenuItem( 'Impressum', '/informations/contact' )
         );
 
         $this->controllerFooter->addItem(
-            new MenuItem( 'Kontakte', '/kontakte/index' )
+            new MenuItem( 'Kontakte', '/informations/imprint' )
         );
 
         $this->controllerFooter->addItem(
-            new MenuItem( 'Qualitätsrichtlinien', '/qualitätsrichtlinien/index' )
+            new MenuItem( 'Qualitätsrichtlinien', '/informations/quality' )
         );
 
     }
