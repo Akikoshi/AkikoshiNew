@@ -228,7 +228,7 @@ $cursor-disabled: not-allowed !default;
 //## Dropdown menu container and contents.
 
 //** Background for the dropdown menu.
-$dropdown-bg: #fff !default;
+$dropdown-bg: #ffffff !default;
 //** Dropdown menu `border-color`.
 $dropdown-border: rgba(0, 0, 0, .15) !default;
 //** Dropdown menu `border-color` **for IE8**.
@@ -356,7 +356,7 @@ $navbar-padding-vertical: (($navbar-height - $line-height-computed) / 2) !defaul
 $navbar-collapse-max-height: 340px !default;
 
 $navbar-default-color: #777 !default;
-$navbar-default-bg: #f8f8f8 !default;
+$navbar-default-bg: #008000 !default;
 $navbar-default-border: darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
