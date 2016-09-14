@@ -33,7 +33,7 @@
 		/**
 		 * @return boolean
 		 */
-		public function isHasChildren() : bool;
+		public function hasChildren() : bool;
 
 		/**
 		 * @return \Class152\PizzaMamamia\Services\MenuService\Library\MenuItemList

@@ -1,39 +1,107 @@
-
-<div class="navbar-wrapper">
+<nav class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Navigation ein-/ausblenden</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Pizza</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
 
-		<nav class="navbar navbar-inverse navbar-static-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Navigation ein-/ausblenden</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Projekt-Titel</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Start</a></li>
-						<li><a href="#ueber">Über</a></li>
-						<li><a href="#kontakt">Kontakt</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown-Menü <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Aktion</a></li>
-								<li><a href="#">Andere Aktion</a></li>
-								<li><a href="#">Irgendwas anderes</a></li>
-								<li role="separator" class="divider"></li>
-								<li class="dropdown-header">Nav-Überschrift</li>
-								<li><a href="#">Abgetrennter Link</a></li>
-								<li><a href="#">Noch ein abgetrennter Link</a></li>
-							</ul>
-						</li>
+			<ul class="nav navbar-nav">
+				{% for menuItem in mainMenu %}
+
+						{% if menuItem.hasChildren %}
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ menuItem.getText }} <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									{% for subMenuItem in menuItem.getMenuItemList %}
+										{% if subMenuItem.hasChildren %}
+
+											<li class="dropdown-submenu"> <!-- Neue CSS-Klasse .dropdown-submenu -->
+												<a href="{{ subMenuItem.getUrl }}">{{ subMenuItem.getText }}</a>
+												<ul class="dropdown-menu">
+													{% for subSubMenuItem in subMenuItem.getMenuItemList %}
+													<li class="dropdown-submenu">
+														<a href="{{ subSubMenuItem.getUrl }}">{{ subSubMenuItem.getText }}</a>
+														{% if subSubMenuItem.hasChildren %}
+														<ul class="dropdown-menu">
+															{% for subSubSubMenuItem in subSubMenuItem.getMenuItemList %}
+																<li><a href="{{ subSubSubMenuItem.getUrl }}">{{ subSubSubMenuItem.getText }}</a></li>
+															{% endfor %}
+														</ul>
+														{% endif %}
+													</li>
+													{% endfor %}
+												</ul>
+											</li>
+										{% else %}
+											<li><a href="{{ subMenuItem.getUrl }}">{{ subMenuItem.getText }}</a></li>
+										{% endif %}
+
+									{% endfor %}
+								</ul>
+							</li>
+						{% else %}
+							<li>
+							<a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a>
+							</li>
+						{% endif %}
+				{% endfor %}
+
+				{#
+				<li class="dropdown-menu">
+					<li class="dropdown-submenu"> <!-- Neue CSS-Klasse .dropdown-submenu -->
+						<a href="#">Link 3</a>
+						<ul class="dropdown-menu">
+							<li class="dropdown-submenu">
+								<a href="#">Link 3.1</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#">3.1.1</a>
+									</li>
+									<li>
+										<a href="#">3.1.2</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</li>#}
+
+				{#
+				<li class="active"><a href="#">Start</a></li>
+				<li><a href="#ueber">Über</a></li>
+				<li><a href="#kontakt">Kontakt</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown-Menü <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						{% for menuItem in mainMenu %}
+						<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+						{% endfor %}
 					</ul>
-				</div>
-			</div>
-		</nav>
+				</li>#}
 
+			</ul>
+
+			{% if accountMenu %}
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Link</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Konto <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						{% for menuItem in accountMenu %}
+						<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+						{% endfor %}
+					</ul>
+				</li>
+			</ul>
+			{% endif %}
+
+
+		</div>
 	</div>
-</div>
+</nav>

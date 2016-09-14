@@ -1,0 +1,16 @@
+<div class="container">
+    <ol class="breadcrumb">
+
+        {% for breadcrumbMenuItem in breadcrumbMenu %}
+            <li>
+            {% if breadcrumbMenuItem.getUrl %}
+                <a href="{{ breadcrumbMenuItem.getUrl }}">
+            {% endif %}
+            {{ breadcrumbMenuItem.getText }}
+            {% if breadcrumbMenuItem.getUrl %}
+                </a>
+            {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+</div>
