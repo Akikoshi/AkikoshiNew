@@ -26,7 +26,7 @@
 			$mainMenu = $menuService->getMainMenu();
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
-			$breadCrumb = $menuService->getBreadcrumbMenu();
+			$breadcrumbMenu = $menuService->getBreadcrumbMenu();
 
 			new TwigRendering(
 				'Informations/index.twig',
@@ -36,7 +36,7 @@
 					'mainMenu' => $mainMenu,
 					'footerMenu' => $footerMenu,
 					'accountMenu' => $accountMenu,
-					'breadcrumbMenu' => $breadCrumb,
+					'breadcrumbMenu' => $breadcrumbMenu,
 				]
 			);
 

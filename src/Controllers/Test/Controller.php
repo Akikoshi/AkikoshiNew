@@ -26,8 +26,9 @@ class Controller extends AbstractController
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
         $productService = new ProductService();
+        $breadcrumbMenu = $menuService->getBreadcrumbMenu();
+        
         $productItem = $productService->getProductItem();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
 
 
         new TwigRendering(
@@ -40,7 +41,7 @@ class Controller extends AbstractController
                 'footerMenu' => $footerMenu,
                 'productItem'=> $productItem,
                 'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
+                'breadcrumbMenu' => $breadcrumbMenu,
             ]
         );
 

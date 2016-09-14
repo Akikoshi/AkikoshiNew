@@ -25,8 +25,7 @@
 			$mainMenu = $menuService->getMainMenu();
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
-
-			$breadCrumb = $menuService->getBreadcrumbMenu();
+			$breadcrumbMenu = $menuService->getBreadcrumbMenu();
 
 			$startPageService = new StartPageService();
 			$slider = $startPageService->getSlider();
@@ -39,7 +38,7 @@
 				  'mainMenu' => $mainMenu,
 				  'footerMenu' => $footerMenu,
 				  'accountMenu' => $accountMenu,
-					'breadcrumbMenu' => $breadCrumb,
+					'breadcrumbMenu' => $breadcrumbMenu,
 					'slider' => $slider,
 				]
 			);

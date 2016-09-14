@@ -24,7 +24,7 @@ class Controller extends AbstractController
         $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
+        $breadcrumbMenu = $menuService->getBreadcrumbMenu();
         
         new TwigRendering(
             'Checkout/index.twig',
@@ -34,7 +34,7 @@ class Controller extends AbstractController
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
+                'breadcrumbMenu' => $breadcrumbMenu,
             ]
         );
     }
@@ -44,7 +44,7 @@ class Controller extends AbstractController
         $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
+        $breadcrumbMenu = $menuService->getBreadcrumbMenu();
         
         new TwigRendering(
             'Checkout/confirmOrder.twig',
@@ -54,7 +54,7 @@ class Controller extends AbstractController
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
+                'breadcrumbMenu' => $breadcrumbMenu,
             ]
         );
     }
