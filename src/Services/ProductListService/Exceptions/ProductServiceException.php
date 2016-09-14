@@ -6,12 +6,12 @@
  * Time: 14:44
  */
 
-namespace Class152\PizzaMamamia\Services\ProductService\Exceptions;
+namespace Class152\PizzaMamamia\Services\ProductListService\Exceptions;
 
 
 use Class152\PizzaMamamia\Exception\PizzaProjectException;
 
-class ProductServiceException extends PizzaProjectException
+class ProductListServiceException extends PizzaProjectException
 {
 
 }

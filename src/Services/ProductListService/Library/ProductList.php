@@ -6,18 +6,17 @@
  * Time: 14:00
  */
 
-namespace Class152\PizzaMamamia\Services\ProductService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
-use Class152\PizzaMamamia\Services\ProductService\Exceptions\ProductItemListNeedsProductItemsException;
-use Class152\PizzaMamamia\Services\ProductService\Interfaces\ProductItemListInterface;
+use Class152\PizzaMamamia\Services\ProductListService\Exceptions\ProductListNeedsProductItemsException;
 
-final class ProductItemList extends AbstractIterator
+final class ProductList extends AbstractIterator
 {
     /**
-     * ProductItemList constructor.
+     * ProductList constructor.
      * @param array $array
-     * @throws \Class152\PizzaMamamia\Services\ProductService\Exceptions\ProductItemListNeedsProductItemsException
+     * @throws \Class152\PizzaMamamia\Services\ProductListService\Exceptions\ProductListNeedsProductItemsException
      */
     public function __construct(array $array = null)
     {
@@ -30,8 +29,8 @@ final class ProductItemList extends AbstractIterator
                 !is_object($array[$keys])
                 || !is_a($array[$keys], 'MenuItem')
             ) {
-                throw new ProductItemListNeedsProductItemsException(
-                    'constructor of ProductItemList can only use ProductItem objects'
+                throw new ProductListNeedsProductItemsException(
+                    'constructor of ProductList can only use ProductItem objects'
                 );
             }
         }
@@ -42,7 +41,7 @@ final class ProductItemList extends AbstractIterator
     /** 
      * adds a given ProductItem 
      *
-     * @param \Class152\PizzaMamamia\Services\ProductService\Library\ProductItem $productItem
+     * @param \Class152\PizzaMamamia\Services\ProductListService\Library\ProductItem $productItem
      */
     public function addItem(ProductItem $productItem)
     {
@@ -52,7 +51,7 @@ final class ProductItemList extends AbstractIterator
     /**
      * overloads the current method for restricted type of return value
      *
-     * @return \Class152\PizzaMamamia\Services\ProductService\Library\ProductItem
+     * @return \Class152\PizzaMamamia\Services\ProductListService\Library\ProductItem
      */
     public function current() : ProductItem
     {
