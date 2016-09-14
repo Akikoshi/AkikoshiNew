@@ -9,6 +9,10 @@
 namespace Class152\PizzaMamamia\Services\StartPageService;
 
 
+use Class152\PizzaMamamia\Services\StartPageService\Library\CampaignFactory;
+use Class152\PizzaMamamia\Services\StartPageService\Library\CampaignItem;
+use Class152\PizzaMamamia\Services\StartPageService\Library\CampaignItemList;
+use Class152\PizzaMamamia\Services\StartPageService\Library\SliderFactory;
 use Class152\PizzaMamamia\Services\StartPageService\Library\SliderItemList;
 
 class StartPageService
@@ -18,6 +22,16 @@ class StartPageService
      */
     public function getSlider() : SliderItemList
     {
-        return new SliderItemList();
+        $sliderFactory = new SliderFactory();
+        return $sliderFactory->getSliderItem();
+    }
+
+    /**
+     * @return CampaignItemList
+     */
+    public function getCampaign() : CampaignItemList
+    {
+        $campaignFactory = new CampaignFactory();
+        return $campaignFactory->getCampaignItem();
     }
 }

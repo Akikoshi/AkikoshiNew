@@ -13,7 +13,7 @@ use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
 use Class152\PizzaMamamia\Services\StartPageService\Exceptions\SliderListNeedsSliderItemExecption;
 use Class152\PizzaMamamia\Services\StartPageService\Interfaces\SliderItemListInterface;
 
-class SliderItemList extends AbstractIterator implements SliderItemListInterface
+class SliderItemList extends AbstractIterator
 {
     /**
      * SliderItemList constructor.
@@ -59,5 +59,4 @@ class SliderItemList extends AbstractIterator implements SliderItemListInterface
     {
         return parent::current();
     }
-
 }
