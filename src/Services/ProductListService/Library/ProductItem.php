@@ -6,12 +6,10 @@
  * Time: 14:00
  */
 
-namespace Class152\PizzaMamamia\Services\ProductService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 
-use Class152\PizzaMamamia\Services\ProductService\Interfaces\ProductItemInterface;
-
-class ProductItem implements ProductItemInterface
+class ProductItem
 {
     /** @var  string */
     private $name;
