@@ -237,7 +237,7 @@ $dropdown-fallback-border: #ccc !default;
 $dropdown-divider-bg: #e5e5e5 !default;
 
 //** Dropdown link text color.
-$dropdown-link-color: $gray-dark !default;
+$dropdown-link-color: #080 !default;
 //** Hover color for dropdown links.
 $dropdown-link-hover-color: darken($gray-dark, 5%) !default;
 //** Hover background for dropdown links.
@@ -255,7 +255,7 @@ $dropdown-link-disabled-color: $gray-light !default;
 $dropdown-header-color: $gray-light !default;
 
 //** Deprecated `$dropdown-caret-color` as of v3.1.0
-$dropdown-caret-color: #000 !default;
+$dropdown-caret-color: #fff !default;
 
 //-- Z-index master list
 //
@@ -355,27 +355,27 @@ $navbar-padding-horizontal: floor(($grid-gutter-width / 2)) !default;
 $navbar-padding-vertical: (($navbar-height - $line-height-computed) / 2) !default;
 $navbar-collapse-max-height: 340px !default;
 
-$navbar-default-color: #777 !default;
-$navbar-default-bg: #008000 !default;
+$navbar-default-color: #fff !default;
+$navbar-default-bg: #080 !default;
 $navbar-default-border: darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
-$navbar-default-link-color: #777 !default;
-$navbar-default-link-hover-color: #333 !default;
+$navbar-default-link-color: #fff !default;
+$navbar-default-link-hover-color: #800 !default;
 $navbar-default-link-hover-bg: transparent !default;
-$navbar-default-link-active-color: #555 !default;
+$navbar-default-link-active-color: #fff !default;
 $navbar-default-link-active-bg: darken($navbar-default-bg, 6.5%) !default;
-$navbar-default-link-disabled-color: #ccc !default;
+$navbar-default-link-disabled-color: #800 !default;
 $navbar-default-link-disabled-bg: transparent !default;
 
 // Navbar brand label
 $navbar-default-brand-color: $navbar-default-link-color !default;
-$navbar-default-brand-hover-color: darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-color: $navbar-default-link-hover-color !default;
 $navbar-default-brand-hover-bg: transparent !default;
 
 // Navbar toggle
-$navbar-default-toggle-hover-bg: #ddd !default;
-$navbar-default-toggle-icon-bar-bg: #888 !default;
+$navbar-default-toggle-hover-bg: #f00 !default;
+$navbar-default-toggle-icon-bar-bg: #f00 !default;
 $navbar-default-toggle-border-color: #ddd !default;
 
 //=== Inverted navbar
@@ -671,7 +671,7 @@ $list-group-disabled-bg: $gray-lighter !default;
 //** Text color for content within disabled list items
 $list-group-disabled-text-color: $list-group-disabled-color !default;
 
-$list-group-link-color: #555 !default;
+$list-group-link-color: #fff !default;
 $list-group-link-hover-color: $list-group-link-color !default;
 $list-group-link-heading-color: #333 !default;
 
