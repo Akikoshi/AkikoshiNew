@@ -20,59 +20,19 @@ class AccountMenuFactory
         $this->accountmenu = new MenuItemList();
 
         $this->accountmenu->addItem(
-            new MenuItem('Einloggen', '/account/index')
+            new MenuItem('Einloggen', '/account/login')
         );
 
         $this->accountmenu->addItem(
-            new MenuItem('Ausloggen', '/account/index')
+            new MenuItem('Ausloggen', '/home/index')
         );
 
         $this->accountmenu->addItem(
-            new MenuItem('registrieren', '/account/index')
+            new MenuItem('registrieren', '/account/register')
         );
 
         $this->accountmenu->addItem(
-            new MenuItem('Passwort vergessen', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Passwort ändern', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Profildaten bearbeiten', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Adressen ändern', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Profildaten bearbeiten', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Kundenkonto löschen', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('vergangene Bestellungen', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Kundensonderangebote anzeigen', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Favoriten', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Favoriten löschen', '/account/index')
-        );
-
-        $this->accountmenu->addItem(
-            new MenuItem('Favoriten in den Warenkorb', '/account/index')
+            new MenuItem('Passwort vergessen', '/account/lostpassword')
         );
 
 
