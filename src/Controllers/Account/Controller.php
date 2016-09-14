@@ -27,7 +27,7 @@ class Controller extends AbstractController
         $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
-        $breadcrumbMenu = $menuService->getBreadcrumbMenu();
+        $breadCrumb = $menuService->getBreadcrumbMenu();
 
         $accountService = new AccountService();
         $accountSidebar = $accountService->getSidebarMenu();
@@ -144,7 +144,7 @@ class Controller extends AbstractController
                 'mainMenu' => $mainMenu,
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadcrumbMenu,
+                'breadcrumbMenu' => $breadCrumb,
             ]
         );
 
