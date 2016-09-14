@@ -21,6 +21,7 @@ class Controller extends AbstractController
         $mainMenu = $menuService->getMainMenu();
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
+        
         $breadCrumb = $menuService->getBreadcrumbMenu();
 
         new TwigRendering(
