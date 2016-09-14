@@ -8,36 +8,18 @@
 		<li data-target="#myCarousel" data-slide-to="2"></li>
 	</ol>
 	<div class="carousel-inner" role="listbox">
-		<div class="item active">
-			<img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Erste Folie">
+		{% for sliderItem in sliderList %}
+		<div class="item{% if loop.first %} active{% endif %}">
+			<img class="first-slide" src="{{ sliderItem.getPicture }}" alt="Erste Folie">
 			<div class="container">
 				<div class="carousel-caption">
-					<h1>Beispiel-Überschrift.</h1>
-					<p>Hinweis: Falls du diese Seite über eine <code>file://</code>-URL anzeigst, werden die Glyphicon-Buttons für das nächste und vorherige Objekt links und rechts unter Umständen aufgrund von Browser-Sicherheitsregeln nicht vernünftig geladen/angezeigt.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Melde dich noch heute an</a></p>
+					<h1 style="color:red;">{{ sliderItem.getHeadline }}</h1>
+					<p>XX{{ sliderItem.getContent }}</p>
+					<p><a class="btn btn-lg btn-primary" href="#" role="button">{{ sliderItem.getLinkText }}</a></p>
 				</div>
 			</div>
 		</div>
-		<div class="item">
-			<img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Zweite Folie">
-			<div class="container">
-				<div class="carousel-caption">
-					<h1>Noch eine Beispiel-Überschrift.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Mehr erfahren</a></p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Dritte Folie">
-			<div class="container">
-				<div class="carousel-caption">
-					<h1>Aller guten Dinge sind drei.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p><a class="btn btn-lg btn-primary" href="#" role="button">Galerie erkunden</a></p>
-				</div>
-			</div>
-		</div>
+		{% endfor %}
 	</div>
 	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
