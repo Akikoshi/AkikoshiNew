@@ -1,0 +1,19 @@
+<html>
+<head>
+
+</head>
+<body>
+<h1>Controller: {{ controllerName }}</h1>
+Action: {{ actionName }}
+
+<br>
+{% for entry in menu %}
+
+   Menueintrag::
+    <a href="http://www.pizza-mamamia.de/{{ entry }}">{{ entry }}</a>
+
+    <br>
+{% endfor %}
+
+</body>
+</html>

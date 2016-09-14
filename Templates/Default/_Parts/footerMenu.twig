@@ -5,12 +5,9 @@
 		<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
 			<h4>FooterMenu</h4>
 			<ul>
-				<li><a href="/">SeitenLink</a></li>
-				<li><a href="/">SeitenLink</a></li>
-				<li><a href="/">SeitenLink</a></li>
-				<li><a href="/">SeitenLink</a></li>
-				<li><a href="/">SeitenLink</a></li>
-				<li><a href="/">SeitenLink</a></li>
+				{% if footerMenu %}{% for menuItem in footerMenu %}
+				<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+				{% endfor %}{% endif %}
 			</ul>
 		</div>
 		<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
