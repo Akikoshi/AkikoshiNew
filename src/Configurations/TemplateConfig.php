@@ -16,6 +16,6 @@
 		 */
 		public static function getPath()
 		{
-			return __DIR__ . "/../../Templates/Default";
+			return __DIR__ . "/../../Templates/AqPowered";
 		}
 	}
