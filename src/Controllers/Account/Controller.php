@@ -10,251 +10,135 @@ namespace Class152\PizzaMamamia\Controllers\Account;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
+use Class152\PizzaMamamia\Http\Request;
 use Class152\PizzaMamamia\Library\TwigRendering;
-
 use Class152\PizzaMamamia\Services\AccountService\AccountService;
-
+use Class152\PizzaMamamia\Services\SessionService\SessionService;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
+use Class152\PizzaMamamia\Services\AccountService\Exceptions\NotLoggedInException;
+
 
 class Controller extends AbstractController
 {
+    /** @var AccountService */
+    private $accountService;
+
+    /** @var MenuService */
+    private $mainMenu;
+    private $accountMenu;
+    private $footerMenu;
+    private $breadCrumb;
+    private $accountSidebar;
+    private $controllerName;
+
+    public function __construct(Request $request)
+    {
+        try {
+            $sessionService = new SessionService();
+            $this->accountService = new AccountService( $sessionService );
+        }
+        catch ( NotLoggedInException $exception )
+        {
+            new TwigRendering(
+                'Account/login.twig',
+                [
+    
+                ]
+            );
+            return;
+        }
+
+        $this->controllerName='Account';
+        $menuService = new MenuService($request);
+        $this->mainMenu = $menuService->getMainMenu();
+        $this->accountMenu = $menuService->getAccountMenu();
+        $this->footerMenu = $menuService->getFooterMenu();
+        $this->breadCrumb =$menuService->getBreadcrumbMenu();
+        $this->accountSidebar = $this->accountService->getSidebarMenu();
+        parent::__construct($request);
+    }
 
 
-    public function indexAction()
+    private function getTwigRendering($actionName)
     {
 
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-
-        $accountService = new AccountService();
-        $accountSidebar = $accountService->getSidebarMenu();
-
         new TwigRendering(
-            'Account/index.twig',
+            $this->controllerName.'/'.$actionName.'.twig',
             [
-                'controllerName' => 'Account',
-                'actionName' => 'index',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-                'accountSidebar'=>$accountSidebar,
+                'controllerName' => $this->controllerName,
+                'actionName' => $actionName,
+                'mainMenu' => $this->mainMenu,
+                'footerMenu' => $this->footerMenu,
+                'accountMenu' => $this->accountMenu,
+                'breadcrumbMenu' => $this->breadCrumb,
+                'accountSidebar'=>$this->accountSidebar,
+                'userAccount' => $this->accountService->getUser(),
             ]
         );
 
     }
 
 
+    public function indexAction()
+    {
+        $this->getTwigRendering('index');
+        
+        
+    }
+
+
     public function loginAction()
     {
-
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-
-        $accountService = new AccountService();
-        $accountSidebar = $accountService->getSidebarMenu();
-
-        new TwigRendering(
-            'Account/login.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'login',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-                'accountSidebar'=>$accountSidebar,
-            ]
-        );
+        $this->getTwigRendering('login');
 
     }
 
 
     public function userconfigAction()
     {
-
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-        $accountService = new AccountService();
-        $accountSidebar = $accountService->getSidebarMenu();
-
-        new TwigRendering(
-            'Account/userconfig.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'userconfig',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-                'accountSidebar'=>$accountSidebar,
-            ]
-        );
-
+        $this->getTwigRendering('userconfig');
     }
 
     public function lostpasswordAction()
     {
 
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-
-
-
-        new TwigRendering(
-            'Account/lostpassword.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'lostpassword',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-            ]
-        );
+        $this->getTwigRendering('lostpassword');
 
     }
 
     public function registerAction()
     {
 
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-
-        new TwigRendering(
-            'Account/register.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'index',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-            ]
-        );
-
+        $this->getTwigRendering('registerAction');
 
     }
 
     public function deleteuserAction()
     {
 
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-        $accountService = new AccountService();
-        $accountSidebar = $accountService->getSidebarMenu();
+        $this->getTwigRendering('deleteuserAction');
 
-        new TwigRendering(
-            'Account/deleteuser.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'deleteuser',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-                'accountSidebar'=>$accountSidebar,
-            ]
-        );
 
     }
 
     public function lastordersAction()
     {
 
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-        $accountService = new AccountService();
-        $accountSidebar = $accountService->getSidebarMenu();
 
-        new TwigRendering(
-            'Account/lastorders.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'lastorders',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-                'accountSidebar'=>$accountSidebar,
-
-            ]
-        );
+        $this->getTwigRendering('lastordersAction');
 
     }
 
     public function specialoffersAction()
     {
 
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-        $accountService = new AccountService();
-        $accountSidebar = $accountService->getSidebarMenu();
-
-        new TwigRendering(
-            'Account/specialoffers.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'specialoffers',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-                'accountSidebar'=>$accountSidebar,
-
-            ]
-        );
+        $this->getTwigRendering('specialoffers');
 
     }
 
     public function favoritesAction()
     {
-
-        $menuService = new MenuService($this->request);
-        $mainMenu = $menuService->getMainMenu();
-        $accountMenu = $menuService->getAccountMenu();
-        $footerMenu = $menuService->getFooterMenu();
-        $breadCrumb = $menuService->getBreadcrumbMenu();
-        $accountService = new AccountService();
-        $accountSidebar = $accountService->getSidebarMenu();
-
-        new TwigRendering(
-            'Account/favorites.twig',
-            [
-                'controllerName' => 'Account',
-                'actionName' => 'favorites',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'breadcrumbMenu' => $breadCrumb,
-                'accountSidebar'=>$accountSidebar,
-
-            ]
-        );
+        $this->getTwigRendering('favoritesAction');
 
     }
 
