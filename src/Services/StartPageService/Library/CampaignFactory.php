@@ -23,7 +23,8 @@ class CampaignFactory
                 'campaign/index',
                 'Überschrift: Ranger',
                 'Text Text Text Text Text Text Text Text Text Text Text Text Text Text',
-                'Ranger'
+                'Ranger',
+                '12,99 €'
             )
         );
 
@@ -33,7 +34,8 @@ class CampaignFactory
                 'campaign/index',
                 'Überschrift: Phil',
                 'Text Text Text Text Text Text Text Text Text Text Text Text Text Text',
-                'Phil'
+                'Phil',
+                '14,85 €'
             )
         );
 
@@ -43,7 +45,8 @@ class CampaignFactory
                 'campaign/index',
                 'Überschrift: Olli',
                 'Text Text Text Text Text Text Text Text Text Text Text Text Text Text',
-                'Olli'
+                'Olli',
+                '23,99 €'
             )
         );
     }

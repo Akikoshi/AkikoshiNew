@@ -25,6 +25,9 @@ class CampaignItem
     
     /** @var  string */
     private $linkText;
+    
+    /** @var  string */
+    private $price;
 
     /**
      * CampaignItem constructor.
@@ -32,20 +35,23 @@ class CampaignItem
      * @param string $pictureUrl
      * @param string $headline
      * @param string $content
-     * @param string $linkText#
+     * @param string $linkText
+     * @param string $price
      */
     public function __construct(
         string $picture,
         string $pictureUrl,
         string $headline,
         string $content,
-        string $linkText)
+        string $linkText,
+        string $price)
     {
         $this->picture = $picture;
         $this->pictureUrl = $pictureUrl;
         $this->headline = $headline;
         $this->content = $content;
         $this->linkText = $linkText;
+        $this->price = $price;
     }
 
     /**
@@ -86,5 +92,13 @@ class CampaignItem
     public function getLinkText() : string
     {
         return $this->linkText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrice() : string
+    {
+        return $this->price;
     }
 }
