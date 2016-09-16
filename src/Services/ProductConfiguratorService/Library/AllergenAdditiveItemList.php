@@ -39,12 +39,12 @@ class AllergenAdditiveItemList extends AbstractIterator
 	}
 
 	/**
-	 * @param AllergenAdditiveItem $inAllergenAdditiveItem
+	 * @param AllergenAdditiveItem $allergenAdditiveItem
 	 * Add a ComponentItem to the List
 	 */
-	public function addItem(AllergenAdditiveItem $inAllergenAdditiveItem)
+	public function addItem(AllergenAdditiveItem $allergenAdditiveItem)
 	{
-		$this->iteratorArray[] = $inAllergenAdditiveItem;
+		$this->iteratorArray[] = $allergenAdditiveItem;
 	}
 
 	/**

@@ -9,11 +9,19 @@
 namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
 
 
-class ProductConfiguratorData
+use Class152\PizzaMamamia\Services\ProductConfiguratorService\Exceptions\ProductConfiguratorDataObjectNeedsProductItemException;
+
+class ProductConfiguratorDataObject
 {
 	/* ToDo: complete this DATA-Class */
 	/* Data-Class to hold all Information for the Product-Configurator */
-	
+
+	/**
+	 * @var ProductItem
+	 * Hold the product-details.
+	 */
+	private $productDetails;
+
 	/**
 	 * @var ComponentItemList
 	 * Hold all used ingredients (components) of the product.
@@ -44,23 +52,42 @@ class ProductConfiguratorData
 	 */
 	private $usedAllergenList;
 
-	
-	
-	
+	/* # SETters #################################################################################################### */
+
+	/**
+	 * @param ProductItem $productItem
+	 * @throws ProductConfiguratorDataObjectNeedsProductItemException
+	 */
+	public function setProductDetail( ProductItem $productItem )
+	{
+		if ( !is_object( $productItem )
+			|| !is_a( $productItem, 'ProductItem' )
+		) {
+			throw new ProductConfiguratorDataObjectNeedsProductItemException(
+				'This Data-Object can only store ProductItem for ProductDetail.'
+			);
+		}
+		else {
+			$this->productDetails = $productItem;
+		}
+	}
+
+	/* # GETters #################################################################################################### */
+
+	/**
+	 * @return ProductItem
+	 */
+	public function getProductDetails()
+	{
+		return $this->productDetails;
+	}
+
 	/**
 	 * @return ComponentItemList
 	 */
 	public function getUsedIngredientList()
 	{
 		return $this->usedIngredientList;
-	}
-
-	/**
-	 * @param ComponentItemList $usedIngredientList
-	 */
-	public function setUsedIngredientList( $usedIngredientList )
-	{
-		$this->usedIngredientList = $usedIngredientList;
 	}
 
 	/**
@@ -72,27 +99,11 @@ class ProductConfiguratorData
 	}
 
 	/**
-	 * @param ComponentItemList $usedAddonList
-	 */
-	public function setUsedAddonList( $usedAddonList )
-	{
-		$this->usedAddonList = $usedAddonList;
-	}
-
-	/**
 	 * @return ComponentItemList
 	 */
 	public function getAddonList()
 	{
 		return $this->AddonList;
-	}
-
-	/**
-	 * @param ComponentItemList $AddonList
-	 */
-	public function setAddonList( $AddonList )
-	{
-		$this->AddonList = $AddonList;
 	}
 
 	/**
@@ -104,26 +115,10 @@ class ProductConfiguratorData
 	}
 
 	/**
-	 * @param AllergenAdditiveItemList $usedAdditiveList
-	 */
-	public function setUsedAdditiveList( $usedAdditiveList )
-	{
-		$this->usedAdditiveList = $usedAdditiveList;
-	}
-
-	/**
 	 * @return AllergenAdditiveItemList
 	 */
 	public function getUsedAllergenList()
 	{
 		return $this->usedAllergenList;
-	}
-
-	/**
-	 * @param AllergenAdditiveItemList $usedAllergenList
-	 */
-	public function setUsedAllergenList( $usedAllergenList )
-	{
-		$this->usedAllergenList = $usedAllergenList;
 	}
 }

@@ -39,12 +39,12 @@ class ComponentItemList extends AbstractIterator
 	}
 
 	/**
-	 * @param ComponentItem $inComponentItem
+	 * @param ComponentItem $componentItem
 	 * Add a ComponentItem to the List
 	 */
-	public function addItem(ComponentItem $inComponentItem)
+	public function addItem(ComponentItem $componentItem)
 	{
-		$this->iteratorArray[] = $inComponentItem;
+		$this->iteratorArray[] = $componentItem;
 	}
 
 	/**

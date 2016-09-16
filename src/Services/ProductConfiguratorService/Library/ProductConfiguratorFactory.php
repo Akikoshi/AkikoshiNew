@@ -15,10 +15,10 @@ class ProductConfiguratorFactory
 	/** ToDo:Complete this Class */
 
 	/**
-	 * @var ProductConfiguratorData
+	 * @var ProductConfiguratorDataObject
 	 * Data-Holder for all product-configurator-data
 	 */
-	private $configuratorData;
+	private $productDataObject;
 
 	/**
 	 * @var integer
@@ -27,14 +27,40 @@ class ProductConfiguratorFactory
 
 	/**
 	 * ProductConfiguratorFactory constructor.
-	 * @param int $inProductId
+	 * @param int $productId
 	 */
-	public function __construct(integer $inProductId)
+	public function __construct( int $productId )
 	{
-		$this->productId = $inProductId;
+		$this->productId = $productId;
 
-		/* ToDo: implement the logic */
-		
-		return $this->configuratorData;
+		/*
+		ToDo: getIngredientList() 	-> ProductIngredientFactory
+		ToDo: getUsedAddonList() 	-> ProductAddonFactory
+		ToDo: getAddonList()		-> ProductAddonFactory
+		ToDo: collectAdditives()	-> function
+		ToDo: collectAllergens()	-> function
+		*/
 	}
+
+
+	private function getProductInfo()
+	{
+		$productInfoFactory = new ProductInfoFactory( $this->productId );
+		$this->productDataObject->setProductDetail( $productInfoFactory->getProductDetail() );
+	}
+
+	private function getIngredientList()
+	{
+		$productIngredientListFactory = new ProductIngredientFactory( $this->productId );
+		/* ToDo: get the infos */
+	}
+
+	/**
+	 * @return ProductConfiguratorDataObject
+	 */
+	public function getConfiguratorProductData() : ProductConfiguratorDataObject
+	{
+		return $this->productDataObject;
+	}
+
 }

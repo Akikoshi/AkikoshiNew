@@ -12,6 +12,11 @@ namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
 class ComponentItem
 {
 	/**
+	 * @var int
+	 */
+	private $id;
+	
+	/**
 	 * @var string
 	 * Hold the name of the component.
 	 */
@@ -71,36 +76,38 @@ class ComponentItem
 
 	/**
 	 * ComponentItem constructor.
-	 * @param string $inName
-	 * @param string $inCategory
-	 * @param string $inIconPath
-	 * @param float $inPrice
-	 * @param AllergenAdditiveItemList $inAdditiveList
-	 * @param AllergenAdditiveItemList $inAllergenList
-	 * @param ComponentItemList|null $inReplaceableList
-	 * @param bool $inRemovable
+	 * @param string $name
+	 * @param string $category
+	 * @param string $iconPath
+	 * @param float $price
+	 * @param AllergenAdditiveItemList $additiveList
+	 * @param AllergenAdditiveItemList $allergenList
+	 * @param ComponentItemList|null $replaceableList
+	 * @param bool $removable
 	 */
-	public function __construct(string $inName,
-								string $inCategory,
-								string $inIconPath,
-								float $inPrice,
-								AllergenAdditiveItemList $inAdditiveList,
-								AllergenAdditiveItemList $inAllergenList,
-								ComponentItemList $inReplaceableList = null,
-								bool $inRemovable = false
+	public function __construct(int $id,
+								string $name,
+								string $category,
+								string $iconPath,
+								float $price,
+								AllergenAdditiveItemList $additiveList,
+								AllergenAdditiveItemList $allergenList,
+								ComponentItemList $replaceableList = null,
+								bool $removable = false
 	)
 	{
-		$this->name = $inName;
-		$this->category = $inCategory;
-		$this->iconPath = $inIconPath;
-		$this->price = $inPrice;
-		$this->removable = $inRemovable;
-		$this->additiveList = $inAdditiveList;
-		$this->allergenList = $inAllergenList;
+		$this->id			= $id;
+		$this->name 		= $name;
+		$this->category 	= $category;
+		$this->iconPath 	= $iconPath;
+		$this->price 		= $price;
+		$this->removable 	= $removable;
+		$this->additiveList = $additiveList;
+		$this->allergenList = $allergenList;
 
-		if ($inReplaceableList instanceof ComponentItemList)
+		if ($replaceableList instanceof ComponentItemList)
 		{
-			$this->replaceableItemList = $inReplaceableList;
+			$this->replaceableItemList = $replaceableList;
 			$this->replaceable = true;
 		} 
 	}

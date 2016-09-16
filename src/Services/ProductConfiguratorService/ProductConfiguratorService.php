@@ -9,21 +9,34 @@
 namespace Class152\PizzaMamamia\Services\ProductConfiguratorService;
 
 
-use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AllergenAdditiveItemList;
-use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\ComponentItemList;
+use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\ProductConfiguratorDataObject;
 use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\ProductConfiguratorFactory;
 
 class ProductConfiguratorService
 {
 	/**
-	 * ToDo: return & comment
-	 * Return list of all used ingredients (incl. list of available alternatives per item in list)
+	 * @var int
+	 * Hold the id of the product.
 	 */
-	public function getProductConfigurator() : ComponentItemList
+	private $productId;
+
+
+	/**
+	 * ProductConfiguratorService constructor.
+	 * ToDo: get the product-ID per Request or direct??
+	 */
+	public function __construct(  )
 	{
-		$productConfiguratorFactory = new ProductConfiguratorFactory();
-		
+		$this->productId = 1;
+		/* ToDo: test if product valid ELSE throw exeption */
 	}
 
-	
+	/**
+	 * @return ProductConfiguratorDataObject
+	 */
+	public function getProductConfigurator() : ProductConfiguratorDataObject
+	{
+		$productConfiguratorFactory = new ProductConfiguratorFactory( $this->productId );
+		return $productConfiguratorFactory->getConfiguratorProductData();
+	}
 }

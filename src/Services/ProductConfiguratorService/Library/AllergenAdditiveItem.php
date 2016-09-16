@@ -13,6 +13,11 @@ class AllergenAdditiveItem
 {
 
 	/**
+	 * @var int
+	 */
+	private $id;
+
+	/**
 	 * @var string
 	 * Hold the Name of the allergen or additive.
 	 */
@@ -26,13 +31,14 @@ class AllergenAdditiveItem
 
 	/**
 	 * AllergenAdditiveItem constructor.
-	 * @param string $inName
-	 * @param int $inNoteNumber
+	 * @param string $name
+	 * @param int $noteNumber
 	 */
-	public function __construct( string $inName, integer $inNoteNumber)
+	public function __construct( int $id, string $name, integer $noteNumber)
 	{
-		$this->name = $inName;
-		$this->noteNumber = $inNoteNumber;
+		$this->id = $id;
+		$this->name = $name;
+		$this->noteNumber = $noteNumber;
 	}
 
 	/**

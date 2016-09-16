@@ -26,11 +26,11 @@ class ProductInfoFactory
 
 	/**
 	 * ProductInfoFactory constructor.
-	 * @param int $inProductId
+	 * @param int $productId
 	 */
-	public function __construct( int $inProductId )
+	public function __construct( int $productId )
 	{
-		$this->productId = $inProductId;
+		$this->productId = $productId;
 
 		/*
 		 * ToDo: get the product-details from Database
