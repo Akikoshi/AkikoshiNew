@@ -60,9 +60,8 @@ class Price implements PriceInterface
     {
         $this->grossPrice = round( $grossPrice, 2 );
         $this->vat = $vat;
-
-        $this->netPriceValue = $grossPrice * (1-($this->vat/100));
-        $this->netPriceValue = round($this->netPriceValue, 2);
+        
+        $this->netPriceValue = ( $grossPrice / (1+($this->vat/100) ) );
 
         $this->vatPriceValue = $this->grossPrice - $this->netPriceValue;
 
