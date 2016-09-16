@@ -59,12 +59,16 @@ interface PriceInterface
      */
     public function getVatAsHtml() : string;
 
-    // TODO: possibility to reduce a price by marketing campaigns
+    /**
+     * @param float
+     */
+    public function reduceInPercent( float $percent );
 
-//    public function reduceInPercent() : float;
-
-//    public function reduceToPrice( float $targetPrice );
-
-//    public function removeReduction();
+    /**
+     * @param float $targetPrice
+     */
+    public function reduceToPrice( float $targetPrice );
+    
+    public function removeReduction();
 
 }

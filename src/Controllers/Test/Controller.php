@@ -10,6 +10,7 @@ namespace Class152\PizzaMamamia\Controllers\Test;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
+use Class152\PizzaMamamia\Library\Price;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
 use Class152\PizzaMamamia\Services\ProductListService\ProductListService;
@@ -29,6 +30,14 @@ class Controller extends AbstractController
         
         $productList = $productService->getProductList();
 
+// Test zur Price(); Klasse Berechnungsbeispiel
+//        $test = new Price(15,19);
+//        var_dump($test);
+//        $test->reduceToPrice( 3 );
+//        var_dump($test);
+//        $test->reduceInPercent( 20 );
+//        var_dump($test);
+//        die();
 
         new TwigRendering(
             'Test/index.twig',

@@ -14,6 +14,9 @@ use Class152\PizzaMamamia\Interfaces\PriceInterface;
 class Price implements PriceInterface
 {
     /** @var float */
+    private $originalGrossPrice;
+    
+    /** @var float */
     private $grossPrice;
 
     /** @var int */
@@ -36,7 +39,7 @@ class Price implements PriceInterface
 
     /** @var string  */
     private $vatPriceAsHtml;
-
+    
     /**
      * PriceInterface constructor.
      * @param float $grossPrice
@@ -44,10 +47,21 @@ class Price implements PriceInterface
      */
     public function __construct(float $grossPrice, int $vat)
     {
+        $this->originalGrossPrice = $grossPrice;
+        
+        $this->calculate($grossPrice,$vat);
+    }
+
+    /**
+     * @param float $grossPrice
+     * @param int $vat
+     */
+    private function calculate(float $grossPrice, int $vat)
+    {
         $this->grossPrice = round( $grossPrice, 2 );
         $this->vat = $vat;
 
-        $this->netPriceValue = $grossPrice / (1+($this->vat/100));
+        $this->netPriceValue = $grossPrice * (1-($this->vat/100));
         $this->netPriceValue = round($this->netPriceValue, 2);
 
         $this->vatPriceValue = $this->grossPrice - $this->netPriceValue;
@@ -121,4 +135,33 @@ class Price implements PriceInterface
     {
         return $this->vatAsHtml;
     }
+
+    /**
+     * @param float $percent
+     */
+    public function reduceInPercent( float $percent )
+    {
+        $this->removeReduction();
+        $newPrice = $this->grossPrice * (1 - ( $percent / 100 ) );
+        
+        $this->calculate( $newPrice, $this->vat );
+    }
+
+    /**
+     * @param float $targetPrice
+     */
+    public function reduceToPrice( float $targetPrice )
+    {
+        $this->removeReduction();
+        $this->calculate( $targetPrice, $this->vat );
+    }
+
+    /**
+     * @return float
+     */
+    public function removeReduction()
+    {
+        $this->calculate( $this->originalGrossPrice, $this->vat );
+    }
+
 }
