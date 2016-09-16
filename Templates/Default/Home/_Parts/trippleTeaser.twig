@@ -1,0 +1,11 @@
+<!-- Drei Spalten Text unter dem Karussell -->
+<div class="row">
+	{% for campaignItem in campaignList %}
+	<div class="col-lg-4">
+		<img class="img-circle" src="{{ campaignItem.getPicture }}" alt="Generisches Platzhalter-Bild" width="140" height="140">
+		<h2>{{ campaignItem.getHeadline }}</h2>
+		<p>{{ campaignItem.getContent }}</p>
+		<p><a class="btn btn-default" href="#" role="button">{{ campaignItem.getLinkText }}</a></p>
+	</div><!-- /.col-lg-4 -->
+	{% endfor %}
+</div><!-- /.row -->

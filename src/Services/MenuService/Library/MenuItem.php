@@ -66,7 +66,7 @@
 		/**
 		 * @return boolean
 		 */
-		public function isHasChildren(): bool
+		public function hasChildren(): bool
 		{
 			return $this->hasChildren;
 		}

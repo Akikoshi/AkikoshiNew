@@ -2,6 +2,21 @@
 
 {% include '/_Parts/mainMenu.twig' %}
 
-<h1>HALLO Welt {{ controllerName }} {{ actionName }}</h1>
+{% include '/_Parts/breadcrumb.twig' %}
+
+{% include '/_Parts/pageHeader.twig' %}
+
+<div class="container" style="min-height: 400px;">
+	<div class="row">
+		<div class="hidden-xs col-md-4">
+			{% include '/_Parts/sidebar.twig' %}
+		</div>
+		<div class="col-xs-12 col-md-8">
+
+		</div>
+	</div>
+</div>
+
+{% include '/_Parts/footerMenu.twig' %}
 
 {% include '/_Parts/htmlFooter.twig' %}

@@ -1,0 +1,54 @@
+
+<footer class="container">
+	<div class="row">
+		<hr />
+		<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
+			<h4>FooterMenu</h4>
+			<ul>
+				{% if footerMenu %}{% for menuItem in footerMenu %}
+				<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+				{% endfor %}{% endif %}
+			</ul>
+		</div>
+		<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
+			<h4>FooterMenu</h4>
+			<ul>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+			</ul>
+		</div>
+		<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
+			<h4>FooterMenu</h4>
+			<ul>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+			</ul>
+		</div>
+		<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
+			<h4>FooterMenu</h4>
+			<ul>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+				<li><a href="/">SeitenLink</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<footer class="text-center small">
+		<hr />
+		<p class="pull-left text-left"> &middot; <a href="#">Contact</a> &middot; <a href="#">Datenschutz</a> &middot; <a href="#">AGB</a></p>
+		&copy; 2019 Pizza-Mamamia &amp; Co.
+		<p class="pull-right text-right"><a href="#">nach oben</a></p>
+	</footer>
+</footer>
