@@ -23,11 +23,11 @@ class FooterMenuFactory
         );
 
         $this->controllerFooter->addItem(
-            new MenuItem( 'Impressum', '/informations/contact' )
+            new MenuItem( 'Impressum', '/informations/imprint' )
         );
 
         $this->controllerFooter->addItem(
-            new MenuItem( 'Kontakte', '/informations/imprint' )
+            new MenuItem( 'Kontakte', '/informations/contact' )
         );
 
         $this->controllerFooter->addItem(
