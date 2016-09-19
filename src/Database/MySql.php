@@ -11,7 +11,7 @@
 	use Class152\PizzaMamamia\Configurations\MySqlConfig;
 	use Class152\PizzaMamamia\Database\Exceptions\MySqlConnectException;
 
-	class MySql // extends \MySqli
+	class MySql // extends \MySQLi
 	{
 		/** @var \MySqli*/
 		private static $db;
@@ -33,6 +33,7 @@
 				MySqlConfig::getDbName(),
 				MySqlConfig::getPort()
 			);
+			self::$db->set_charset('utf8');
 
 			if (self::$db->connect_error) {
 				throw new MySqlConnectException(
@@ -44,8 +45,8 @@
 
 		}
 
-		/** @return \MySqli */
-		public function getInstance() : \MySqli
+		/** @return \MySQLi */
+		public function getInstance() : \mysqli
 		{
 			return self::$db;
 		}
