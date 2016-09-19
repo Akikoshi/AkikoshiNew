@@ -26,5 +26,10 @@
 			{
 				echo "Uri not found - ToDo: ErrorPage<br />";
 			}
+			catch ( \mysqli_sql_exception $exception )
+			{
+				echo "MySQL says " . $exception->getMessage();
+				var_dump( $exception->getTraceAsString() );
+			}
 		}
 	}

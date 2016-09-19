@@ -9,12 +9,37 @@
 namespace Class152\PizzaMamamia\Services\MenuService\Library;
 
 
+use Class152\PizzaMamamia\Services\MenuService\Repositories\Entities\MenuEntity;
+use Class152\PizzaMamamia\Services\MenuService\Repositories\MenuRepository;
+
 class MainMenuFactory
 {
     private $mainMenu;
     
     public function __construct()
     {
+
+    	  $repository = new MenuRepository();
+
+	      $data = $repository->getMenuByName('mainMenu');
+	      // var_dump($data);
+
+
+	      $this->mainMenu = new MenuItemList();
+
+	      $data = $repository->getMenuesByParentIds([
+	      	$data->getId(),
+	      ]);
+
+	      /** @var MenuEntity $elem */
+	    foreach( $data as $elem )
+	      {
+	      	$this->mainMenu->addItem( new MenuItem( $elem->getName(),$elem->getUrl() ) );
+	      }
+
+	      return;
+
+
         $this->mainMenu = new MenuItemList();
         
         $this->mainMenu->addItem(
