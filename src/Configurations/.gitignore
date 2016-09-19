@@ -1,2 +1,3 @@
 *
 !.gitignore
+!MySqlConfig.php
