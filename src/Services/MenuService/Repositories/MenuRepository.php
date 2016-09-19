@@ -63,7 +63,7 @@
 
 			foreach( array_keys($return) as $key )
 			{
-				var_dump($return[$key]);
+//				var_dump($return[$key]);
 				$return[$key] = new MenuEntity(
 					$return[$key][0],
 					$return[$key][1],
