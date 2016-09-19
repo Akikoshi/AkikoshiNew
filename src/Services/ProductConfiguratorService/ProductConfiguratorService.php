@@ -39,4 +39,5 @@ class ProductConfiguratorService
 		$productConfiguratorFactory = new ProductConfiguratorFactory( $this->productId );
 		return $productConfiguratorFactory->getConfiguratorProductData();
 	}
+
 }
