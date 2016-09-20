@@ -31,10 +31,9 @@ class Controller extends AbstractController
     private $accountSidebar;
     private $controllerName;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, SessionService $sessionService)
     {
         try {
-            $sessionService = new SessionService();
             $this->accountService = new AccountService( $sessionService );
         }
         catch ( NotLoggedInException $exception )

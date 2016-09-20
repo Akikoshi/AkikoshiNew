@@ -10,14 +10,17 @@
 
 
 	use Class152\PizzaMamamia\Services\SessionService\SessionService;
+	use Class152\PizzaMamamia\Services\UserService\Interfaces\AccountSessionInterface;
 
 	class UserService
 	{
 		/** @var SessionService */
 		private $sessionService;
 
-		public function __construct( SessionService $sessionService )
+		public function __construct( AccountSessionInterface $sessionService )
 		{
 			$this->sessionService = $sessionService;
 		}
+
+
 	}
