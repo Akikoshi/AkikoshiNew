@@ -64,8 +64,8 @@ INSERT INTO `Menues` (`id`, `parentId`, `name`, `url`) VALUES
 	(33, 30, 'Koffeinhaltig', '/productlist/index'),
 	(34, 31, 'Softdrinks', '/productlist/index'),
 	(35, 31, 'Säfte', '/productlist/index'),
-	(36, 32, 'Vodka', '/productlist/index'),
-	(37, 32, 'Rum', '/productlist/index'),
+	(36, 32, 'Weine', '/productlist/index'),
+	(37, 32, 'Mix', '/productlist/index'),
 	(38, 33, 'EnergyDrinks', '/productlist/index');
 /*!40000 ALTER TABLE `Menues` ENABLE KEYS */;
 
