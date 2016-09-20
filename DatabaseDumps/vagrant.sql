@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 20. Sep 2016 um 14:30
+-- Erstellungszeit: 20. Sep 2016 um 14:52
 -- Server-Version: 10.0.26-MariaDB-0+deb8u1
 -- PHP-Version: 5.6.24-0+deb8u1
 
@@ -430,7 +430,7 @@ CREATE TABLE IF NOT EXISTS `Products` (
   KEY `productType` (`type`),
   KEY `parentId` (`parentId`),
   KEY `mediaFileId` (`mediaFileId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hear are the basic products, the variants and the package pr';
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hear are the basic products, the variants and the package pr';
 
 --
 -- RELATIONEN DER TABELLE `Products`:
@@ -453,7 +453,37 @@ INSERT INTO `Products` (`id`, `parentId`, `productGroup`, `name`, `nameExtension
 (3, 1, 3, 'Pizza Salami, gross', 'gross', 1, 'Pizza Salami, 26cm', 5.50, 19, 'bundle'),
 (4, NULL, 4, 'kleine Cola', '0.33, zzgl. Pfand', 1, 'Flasche Cola, 0,33l', 1.50, 19, 'single'),
 (5, NULL, 3, 'Teig', NULL, 1, 'Hefeteig für Pizza 22cm', 0.70, NULL, 'basic'),
-(6, NULL, 1, 'Vollkornteig', NULL, 1, 'Vollkornteig für 22cm Pizza', 1.00, 19, 'basic');
+(6, NULL, 1, 'Vollkornteig', NULL, 1, 'Vollkornteig für 22cm Pizza', 1.00, 19, 'basic'),
+(7, NULL, 1, 'Magharita', NULL, 1, 'Magharita', NULL, 19, 'container'),
+(8, NULL, 3, 'Funghi', NULL, 1, 'Funghi', NULL, 19, 'container'),
+(9, NULL, 3, 'Prosciutto', NULL, 1, 'Prosciutto', NULL, 19, 'container'),
+(10, NULL, 3, 'Hawai', NULL, 1, 'Hawai', NULL, 19, 'container'),
+(11, NULL, 3, 'Tonno', NULL, 1, 'Tonno', NULL, 19, 'container'),
+(12, NULL, 3, 'Calzone', NULL, 1, 'Calzone', NULL, 19, 'container'),
+(13, NULL, 3, 'Bolognese', NULL, 1, 'Bolognese', NULL, 19, 'container'),
+(14, NULL, 3, 'Spinati', NULL, 1, 'Spinati', NULL, 19, 'container'),
+(15, NULL, 3, 'Quadro Stationi', NULL, 1, 'Quadro Stationi', NULL, 19, 'container'),
+(16, NULL, 3, 'Formaggi', NULL, 1, 'Formaggi', NULL, 19, 'container'),
+(17, 7, 1, 'Magharita', 'klein', 1, 'kleine Magharita', 3.70, 19, 'bundle'),
+(18, 8, 3, 'Funghi', 'klein', 1, 'kleine Funghi', 3.70, 19, 'bundle'),
+(19, 9, 3, 'Prosciutto', 'klein', 1, 'kleine Prosciutto', 3.70, 19, 'bundle'),
+(20, 10, 3, 'Hawai', 'klein', 1, 'kleine Hawai', 3.70, 19, 'bundle'),
+(21, 11, 3, 'Tonno', 'klein', 1, 'kleine Tonno', 3.70, 19, 'bundle'),
+(22, 12, 3, 'Calzone', 'klein', 1, 'kleine Calzone', 3.70, 19, 'bundle'),
+(23, 13, 3, 'Bolognese', 'klein', 1, 'kleine Bolognese', 3.70, 19, 'bundle'),
+(24, 14, 3, 'Spinati', 'klein', 1, 'kleine Spinati', 3.70, 19, 'bundle'),
+(25, 15, 3, 'Quadro Stationi', 'klein', 1, 'kleine Quadro Stationi', 3.70, 19, 'bundle'),
+(26, 16, 3, 'Formaggi', 'klein', 1, 'kleine Formaggi', 3.70, 19, 'bundle'),
+(32, 7, 1, 'Magharita', 'gross', 1, 'grosse Magharita', 5.20, 19, 'bundle'),
+(33, 8, 3, 'Funghi', 'gross', 1, 'grosse Funghi', 5.20, 19, 'bundle'),
+(34, 9, 3, 'Prosciutto', 'gross', 1, 'grosse Prosciutto', 5.20, 19, 'bundle'),
+(35, 10, 3, 'Hawai', 'gross', 1, 'grosse Hawai', 5.20, 19, 'bundle'),
+(36, 11, 3, 'Tonno', 'gross', 1, 'grosse Tonno', 5.20, 19, 'bundle'),
+(37, 12, 3, 'Calzone', 'gross', 1, 'grosse Calzone', 5.20, 19, 'bundle'),
+(38, 13, 3, 'Bolognese', 'gross', 1, 'grosse Bolognese', 5.20, 19, 'bundle'),
+(39, 14, 3, 'Spinati', 'gross', 1, 'grosse Spinati', 5.20, 19, 'bundle'),
+(40, 15, 3, 'Quadro Stationi', 'gross', 1, 'grosse Quadro Stationi', 5.20, 19, 'bundle'),
+(41, 16, 3, 'Formaggi', 'gross', 1, 'grosse Formaggi', 5.20, 19, 'bundle');
 
 -- --------------------------------------------------------
 
