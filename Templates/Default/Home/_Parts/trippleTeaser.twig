@@ -1,7 +1,7 @@
 <!-- Drei Spalten Text unter dem Karussell -->
 <div class="row">
 	{% for campaignItem in campaignList %}
-	<div class="col-lg-4">
+	<div class="col-md-4">
 		<img class="img-circle" src="{{ campaignItem.getPicture }}" alt="Generisches Platzhalter-Bild" width="140" height="140">
 		<h2>{{ campaignItem.getHeadline }}</h2>
 		<p>{{ campaignItem.getContent }}</p>

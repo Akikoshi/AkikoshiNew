@@ -1,32 +1,8 @@
-{% include '/_Parts/htmlHeader.twig' %}
+{% extends '/_layouts/pageWithSidebar.twig' %}
 
-{% include '/_Parts/mainMenu.twig' %}
+{% block content %}
+	Userinformationen
 
-{% include '/_Parts/breadcrumb.twig' %}
-
-{% include '/_Parts/pageHeader.twig' %}
-
-
-<div class="container">
-	<div class="row">
-		<div class="col-xs-4">
-			{% include '/Account/Parts/sidebar.twig' %}
-
-		</div>
-		<div class="col-xs-8">
-
-		</div>
-
-		Userinformationen
-
-			{{ userAccount.getUserName() }}
-		{{userAccount.getUserId()}}
-
-	</div>
-</div>
-
-
-
-{% include '/_Parts/footerMenu.twig' %}
-
-{% include '/_Parts/htmlFooter.twig' %}
+	{{ userAccount.getUserName() }}
+	{{userAccount.getUserId()}}
+{% endblock %}

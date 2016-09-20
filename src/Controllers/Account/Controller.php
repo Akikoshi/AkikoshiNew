@@ -54,7 +54,7 @@ class Controller extends AbstractController
         $this->footerMenu = $menuService->getFooterMenu();
         $this->breadCrumb =$menuService->getBreadcrumbMenu();
         $this->accountSidebar = $this->accountService->getSidebarMenu();
-        parent::__construct($request);
+        parent::__construct($request,$sessionService);
     }
 
 
@@ -108,7 +108,7 @@ class Controller extends AbstractController
     public function registerAction()
     {
 
-        $this->getTwigRendering('registerAction');
+        $this->getTwigRendering('register');
 
     }
 

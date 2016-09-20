@@ -1,42 +1,25 @@
-{% include '/_Parts/htmlHeader.twig' %}
+{% extends '/_layouts/pageWithSidebar.twig' %}
 
-{% include '/_Parts/mainMenu.twig' %}
+{% block content %}
 
-{% include '/_Parts/breadcrumb.twig' %}
+	{{ controllerName }} {{ actionName }}
 
-{% include '/_Parts/pageHeader.twig' %}
+	<ul>
+		{% for menuItem in mainMenu %}
+			<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+		{% endfor %}
+	</ul>
+	<hr />
+	<ul>
+		{% for menuItem in footerMenu %}
+			<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+		{% endfor %}
+	</ul>
+	<hr />
+	<ul>
+		{% for productItem in productItem %}
+			<li><a href="{{ productItem.getUrl }}">{{ productItem.getText }}</a></li>
+		{% endfor %}
+	</ul>
 
-<div class="container" style="min-height: 400px;">
-	<div class="row">
-		<div class="hidden-xs col-md-4">
-			{% include '/_Parts/sidebar.twig' %}
-		</div>
-		<div class="col-xs-12 col-md-8">
-
-<ul>
-{% for menuItem in mainMenu %}
-	<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
-{% endfor %}
-</ul>
-<hr />
-<ul>
-	{% for menuItem in footerMenu %}
-		<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
-	{% endfor %}
-</ul>
-			<hr />
-			<ul>
-				{% for productItem in productItem %}
-					<li><a href="{{ productItem.getUrl }}">{{ productItem.getText }}</a></li>
-				{% endfor %}
-			</ul>
-		</div>
-	</div>
-</div>
-
-{% include '/_Parts/footerMenu.twig' %}
-
-{% include '/_Parts/htmlFooter.twig' %}
-
-
-
+{% endblock %}
