@@ -73,6 +73,9 @@ class MainMenuFactory
 		/** @var MenuEntity $elem */
 		foreach ( $sqlResult as $elem ) {
 			$id = $elem->getId();
+			if ($id == $elem->getParentID()) {				// Jump over infinity-loop-condition
+				continue;
+			}
 			$subItems = $this->getSubMenuItems( $id );      // Check and generate the Sub-ItemList
 
 			if ( empty( $subItems ) ) {                     // No subitems => no ItemList for this Entry
