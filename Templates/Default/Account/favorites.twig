@@ -1,36 +1,13 @@
-{% include '/_Parts/htmlHeader.twig' %}
+{% extends '/_layouts/pageWithSidebar.twig' %}
 
-{% include '/_Parts/mainMenu.twig' %}
+{% block content %}
+    Zu Bearbeiten:<br>
 
-{% include '/_Parts/breadcrumb.twig' %}
+    Favoriten anzeigen
+    <br>
 
-{% include '/_Parts/pageHeader.twig' %}
+    Favoriten löschen
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-4">
-            {% include '/Account/Parts/sidebar.twig' %}
-        </div>
-        <div class="col-xs-8">
-
-        </div>
-
-    <div class="container ">
-        Zu Bearbeiten:
-
-        Favoriten anzeigen
-        <br>
-
-        Favoriten löschen
-
-        <br>
-        Favoriten in den Warenkorb
-    </div>
-    </div>
-</div>
-
-
-{% include '/_Parts/footerMenu.twig' %}
-
-{% include '/_Parts/htmlFooter.twig' %}
+    <br>
+    Favoriten in den Warenkorb
+{% endblock %}

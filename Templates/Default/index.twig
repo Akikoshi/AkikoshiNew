@@ -1,12 +1,5 @@
-<html>
-<head>
-    <link href="/resources/custom/scss/app.scss">
-    <link href="/resources/jquery/jquery.js">
-</head>
-<body>
-<h1>HALLO Welt {{ Title }}</h1>
+{% extends '/_layouts/pageWithSidebar.twig' %}
 
-
-
-</body>
-</html>
+{% block content %}
+    {{ controllerName }} {{ actionName }}
+{% endblock %}

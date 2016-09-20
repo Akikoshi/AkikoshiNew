@@ -1,26 +1,5 @@
-{% include '/_Parts/htmlHeader.twig' %}
+{% extends '/_layouts/pageWithSidebar.twig' %}
 
-{% include '/_Parts/mainMenu.twig' %}
-
-{% include '/_Parts/breadcrumb.twig' %}
-
-{% include '/_Parts/pageHeader.twig' %}
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-4">
-            {% include '/Account/Parts/sidebar.twig' %}
-        </div>
-        <div class="col-xs-8">
-
-        </div>
-
-        Kundenkonto löschen
-    </div>
-</div>
-
-{% include '/_Parts/footerMenu.twig' %}
-
-{% include '/_Parts/htmlFooter.twig' %}
+{% block content %}
+    Kundenkonto löschen
+{% endblock %}
