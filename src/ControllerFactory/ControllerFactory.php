@@ -12,6 +12,7 @@
 	use Class152\PizzaMamamia\Exception\NotFoundException;
 	use Class152\PizzaMamamia\Http\Request;
 	use Class152\PizzaMamamia\Interfaces\ControllerInterface;
+	use Class152\PizzaMamamia\Services\SessionService\SessionService;
 
 	class ControllerFactory
 	{
@@ -50,7 +51,7 @@
 		/**
 		 * @return ControllerInterface
 		 */
-		public function getControllerInstance()
+		public function getControllerInstance() : ControllerInterface
 		{
 			return $this->controllerInstance;
 		}
@@ -80,7 +81,10 @@
 
 		private function loadController()
 		{
-			$this->controllerInstance = new $this->classWithNamespace( $this->request );
+			$this->controllerInstance = new $this->classWithNamespace(
+				$this->request,
+				new SessionService()
+			);
 		}
 
 		private function loadAction()
