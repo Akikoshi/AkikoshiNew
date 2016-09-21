@@ -1,5 +1,9 @@
 {% extends '/_layouts/pageWithSidebar.twig' %}
 
+{% block sidebar %}
+	{% include '/Account/Parts/sidebar.twig' with { 'accountSidebar' : accountSidebar } %}
+{% endblock %}
+
 {% block content %}
 	Userinformationen
 
