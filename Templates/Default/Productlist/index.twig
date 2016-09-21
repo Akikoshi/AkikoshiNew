@@ -1,17 +1,22 @@
-{% extends '/_layouts/pageWithSidebar.twig' %}
+{% include '/_Parts/htmlHeader.twig' %}
 
-{% block content %}
+{% include '/_Parts/mainMenu.twig' %}
 
-    {% include '/ProductList/Parts/Paginator.twig' with { 'paginator' : productList.getPaginator } %}
+{% include '/_Parts/breadcrumb.twig' %}
 
+{% include '/_Parts/pageHeader.twig' %}
+
+<div class="container" style="min-height: 400px;">
     <div class="row">
+        <div class="hidden-xs col-md-4">
+            {% include '/_Parts/sidebar.twig' %}
+        </div>
+        <div class="col-xs-12 col-md-8">
 
-        {% for productItem in productList %}
-            {% include '/ProductList/Parts/ProductListItem.twig' with { 'productItem' : productItem } %}
-        {% endfor %}
-
+        </div>
     </div>
+</div>
 
-    {% include '/ProductList/Parts/Paginator.twig' with { 'paginator' : paginator } %}
+{% include '/_Parts/footerMenu.twig' %}
 
-{% endblock %}
+{% include '/_Parts/htmlFooter.twig' %}

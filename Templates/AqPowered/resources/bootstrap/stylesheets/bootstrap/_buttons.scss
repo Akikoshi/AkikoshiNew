@@ -5,6 +5,15 @@
 // Base styles
 // --------------------------------------------------
 
+.product-button
+{
+	display: inline-block;
+	color: #d20000;
+	//width: 150px;
+	margin-bottom: 50px;
+	margin-top: 30px;
+	margin-left: 100px;
+}
 .btn {
 	display: inline-block;
 	margin-bottom: 0; // For input.btn
