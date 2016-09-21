@@ -32,7 +32,7 @@ class AccountMenuFactory
         );
 
         $this->accountmenu->addItem(
-            new MenuItem('Passwort vergessen', '/account/lostpassword')
+            new MenuItem('Passwort vergessen', '/account/index')
         );
 
 
