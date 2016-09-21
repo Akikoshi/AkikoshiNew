@@ -115,7 +115,7 @@ class Controller extends AbstractController
     public function deleteuserAction()
     {
 
-        $this->getTwigRendering('deleteuserAction');
+        $this->getTwigRendering('deleteuser');
 
 
     }
@@ -124,7 +124,7 @@ class Controller extends AbstractController
     {
 
 
-        $this->getTwigRendering('lastordersAction');
+        $this->getTwigRendering('lastorders');
 
     }
 
@@ -137,7 +137,7 @@ class Controller extends AbstractController
 
     public function favoritesAction()
     {
-        $this->getTwigRendering('favoritesAction');
+        $this->getTwigRendering('favorites');
 
     }
 
