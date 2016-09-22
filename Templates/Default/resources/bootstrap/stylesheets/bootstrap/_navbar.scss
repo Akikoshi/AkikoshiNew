@@ -19,6 +19,10 @@
 	@media (min-width: $grid-float-breakpoint) {
 		border-radius: $navbar-border-radius;
 	}
+
+	font-family: $navbar-font-family;
+	font-size: 0.95em;
+
 }
 
 // Navbar heading

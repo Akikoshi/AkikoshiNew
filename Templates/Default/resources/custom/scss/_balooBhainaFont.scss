@@ -1,0 +1,7 @@
+@font-face {
+	font-family: 'baloo_bhainaregular';
+	src: url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#baloobhaina-regular-webfont.woff2'), '#{$icon-font-path}baloobhaina-regular-webfont.woff2')) format('woff2'),
+	url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#baloobhaina-regular-webfont.woff'), '#{$icon-font-path}baloobhaina-regular-webfont.woff')) format('woff');
+	font-weight: normal;
+	font-style: normal;
+}

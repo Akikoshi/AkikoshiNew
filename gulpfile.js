@@ -33,7 +33,10 @@ gulp.task(
 // copying the fonts from bootstrap into the public dir
 gulp.task(
 	'default:fonts',function(){
-	gulp.src( config.defaultBootstrapDir + '/fonts/bootstrap/*' )
+	gulp.src( [
+		config.defaultBootstrapDir + '/fonts/bootstrap/*',
+		config.defaultCustomDir + '/fonts/*'
+						] )
 		.pipe( gulp.dest( config.publicDir + '/fonts' ) );
 });
 gulp.task(
