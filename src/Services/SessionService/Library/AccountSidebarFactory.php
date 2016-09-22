@@ -10,7 +10,6 @@
 namespace Class152\PizzaMamamia\Services\AccountService\Library;
 
 use Class152\PizzaMamamia\Services\MenuService\Library\MenuItemList;
-
 use Class152\PizzaMamamia\Services\MenuService\Library\MenuItem;
 
 class AccountSidebarFactory
@@ -18,7 +17,10 @@ class AccountSidebarFactory
     /** @var MenuItemList */
     public $accountMenu;
 
-    public function __construct()
+	/**
+	 * AccountSidebarFactory constructor.
+	 */
+	public function __construct()
     {
         $this->accountmenu = new MenuItemList();
 
@@ -49,7 +51,9 @@ class AccountSidebarFactory
 
     }
 
-    /** @var MenuItemList */
+	/**
+	 * @return \Class152\PizzaMamamia\Services\MenuService\Library\MenuItemList
+	 */
     public function getAccountSidebarMenu() : MenuItemList
     {
         return $this->accountmenu;
