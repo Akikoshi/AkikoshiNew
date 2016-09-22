@@ -11,6 +11,7 @@
 
 	use Class152\PizzaMamamia\ControllerFactory\ControllerFactory;
 	use Class152\PizzaMamamia\Exception\NotFoundException;
+	use Class152\PizzaMamamia\Exception\RedirectException;
 	use Class152\PizzaMamamia\Http\Request;
 
 	class Init
@@ -21,6 +22,11 @@
 			try {
 				$request = new Request($_SERVER['REQUEST_URI']);
 				$controller = new ControllerFactory( __NAMESPACE__, $request );
+			}
+			catch ( RedirectException $exception )
+			{
+				header( "Location: " . $exception->getUrl() );
+				exit;
 			}
 			catch ( NotFoundException $exception )
 			{
