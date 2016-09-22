@@ -93,10 +93,14 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#" data-toggle="modal" data-target="#loginModal">Einloggen</a></li>
-						{% for menuItem in accountMenu %}
-						<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
-						{% endfor %}
+						{% if not isLoggedIn %}
+							<li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+						{% else %}
+							<li><a href="/account/logout" >Logout</a></li>
+							{% for menuItem in accountMenu %}
+								<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
+							{% endfor %}
+						{% endif %}
 					</ul>
 				</li>
 			</ul>
@@ -108,25 +112,44 @@
 	</div>
 </nav>
 
+{% if not isLoggedIn %}
 <!-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Einloggen</h4>
+				<h4 class="modal-title" id="myModalLabel">Anmelden als VIP</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-inline">
+
+				<form class="form-horizontal" method="post" action="/account/login">
 					<div class="form-group">
-							<input class="form-control" type="text" placeholder="UserName" />
+						<label for="inputUsername" class="col-sm-2 control-label">Benutzer</label>
+						<div class="col-sm-10">
+							<input type="text" name="username" class="form-control" id="inputUsername" placeholder="Benutzername">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword" class="col-sm-2 control-label">Passwort</label>
+						<div class="col-sm-10">
+							<input type="password" name="password" class="form-control" id="inputPassword" placeholder="Passwort">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Anmelden</button>
+						</div>
 					</div>
 				</form>
+
+
+
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-				<button type="button" class="btn btn-primary">Einloggen</button>
+				<button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Abbrechen</button>
 			</div>
 		</div>
 	</div>
 </div>
+{% endif %}

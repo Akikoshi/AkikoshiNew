@@ -48,7 +48,7 @@
 		{
 			$this->userAccount = $sessionService->getUserAccount();
 			$isLoggedIn = $this->userAccount->isLoggedIn();
-			if( true === $isLoggedIn )
+			if( true !== $isLoggedIn )
 			{
 				$this->isLoggedIn = $this->userAccount->isLoggedIn();
 				$this->email = $this->userAccount->getEmail();
