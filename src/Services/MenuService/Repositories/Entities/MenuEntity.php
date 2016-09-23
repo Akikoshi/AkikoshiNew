@@ -17,6 +17,9 @@
 		/** @var int */
 		private $parentID; //` int(11) DEFAULT NULL,
 
+		/** @var int */
+		private $Position;
+
 		/** @var string */
 		private $name; // ` varchar(255) COLLATE utf8_bin NOT NULL,
 
@@ -31,10 +34,11 @@
 		 * @param string $name
 		 * @param string $url
 		 */
-		public function __construct( $id, $parentID, $name, $url )
+		public function __construct( $id, $parentID, $position, $name, $url )
 		{
 			$this->id = $id;
 			$this->parentID = $parentID;
+			$this->Position = $position;
 			$this->name = $name;
 			$this->url = $url;
 		}
@@ -53,6 +57,14 @@
 		public function getParentID(): int
 		{
 			return $this->parentID;
+		}
+
+		/**
+		 * @return int
+		 */
+		public function getPosition(): int
+		{
+			return $this->Position;
 		}
 
 		/**

@@ -11,7 +11,6 @@
 
 	use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
 	use Class152\PizzaMamamia\Services\MenuService\Exceptions\MenuItemListNeedsMenuItemsException;
-	use Class152\PizzaMamamia\Services\MenuService\Interfaces\MenuItemListInterface;
 
 	final class MenuItemList extends AbstractIterator
 	{
