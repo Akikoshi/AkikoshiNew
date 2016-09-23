@@ -27,8 +27,6 @@
 		public function __construct( SessionService $sessionService )
 		{
 			$this->sessionService = $sessionService;
-
-
 		}
 
 		/**
@@ -44,7 +42,7 @@
 			return $this->userFactory->getUser();
 		}
 
-		public function logOutTheUser()
+		public function logoutTheUser()
 		{
 			$this->createUserFactory();
 			$this->userFactory->logoutUser();
