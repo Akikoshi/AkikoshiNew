@@ -15,6 +15,9 @@ class ProductItem
 	 * ToDo: Should implement a global ProductItem-Interface
 	 */
 
+	/** @var int */
+	private $productId;
+
 	/**
 	 * @var string
 	 * Hold the name of the product.
@@ -23,15 +26,18 @@ class ProductItem
 
 	/**
 	 * @var string
+	 * Hold a Nameextension like 'small', 'big',...
+	 */
+	private $nameExtension;
+
+	/**
+	 * @var string
 	 * Hold the description of the product.
 	 */
 	private $description;
 
-	/**
-	 * @var string
-	 * Hold the path/url to the product-picture.
-	 */
-	private $pictureUrl;
+	/** @var MediaFile */
+	private $image;
 
 	/**
 	 * @var string
@@ -43,51 +49,169 @@ class ProductItem
 	 * @var float
 	 * Hold the price of the product.
 	 */
-	private $price;
+	private $grossPrice;
 
-	/** @param  string $name
-	 *  @param  string $description
-	 *  @param  string $pictureUrl
-	 *  @param  string $detailUrl
-	 *  @param  float  $price
+	/** @var int */
+	private $vat;
+
+	/**
+	 * ProductItem constructor.
+	 * @param int $productId
+	 * @param string $name
+	 * @param string $nameExtension
+	 * @param string $description
+	 * @param MediaFile $image
+	 * @param string $detailUrl
+	 * @param float $grossPrice
+	 * @param int $vat
 	 */
-	public function __construct(string $name, string $description, string $pictureUrl, string $detailUrl, float $price)
+	public function __construct(
+								int $productId,
+								string $name,
+								string $nameExtension,
+								string $description,
+								MediaFile $image,
+								string $detailUrl,
+								float $grossPrice,
+								int $vat
+	)
 	{
+		$this->productId;
 		$this->name = $name;
+		$this->nameExtension = $nameExtension;
 		$this->description = $description;
-		$this->pictureUrl =  $pictureUrl;
+		$this->image = $image;
 		$this->detailUrl = $detailUrl;
-		$this->price = $price;
+		$this->grossPrice = $grossPrice;
+		$this->vat = $vat;
 	}
 
-	/** @return string */
-	public function getName() : string
+	/**
+	 * @return int
+	 */
+	public function getProductId()
+	{
+		return $this->productId;
+	}
+
+	/**
+	 * @param int $productId
+	 */
+	public function setProductId( $productId )
+	{
+		$this->productId = $productId;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName()
 	{
 		return $this->name;
 	}
 
-	/** @return string */
-	public function getDescription() : string
+	/**
+	 * @param string $name
+	 */
+	public function setName( $name )
+	{
+		$this->name = $name;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getNameExtension()
+	{
+		return $this->nameExtension;
+	}
+
+	/**
+	 * @param string $nameExtension
+	 */
+	public function setNameExtension( $nameExtension )
+	{
+		$this->nameExtension = $nameExtension;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDescription()
 	{
 		return $this->description;
 	}
 
-	/** @return string */
-	public function getPictureUrl() : string
+	/**
+	 * @param string $description
+	 */
+	public function setDescription( $description )
 	{
-		return $this->pictureUrl;
+		$this->description = $description;
 	}
 
-	/** @return string */
-	public function getDetailUrl() : string
+	/**
+	 * @return MediaFile
+	 */
+	public function getImage()
+	{
+		return $this->image;
+	}
+
+	/**
+	 * @param MediaFile $image
+	 */
+	public function setImage( $image )
+	{
+		$this->image = $image;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDetailUrl()
 	{
 		return $this->detailUrl;
 	}
 
-	/** @return float */
-	public function getPrice()
+	/**
+	 * @param string $detailUrl
+	 */
+	public function setDetailUrl( $detailUrl )
 	{
-		return number_format($this->price, 2, ',', '.');
+		$this->detailUrl = $detailUrl;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getGrossPrice()
+	{
+		return number_format($this->grossPrice, 2, ',', '.');
+	}
+
+	/**
+	 * @param float $grossPrice
+	 */
+	public function setGrossPrice( $grossPrice )
+	{
+		$this->grossPrice = $grossPrice;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getVat()
+	{
+		return $this->vat;
+	}
+
+	/**
+	 * @param int $vat
+	 */
+	public function setVat( $vat )
+	{
+		$this->vat = $vat;
 	}
 }
 

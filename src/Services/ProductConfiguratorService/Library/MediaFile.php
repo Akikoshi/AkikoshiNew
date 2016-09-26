@@ -9,7 +9,7 @@
 namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
 
 
-class MediaFile
+class MediaFile implements MediaFileInterface
 {
 
 	/** @var int */
