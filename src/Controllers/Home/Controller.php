@@ -29,6 +29,8 @@
 			$sliderList = $startPageService->getSlider();
 			$campaignList = $startPageService->getCampaign();
 			
+			$productGroupTeaser = $startPageService->getProductGroupTeaser();
+			
 			new TwigRendering(
 				'Home/index.twig',
 				[
@@ -40,6 +42,7 @@
 					'breadcrumbMenu' => $breadCrumb,
 					'sliderList' => $sliderList,
 					'campaignList' => $campaignList,
+					'productGroupTeaser' => $productGroupTeaser,
 				]
 			);
 		}
