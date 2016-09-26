@@ -1,11 +1,5 @@
-<html>
-<head>
+{% extends '/_layouts/pageWithSidebar.twig' %}
 
-</head>
-<body>
-<h1>HALLO Welt {{ Title }}</h1>
-
-
-
-</body>
-</html>
+{% block content %}
+    {{ controllerName }} {{ actionName }}
+{% endblock %}

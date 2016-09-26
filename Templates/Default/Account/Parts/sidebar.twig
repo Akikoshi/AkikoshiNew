@@ -1,0 +1,5 @@
+<div class="btn-group-vertical" role="group" aria-label="sidebar">
+    {% for menuItem in accountSidebar %}
+        <a class="btn btn-default" href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a>
+    {% endfor %}
+</div>

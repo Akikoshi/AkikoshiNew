@@ -11,20 +11,25 @@
 	use Class152\PizzaMamamia\Http\Request;
 	use Class152\PizzaMamamia\Interfaces\ControllerInterface;
 	use Class152\PizzaMamamia\Library\TwigRendering;
+	use Class152\PizzaMamamia\Services\SessionService\SessionService;
 
 	abstract class AbstractController implements ControllerInterface
 	{
 		/** @var Request */
 		protected $request;
 
+		/** @var SessionService */
+		protected $sessionService;
+
 		/**
 		 * Controller constructor.
 		 *
 		 * @param \Class152\PizzaMamamia\Http\Request $request
 		 */
-		public function __construct( Request $request )
+		public function __construct( Request $request, SessionService $sessionService )
 		{
 			$this->request = $request;
+			$this->sessionService = $sessionService;
 		}
 
 		public function indexAction()

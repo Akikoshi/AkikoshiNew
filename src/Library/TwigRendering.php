@@ -10,6 +10,8 @@
 
 
 	use Class152\PizzaMamamia\Configurations\TemplateConfig;
+	use Class152\PizzaMamamia\Services\AccountService\AccountService;
+	use Class152\PizzaMamamia\Services\SessionService\SessionService;
 
 	class TwigRendering
 	{
@@ -22,6 +24,9 @@
 
 			$this->templatePath = TemplateConfig::getPath();
 			$loader = new \Twig_Loader_Filesystem($this->templatePath);
+
+			$variables['isLoggedIn'] = ( new SessionService() )->getUserAccount()->isLoggedIn();
+
 			$twig = new \Twig_Environment($loader, array(
 				// 'cache' => '/path/to/compilation_cache',
 			));

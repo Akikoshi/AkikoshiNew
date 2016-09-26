@@ -12,6 +12,8 @@ namespace Class152\PizzaMamamia\Controllers\Productlist;
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
+use Class152\PizzaMamamia\Services\ProductListService\Library\ProductListPaginator;
+use Class152\PizzaMamamia\Services\ProductListService\Library\SortList;
 use Class152\PizzaMamamia\Services\ProductListService\ProductListService;
 use Class152\PizzaMamamia\Services\StartPageService\StartPageService;
 
@@ -29,6 +31,9 @@ class Controller extends AbstractController
         $productListService = new ProductListService();
         $productList = $productListService->getProductList();
 
+        $sortList = $productListService->getSortList();
+        $paginator = new ProductListPaginator(14);
+
         new TwigRendering(
             'Productlist/index.twig',
             [
@@ -39,6 +44,8 @@ class Controller extends AbstractController
                 'accountMenu' => $accountMenu,
                 'productList'=> $productList,
                 'breadcrumbMenu' => $breadcrumbMenu,
+                'sortList' => $sortList,
+                'paginator' => $paginator,
             ]
         );
     }

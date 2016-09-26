@@ -23,23 +23,24 @@
 			$mainMenu = $menuService->getMainMenu();
 			$accountMenu = $menuService->getAccountMenu();
 			$footerMenu = $menuService->getFooterMenu();
-			$breadcrumbMenu = $menuService->getBreadcrumbMenu();
+			$breadCrumb = $menuService->getBreadcrumbMenu();
 
 			$startPageService = new StartPageService();
-			$slider = $startPageService->getSlider();
+			$sliderList = $startPageService->getSlider();
+			$campaignList = $startPageService->getCampaign();
 			
 			new TwigRendering(
 				'Home/index.twig',
 				[
 					'controllerName'=>'Home',
 					'actionName' => 'index',
-				  	'mainMenu' => $mainMenu,
-				  	'footerMenu' => $footerMenu,
-				  	'accountMenu' => $accountMenu,
-					'breadcrumbMenu' => $breadcrumbMenu,
-					'slider' => $slider,
+				  'mainMenu' => $mainMenu,
+				  'footerMenu' => $footerMenu,
+				  'accountMenu' => $accountMenu,
+					'breadcrumbMenu' => $breadCrumb,
+					'sliderList' => $sliderList,
+					'campaignList' => $campaignList,
 				]
 			);
 		}
-		
 	}

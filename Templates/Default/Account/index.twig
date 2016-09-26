@@ -1,13 +1,12 @@
-{% include '_Parts/htmlHeader.twig' %}
+{% extends '/_layouts/pageWithSidebar.twig' %}
 
-<h1>HALLO Welt {{ controllerName }} {{ actionName }}</h1>
+{% block sidebar %}
+	{% include '/Account/Parts/sidebar.twig' with { 'accountSidebar' : accountSidebar } %}
+{% endblock %}
 
-Hey
+{% block content %}
+	Userinformationen
 
-<ul>
-{% for menuItem in mainMenu %}
-	<li><a href="{{ menuItem.getUrl }}">{{ menuItem.getText }}</a></li>
-{% endfor %}
-</ul>
-
-{% include '_Parts/htmlFooter.twig' %}
+	{{ userAccount.getUserName() }}
+	{{ userAccount.getUserId() }}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends '/_layouts/pageWithSidebar.twig' %}
+
+
+
+{% block sidebar %}
+    {% include '/Account/Parts/sidebar.twig' with { 'accountSidebar' : accountSidebar } %}
+{% endblock %}
+
+
+
+{% block content %}
+    userconfig
+    Formulare zu implementieren:
+    <br>
+    Namen ändern
+    <br>
+    Adresse ändern
+    <br>
+    Passwort änden
+    <br>
+{% endblock %}

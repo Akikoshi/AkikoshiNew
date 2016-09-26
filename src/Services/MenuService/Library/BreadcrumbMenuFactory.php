@@ -71,8 +71,7 @@ class BreadcrumbMenuFactory
 		$this->controllerName = $this->request->getControllerName();
 	}
 
-	private
-	function getNonIndexActionName()
+	private	function getNonIndexActionName()
 	{
 		$oActionName = $this->request->getActionName();
 		if ( $oActionName != "index" ) {

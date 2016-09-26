@@ -1,0 +1,20 @@
+{% extends '/_layouts/pageWithSidebar.twig' %}
+
+
+
+{% block sidebar %}
+    {% include '/Account/Parts/sidebar.twig' with { 'accountSidebar' : accountSidebar } %}
+{% endblock %}
+
+
+{% block content %}
+    Zu Bearbeiten:<br>
+
+    Favoriten anzeigen
+    <br>
+
+    Favoriten löschen
+
+    <br>
+    Favoriten in den Warenkorb
+{% endblock %}

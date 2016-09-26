@@ -10,15 +10,17 @@
 
 
 	use Class152\PizzaMamamia\Http\Request;
+	use Class152\PizzaMamamia\Services\SessionService\SessionService;
 
 	interface ControllerInterface
 	{
 		/**
 		 * ControllerInterface constructor.
 		 *
-		 * @param Request $request
+		 * @param \Class152\PizzaMamamia\Http\Request              $request
+		 * @param \Class152\PizzaMamamia\Interfaces\SessionService $sessionService
 		 */
-		public function __construct( Request $request );
+		public function __construct( Request $request, SessionService $sessionService );
 
 		/**
 		 * shows an default page

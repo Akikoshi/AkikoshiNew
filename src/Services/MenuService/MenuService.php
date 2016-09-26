@@ -11,10 +11,8 @@
 
 	use Class152\PizzaMamamia\Http\Request;
 	use Class152\PizzaMamamia\Services\MenuService\Library\BreadcrumbMenuFactory;
-	use Class152\PizzaMamamia\Services\MenuService\Library\FooterMenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\ControllerMenuFactory;
-	use Class152\PizzaMamamia\Services\MenuService\Library\AccountMenuFactory;
-	use Class152\PizzaMamamia\Services\MenuService\Library\MainMenuFactory;
+	use Class152\PizzaMamamia\Services\MenuService\Library\MenuFactory;
 	use Class152\PizzaMamamia\Services\MenuService\Library\MenuItemList;
 
 	class MenuService
@@ -28,31 +26,55 @@
 				$this->request = $request;
 		}
 
+		/**
+		 * @return MenuItemList
+		 */
 		public function getControllerMenu() : MenuItemList
 		{
 			$controllerMenuFactory = new ControllerMenuFactory();
 			return $controllerMenuFactory->getControllerMenu();
 		}
-		
+
+		/**
+		 * @return MenuItemList
+		 */
 		public function getAccountMenu() : MenuItemList
 		{
-			$accountMenuFactory = new AccountMenuFactory();
-			return $accountMenuFactory->getaccountmenu();
+			$accountMenuFactory = new MenuFactory('AccountMenu');
+			return $accountMenuFactory->getMenu();
 		}
 
-		public function getFooterMenu()
+		/**
+		 * @return MenuItemList
+		 */
+		public function getAccountSidebarMenu() : MenuItemList
 		{
-			$FooterMenuFactory = new FooterMenuFactory();
-			return $FooterMenuFactory->getControllerFooter();
+			$accountMenuFactory = new MenuFactory('AccountMenu');
+			return $accountMenuFactory->getMenu();
 		}
-		
+
+		/**
+		 * @return MenuItemList
+		 */
+		public function getFooterMenu() : MenuItemList
+		{
+			$FooterMenuFactory = new MenuFactory('FooterMenu');
+			return $FooterMenuFactory->getMenu();
+		}
+
+		/**
+		 * @return MenuItemList
+		 */
 		public function getMainMenu() : MenuItemList
 		{
-			$mainMenuFactory = new MainMenuFactory();
-			return $mainMenuFactory->getMainMenu();
+			$mainMenuFactory = new MenuFactory('MainMenu');
+			return $mainMenuFactory->getMenu();
 		}
-		
-		public function getBreadcrumbMenu()
+
+		/**
+		 * @return MenuItemList
+		 */
+		public function getBreadcrumbMenu() : MenuItemList
 		{
 			$breadcrumbMenuFactory = new BreadcrumbMenuFactory($this->request);
 			return $breadcrumbMenuFactory->getBreadcrumbMenu();

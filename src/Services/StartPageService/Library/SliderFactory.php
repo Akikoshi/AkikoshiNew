@@ -24,7 +24,7 @@ class SliderFactory
         $this->sliderItemList->addItem(
             new SliderItem(
                 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
-                'campaigns/index?typ=1',
+                'campaigns/index',
                 'Ueberschrift',
                 'Text TextText TextText TextText TextText Text',
                 'ksadhfoi'
@@ -34,7 +34,7 @@ class SliderFactory
         $this->sliderItemList->addItem(
             new SliderItem(
                 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
-                'campaigns/index?typ=2',
+                'campaigns/index',
                 'Ueberschrift',
                 'Text TextText TextText TextText TextText Text',
                 'Ranger'
@@ -44,7 +44,7 @@ class SliderFactory
         $this->sliderItemList->addItem(
             new SliderItem(
                 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
-                'campaigns/index?typ=3',
+                'campaigns/index',
                 'Ueberschrift',
                 'Text TextText TextText TextText TextText Text',
                 'Thomas'

@@ -11,6 +11,7 @@
 
 	use Class152\PizzaMamamia\ControllerFactory\ControllerFactory;
 	use Class152\PizzaMamamia\Exception\NotFoundException;
+	use Class152\PizzaMamamia\Exception\RedirectException;
 	use Class152\PizzaMamamia\Http\Request;
 
 	class Init
@@ -22,9 +23,19 @@
 				$request = new Request($_SERVER['REQUEST_URI']);
 				$controller = new ControllerFactory( __NAMESPACE__, $request );
 			}
+			catch ( RedirectException $exception )
+			{
+				header( "Location: " . $exception->getUrl() );
+				exit;
+			}
 			catch ( NotFoundException $exception )
 			{
 				echo "Uri not found - ToDo: ErrorPage<br />";
+			}
+			catch ( \mysqli_sql_exception $exception )
+			{
+				echo "MySQL says " . $exception->getMessage();
+				var_dump( $exception->getTraceAsString() );
 			}
 		}
 	}
