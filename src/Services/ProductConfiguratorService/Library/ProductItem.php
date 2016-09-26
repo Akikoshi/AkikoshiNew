@@ -11,44 +11,19 @@ namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
 
 class ProductItem
 {
-	/*
-	 * ToDo: Should implement a global ProductItem-Interface
-	 */
-
 	/** @var int */
 	private $productId;
 
-	/**
-	 * @var string
-	 * Hold the name of the product.
-	 */
+	/** @var string */
 	private $name;
 
-	/**
-	 * @var string
-	 * Hold a Nameextension like 'small', 'big',...
-	 */
+	/** @var string */
 	private $nameExtension;
 
-	/**
-	 * @var string
-	 * Hold the description of the product.
-	 */
+	/** @var string */
 	private $description;
 
-	/** @var MediaFile */
-	private $image;
-
-	/**
-	 * @var string
-	 * Hold the url to the product-detail-view.
-	 */
-	private $detailUrl;
-
-	/**
-	 * @var float
-	 * Hold the price of the product.
-	 */
+	/** @var float */
 	private $grossPrice;
 
 	/** @var int */
@@ -61,27 +36,23 @@ class ProductItem
 	 * @param string $nameExtension
 	 * @param string $description
 	 * @param MediaFile $image
-	 * @param string $detailUrl
 	 * @param float $grossPrice
 	 * @param int $vat
 	 */
 	public function __construct(
-								int $productId,
-								string $name,
-								string $nameExtension,
-								string $description,
-								MediaFile $image,
-								string $detailUrl,
-								float $grossPrice,
-								int $vat
-	)
-	{
+		int $productId,
+		string $name,
+		string $nameExtension,
+		string $description,
+		MediaFile $image,
+		float $grossPrice,
+		int $vat
+	) {
 		$this->productId;
 		$this->name = $name;
 		$this->nameExtension = $nameExtension;
 		$this->description = $description;
 		$this->image = $image;
-		$this->detailUrl = $detailUrl;
 		$this->grossPrice = $grossPrice;
 		$this->vat = $vat;
 	}
@@ -151,54 +122,6 @@ class ProductItem
 	}
 
 	/**
-	 * @return MediaFile
-	 */
-	public function getImage()
-	{
-		return $this->image;
-	}
-
-	/**
-	 * @param MediaFile $image
-	 */
-	public function setImage( $image )
-	{
-		$this->image = $image;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getDetailUrl()
-	{
-		return $this->detailUrl;
-	}
-
-	/**
-	 * @param string $detailUrl
-	 */
-	public function setDetailUrl( $detailUrl )
-	{
-		$this->detailUrl = $detailUrl;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getGrossPrice()
-	{
-		return number_format($this->grossPrice, 2, ',', '.');
-	}
-
-	/**
-	 * @param float $grossPrice
-	 */
-	public function setGrossPrice( $grossPrice )
-	{
-		$this->grossPrice = $grossPrice;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getVat()
@@ -212,6 +135,14 @@ class ProductItem
 	public function setVat( $vat )
 	{
 		$this->vat = $vat;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getGrossPrice()
+	{
+		return number_format( $this->grossPrice, 2, ',', '.' );
 	}
 }
 

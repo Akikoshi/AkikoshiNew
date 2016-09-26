@@ -33,6 +33,8 @@ class ProductConfiguratorFactory
 	{
 		$this->productId = $productId;
 
+		$this->genProductDetails();
+
 		/*
 		ToDo: getIngredientList() 	-> ProductIngredientFactory
 		ToDo: getUsedAddonList() 	-> ProductAddonFactory
@@ -43,17 +45,17 @@ class ProductConfiguratorFactory
 	}
 
 
-	private function getProductInfo()
+	private function genProductDetails()
 	{
-		$productInfoFactory = new ProductInfoFactory( $this->productId );
-		$this->productDataObject->setProductDetail( $productInfoFactory->getProductDetail() );
+		$productDetailsFactory = new ProductDetailsFactory( $this->productId );
+		$this->productDataObject->setProductDetail( $productDetailsFactory->getProductDetail() );
 	}
 
-	private function getIngredientList()
-	{
-		$productIngredientListFactory = new ProductIngredientFactory( $this->productId );
-		/* ToDo: get the infos */
-	}
+//	private function genIngredientList()
+//	{
+//		$productIngredientListFactory = new ProductIngredientFactory( $this->productId );
+//		/* ToDo: get the infos */
+//	}
 
 	/**
 	 * @return ProductConfiguratorDataObject
