@@ -27,7 +27,7 @@ class ProductConfiguratorService
 	 */
 	public function __construct(  )
 	{
-		$this->productId = 1;
+		$this->productId = 33;
 		/* ToDo: test if product valid ELSE throw exeption */
 	}
 

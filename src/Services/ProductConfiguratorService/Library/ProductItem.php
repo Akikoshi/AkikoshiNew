@@ -23,6 +23,9 @@ class ProductItem
 	/** @var string */
 	private $description;
 
+	/** @var MediaFile */
+	private $image;
+
 	/** @var float */
 	private $grossPrice;
 

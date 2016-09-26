@@ -42,6 +42,10 @@ class ProductRepository
 		$result = $this->db->query( $sql );
 
 		if ( $line = $result->fetch_assoc() ) {
+			
+
+	(is_null($line['description'])) ? $line['description'] = '' : null ;
+
 			return new ProductEntity(
 				$line[ 'id' ],
 				$line[ 'name' ],

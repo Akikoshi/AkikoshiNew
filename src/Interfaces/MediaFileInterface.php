@@ -5,7 +5,7 @@
  * Date: 26.09.2016
  * Time: 11:27
  */
-namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
+namespace Class152\PizzaMamamia\Interfaces;
 
 interface MediaFileInterface
 {
