@@ -30,7 +30,7 @@
 		 */
 		public function getMenuById(int $menuId)
 		{
-			$sql = "SELECT * FROM Menus WHERE ISNULL(parentId) AND id = "
+			$sql = "SELECT id,parentId,name,url FROM Menus WHERE ISNULL(parentId) AND id = "
 			       . $menuId . " LIMIT 1;";
 			return $this->askForSingleMenu($sql);
 		}
@@ -42,7 +42,7 @@
 		 */
 		public function getMenuByName( string $menuName )
 		{
-			$sql = "SELECT * FROM Menus WHERE ISNULL(parentId) AND name = '"
+			$sql = "SELECT id,parentId,name,url FROM Menus WHERE ISNULL(parentId) AND name = '"
 			       . $this->db->escape_string( $menuName )
 			       . "' LIMIT 1;";
 			return $this->askForSingleMenu($sql);
@@ -55,7 +55,7 @@
 		 */
 		public function getMenuesByParentIds( array $ids )
 		{
-			$sql = "SELECT * FROM Menus WHERE parentId IN ( "
+			$sql = "SELECT id,parentId,name,url FROM Menus WHERE parentId IN ( "
 			       . implode( ',', $ids ) . " ) ORDER BY position LIMIT 50 ;";
 
 			$result = $this->db->query($sql);
@@ -68,13 +68,10 @@
 					$return[$key][0],
 					$return[$key][1],
 					$return[$key][2],
-					$return[$key][3],
-					$return[$key][4]
+					$return[$key][3]
 				);
 			}
-
 			return $return;
-
 		}
 
 		/**
@@ -92,7 +89,6 @@
 				return new MenuEntity(
 					$line['id'],
 					$line['parentId'],
-					$line['position'],
 					$line['name'],
 					$line['url']
 				);
