@@ -9,8 +9,6 @@
 namespace Class152\PizzaMamamia\Services\StartPageService\Library;
 
 
-use Class152\PizzaMamamia\Services\StartPageService\Interfaces\SliderItemInterface;
-
 class SliderItem
 {
     /** @var  string */

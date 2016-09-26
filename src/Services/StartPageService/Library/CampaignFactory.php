@@ -9,48 +9,41 @@
 namespace Class152\PizzaMamamia\Services\StartPageService\Library;
 
 
+use Class152\PizzaMamamia\Services\StartPageService\Repository\CampaignRepository;
+use Class152\PizzaMamamia\Services\StartPageService\Repository\Entities\CampaignEntity;
+
 class CampaignFactory
 {
     private $campaignItemList;
 
+    /**
+     * CampaignFactory constructor.
+     */
     public function __construct()
     {
-        $this->campaignItemList = new CampaignItemList;
+        $this->campaignItemList = new CampaignItemList();
+        $repository = new CampaignRepository();
+        $campaigns  = $repository->getCampaignItems();
 
-        $this->campaignItemList->addItem(
-            new CampaignItem(
-                'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
-                'campaign/index',
-                'Überschrift: Ranger',
-                'Text Text Text Text Text Text Text Text Text Text Text Text Text Text',
-                'Ranger',
-                '12,99 €'
-            )
-        );
-
-        $this->campaignItemList->addItem(
-            new CampaignItem(
-                'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
-                'campaign/index',
-                'Überschrift: Phil',
-                'Text Text Text Text Text Text Text Text Text Text Text Text Text Text',
-                'Phil',
-                '14,85 €'
-            )
-        );
-
-        $this->campaignItemList->addItem(
-            new CampaignItem(
-                'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
-                'campaign/index',
-                'Überschrift: Olli',
-                'Text Text Text Text Text Text Text Text Text Text Text Text Text Text',
-                'Olli',
-                '23,99 €'
-            )
-        );
+        /** @var CampaignEntity $campaign */
+        foreach ( $campaigns as $campaign )
+        {
+            $this->campaignItemList->addItem(
+                new CampaignItem(
+                    $campaign->getPicture(),
+                    $campaign->getPictureUrl(),
+                    $campaign->getHeadline(),
+                    $campaign->getContent(),
+                    $campaign->getLinkText(),
+                    $campaign->getPrice()
+                )
+            );
+        }
     }
-    
+
+    /**
+     * @return CampaignItemList
+     */
     public function getCampaignItem() : CampaignItemList
     {
         return $this->campaignItemList;

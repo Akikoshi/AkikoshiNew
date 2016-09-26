@@ -1,0 +1,15 @@
+
+
+{% for productGroupItem in productGroupTeaser %}
+<hr class="featurette-divider">
+
+<div class="row featurette">
+    <div class="col-md-7">
+        <h2 class="featurette-heading">{{ productGroupItem.getHeadline }}</h2>
+        <p class="lead">{{ productGroupItem.getContent }}</p>
+    </div>
+    <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" data-src="{{ productGroupItem.getTeaserLink }}" alt="Generisches Platzhalter-Bild">
+    </div>
+</div>
+{% endfor %}

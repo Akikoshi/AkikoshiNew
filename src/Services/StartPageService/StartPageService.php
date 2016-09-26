@@ -10,8 +10,9 @@ namespace Class152\PizzaMamamia\Services\StartPageService;
 
 
 use Class152\PizzaMamamia\Services\StartPageService\Library\CampaignFactory;
-use Class152\PizzaMamamia\Services\StartPageService\Library\CampaignItem;
 use Class152\PizzaMamamia\Services\StartPageService\Library\CampaignItemList;
+use Class152\PizzaMamamia\Services\StartPageService\Library\ProductGroupTeaserFactory;
+use Class152\PizzaMamamia\Services\StartPageService\Library\ProductGroupTeaserItemList;
 use Class152\PizzaMamamia\Services\StartPageService\Library\SliderFactory;
 use Class152\PizzaMamamia\Services\StartPageService\Library\SliderItemList;
 
@@ -33,5 +34,14 @@ class StartPageService
     {
         $campaignFactory = new CampaignFactory();
         return $campaignFactory->getCampaignItem();
+    }
+
+    /**
+     * @return ProductGroupTeaserItemList
+     */
+    public function getProductGroupTeaser() : ProductGroupTeaserItemList
+    {
+        $productGroupTeaserFactory = new ProductGroupTeaserFactory();
+        return $productGroupTeaserFactory->getProductGroupTeaserItem();
     }
 }
