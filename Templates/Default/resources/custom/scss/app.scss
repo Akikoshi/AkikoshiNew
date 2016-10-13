@@ -5,7 +5,7 @@
  */
 
 // Core variables and mixins
-@import "../../bootstrap/stylesheets/bootstrap/variables";
+@import "variables";
 @import "../../bootstrap/stylesheets/bootstrap/mixins";
 
 // Reset and dependencies
@@ -59,3 +59,4 @@
 // Custom scss
 @import "carousel";
 @import "submenu";
+@import "productList";

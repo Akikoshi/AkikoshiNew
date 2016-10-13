@@ -1,9 +1,8 @@
+{% if sidebar %}
 <div class="btn-group-vertical" role="group" aria-label="sidebar">
-	<button type="button" class="btn btn-default">Link</button>
-	<button type="button" class="btn btn-default">link</button>
-	<button type="button" class="btn btn-default">link</button>
-	<button type="button" class="btn btn-default">link</button>
-	<button type="button" class="btn btn-default">link</button>
+	{% for menuItem in sidebar %}
+	<a href="{{ menuItem.getUrl }}" class="btn btn-default">{{ menuItem.getText }}</a>
+	{% endfor %}{#
 
 	<div class="btn-group" role="group">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -14,8 +13,7 @@
 			<li><a href="#">Dropdown-Link</a></li>
 			<li><a href="#">Dropdown-Link</a></li>
 		</ul>
-	</div>
+	</div>#}
 
-	<button type="button" class="btn btn-default">link</button>
-	<button type="button" class="btn btn-default">link</button>
 </div>
+{% endif %}

@@ -1,3 +1,24 @@
+{% extends '/_layouts/pageWithSidebar.twig' %}
+
+
+
+{% block content %}
+
+	{% include "/ProductList/Parts/Paginator.twig" %}
+
+	<div class="row">
+	{% for productItem in productList %}
+		{% include "/ProductList/Parts/ProductListItem.twig" with { 'productItem': productItem } %}
+	{% endfor %}
+	</div>
+
+
+	{% include "/ProductList/Parts/Paginator.twig" %}
+
+{% endblock %}
+
+
+{#
 {% include '/_Parts/htmlHeader.twig' %}
 
 {% include '/_Parts/mainMenu.twig' %}
@@ -58,4 +79,4 @@
 
 {% include '/_Parts/footerMenu.twig' %}
 
-{% include '/_Parts/htmlFooter.twig' %}
+{% include '/_Parts/htmlFooter.twig' %}#}
