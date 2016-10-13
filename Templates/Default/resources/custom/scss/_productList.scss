@@ -1,0 +1,30 @@
+.pl-item {
+	padding: ( $padding-base-horizontal / 2 );
+	> .pl-border {
+		padding: $padding-base-horizontal;
+		margin-bottom: ( $padding-base-horizontal / 2 );
+		> div {
+			text-align: center;
+			img {
+				margin: 0 auto 0 auto;
+			}
+		}
+		.pl-body {
+			margin-top: 10px;
+			height: 50px;
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
+		.pl-name {
+			color: #666;
+			font-size: 0.96em;
+			margin: 0;
+		}
+		.pl-price {
+			font-size: 1.5em;
+		}
+		.pl-desc, .pl-link a {
+			font-size: 0.6em;
+		}
+	}
+}

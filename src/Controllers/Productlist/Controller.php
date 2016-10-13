@@ -46,6 +46,7 @@ class Controller extends AbstractController
                 'breadcrumbMenu' => $breadcrumbMenu,
                 'sortList' => $sortList,
                 'paginator' => $paginator,
+                'sidebar' => $footerMenu,
             ]
         );
     }
