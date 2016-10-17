@@ -1,5 +1,79 @@
 {% extends '/_layouts/pageWithSidebar.twig' %}
 
-{% block content %}
-	{{ controllerName }} {{ actionName }}
+{% block pageHeadline %}
+	<h1 class="sr-only">Produkt</h1>
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-6">
+
+				<div class="easyzoom easyzoom--overlay">
+					<a href="/img/teller-big.jpg">
+						<img src="/img/teller.jpg" alt="" width="450" height="450" />
+					</a>
+				</div>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="row">
+
+					<h2>Pizza Salami</h2>
+
+					<div class="col-xs-6">
+
+						<ul>
+							<li>Mozarella Käse</li>
+							<li>Salami</li>
+							<li>Pizza-Sosse</li>
+							<li>Pizza-Teig</li>
+						</ul>
+
+					</div>
+					<div class="col-xs-6 text-right">
+
+						32cm / 8&euro;
+						<button type="button" class="btn btn-primary glyphicon glyphicon-shopping-cart">
+							<span class="sr-only">in den Warenkorb</span>
+						</button>
+						<br />
+						28cm / 7&euro;
+						<button type="button" class="btn btn-primary glyphicon glyphicon-shopping-cart">
+							<span class="sr-only">in den Warenkorb</span>
+						</button>
+						<br />
+						26cm / 6&euro;
+						<button type="button" class="btn btn-primary glyphicon glyphicon-shopping-cart">
+							<span class="sr-only">in den Warenkorb</span>
+						</button>
+
+					</div>
+					<div class="col-xs-12">
+
+						<hr />
+						<p>
+							Diese Pizza ist der reine Klassiker und wird jederzeit gern genommen.
+							Nicht wenige unserer Kunden meinen, sie wäre der Standard aller Pizzen.
+							Diese Pizza ist der reine Klassiker und wird jederzeit gern genommen.
+							Nicht wenige unserer Kunden meinen, sie wäre der Standard aller Pizzen.
+							Diese Pizza ist der reine Klassiker und wird jederzeit gern genommen.
+							Nicht wenige unserer Kunden meinen, sie wäre der Standard aller Pizzen.
+							Diese Pizza ist der reine Klassiker und wird jederzeit gern genommen.
+							Nicht wenige unserer Kunden meinen, sie wäre der Standard aller Pizzen.
+						</p>
+
+						<hr />
+
+						<div class="small text-muted">
+							Zusatzstoffe: Zucker, Modifizierte Stärke, Nitritpökelsalz, kann Spuren von Nüssen und Sesam enthalten
+						</div>
+
+					</div>
+				</div>
+
+		</div>
+	</div>
 {% endblock %}
