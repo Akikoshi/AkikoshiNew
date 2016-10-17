@@ -1,32 +1,48 @@
--- --------------------------------------------------------
--- Host:                         10.152.11.201
--- Server Version:               5.5.52-0+deb8u1-log - (Debian)
--- Server Betriebssystem:        debian-linux-gnu
--- HeidiSQL Version:             9.3.0.4984
--- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 4.6.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Erstellungszeit: 26. Sep 2016 um 15:43
+-- Server-Version: 10.0.26-MariaDB-0+deb8u1
+-- PHP-Version: 5.6.24-0+deb8u1
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- Exportiere Datenbank Struktur für vagrant
-CREATE DATABASE IF NOT EXISTS `vagrant` /*!40100 DEFAULT CHARACTER SET utf8 */;
+--
+-- Datenbank: `vagrant`
+--
+CREATE DATABASE IF NOT EXISTS `vagrant` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `vagrant`;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.Addons
+--
+-- Tabellenstruktur für Tabelle `Addons`
+--
+
+DROP TABLE IF EXISTS `Addons`;
 CREATE TABLE IF NOT EXISTS `Addons` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `type` enum('Alergics','Additives') DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `tag` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='Zusatzstoffe und Alergene';
 
--- Exportiere Daten aus Tabelle vagrant.Addons: ~33 rows (ungefähr)
-DELETE FROM `Addons`;
-/*!40000 ALTER TABLE `Addons` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `Addons`
+--
+
+TRUNCATE TABLE `Addons`;
+--
+-- Daten für Tabelle `Addons`
+--
+
 INSERT INTO `Addons` (`id`, `type`, `name`, `tag`) VALUES
   (1, 'Additives', 'Antioxidationsmittel', 'A'),
   (2, 'Additives', 'Backtriebmittel', 'B'),
@@ -61,24 +77,32 @@ INSERT INTO `Addons` (`id`, `type`, `name`, `tag`) VALUES
   (31, 'Alergics', 'Weichtiere', '13'),
   (32, 'Alergics', 'Erdnüsse', '14'),
   (33, 'Additives', 'Phosphat', 'P');
-/*!40000 ALTER TABLE `Addons` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.AddonsToComponets
+--
+-- Tabellenstruktur für Tabelle `AddonsToComponets`
+--
+
+DROP TABLE IF EXISTS `AddonsToComponets`;
 CREATE TABLE IF NOT EXISTS `AddonsToComponets` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fk_Addons` int(10) unsigned DEFAULT NULL,
-  `fk_Components` int(10) unsigned DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `fk_Addons` int(10) UNSIGNED DEFAULT NULL,
+  `fk_Components` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_ADDONS` (`fk_Addons`),
-  KEY `FK_COMPONENTS` (`fk_Components`),
-  CONSTRAINT `FK_ADDONS` FOREIGN KEY (`fk_Addons`) REFERENCES `Addons` (`id`),
-  CONSTRAINT `FK_COMPONENTS` FOREIGN KEY (`fk_Components`) REFERENCES `Components` (`componentId`)
+  KEY `FK_COMPONENTS` (`fk_Components`)
 ) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COMMENT='Hilfstabelle ';
 
--- Exportiere Daten aus Tabelle vagrant.AddonsToComponets: ~92 rows (ungefähr)
-DELETE FROM `AddonsToComponets`;
-/*!40000 ALTER TABLE `AddonsToComponets` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `AddonsToComponets`
+--
+
+TRUNCATE TABLE `AddonsToComponets`;
+--
+-- Daten für Tabelle `AddonsToComponets`
+--
+
 INSERT INTO `AddonsToComponets` (`id`, `fk_Addons`, `fk_Components`) VALUES
   (1, 4, 2),
   (2, 24, 2),
@@ -172,20 +196,65 @@ INSERT INTO `AddonsToComponets` (`id`, `fk_Addons`, `fk_Components`) VALUES
   (90, 9, 41),
   (91, 13, 41),
   (92, 16, 41);
-/*!40000 ALTER TABLE `AddonsToComponets` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.ComponentGroups
+--
+-- Tabellenstruktur für Tabelle `Campaign`
+--
+
+DROP TABLE IF EXISTS `Campaign`;
+CREATE TABLE IF NOT EXISTS `Campaign` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `src` varchar(255) DEFAULT '0',
+  `pictureUrl` varchar(255) DEFAULT '0',
+  `headline` varchar(255) DEFAULT '0',
+  `content` varchar(255) DEFAULT '0',
+  `linkText` varchar(50) DEFAULT '0',
+  `price` float(7,2) DEFAULT '0.00',
+  `active` enum('Y','N') DEFAULT 'N',
+  `position` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- TRUNCATE Tabelle vor dem Einfügen `Campaign`
+--
+
+TRUNCATE TABLE `Campaign`;
+--
+-- Daten für Tabelle `Campaign`
+--
+
+INSERT INTO `Campaign` (`id`, `src`, `pictureUrl`, `headline`, `content`, `linkText`, `price`, `active`, `position`) VALUES
+  (1, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'campaign/index', 'Überschrift: Ranger', 'Text Text Text Text Text Text Text Text Text Text Text Text Text Text', 'Ranger', 12.99, 'Y', 1),
+  (2, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'campaign/index', 'Überschrift: Phil', 'Text Text Text Text Text Text Text Text Text Text Text Text Text Text', 'Phil', 14.85, 'Y', 2),
+  (3, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'campaign/index', 'Überschrift: Thomas', 'Text Text Text Text Text Text Text Text Text Text Text Text Text Text', 'Thomas', 44.85, 'Y', 3),
+  (4, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'campaign/index', 'Überschrift: Carlo', 'Text Text Text Text Text Text Text Text Text Text Text Text Text Text', 'Carlo', 31.12, 'N', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `ComponentGroups`
+--
+
+DROP TABLE IF EXISTS `ComponentGroups`;
 CREATE TABLE IF NOT EXISTS `ComponentGroups` (
-  `componentGroupId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `componentGroupId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`componentGroupId`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='a hierarchy for the material library';
 
--- Exportiere Daten aus Tabelle vagrant.ComponentGroups: ~14 rows (ungefähr)
-DELETE FROM `ComponentGroups`;
-/*!40000 ALTER TABLE `ComponentGroups` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `ComponentGroups`
+--
+
+TRUNCATE TABLE `ComponentGroups`;
+--
+-- Daten für Tabelle `ComponentGroups`
+--
+
 INSERT INTO `ComponentGroups` (`componentGroupId`, `name`) VALUES
   (14, 'Dressings'),
   (9, 'Fisch'),
@@ -201,12 +270,16 @@ INSERT INTO `ComponentGroups` (`componentGroupId`, `name`) VALUES
   (6, 'sonstiges'),
   (4, 'Soßen'),
   (10, 'Teigs');
-/*!40000 ALTER TABLE `ComponentGroups` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.Components
+--
+-- Tabellenstruktur für Tabelle `Components`
+--
+
+DROP TABLE IF EXISTS `Components`;
 CREATE TABLE IF NOT EXISTS `Components` (
-  `componentId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `componentId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   `internalName` varchar(512) NOT NULL,
   `unitType` enum('g','kg','l','ml','cl','stk','unit') NOT NULL DEFAULT 'stk',
@@ -214,16 +287,21 @@ CREATE TABLE IF NOT EXISTS `Components` (
   `perUnitType` enum('g','kg','l','ml','cl','stk','unit') DEFAULT NULL,
   `unitSize` int(7) NOT NULL DEFAULT '1',
   `unitPrice` float(7,2) NOT NULL DEFAULT '0.00',
-  `componentGroup` int(10) unsigned NOT NULL DEFAULT '1',
+  `componentGroup` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `internalComponentId` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`componentId`),
-  KEY `materialGroup` (`componentGroup`),
-  CONSTRAINT `ComponentGroupRestriction` FOREIGN KEY (`componentGroup`) REFERENCES `ComponentGroups` (`componentGroupId`)
+  KEY `materialGroup` (`componentGroup`)
 ) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COMMENT='these are the basic materials of a product';
 
--- Exportiere Daten aus Tabelle vagrant.Components: ~73 rows (ungefähr)
-DELETE FROM `Components`;
-/*!40000 ALTER TABLE `Components` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `Components`
+--
+
+TRUNCATE TABLE `Components`;
+--
+-- Daten für Tabelle `Components`
+--
+
 INSERT INTO `Components` (`componentId`, `name`, `internalName`, `unitType`, `perUnit`, `perUnitType`, `unitSize`, `unitPrice`, `componentGroup`, `internalComponentId`) VALUES
   (1, 'Tomaten', 'Tomaten in Scheiben', 'stk', NULL, 'stk', 1, 0.02, 5, NULL),
   (2, 'Käse', 'Mozarella gerieben', 'unit', 200, 'g', 1, 1.46, 7, NULL),
@@ -298,14 +376,18 @@ INSERT INTO `Components` (`componentId`, `name`, `internalName`, `unitType`, `pe
   (71, 'Teig', 'Hefeteig, vorgegangen', 'kg', NULL, NULL, 1, 1.20, 10, NULL),
   (72, 'Pizzasoße', 'Pizzasoße, Tomate', 'kg', NULL, NULL, 1, 4.00, 1, NULL),
   (73, 'Cherrytomaten', 'Cherrytomaten', 'stk', NULL, NULL, 1, 0.05, 5, NULL);
-/*!40000 ALTER TABLE `Components` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.Customer
+--
+-- Tabellenstruktur für Tabelle `Customer`
+--
+
+DROP TABLE IF EXISTS `Customer`;
 CREATE TABLE IF NOT EXISTS `Customer` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `type` enum('customer','employee') NOT NULL DEFAULT 'customer',
-  `customerGroup` int(10) unsigned NOT NULL DEFAULT '1',
+  `customerGroup` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `active` enum('Y','N') NOT NULL DEFAULT 'Y',
   `blocked` enum('N','Y') NOT NULL DEFAULT 'N',
   `lastVisit` datetime DEFAULT NULL,
@@ -314,43 +396,62 @@ CREATE TABLE IF NOT EXISTS `Customer` (
   `userName` varchar(250) NOT NULL,
   `userPass` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `customerGroup` (`customerGroup`),
-  CONSTRAINT `Customer_ibfk_1` FOREIGN KEY (`customerGroup`) REFERENCES `CustomerGroups` (`id`)
+  KEY `customerGroup` (`customerGroup`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle vagrant.Customer: ~1 rows (ungefähr)
-DELETE FROM `Customer`;
-/*!40000 ALTER TABLE `Customer` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `Customer`
+--
+
+TRUNCATE TABLE `Customer`;
+--
+-- Daten für Tabelle `Customer`
+--
+
 INSERT INTO `Customer` (`id`, `type`, `customerGroup`, `active`, `blocked`, `lastVisit`, `userPhone`, `userEmail`, `userName`, `userPass`) VALUES
   (1, 'customer', 1, 'Y', 'N', NULL, '', 'mail@christian-biedermann.de', 'biedermann', 'passwort');
-/*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.CustomerGroups
+--
+-- Tabellenstruktur für Tabelle `CustomerGroups`
+--
+
+DROP TABLE IF EXISTS `CustomerGroups`;
 CREATE TABLE IF NOT EXISTS `CustomerGroups` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle vagrant.CustomerGroups: ~1 rows (ungefähr)
-DELETE FROM `CustomerGroups`;
-/*!40000 ALTER TABLE `CustomerGroups` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `CustomerGroups`
+--
+
+TRUNCATE TABLE `CustomerGroups`;
+--
+-- Daten für Tabelle `CustomerGroups`
+--
+
 INSERT INTO `CustomerGroups` (`id`, `name`) VALUES
   (1, 'keine');
-/*!40000 ALTER TABLE `CustomerGroups` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.MediaFiles
+--
+-- Tabellenstruktur für Tabelle `MediaFiles`
+--
+
+DROP TABLE IF EXISTS `MediaFiles`;
 CREATE TABLE IF NOT EXISTS `MediaFiles` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `mime` varchar(150) NOT NULL,
-  `height` int(5) unsigned NOT NULL,
-  `width` int(5) unsigned NOT NULL,
-  `thumbHeight` int(5) unsigned NOT NULL,
-  `thumbWidth` int(5) unsigned NOT NULL,
-  `bigHeight` int(5) unsigned NOT NULL,
-  `bigWidth` int(5) unsigned NOT NULL,
+  `height` int(5) UNSIGNED NOT NULL,
+  `width` int(5) UNSIGNED NOT NULL,
+  `thumbHeight` int(5) UNSIGNED NOT NULL,
+  `thumbWidth` int(5) UNSIGNED NOT NULL,
+  `bigHeight` int(5) UNSIGNED NOT NULL,
+  `bigWidth` int(5) UNSIGNED NOT NULL,
   `url` varchar(250) NOT NULL,
   `thumbUrl` varchar(250) NOT NULL,
   `bigUrl` varchar(250) NOT NULL,
@@ -359,27 +460,43 @@ CREATE TABLE IF NOT EXISTS `MediaFiles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='the db of all image files';
 
--- Exportiere Daten aus Tabelle vagrant.MediaFiles: ~1 rows (ungefähr)
-DELETE FROM `MediaFiles`;
-/*!40000 ALTER TABLE `MediaFiles` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `MediaFiles`
+--
+
+TRUNCATE TABLE `MediaFiles`;
+--
+-- Daten für Tabelle `MediaFiles`
+--
+
 INSERT INTO `MediaFiles` (`id`, `mime`, `height`, `width`, `thumbHeight`, `thumbWidth`, `bigHeight`, `bigWidth`, `url`, `thumbUrl`, `bigUrl`, `titleTag`, `altTag`) VALUES
   (1, 'image/jpeg', 450, 450, 100, 100, 1000, 1000, '/img/teller.jpg', '/img/teller-thumb.jpg', '/img/teller-big.jpg', 'Das ist ein Testbild', 'noImage');
-/*!40000 ALTER TABLE `MediaFiles` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.Menus
+--
+-- Tabellenstruktur für Tabelle `Menus`
+--
+
+DROP TABLE IF EXISTS `Menus`;
 CREATE TABLE IF NOT EXISTS `Menus` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `parentId` int(10) unsigned DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parentId` int(10) UNSIGNED DEFAULT NULL,
   `position` int(3) DEFAULT '0',
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle vagrant.Menus: ~58 rows (ungefähr)
-DELETE FROM `Menus`;
-/*!40000 ALTER TABLE `Menus` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `Menus`
+--
+
+TRUNCATE TABLE `Menus`;
+--
+-- Daten für Tabelle `Menus`
+--
+
 INSERT INTO `Menus` (`id`, `parentId`, `position`, `name`, `url`) VALUES
   (1, NULL, 0, 'mainMenu', ''),
   (2, 1, 0, 'Aktionen', '/campaigns/index'),
@@ -439,54 +556,106 @@ INSERT INTO `Menus` (`id`, `parentId`, `position`, `name`, `url`) VALUES
   (56, 52, 0, 'Profildaten bearbeiten', '/account/userconfig'),
   (57, 52, 0, 'Kundenkonto löschen', '/account/deleteuser'),
   (58, 52, 0, 'Ausloggen', '/home/index');
-/*!40000 ALTER TABLE `Menus` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.ProductGroups
+--
+-- Tabellenstruktur für Tabelle `ProductGroups`
+--
+
+DROP TABLE IF EXISTS `ProductGroups`;
 CREATE TABLE IF NOT EXISTS `ProductGroups` (
-  `productGroupId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `productGroupId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `productGroupPath` varchar(150) NOT NULL,
   `isIntern` enum('Y','N') NOT NULL DEFAULT 'Y',
   `name` varchar(150) NOT NULL,
-  `parentId` int(10) unsigned DEFAULT NULL,
+  `parentId` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`productGroupId`),
   KEY `parentId` (`parentId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='hear you can find the productGroup hierarchy';
 
--- Exportiere Daten aus Tabelle vagrant.ProductGroups: ~5 rows (ungefähr)
-DELETE FROM `ProductGroups`;
-/*!40000 ALTER TABLE `ProductGroups` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `ProductGroups`
+--
+
+TRUNCATE TABLE `ProductGroups`;
+--
+-- Daten für Tabelle `ProductGroups`
+--
+
 INSERT INTO `ProductGroups` (`productGroupId`, `productGroupPath`, `isIntern`, `name`, `parentId`) VALUES
   (1, '', 'Y', 'ohne Gruppe', NULL),
   (2, '', 'Y', 'products', NULL),
   (3, '2,3', 'Y', 'Pizzen', 2),
   (4, '2,4', 'Y', 'Getränke', 2),
   (5, '2,5', 'Y', 'Pasta', 2);
-/*!40000 ALTER TABLE `ProductGroups` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.Products
+--
+-- Tabellenstruktur für Tabelle `ProductGroupTeaser`
+--
+
+DROP TABLE IF EXISTS `ProductGroupTeaser`;
+CREATE TABLE IF NOT EXISTS `ProductGroupTeaser` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) NOT NULL DEFAULT '0',
+  `headline` varchar(50) NOT NULL DEFAULT '0',
+  `linkText` varchar(255) NOT NULL DEFAULT '0',
+  `pictureUrl` varchar(255) NOT NULL DEFAULT '0',
+  `active` enum('Y','N') NOT NULL DEFAULT 'N',
+  `position` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- TRUNCATE Tabelle vor dem Einfügen `ProductGroupTeaser`
+--
+
+TRUNCATE TABLE `ProductGroupTeaser`;
+--
+-- Daten für Tabelle `ProductGroupTeaser`
+--
+
+INSERT INTO `ProductGroupTeaser` (`id`, `content`, `headline`, `linkText`, `pictureUrl`, `active`, `position`) VALUES
+  (1, 'Irgend ein Text. Und noch ein bischen mehr Text für Thomas so nun aber jetzt also okay. nun okay.', 'ÜberschriftOne', 'campaigns/index', 'holder.js/500x500/auto/#555:#333/text:Dritte Folie', 'Y', 1),
+  (2, 'Irgend ein Text. Und noch ein bischen mehr Text für Thomas so nun aber jetzt also okay. nun okay.', 'ÜberschriftTwo', 'campaigns/index', 'holder.js/500x500/auto/#555:#333/text:Dritte Folie', 'Y', 2),
+  (3, 'Irgend ein Text. Und noch ein bischen mehr Text für Thomas so nun aber jetzt also okay. nun okay.', 'ÜberschriftThree', 'campaigns/index', 'holder.js/500x500/auto/#555:#333/text:Dritte Folie', 'Y', 3),
+  (4, 'Irgend ein Text. Und noch ein bischen mehr Text für Thomas so nun aber jetzt also okay. nun okay.', 'ÜberschriftFour', 'campaigns/index', 'holder.js/500x500/auto/#555:#333/text:Dritte Folie', 'Y', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `Products`
+--
+
+DROP TABLE IF EXISTS `Products`;
 CREATE TABLE IF NOT EXISTS `Products` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `parentId` int(10) unsigned DEFAULT NULL,
-  `productGroup` int(10) unsigned NOT NULL DEFAULT '1',
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parentId` int(10) UNSIGNED DEFAULT NULL,
+  `productGroup` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `name` varchar(150) NOT NULL,
   `nameExtension` varchar(150) DEFAULT NULL,
-  `mediaFileId` int(10) unsigned DEFAULT NULL,
+  `mediaFileId` int(10) UNSIGNED DEFAULT NULL,
   `internalName` varchar(512) NOT NULL,
   `grossPrice` float(7,2) DEFAULT NULL,
-  `vat` int(3) unsigned DEFAULT '19',
+  `vat` int(3) UNSIGNED DEFAULT '19',
   `type` enum('basic','bundle','container','single') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `productType` (`type`),
   KEY `parentId` (`parentId`),
-  KEY `mediaFileId` (`mediaFileId`),
-  CONSTRAINT `MediaFileId` FOREIGN KEY (`mediaFileId`) REFERENCES `MediaFiles` (`id`)
+  KEY `mediaFileId` (`mediaFileId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8 COMMENT='Hear are the basic products, the variants and the package pr';
 
--- Exportiere Daten aus Tabelle vagrant.Products: ~160 rows (ungefähr)
-DELETE FROM `Products`;
-/*!40000 ALTER TABLE `Products` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `Products`
+--
+
+TRUNCATE TABLE `Products`;
+--
+-- Daten für Tabelle `Products`
+--
+
 INSERT INTO `Products` (`id`, `parentId`, `productGroup`, `name`, `nameExtension`, `mediaFileId`, `internalName`, `grossPrice`, `vat`, `type`) VALUES
   (1, NULL, 3, 'Pizza Salami', NULL, 1, 'Pizza Salami', NULL, NULL, 'container'),
   (2, 1, 3, 'Pizza Salami, klein', 'klein', 1, 'Pizza Salami, 22cm', 3.70, 19, 'bundle'),
@@ -648,29 +817,37 @@ INSERT INTO `Products` (`id`, `parentId`, `productGroup`, `name`, `nameExtension
   (174, NULL, 1, 'Eis Karamel Sutra - Ben&Jerrys', NULL, 1, 'Karamel Sutra', NULL, 19, 'container'),
   (175, 174, 1, 'Eis Karamel Sutra - Ben&Jerrys', '150ml', 1, 'Karamel Sutra klein', 3.29, 19, 'single'),
   (176, 174, 1, 'Eis Karamel Sutra - Ben&Jerrys', '500ml', 1, 'Karamel Sutra groß', 6.99, 19, 'single');
-/*!40000 ALTER TABLE `Products` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.ProductsToComponents
+--
+-- Tabellenstruktur für Tabelle `ProductsToComponents`
+--
+
+DROP TABLE IF EXISTS `ProductsToComponents`;
 CREATE TABLE IF NOT EXISTS `ProductsToComponents` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `productId` int(10) unsigned NOT NULL,
-  `componentId` int(10) unsigned NOT NULL,
-  `unitAmount` float(10,4) unsigned NOT NULL,
-  `ordering` int(10) unsigned NOT NULL DEFAULT '1',
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `productId` int(10) UNSIGNED NOT NULL,
+  `componentId` int(10) UNSIGNED NOT NULL,
+  `unitAmount` float(10,4) UNSIGNED NOT NULL,
+  `ordering` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `replaceable` enum('N','Y') NOT NULL DEFAULT 'N',
   `removable` enum('N','Y') NOT NULL DEFAULT 'N',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniqueForce` (`id`,`productId`),
   KEY `productId` (`productId`),
-  KEY `materialId` (`componentId`),
-  CONSTRAINT `ComponentRestriction` FOREIGN KEY (`componentId`) REFERENCES `Components` (`componentId`),
-  CONSTRAINT `ProductRestriction` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`)
+  KEY `materialId` (`componentId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='the n2n table for materials in products';
 
--- Exportiere Daten aus Tabelle vagrant.ProductsToComponents: ~9 rows (ungefähr)
-DELETE FROM `ProductsToComponents`;
-/*!40000 ALTER TABLE `ProductsToComponents` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `ProductsToComponents`
+--
+
+TRUNCATE TABLE `ProductsToComponents`;
+--
+-- Daten für Tabelle `ProductsToComponents`
+--
+
 INSERT INTO `ProductsToComponents` (`id`, `productId`, `componentId`, `unitAmount`, `ordering`, `replaceable`, `removable`) VALUES
   (1, 2, 71, 0.3000, 1, 'N', 'N'),
   (2, 2, 72, 0.0300, 2, 'N', 'N'),
@@ -681,46 +858,62 @@ INSERT INTO `ProductsToComponents` (`id`, `productId`, `componentId`, `unitAmoun
   (7, 3, 4, 6.0000, 3, 'N', 'N'),
   (8, 3, 62, 60.0000, 4, 'N', 'N'),
   (9, 111, 14, 1.0000, 1, 'N', 'N');
-/*!40000 ALTER TABLE `ProductsToComponents` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.ProductsToProductGroups
+--
+-- Tabellenstruktur für Tabelle `ProductsToProductGroups`
+--
+
+DROP TABLE IF EXISTS `ProductsToProductGroups`;
 CREATE TABLE IF NOT EXISTS `ProductsToProductGroups` (
-  `productId` int(10) unsigned NOT NULL,
-  `productGroupId` int(10) unsigned NOT NULL,
+  `productId` int(10) UNSIGNED NOT NULL,
+  `productGroupId` int(10) UNSIGNED NOT NULL,
   UNIQUE KEY `uniqueForce` (`productId`,`productGroupId`),
   KEY `productId` (`productId`),
-  KEY `productGroupId` (`productGroupId`),
-  CONSTRAINT `ProductGroupRestiction` FOREIGN KEY (`productGroupId`) REFERENCES `ProductGroups` (`productGroupId`),
-  CONSTRAINT `ProductId` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`)
+  KEY `productGroupId` (`productGroupId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='the n2n table for productGroups';
 
--- Exportiere Daten aus Tabelle vagrant.ProductsToProductGroups: ~1 rows (ungefähr)
-DELETE FROM `ProductsToProductGroups`;
-/*!40000 ALTER TABLE `ProductsToProductGroups` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `ProductsToProductGroups`
+--
+
+TRUNCATE TABLE `ProductsToProductGroups`;
+--
+-- Daten für Tabelle `ProductsToProductGroups`
+--
+
 INSERT INTO `ProductsToProductGroups` (`productId`, `productGroupId`) VALUES
   (1, 3);
-/*!40000 ALTER TABLE `ProductsToProductGroups` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.ProductToOptions
+--
+-- Tabellenstruktur für Tabelle `ProductToOptions`
+--
+
+DROP TABLE IF EXISTS `ProductToOptions`;
 CREATE TABLE IF NOT EXISTS `ProductToOptions` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `productId` int(10) unsigned NOT NULL,
-  `optionProductId` int(10) unsigned NOT NULL,
-  `unitAmount` float(10,4) unsigned NOT NULL,
-  `maxAmount` int(10) unsigned NOT NULL DEFAULT '1',
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `productId` int(10) UNSIGNED NOT NULL,
+  `optionProductId` int(10) UNSIGNED NOT NULL,
+  `unitAmount` float(10,4) UNSIGNED NOT NULL,
+  `maxAmount` int(10) UNSIGNED NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `productId_2` (`productId`,`optionProductId`),
   KEY `productId` (`productId`),
-  KEY `optionProductId` (`optionProductId`),
-  CONSTRAINT `ProductToOptions_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`),
-  CONSTRAINT `ProductToOptions_ibfk_2` FOREIGN KEY (`optionProductId`) REFERENCES `Products` (`id`)
+  KEY `optionProductId` (`optionProductId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle vagrant.ProductToOptions: ~17 rows (ungefähr)
-DELETE FROM `ProductToOptions`;
-/*!40000 ALTER TABLE `ProductToOptions` DISABLE KEYS */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `ProductToOptions`
+--
+
+TRUNCATE TABLE `ProductToOptions`;
+--
+-- Daten für Tabelle `ProductToOptions`
+--
+
 INSERT INTO `ProductToOptions` (`id`, `productId`, `optionProductId`, `unitAmount`, `maxAmount`) VALUES
   (2, 72, 81, 20.0000, 2),
   (3, 72, 82, 4.0000, 2),
@@ -739,22 +932,110 @@ INSERT INTO `ProductToOptions` (`id`, `productId`, `optionProductId`, `unitAmoun
   (23, 43, 117, 8.0000, 1),
   (24, 43, 120, 6.0000, 1),
   (25, 43, 121, 12.0000, 1);
-/*!40000 ALTER TABLE `ProductToOptions` ENABLE KEYS */;
 
+-- --------------------------------------------------------
 
--- Exportiere Struktur von Tabelle vagrant.User
+--
+-- Tabellenstruktur für Tabelle `Slider`
+--
+
+DROP TABLE IF EXISTS `Slider`;
+CREATE TABLE IF NOT EXISTS `Slider` (
+  `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `src` varchar(255) DEFAULT '0',
+  `headline` varchar(50) DEFAULT '0',
+  `content` varchar(255) DEFAULT '0',
+  `button` varchar(50) DEFAULT '0',
+  `picUrl` varchar(255) DEFAULT '0',
+  `position` tinyint(3) UNSIGNED DEFAULT '0',
+  `active` enum('Y','N') DEFAULT 'N',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- TRUNCATE Tabelle vor dem Einfügen `Slider`
+--
+
+TRUNCATE TABLE `Slider`;
+--
+-- Daten für Tabelle `Slider`
+--
+
+INSERT INTO `Slider` (`ID`, `src`, `headline`, `content`, `button`, `picUrl`, `position`, `active`) VALUES
+  (1, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'Ueberschrift', 'Text TextText TextText TextText TextText Text', 'ksadhfoi', 'campaigns/index', 5, 'Y'),
+  (2, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'Ueberschrift1', 'Text TextText TextText TextText TextText Text', 'Ranger', 'campaigns/index', 2, 'Y'),
+  (3, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'Ueberschrift2', 'Text TextText TextText TextText TextText Text', 'Thomas', 'campaigns/index', 3, 'Y'),
+  (4, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'Ueberschrift3', 'Text TextText TextText TextText TextText Text', 'Philip', 'campaigns/index', 1, 'Y'),
+  (5, 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'Ueberschrift4', 'Text TextText TextText TextText TextText Text', 'Peter', 'campaigns/index', 1, 'Y');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `User`
+--
+
+DROP TABLE IF EXISTS `User`;
 CREATE TABLE IF NOT EXISTS `User` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Logins and Stuff';
 
--- Exportiere Daten aus Tabelle vagrant.User: ~0 rows (ungefähr)
-DELETE FROM `User`;
-/*!40000 ALTER TABLE `User` DISABLE KEYS */;
-/*!40000 ALTER TABLE `User` ENABLE KEYS */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+--
+-- TRUNCATE Tabelle vor dem Einfügen `User`
+--
+
+TRUNCATE TABLE `User`;
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `AddonsToComponets`
+--
+ALTER TABLE `AddonsToComponets`
+  ADD CONSTRAINT `FK_ADDONS` FOREIGN KEY (`fk_Addons`) REFERENCES `Addons` (`id`),
+  ADD CONSTRAINT `FK_COMPONENTS` FOREIGN KEY (`fk_Components`) REFERENCES `Components` (`componentId`);
+
+--
+-- Constraints der Tabelle `Components`
+--
+ALTER TABLE `Components`
+  ADD CONSTRAINT `ComponentGroupRestriction` FOREIGN KEY (`componentGroup`) REFERENCES `ComponentGroups` (`componentGroupId`);
+
+--
+-- Constraints der Tabelle `Customer`
+--
+ALTER TABLE `Customer`
+  ADD CONSTRAINT `Customer_ibfk_1` FOREIGN KEY (`customerGroup`) REFERENCES `CustomerGroups` (`id`);
+
+--
+-- Constraints der Tabelle `Products`
+--
+ALTER TABLE `Products`
+  ADD CONSTRAINT `MediaFileId` FOREIGN KEY (`mediaFileId`) REFERENCES `MediaFiles` (`id`);
+
+--
+-- Constraints der Tabelle `ProductsToComponents`
+--
+ALTER TABLE `ProductsToComponents`
+  ADD CONSTRAINT `ComponentRestriction` FOREIGN KEY (`componentId`) REFERENCES `Components` (`componentId`),
+  ADD CONSTRAINT `ProductRestriction` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`);
+
+--
+-- Constraints der Tabelle `ProductsToProductGroups`
+--
+ALTER TABLE `ProductsToProductGroups`
+  ADD CONSTRAINT `ProductGroupRestiction` FOREIGN KEY (`productGroupId`) REFERENCES `ProductGroups` (`productGroupId`),
+  ADD CONSTRAINT `ProductId` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`);
+
+--
+-- Constraints der Tabelle `ProductToOptions`
+--
+ALTER TABLE `ProductToOptions`
+  ADD CONSTRAINT `ProductToOptions_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`),
+  ADD CONSTRAINT `ProductToOptions_ibfk_2` FOREIGN KEY (`optionProductId`) REFERENCES `Products` (`id`);
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
