@@ -53,7 +53,7 @@
 		 *
 		 * @return array
 		 */
-		public function getMenuesByParentIds( array $ids )
+		public function getMenusByParentIds( array $ids )
 		{
 			$sql = "SELECT id,parentId,name,url FROM Menus WHERE parentId IN ( "
 			       . implode( ',', $ids ) . " ) ORDER BY position LIMIT 50 ;";
@@ -63,7 +63,6 @@
 
 			foreach( array_keys($return) as $key )
 			{
-//				var_dump($return[$key]);
 				$return[$key] = new MenuEntity(
 					$return[$key][0],
 					$return[$key][1],
@@ -93,8 +92,6 @@
 					$line['url']
 				);
 			}
-
 			return null;
 		}
-
 	}
