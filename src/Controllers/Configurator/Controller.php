@@ -12,6 +12,7 @@ namespace Class152\PizzaMamamia\Controllers\Configurator;
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
+use Class152\PizzaMamamia\Services\ProductConfiguratorService\ProductConfiguratorService;
 
 class Controller extends AbstractController
 {
@@ -22,7 +23,12 @@ class Controller extends AbstractController
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
         $breadcrumbMenu = $menuService->getBreadcrumbMenu();
-        
+
+        $test = new ProductConfiguratorService();
+        $bla = $test->getProductConfigurator();
+//var_dump($bla);
+
+
         new TwigRendering(
             'Configurator/index.twig',
             [
