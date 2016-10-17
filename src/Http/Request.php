@@ -20,6 +20,12 @@
 		/** @var string */
 		private $actionName;
 
+		/** @var string */
+		private $firstAdditionalVar = '';
+
+		/** @var string */
+		private $secondAdditionalVar = '';
+
 		/**
 		 * Request constructor.
 		 *
@@ -47,12 +53,36 @@
 			return $this->actionName;
 		}
 
+		/**
+		 * @return string
+		 */
+		public function getRequestUri(): string
+		{
+			return $this->requestUri;
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getFirstAdditionalVar(): string
+		{
+			return $this->firstAdditionalVar;
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getSecondAdditionalVar(): string
+		{
+			return $this->secondAdditionalVar;
+		}
+
 		private function cutUri()
 		{
 			$controller = 'home';
 			$action = 'index';
 
-			$pattern = '/^\/([^\/]+)(\/([^\/]+)){0,1}/i';
+			$pattern = '/^\/([^\/]+)(\/([^\/]+)){0,1}(\/([^\/]+)){0,1}(\/([^\/]+)){0,1}/i';
 			preg_match( $pattern, $this->requestUri, $matches );
 
 			if( ! empty( $matches[1] ) ) $controller = $matches[1];
@@ -60,6 +90,9 @@
 
 			$this->controllerName = $this->convertUpperCaseFirst( $controller );
 			$this->actionName = strtolower( $action );
+
+			if( ! empty( $matches[5] ) ) $this->firstAdditionalVar = $matches[5];
+			if( ! empty( $matches[7] ) ) $this->secondAdditionalVar = $matches[7];
 		}
 
 		/**

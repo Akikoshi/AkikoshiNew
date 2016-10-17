@@ -1,0 +1,4 @@
+phpcs/*
+phpdox/*
+phploc/*
+phpmd/*
