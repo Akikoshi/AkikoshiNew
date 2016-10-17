@@ -11,6 +11,8 @@ namespace Class152\PizzaMamamia\Controllers\Campaigns;
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
+use Class152\PizzaMamamia\Services\CampaignService\CampaignProductListService;
+use Class152\PizzaMamamia\Services\CampaignService\CampaignService;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
 
 class Controller extends AbstractController
@@ -23,16 +25,20 @@ class Controller extends AbstractController
 		$accountMenu = $menuService->getAccountMenu();
 		$footerMenu = $menuService->getFooterMenu();
 		$breadcrumbMenu = $menuService->getBreadcrumbMenu();
+			
+		$campaignService = new CampaignService();
+		$campaignList = $campaignService->getCampaign();
 		
         new TwigRendering(
             'Campaigns/index.twig',
             [
                 'controllerName'=>'Campaigns',
                 'actionName' => 'index',
-				'mainMenu' => $mainMenu,
-				'footerMenu' => $footerMenu,
-				'accountMenu' => $accountMenu,
-				'breadcrumbMenu' => $breadcrumbMenu,				
+								'mainMenu' => $mainMenu,
+								'footerMenu' => $footerMenu,
+								'accountMenu' => $accountMenu,
+								'breadcrumbMenu' => $breadcrumbMenu,
+								'campaignList' => $campaignList,
             ]
         );
     }
@@ -51,10 +57,10 @@ class Controller extends AbstractController
 		    [
 			    'controllerName'=>'Campaigns',
 			    'actionName' => 'detail',
-				'mainMenu' => $mainMenu,
-				'footerMenu' => $footerMenu,
-				'accountMenu' => $accountMenu,
-				'breadcrumbMenu' => $breadcrumbMenu,				
+					'mainMenu' => $mainMenu,
+					'footerMenu' => $footerMenu,
+					'accountMenu' => $accountMenu,
+					'breadcrumbMenu' => $breadcrumbMenu,				
 		    ]
 	    );
 
