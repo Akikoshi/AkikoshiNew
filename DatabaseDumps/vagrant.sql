@@ -20,6 +20,24 @@ CREATE DATABASE IF NOT EXISTS `vagrant` DEFAULT CHARACTER SET utf8 COLLATE utf8_
 USE `vagrant`;
 
 -- --------------------------------------------------------
+-- -----------------------------------------------------
+-- Table `vagrant`.`Descriptions`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vagrant`.`Descriptions` ;
+
+CREATE TABLE IF NOT EXISTS `vagrant`.`Descriptions` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `shortDescription` TEXT CHARACTER SET 'utf8' NOT NULL,
+  `longDescription` TEXT CHARACTER SET 'utf8' NOT NULL,
+  `fk_products` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FK_Descriptions_Products` (`fk_products` ASC),
+  CONSTRAINT `FK_Descriptions_Products`
+    FOREIGN KEY (`fk_products`)
+    REFERENCES `vagrant`.`Products` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_bin;
 
 --
 -- Tabellenstruktur für Tabelle `Addons`
