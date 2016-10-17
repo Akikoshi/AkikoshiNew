@@ -13,6 +13,8 @@ use Class152\PizzaMamamia\Interfaces\ProductListRepositroryInterface;
 
 class ProductListRepository implements ProductListRepositroryInterface
 {
+    private $queryArray;
+    
     private $productId;
     
     private $productName;
@@ -34,10 +36,13 @@ class ProductListRepository implements ProductListRepositroryInterface
     public function __construct()
     {
         $this->databaseQuery();
+        $this->
     }
 
     private function databaseQuery()
     {
+        
+        
         "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
         from Products as pd join Descriptions as ds on pd.id = ds.fk_products
         where pd.`type` like "%ontain%" || pd.`type` like "%ingl%"
