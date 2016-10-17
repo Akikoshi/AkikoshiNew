@@ -13,6 +13,12 @@ use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
 class MediaFile implements MediaFileInterface
 {
+    private $mediaFileId;
+
+    public function __construct(int $mediaFileId)
+    {
+        $this->mediaFileId = $mediaFileId;
+    }
 
     /**
      * @return int

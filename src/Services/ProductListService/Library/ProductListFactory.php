@@ -12,107 +12,54 @@ namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 class ProductListFactory
 {
     private $productList;
+    
+    private $productId;
+    
+    private $productName;
+    
+    private $shortDescription;
+    
+    private $mediaFileId;
+    
+    private $mediaFile;
+    
+    private $typeOfProduct;
+    
+    private $productGroupId;
+    
+    private $grossPrice;
+    
+    private $vat;
+    
+    private $detailUrl;
 
-    public function __construct()
+    public function __construct(ProductListEntity $productListEntity)
+    {
+        $this->productId = $productListEntity->getProductId();
+        $this->productName = $productListEntity->getProductName();
+        $this->shortDescription = $productListEntity->getShortDescription();
+        $this->mediaFileId = $productListEntity->getMediaFileId();
+        $this->typeOfProduct = $productListEntity->getTypeOfProduct();
+        $this->productGroupId = $productListEntity->getProductGroupId();
+        $this->grossPrice = $productListEntity->getGrossPrice();
+        $this->vat = $productListEntity->getVat();
+        $this->detailUrl = $productListEntity->getDetailUrl();
+        $this->craeteNewProductList();
+    }
+    
+    private function createMediaFile()
+    {
+        $this->mediaFile = new MediaFile($this->mediaFileId);
+    }
+
+    private function craeteNewProductList()
     {
         $this->productList = new ProductList();
         $this->productList->addItem(
-            new ProductItem('Pizza Jähnert', 'Die herzhaft belegte JägerschnitzelPizza', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
+            new ProductItem($this->productName, $this->shortDescription, $this->mediaFile, $this->detailUrl, $this->grossPrice)
         );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Viete', 'Die geilste Pizza', '/img/pizza_thumb.jpg', '/productdetails/index', 1,11)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Ranger', 'Die eitelste Pizza der Welt', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Rauch', 'Die Pizza die auf Klo gehört', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-
-
-
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Carlo', 'Die geilste Pizza', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Mutti', 'Die eitelste Pizza der Welt', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Vati', 'Die Pizza die auf Klo gehört', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Frankenfeld', 'Die geilste Pizza', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza K.', 'Die eitelste Pizza der Welt', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Mergel', 'Die Pizza die auf Klo gehört', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-
-
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Detlef', 'Die geilste Pizza', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Rene', 'Die eitelste Pizza der Welt', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Dieter', 'Die Pizza die auf Klo gehört', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-
-
-
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Mariatte', 'Die geilste Pizza', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Waltraut', 'Die eitelste Pizza der Welt', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Siegmar', 'Die Pizza die auf Klo gehört', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Heidi', 'Die geilste Pizza', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Mario', 'Die eitelste Pizza der Welt', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-        $this->productList->addItem(
-            new ProductItem('Pizza Käse', 'Die Pizza die auf Klo gehört', '/img/pizza_thumb.jpg', '/productdetails/index', 12.30)
-        );
-
-
-
-
-
     }
-
+    
     public function getProductList()
     {
         return $this->productList;
