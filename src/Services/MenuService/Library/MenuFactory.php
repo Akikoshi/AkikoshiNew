@@ -66,7 +66,7 @@ class MenuFactory
 		$result = new MenuItemList();
 
 		/* got all sub-elements of this menu-item (id) */
-		$sqlResult = $this->repository->getMenuesByParentIds( [ $mId ] );
+		$sqlResult = $this->repository->getMenusByParentIds( [ $mId ] );
 
 		/** @var MenuEntity $elem */
 		foreach ( $sqlResult as $elem ) {
