@@ -17,8 +17,8 @@ class ProductItem
     /** @var  string */
     private $description;
 
-    /** @var  string */
-    private $pictureUrl;
+    /** @var  int */
+    private $mediaFileId;
 
     /** @var  string */
     private $detailUrl;
@@ -26,18 +26,13 @@ class ProductItem
     /** @var  float */
     private $price;
 
-    /** @param  string $name
-     *  @param  string $description
-     *  @param  string $pictureUrl
-     *  @param  string $detailUrl
-     *  @param  float  $price
-     */
-    public function __construct(string $name, string $description, string $pictureUrl, string $detailUrl, float $price)
+
+    public function __construct(ProductListRepository $productListRepository)
     {
-        $this->name = $name;
-        $this->description = $description;
-        $this->pictureUrl =  $pictureUrl;
-        $this->detailUrl = $detailUrl;
+        $this->name = $productListRepository->getProductName();
+        $this->description = $productListRepository->getShortDescription();
+        $this->mediaFileId =  $productListRepository->getMediaFileId();
+        $this->detailUrl = $;
         $this->price = $price;
     }
 
