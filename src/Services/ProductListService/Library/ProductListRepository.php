@@ -9,136 +9,51 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 
+use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Interfaces\ProductListRepositroryInterface;
 
 class ProductListRepository implements ProductListRepositroryInterface
 {
-    private $queryArray;
-    
+    private $db;   
+        
     /** @var  array */
     private $queryArray;
     
-    /** @var  int */
-    private $productId;
-    
-    /** @var  string */
-    private $productName;
-    
-    /** @var  string */
-    private $shortDescription;
-    
-    /** @var  int */
-    private $mediaFileId;
-    
-    /** @var  string */
-    private $typeOfProduct;
-    
-    /** @var  int */
-    private $productGroupId;
-    
-    /** @var  float */
-    private $grossPrice;
-    
-    /** @var  int */
-    private $vat;
-    
-    /** @var  string */
-    private $detailsUrl;
-    
+ 
     //------------------------------------------------------------------------------------------------------------------
     
     public function __construct()
     {
         $this->databaseQuery();
-        $this->databaseQuery();
         $this->setDetailsUrl();
+          
+        $db = New MySql();
+        $this->db = $db->getInstance();    
     }
 
     private function databaseQuery()
     {
-        "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
+         $sql = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
         from Products as pd join Descriptions as ds on pd.id = ds.fk_products
-        where pd.`type` like "%ontain%" || pd.`type` like "%ingl%"
+        where pd.`type` like '%ontain%' || pd.`type` like '%ingl%'
         order by pd.type;";
+        $result = $this->db->query( $sql );
+        $queryArray = $result->fetch_all(MYSQLI_ASSOC);
+
+        foreach( array_keys( $queryArray ) as $key )
+        {
+            $queryArray[$key] = $this->varsFiller( $queryArray[$key] );
+        }
+            
+        return $queryArray;
     }
 
-    /**
-     * creates the Link to Details Site, is a hard Link can be refactored
-     */
-    private function setDetailsUrl()
-    {
-        $this->detailsUrl = "/productdetails/index/".$this->productId;
-    }
+     private function varsFiller()
+     {
+         
+     }
 
-    /**
-     * @return int
-     */
-    public function getProductId() :int
-    {
-        return $this->productId;
-    }
 
-    /**
-     * @return string
-     */
-    public function getProductName() :string
-    {
-        return $this->productName;
-    }
 
-    /**
-     * @return string
-     */
-    public function getShortDescription() :string
-    {
-        return $this->shortDescription;
-    }
 
-    /**
-     * @return int
-     */
-    public function getMediaFileId() :int
-    {
-        return $this->mediaFileId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTypeOfProduct() :string
-    {
-        return $this->typeOfProduct;
-    }
-
-    /**
-     * @return int
-     */
-    public function getProductGroupId() :int
-    {
-        return $this->productGroupId;
-    }
-
-    /**
-     * @return float
-     */
-    public function getGrossPrice() :float
-    {
-        return $this->grossPrice;
-    }
-
-    /**
-     * @return int
-     */
-    public function getVat() :int
-    {
-        return $this->vat;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDetailUrl() :string
-    {
-        return $this->detailsUrl;
-    }
 }
