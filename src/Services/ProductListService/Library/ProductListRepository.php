@@ -13,6 +13,8 @@ use Class152\PizzaMamamia\Interfaces\ProductListRepositroryInterface;
 
 class ProductListRepository implements ProductListRepositroryInterface
 {
+    private $queryArray;
+    
     /** @var  array */
     private $queryArray;
     
