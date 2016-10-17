@@ -22,38 +22,18 @@ class ProductListRepository implements ProductListRepositroryInterface
  
     //------------------------------------------------------------------------------------------------------------------
     
-    public function __construct()
+    public function getContainerAndSingleProducts() :array
     {
-        $this->databaseQuery();
-        $this->setDetailsUrl();
-          
-        $db = New MySql();
-        $this->db = $db->getInstance();    
-    }
-
-    private function databaseQuery()
-    {
-         $sql = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
+        $this->queryArray = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
         from Products as pd join Descriptions as ds on pd.id = ds.fk_products
         where pd.`type` like '%ontain%' || pd.`type` like '%ingl%'
         order by pd.type;";
-        $result = $this->db->query( $sql );
-        $queryArray = $result->fetch_all(MYSQLI_ASSOC);
-
-        foreach( array_keys( $queryArray ) as $key )
-        {
-            $queryArray[$key] = $this->varsFiller( $queryArray[$key] );
-        }
-            
-        return $queryArray;
     }
 
-     private function varsFiller()
-     {
-         
-     }
-
-
+    public function getChildProducts() :array
+    {
+        // TODO: Implement getChildProducts() method.
+    }
 
 
 }

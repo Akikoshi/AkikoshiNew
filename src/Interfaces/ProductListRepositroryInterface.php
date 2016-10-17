@@ -11,23 +11,7 @@ namespace Class152\PizzaMamamia\Interfaces;
 
 interface ProductListRepositroryInterface
 {
-    public function __construct();
-    
-    public function getProductId() :int;
+    public function getContainerAndSingleProducts() :array ;
 
-    public function getProductName() :string;
-
-    public function getShortDescription() :string;
-
-    public function getMediaFileId() :int;
-
-    public function getTypeOfProduct() :string;
-
-    public function getProductGroupId() :int;
-
-    public function getGrossPrice() :float;
-    
-    public function getVat() :int;
-    
-    public function getDetailUrl() :string;
+    public function getChildProducts() :array;
 }

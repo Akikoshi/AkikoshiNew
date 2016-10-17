@@ -46,8 +46,12 @@ class ProductListFactory
     /** @var  string */
     private $detailUrl;
 
-    public function __construct(ProductListEntity $productListEntity)
+    public function __construct(ProductListRepository $productListRepository)
     {
+        
+        
+        
+        
         $this->productId = $productListEntity->getProductId();
         $this->productName = $productListEntity->getProductName();
         $this->shortDescription = $productListEntity->getShortDescription();
