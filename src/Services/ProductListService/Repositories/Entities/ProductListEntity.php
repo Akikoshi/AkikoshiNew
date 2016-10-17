@@ -112,7 +112,7 @@ class ProductListEntity
     }
 
     /**
-     * creates the Link to Details Site, is a hard Link can be refactored
+     * creates the Link to Details Site, its a hard Link, can be refactored to dynamic function
      */
     private function setDetailsUrl()
     {
