@@ -9,25 +9,29 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 
+use Class152\PizzaMamamia\AbstractClasses\Services\ProductListService\Library\ProductListEntity;
 use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Interfaces\ProductListRepositroryInterface;
 
 class ProductListRepository implements ProductListRepositroryInterface
 {
+    /** @var  \MySqli */
     private $db;   
-        
-    /** @var  array */
-    private $queryArray;
     
- 
-    //------------------------------------------------------------------------------------------------------------------
+    
+    public function __construct()
+    {
+        $db = new MySql();
+        $this->db = $db->getInstance();
+    }
     
     public function getContainerAndSingleProducts() :array
     {
-        $this->queryArray = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
+        $sql = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
         from Products as pd join Descriptions as ds on pd.id = ds.fk_products
         where pd.`type` like '%ontain%' || pd.`type` like '%ingl%'
         order by pd.type;";
+        return $this->askForProductList($sql);
     }
 
     public function getChildProducts() :array
@@ -35,5 +39,25 @@ class ProductListRepository implements ProductListRepositroryInterface
         // TODO: Implement getChildProducts() method.
     }
 
+    private function askForProductList( string $sql )
+    {
+        /** @var \MySqli_Result $result */
+        $result = $this->db->query($sql);
+
+        if( $line = $result->fetch_assoc() )
+        {
+            return new ProductListEntity(
+                $line['id'],
+                $line['mediaFileId'],
+                $line['productName'],
+                $line['shortDescription'],
+                $line['typeOfProduct'],
+                $line['grossPrice'],
+                $line['vat'],
+                $line['productGroupId']
+            );
+        }
+        return null;
+    }
 
 }
