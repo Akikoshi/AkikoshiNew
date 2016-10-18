@@ -14,55 +14,18 @@ use Class152\PizzaMamamia\Services\ProductService\Library\Product\Product;
 
 class ProductListFactory
 {
-    private $productList;
-    
-    /** @var  int */
-    private $productId;
-    
-    /** @var  string */
-    private $productName;
-    
-    /** @var  string */
-    private $shortDescription;
-    
-    /** @var  int */
-    private $mediaFileId;
-    
-    /** @var  MediaFile */
-    private $mediaFile;
-    
-    /** @var  string */
-    private $typeOfProduct;
-    
-    /** @var  int */
-    private $productGroupId;
-    
-    /** @var  float */
-    private $grossPrice;
-    
-    /** @var  int */
-    private $vat;
-    
-    /** @var  string */
-    private $detailUrl;
 
-    public function __construct(ProductListRepository $productListRepository)
+
+    private $productList;
+
+    private $repository;
+    
+
+
+    public function __construct()
     {
-        
-        
-        
-        
-        $this->productId = $productListEntity->getProductId();
-        $this->productName = $productListEntity->getProductName();
-        $this->shortDescription = $productListEntity->getShortDescription();
-        $this->mediaFileId = $productListEntity->getMediaFileId();
-        $this->typeOfProduct = $productListEntity->getTypeOfProduct();
-        $this->productGroupId = $productListEntity->getProductGroupId();
-        $this->grossPrice = $productListEntity->getGrossPrice();
-        $this->vat = $productListEntity->getVat();
-        $this->detailUrl = $productListEntity->getDetailUrl();
-        $this->createMediaFile($this->mediaFileId);
-        $this->craeteNewProductList();
+        $this->repository = new ProductListRepository();
+        $this->productList = new ProductList();
     }
     
     private function createMediaFile(int $mediaFileId)

@@ -13,5 +13,5 @@ interface ProductListRepositroryInterface
 {
     public function getContainerAndSingleProducts() :array ;
 
-    public function getChildProducts() :array;
+    public function getChildProducts(int $parentId) :array;
 }

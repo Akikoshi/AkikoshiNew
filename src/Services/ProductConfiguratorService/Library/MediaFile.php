@@ -10,7 +10,7 @@ namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
-class MediaFile implements MediaFileInterface  // ToDo find the Interface problem
+class MediaFile implements MediaFileInterface  
 {
 	/** @var int */
 	private $id;

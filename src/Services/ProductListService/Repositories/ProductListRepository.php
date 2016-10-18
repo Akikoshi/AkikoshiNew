@@ -13,6 +13,7 @@ use Class152\PizzaMamamia\AbstractClasses\Services\ProductListService\Library\Pr
 use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Interfaces\ProductListRepositroryInterface;
 
+
 class ProductListRepository implements ProductListRepositroryInterface
 {
     /** @var  \MySqli */
@@ -31,33 +32,71 @@ class ProductListRepository implements ProductListRepositroryInterface
         from Products as pd join Descriptions as ds on pd.id = ds.fk_products
         where pd.`type` like '%ontain%' || pd.`type` like '%ingl%'
         order by pd.type;";
-        return $this->askForProductList($sql);
-    }
 
-    public function getChildProducts() :array
-    {
-        // TODO: Implement getChildProducts() method.
-    }
-
-    private function askForProductList( string $sql )
-    {
-        /** @var \MySqli_Result $result */
         $result = $this->db->query($sql);
+        $return = $result->fetch_all();
 
-        if( $line = $result->fetch_assoc() )
+        foreach( array_keys($return) as $key )
         {
-            return new ProductListEntity(
-                $line['id'],
-                $line['mediaFileId'],
-                $line['productName'],
-                $line['shortDescription'],
-                $line['typeOfProduct'],
-                $line['grossPrice'],
-                $line['vat'],
-                $line['productGroupId']
+            $return[$key] = new ProductListEntity(
+                $return[$key][0],
+                $return[$key][1],
+                $return[$key][3],
+                $return[$key][4],
+                $return[$key][5],
+                $return[$key][6],
+                $return[$key][7],
+                $return[$key][8]
             );
         }
-        return null;
+        return $return;
     }
+
+    public function getChildProducts(int $parentId) :array
+    {
+        $sql = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
+        from Products as pd join Descriptions as ds on pd.id = ds.fk_products
+        where pd.parentId = ".$parentId."
+        order by pd.type;";
+
+        $result = $this->db->query($sql);
+        $return = $result->fetch_all();
+
+        foreach( array_keys($return) as $key )
+        {
+            $return[$key] = new ProductListEntity(
+                $return[$key][0],
+                $return[$key][1],
+                $return[$key][3],
+                $return[$key][4],
+                $return[$key][5],
+                $return[$key][6],
+                $return[$key][7],
+                $return[$key][8]
+            );
+        }
+        return $return;
+    }
+
+//    private function askForProductList( string $sql )
+//    {
+//        /** @var \MySqli_Result $result */
+//        $result = $this->db->query($sql);
+//
+//        if( $line = $result->fetch_assoc() )
+//        {
+//            return new ProductListEntity(
+//                $line['id'],
+//                $line['mediaFileId'],
+//                $line['productName'],
+//                $line['shortDescription'],
+//                $line['typeOfProduct'],
+//                $line['grossPrice'],
+//                $line['vat'],
+//                $line['productGroupId']
+//            );
+//        }
+//        return null;
+//    }
 
 }
