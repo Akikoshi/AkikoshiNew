@@ -2,31 +2,13 @@
 	/**
 	 * Created by PhpStorm.
 	 * User: cbiedermann
-	 * Date: 08.09.2016
-	 * Time: 13:40
+	 * Date: 21.10.2016
+	 * Time: 09:26
 	 */
+	namespace Class152\PizzaMamamia\Interfaces;
 
-	namespace Class152\PizzaMamamia\AbstractClasses;
-
-
-	use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
-
-	class AbstractIterator implements \Iterator, \Countable, AbstractIteratorInterface
+	interface AbstractIteratorInterface
 	{
-
-		/** @var array */
-		protected $iteratorArray = [ ];
-
-		/**
-		 * ReadIterator constructor.
-		 *
-		 * @param array $array
-		 */
-		public function __construct( array $array )
-		{
-			$this->iteratorArray = $array;
-		}
-
 		/**
 		 * Return the current element
 		 *
@@ -34,10 +16,7 @@
 		 * @return mixed Can return any type.
 		 * @since 5.0.0
 		 */
-		public function current()
-		{
-			return current( $this->iteratorArray );
-		}
+		public function current();
 
 		/**
 		 * Move forward to next element
@@ -46,10 +25,7 @@
 		 * @return void Any returned value is ignored.
 		 * @since 5.0.0
 		 */
-		public function next()
-		{
-			next( $this->iteratorArray );
-		}
+		public function next();
 
 		/**
 		 * Return the key of the current element
@@ -58,10 +34,7 @@
 		 * @return mixed scalar on success, or null on failure.
 		 * @since 5.0.0
 		 */
-		public function key()
-		{
-			return key( $this->iteratorArray );
-		}
+		public function key();
 
 		/**
 		 * Checks if current position is valid
@@ -71,14 +44,7 @@
 		 *        Returns true on success or false on failure.
 		 * @since 5.0.0
 		 */
-		public function valid() : bool
-		{
-			if ( false === current( $this->iteratorArray ) ) {
-				return false;
-			}
-
-			return true;
-		}
+		public function valid() : bool;
 
 		/**
 		 * Rewind the Iterator to the first element
@@ -87,10 +53,7 @@
 		 * @return void Any returned value is ignored.
 		 * @since 5.0.0
 		 */
-		public function rewind()
-		{
-			reset( $this->iteratorArray );
-		}
+		public function rewind();
 
 		/**
 		 * Count elements of an object
@@ -102,33 +65,19 @@
 		 *        The return value is cast to an integer.
 		 * @since 5.1.0
 		 */
-		public function count() : int
-		{
-			return count( $this->iteratorArray );
-		}
+		public function count() : int;
 
 		/**
 		 * Gets the name of keys as a array
 		 *
 		 * @return array
 		 */
-		public function getKeys() : array
-		{
-			return array_keys( $this->iteratorArray );
-		}
+		public function getKeys() : array;
 
 		/**
 		 * @param mixed $key
 		 *
 		 * @return mixed|null
 		 */
-		public function getElement( mixed $key = null )
-		{
-			if ( !isset( $this->iteratorArray[ $key ] ) ) {
-				return null;
-			}
-
-			return $this->iteratorArray[ $key ];
-		}
-
+		public function getElement( mixed $key = null );
 	}
