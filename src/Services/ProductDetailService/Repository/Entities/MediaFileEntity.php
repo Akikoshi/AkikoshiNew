@@ -11,18 +11,64 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entitie
 
 class MediaFileEntity
 {
-
+	/**
+	 * @var string
+	 */
 	private $mime;
+
+	/**
+	 * @var int
+	 */
 	private $height;
+
+	/**
+	 * @var int
+	 */
 	private $width;
+
+	/**
+	 * @var int
+	 */
 	private $thumbHeight;
+
+	/**
+	 * @var int
+	 */
 	private $thumbWidth;
+
+	/**
+	 * @var int
+	 */
 	private $bigHeight;
+
+	/**
+	 * @var int
+	 */
 	private $bigWidth;
+
+	/**
+	 * @var string
+	 */
 	private $url;
+
+	/**
+	 * @var string
+	 */
 	private $thumbUrl;
+
+	/**
+	 * @var string
+	 */
 	private $bigUrl;
+
+	/**
+	 * @var string
+	 */
 	private $titleTag;
+
+	/**
+	 * @var string
+	 */
 	private $altTag;
 
 

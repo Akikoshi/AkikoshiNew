@@ -10,9 +10,8 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository;
 
 
 use Class152\PizzaMamamia\Database\MySql;
-//use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NotLoggedInException;
+use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NoResultException;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NotLoggedInException;
-use Class152\PizzaMamamia\Services\ProductDetailService\Library\MediaFile;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ProductEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 
@@ -26,33 +25,59 @@ class ProductRepository
 	{
 		$db = new MySql();
 		$this->db = $db->getInstance();
-		$this->productId = productId;
+		$this->productId = $productId;
 	}
 
 	/**
-	 * @param string $userName
-	 * @param string $password
-	 *
-	 * @return \Class152\PizzaMamamia\Services\UserService\Repository\Entities\UserEntity
-	 * @throws \Class152\PizzaMamamia\Services\UserService\Exceptions\NotLoggedInException
+	 * @return ProductEntity
+	 * @throws NoResultException
 	 */
 	public function getProductEntity() : ProductEntity
 	{
-		$sql = "SELECT  name,parentId,productGroup,GrossPrice,type FROM Products WHERE id = "
-			. $this->productId . ";";
+
+		$sql = "SELECT  
+					pr1.name,
+					pr1.internalName,
+					pr1.parentId,
+					pr1.productGroup,
+					pr1.GrossPrice,
+					pr1.vat,
+					pr1.type,
+					de1.shortDescription,
+					de1.longDescription
+				FROM 
+					Products AS pr1
+				LEFT JOIN
+					Descriptions AS de1 ON (de1.fk_products = pr1.id)
+				WHERE 
+					pr1.id = " . $this->productId .
+			" LIMIT 1;";
 		$result = $this->db->query( $sql );
-		$product = $result->fetch_assoc();
-		if ( empty( $product ) ) {
-			throw new NotLoggedInException( 'Login failed' );
+
+		if ( empty( $result ) ) {
+			throw new NoResultException();
 		}
-		return new  ProductEntity( $product );
+
+		$resultItem = $result->fetch_assoc();
+
+		return new ProductEntity(
+			$resultItem[ 'name' ],
+			$resultItem[ 'internalName' ],
+			$resultItem[ 'parentId' ],
+			$resultItem[ 'productGroup' ],
+			$resultItem[ 'grossPrice' ],
+			$resultItem[ 'vat' ],
+			$resultItem[ 'type' ],
+			$resultItem[ 'shortDescription' ],
+			$resultItem[ 'longDescription' ]
+		);
 	}
 
-	/** 
+	/**
 	 * RC 1
-	 * 
+	 *
 	 * @return \Generator
-	 * @throws NotLoggedInException
+	 * @throws NoResultException
 	 */
 	public function getMediaFiles() : \Generator
 	{
@@ -71,13 +96,14 @@ class ProductRepository
 						altTag 
 					FROM 
 						MediaFiles 
-					WHERE  id="
+					WHERE  id = "
 			. $this->productId . ";";
 		$result = $this->db->query( $sql );
 
 		if ( empty( $result ) ) {
-			throw new NotLoggedInException( 'Login failed' );
+			throw new NoResultException();
 		}
+
 		$resultItem = $result->fetch_assoc();
 		try {
 			foreach ( array_keys( $resultItem ) as $key ) {
@@ -95,7 +121,7 @@ class ProductRepository
 					$resultItem[ $key ][ "bigUrl" ],
 					$resultItem[ $key ][ "titleTag" ],
 					$resultItem[ $key ][ "altTag" ]
-					
+
 				);
 			}
 		} finally {

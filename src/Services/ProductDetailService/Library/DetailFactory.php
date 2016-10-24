@@ -28,29 +28,31 @@ class DetailFactory
 	 * @var MediaFileList
 	 */
 	private $mediaFileList;
-
+	
 	public function __construct( int $productId )
 	{
 		$this->productID = $productId;
 
 		$this->repository = new ProductRepository( $productId );
-		$product = $this->repository->getProductEntity();
-		$this->mediaFileList=new MediaFileList();
+		$productEntity = $this->repository->getProductEntity();
+		
+		$this->mediaFileList = new MediaFileList();
 		$this->generateMediaFileList();
-		$price = new Price( $product->getGrossPrice(), $product->getVatValue() );
 
-//        $this->product = new Product(
-//            $price,
-//            $mediaFileList,
-//            $text,
-//            $url,
+		$price = new Price(
+			$productEntity->getGrossPrice(),
+			$productEntity->getVat()
+		);
 
-		//      $Addons,
-//              $Components,
-		//
-//
-//
-//        );
+		
+        $this->product = new Product(
+            $price,
+            $this->mediaFileList,
+			$productEntity->getLongDescription()   // 
+
+		
+
+        );
 
 	}
 
@@ -60,7 +62,7 @@ class DetailFactory
 		$mediaFileGenerator = $this->repository->getMediaFiles();
 
 		foreach ( $mediaFileGenerator as $mediaEntity ) {
-			$this->mediaFileList->addItem(new MediaFile(
+			$this->mediaFileList->addItem( new MediaFile(
 				$mediaEntity->getId,
 				$mediaEntity->getMime,
 				$mediaEntity->getHeight,
@@ -74,9 +76,10 @@ class DetailFactory
 				$mediaEntity->getBigUrl,
 				$mediaEntity->getTitleTag,
 				$mediaEntity->getAltTag
-			));
+			) );
+		}
 	}
-	}
+
 	/**
 	 * @return \Class152\PizzaMamamia\Services\ProductDetailService\Library\Product
 	 */
