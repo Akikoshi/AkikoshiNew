@@ -1,166 +1,167 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Heiset
- * Date: 14.09.2016
- * Time: 14:11
- */
+	/**
+	 * Created by PhpStorm.
+	 * User: Heiset
+	 * Date: 14.09.2016
+	 * Time: 14:11
+	 */
 
-namespace Class152\PizzaMamamia\Library;
+	namespace Class152\PizzaMamamia\Library;
 
 
-use Class152\PizzaMamamia\Interfaces\PriceInterface;
+	use Class152\PizzaMamamia\Interfaces\PriceInterface;
 
-class Price implements PriceInterface
-{
-    /** @var float */
-    private $originalGrossPrice;
-    
-    /** @var float */
-    private $grossPrice;
+	class Price implements PriceInterface
+	{
+		/** @var float */
+		private $originalGrossPrice;
 
-    /** @var int */
-    private $vat;
+		/** @var float */
+		private $grossPrice;
 
-    /** @var  float */
-    private $netPriceValue;
+		/** @var int */
+		private $vat;
 
-    /** @var  float */
-    private $vatPriceValue;
+		/** @var  float */
+		private $netPriceValue;
 
-    /** @var string  */
-    private $grossPriceAsHtml;
+		/** @var  float */
+		private $vatPriceValue;
 
-    /** @var string  */
-    private $netPriceAsHtml;
+		/** @var string */
+		private $grossPriceAsHtml;
 
-    /** @var string  */
-    private $vatAsHtml;
+		/** @var string */
+		private $netPriceAsHtml;
 
-    /** @var string  */
-    private $vatPriceAsHtml;
-    
-    /**
-     * PriceInterface constructor.
-     * @param float $grossPrice
-     * @param int $vat
-     */
-    public function __construct(float $grossPrice, int $vat)
-    {
-        $this->originalGrossPrice = $grossPrice;
-        
-        $this->calculate($grossPrice,$vat);
-    }
+		/** @var string */
+		private $vatAsHtml;
 
-    /**
-     * @param float $grossPrice
-     * @param int $vat
-     */
-    private function calculate(float $grossPrice, int $vat)
-    {
-        $this->grossPrice = round( $grossPrice, 2 );
-        $this->vat = $vat;
-        
-        $this->netPriceValue = ( $grossPrice / (1+($this->vat/100) ) );
+		/** @var string */
+		private $vatPriceAsHtml;
 
-        $this->vatPriceValue = $this->grossPrice - $this->netPriceValue;
+		/**
+		 * PriceInterface constructor.
+		 *
+		 * @param float $grossPrice
+		 * @param int   $vat
+		 */
+		public function __construct( float $grossPrice, int $vat )
+		{
+			$this->originalGrossPrice = $grossPrice;
 
-        $this->grossPriceAsHtml = number_format( $this->grossPrice, 2, ",", "." ) . " &euro;";
-        $this->netPriceAsHtml = number_format( $this->netPriceValue, 2, ",", "." ) . " &euro;";
-        $this->vatPriceAsHtml = number_format( $this->vatPriceValue, 2, ",", "." ) . " &euro;";
-        $this->vatAsHtml = $this->vat . "%";
-    }
+			$this->calculate( $grossPrice, $vat );
+		}
 
-    /**
-     * @return float
-     */
-    public function getGrossPriceValue() : float
-    {
-        return $this->grossPrice;
-    }
+		/**
+		 * @param float $grossPrice
+		 * @param int   $vat
+		 */
+		private function calculate( float $grossPrice, int $vat )
+		{
+			$this->grossPrice = round( $grossPrice, 2 );
+			$this->vat = $vat;
 
-    /**
-     * @return float
-     */
-    public function getNetPriceValue() : float
-    {
-        return $this->netPriceValue;
-    }
+			$this->netPriceValue = ( $grossPrice / ( 1 + ( $this->vat / 100 ) ) );
 
-    /**
-     * @return float
-     */
-    public function getVatPriceValue() : float
-    {
-        return $this->vatPriceValue;
-    }
+			$this->vatPriceValue = $this->grossPrice - $this->netPriceValue;
 
-    /**
-     * @return int
-     */
-    public function getVatValue() : int
-    {
-        return $this->vat;
-    }
+			$this->grossPriceAsHtml = number_format( $this->grossPrice, 2, ",", "." ) . " &euro;";
+			$this->netPriceAsHtml = number_format( $this->netPriceValue, 2, ",", "." ) . " &euro;";
+			$this->vatPriceAsHtml = number_format( $this->vatPriceValue, 2, ",", "." ) . " &euro;";
+			$this->vatAsHtml = $this->vat . "%";
+		}
 
-    /**
-     * @return string
-     */
-    public function getGrossPriceAsHtml() : string
-    {
-        return $this->grossPriceAsHtml;
-    }
+		/**
+		 * @return float
+		 */
+		public function getGrossPriceValue() : float
+		{
+			return $this->grossPrice;
+		}
 
-    /**
-     * @return string
-     */
-    public function getNetPriceAsHtml() : string
-    {
-        return $this->netPriceAsHtml;
-    }
+		/**
+		 * @return float
+		 */
+		public function getNetPriceValue() : float
+		{
+			return $this->netPriceValue;
+		}
 
-    /**
-     * @return string
-     */
-    public function getVatPriceAsHtml() : string
-    {
-        return $this->vatPriceAsHtml;
-    }
+		/**
+		 * @return float
+		 */
+		public function getVatPriceValue() : float
+		{
+			return $this->vatPriceValue;
+		}
 
-    /**
-     * @return string
-     */
-    public function getVatAsHtml() : string
-    {
-        return $this->vatAsHtml;
-    }
+		/**
+		 * @return int
+		 */
+		public function getVatValue() : int
+		{
+			return $this->vat;
+		}
 
-    /**
-     * @param float $percent
-     */
-    public function reduceInPercent( float $percent )
-    {
-        $this->removeReduction();
-        $newPrice = $this->grossPrice * (1 - ( $percent / 100 ) );
-        
-        $this->calculate( $newPrice, $this->vat );
-    }
+		/**
+		 * @return string
+		 */
+		public function getGrossPriceAsHtml() : string
+		{
+			return $this->grossPriceAsHtml;
+		}
 
-    /**
-     * @param float $targetPrice
-     */
-    public function reduceToPrice( float $targetPrice )
-    {
-        $this->removeReduction();
-        $this->calculate( $targetPrice, $this->vat );
-    }
+		/**
+		 * @return string
+		 */
+		public function getNetPriceAsHtml() : string
+		{
+			return $this->netPriceAsHtml;
+		}
 
-    /**
-     * @return float
-     */
-    public function removeReduction()
-    {
-        $this->calculate( $this->originalGrossPrice, $this->vat );
-    }
+		/**
+		 * @return string
+		 */
+		public function getVatPriceAsHtml() : string
+		{
+			return $this->vatPriceAsHtml;
+		}
 
-}
+		/**
+		 * @return string
+		 */
+		public function getVatAsHtml() : string
+		{
+			return $this->vatAsHtml;
+		}
+
+		/**
+		 * @param float $percent
+		 */
+		public function reduceInPercent( float $percent )
+		{
+			$this->removeReduction();
+			$newPrice = $this->grossPrice * ( 1 - ( $percent / 100 ) );
+
+			$this->calculate( $newPrice, $this->vat );
+		}
+
+		/**
+		 * @return float
+		 */
+		public function removeReduction()
+		{
+			$this->calculate( $this->originalGrossPrice, $this->vat );
+		}
+
+		/**
+		 * @param float $targetPrice
+		 */
+		public function reduceToPrice( float $targetPrice )
+		{
+			$this->removeReduction();
+			$this->calculate( $targetPrice, $this->vat );
+		}
+
+	}
