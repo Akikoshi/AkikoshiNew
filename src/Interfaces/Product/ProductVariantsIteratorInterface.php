@@ -14,7 +14,6 @@
 
 	/**
 	 * Interface ProductVariantsIteratorInterface
-	 * TODO: implement this interface
 	 *
 	 * @package Class152\PizzaMamamia\Interfaces\Product
 	 */
