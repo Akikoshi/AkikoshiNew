@@ -6,7 +6,7 @@
 	 * Time: 13:19
 	 */
 
-	namespace Class152\PizzaMamamia\Services\ProductService\Repository\Entities\ProductEntity;
+	namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities;
 
 
 	class ProductEntity
@@ -51,6 +51,8 @@
 			return $this->parentId;
 		}
 
+
+
 		/**
 		 * @return string
 		 */
@@ -62,7 +64,7 @@
 		/**
 		 * @return float
 		 */
-		public function getGrossPrice()
+		public function getGrossPrice() :float
 		{
 			return $this->GrossPrice;
 		}
@@ -70,7 +72,7 @@
 		/**
 		 * @return int
 		 */
-		public function getProductGroup()
+		public function getProductGroup() :int
 		{
 			return $this->parentId;
 		}
@@ -78,7 +80,7 @@
 		/**
 		 * @return string
 		 */
-		public function getType()
+		public function getType():string
 		{
 			return $this->type;
 		}

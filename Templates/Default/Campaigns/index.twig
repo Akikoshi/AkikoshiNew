@@ -1,5 +1,23 @@
 {% extends '/_layouts/pageWithSidebar.twig' %}
 
-{% block content %}
+{% block main %}
+
+	<div class="container">
 	{{ controllerName }} {{ actionName }}
+	<div class="row">
+		{% for campaignItem in campaignList %}
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="{{ campaignItem.getPicture }}" alt="Generisches Platzhalter-Bild" width="140" height="140">
+					<div class="caption">
+						<h3>{{ campaignItem.getHeadline }}</h3>
+						<p>{{ campaignItem.getContent }}</p>
+						<p><a href="/campaigns/Detail/{{ campaignItem.getId }}" class="btn btn-primary" role="button">{{ campaignItem.getLinkText }}</a></p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	</div>
 {% endblock %}
+

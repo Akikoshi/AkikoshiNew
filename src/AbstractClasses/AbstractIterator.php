@@ -122,7 +122,7 @@
 		 *
 		 * @return mixed|null
 		 */
-		public function getElement( mixed $key = null )
+		public function getElement( $key = null )
 		{
 			if ( !isset( $this->iteratorArray[ $key ] ) ) {
 				return null;

@@ -6,7 +6,7 @@
 	 * Time: 13:45
 	 */
 
-	namespace Class152\PizzaMamamia\Services\UserService;
+	namespace Class152\PizzaMamamia\Services\ProductDetailService;
 
 
 	use Class152\PizzaMamamia\Services\SessionService\SessionService;
@@ -20,7 +20,7 @@
 
 		public function __construct( $productid)
 		{
-			$this->sessionService = $sessionService;
+			
 
 		}
 

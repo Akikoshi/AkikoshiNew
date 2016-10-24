@@ -11,8 +11,9 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Repository;
 
 use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Services\StartPageService\Repository\Entities\SliderEntity;
+use Class152\PizzaMamamia\Services\StartPageService\Repository\Interfaces\SliderInterface;
 
-class SliderRepository
+class SliderRepository implements SliderInterface
 {
     private $db;
 
@@ -23,9 +24,9 @@ class SliderRepository
     }
 
     /**
-     * @return SliderEntity
+     * @return array
      */
-    public function getSliderItems()
+    public function getSliderItems() : array
     {
         $sql = "select * from Slider where active = 'Y' order by position asc;";
         $result = $this->db->query( $sql );
@@ -38,10 +39,10 @@ class SliderRepository
     }
 
     /**
-     * @param array $line
+     * @param $line
      * @return SliderEntity
      */
-    private function askForSingleItemSlider( $line )
+    public function askForSingleItemSlider( $line ) : SliderEntity
     {
         return new SliderEntity(
             $line['src'],

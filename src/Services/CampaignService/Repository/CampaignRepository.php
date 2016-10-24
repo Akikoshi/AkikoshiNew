@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: Heiset
- * Date: 26.09.2016
- * Time: 13:33
+ * Date: 17.10.2016
+ * Time: 13:58
  */
 
-namespace Class152\PizzaMamamia\Services\StartPageService\Repository;
+namespace Class152\PizzaMamamia\Services\CampaignService\Repository;
 
 
 use Class152\PizzaMamamia\Database\MySql;
-use Class152\PizzaMamamia\Services\StartPageService\Repository\Entities\CampaignEntity;
-use Class152\PizzaMamamia\Services\StartPageService\Repository\Interfaces\CampaigneInterface;
+use Class152\PizzaMamamia\Services\CampaignService\Repository\Entities\CampaignEntity;
+use Class152\PizzaMamamia\Services\CampaignService\Repository\Interfaces\CampaignInterface;
 
-class CampaignRepository implements CampaigneInterface
+class CampaignRepository implements CampaignInterface
 {
     private $db;
 
@@ -28,7 +28,7 @@ class CampaignRepository implements CampaigneInterface
      */
     public function getCampaignItems() : array
     {
-        $sql = "select * from Campaign c where c.active = 'Y' order by c.position asc limit 3;";
+        $sql = "select * from Campaign c where c.active = 'Y';";
         $result = $this->db->query( $sql );
         $allItems = $result->fetch_all(MYSQLI_ASSOC);
         foreach( array_keys( $allItems ) as $key )
@@ -50,8 +50,7 @@ class CampaignRepository implements CampaigneInterface
             $line['headline'],
             $line['content'],
             $line['linkText'],
-            $line['price'],
-            $line['position']
+            $line['id']
         );
     }
 }
