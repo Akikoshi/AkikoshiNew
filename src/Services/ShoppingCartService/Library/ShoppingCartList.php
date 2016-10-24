@@ -17,34 +17,29 @@ use Class152\PizzaMamamia\Interfaces\ShoppingCart\ShoppingCartInterface;
 use Class152\PizzaMamamia\Interfaces\ShoppingCart\ShoppingCartItemInterface;
 use Class152\PizzaMamamia\Library\Price;
 
-class ShoppingCart extends AbstractIterator implements ShoppingCartInterface
+class ShoppingCartList extends AbstractIterator implements ShoppingCartInterface
 {
     /** @var float */
     private $summaryPrice = 0;
 
-    /** @var int */
-    private $parentId;
-
-    /** @var string */
-    private $name;
-
-    /** @var int */
-    private $productGroup;
-
-    /** @var float */
-    private $GrossPrice;
-
-    /** @var string */
-    private $type;
-
     public function __construct(array $shoppingCartItemsArray )
     {
+        
         parent::__construct( $shoppingCartItemsArray );
+        
         /** @var ProductBasicInformationsInterface $shoppingCartItem */
         foreach( $this->iteratorArray as $shoppingCartItem )
         {
             $this->summaryPrice += $shoppingCartItem->getVariants()->getPrice()->getGrossPriceValue();
         }
+    }
+
+    /**
+     * @return ShoppingCartItemInterface
+     */
+    public function current() : ShoppingCartItemInterface
+    {
+        return parent::current();
     }
 
     /**
@@ -70,6 +65,7 @@ class ShoppingCart extends AbstractIterator implements ShoppingCartInterface
      */
     public function getReferer() : LinkInterface
     {
-        // TODO: Implement getReferer() method.
+        // TODO: have to return a LinkClass
+       // return new L$_SERVER['HTTP_REFERER'];
     }
 }

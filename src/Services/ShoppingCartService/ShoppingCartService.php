@@ -9,7 +9,18 @@
 namespace Class152\PizzaMamamia\Services\ShoppingCartService;
 
 
+use Class152\PizzaMamamia\Services\ShoppingCartService\Factory\ShoppingCartFactory;
+use Class152\PizzaMamamia\Services\ShoppingCartService\Library\ShoppingCartList;
+
 class ShoppingCartService
 {
 
+    /**
+     * @return ShoppingCartList
+     */
+    public function getShoppingCart() : ShoppingCartList
+    {
+        $factory = new ShoppingCartFactory();
+        return $factory->getAggregate();
+    }
 }

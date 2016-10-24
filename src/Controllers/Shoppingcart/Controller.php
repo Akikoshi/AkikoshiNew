@@ -12,6 +12,7 @@ namespace Class152\PizzaMamamia\Controllers\Shoppingcart;
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
+use Class152\PizzaMamamia\Services\ShoppingCartService\ShoppingCartService;
 
 class Controller extends AbstractController
 {
@@ -22,6 +23,11 @@ class Controller extends AbstractController
         $accountMenu = $menuService->getAccountMenu();
         $footerMenu = $menuService->getFooterMenu();
         $breadcrumbMenu = $menuService->getBreadcrumbMenu();
+
+        $shoppingCartService = new ShoppingCartService();
+        $shoppingCart = $shoppingCartService->getShoppingCart();
+
+        var_dump( $shoppingCart ); die();
         
         new TwigRendering(
             'Shoppingcart/index.twig',
@@ -32,6 +38,7 @@ class Controller extends AbstractController
                 'footerMenu' => $footerMenu,
                 'accountMenu' => $accountMenu,
                 'breadcrumbMenu' => $breadcrumbMenu,
+                'shoppingCart' => $shoppingCart,
             ]
         );
     }
