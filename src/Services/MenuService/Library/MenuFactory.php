@@ -43,12 +43,6 @@ class MenuFactory
 		$this->generateMenu();
 	}
 
-	public function getMenu() : MenuItemList
-	{
-		return $this->menu;
-	}
-
-
 	private function generateMenu()
 	{
 		$sqlResult = $this->repository->getMenuByName( $this->menuName );
@@ -66,10 +60,11 @@ class MenuFactory
 		$result = new MenuItemList();
 
 		/* got all sub-elements of this menu-item (id) */
-		$sqlResult = $this->repository->getMenusByParentIds( [ $mId ] );
+		$generator = $this->repository->getMenusByParentIds( [ $mId ] );
 
 		/** @var MenuEntity $elem */
-		foreach ( $sqlResult as $elem ) {
+		foreach ( $generator as $elem ) {
+
 			$id = $elem->getId();
 			if ( $id == $elem->getParentID() ) {     		// Jump over infinity-loop-condition
 				continue;
@@ -92,5 +87,10 @@ class MenuFactory
 			$result->addItem( $entry );
 		}
 		return $result;
+	}
+
+	public function getMenu() : MenuItemList
+	{
+		return $this->menu;
 	}
 }

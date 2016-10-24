@@ -36,6 +36,28 @@
 		}
 
 		/**
+		 * @param string $sql
+		 *
+		 * @return null|\Class152\PizzaMamamia\Services\MenuService\Repositories\Entities\MenuEntity
+		 */
+		private function askForSingleMenu( string $sql )
+		{
+			/** @var \MySqli_Result $result */
+			$result = $this->db->query( $sql );
+
+			if ( $line = $result->fetch_assoc() ) {
+				return new MenuEntity(
+					$line['id'],
+					$line['parentId'],
+					$line['name'],
+					$line['url']
+				);
+			}
+
+			return null;
+		}
+
+		/**
 		 * @param string $menuName
 		 *
 		 * @return null|\Class152\PizzaMamamia\Services\MenuService\Repositories\Entities\MenuEntity|null
@@ -51,9 +73,9 @@
 		/**
 		 * @param array $ids
 		 *
-		 * @return array
+		 * @return \Generator
 		 */
-		public function getMenusByParentIds( array $ids )
+		public function getMenusByParentIds( array $ids ) : \Generator
 		{
 			$sql = "SELECT id,parentId,name,url FROM Menus WHERE parentId IN ( "
 			       . implode( ',', $ids ) . " ) ORDER BY position LIMIT 50 ;";
@@ -61,37 +83,18 @@
 			$result = $this->db->query($sql);
 			$return = $result->fetch_all();
 
-			foreach( array_keys($return) as $key )
-			{
-				$return[$key] = new MenuEntity(
-					$return[$key][0],
-					$return[$key][1],
-					$return[$key][2],
-					$return[$key][3]
-				);
+			try {
+				foreach ( array_keys( $return ) as $key ) {
+					yield new MenuEntity(
+						$return[ $key ][0],
+						$return[ $key ][1],
+						$return[ $key ][2],
+						$return[ $key ][3]
+					);
+				}
 			}
-			return $return;
-		}
-
-		/**
-		 * @param string $sql
-		 *
-		 * @return null|\Class152\PizzaMamamia\Services\MenuService\Repositories\Entities\MenuEntity
-		 */
-		private function askForSingleMenu( string $sql )
-		{
-			/** @var \MySqli_Result $result */
-			$result = $this->db->query($sql);
-
-			if( $line = $result->fetch_assoc() )
-			{
-				return new MenuEntity(
-					$line['id'],
-					$line['parentId'],
-					$line['name'],
-					$line['url']
-				);
+			finally {
+				$result->free_result();
 			}
-			return null;
 		}
 	}
