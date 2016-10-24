@@ -2,23 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: vieteo
- * Date: 13.09.2016
- * Time: 14:00
+ * Date: 24.10.2016
+ * Time: 11:07
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\ListItems;
 
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
-use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
-use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\MediaFile;
+use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
+use Class152\PizzaMamamia\Services\ProductListService\Factories\ProductListFactory;
 
-class ProductItem implements ProductBasicInformationsInterface
-{
-    /** @var  string */
+class ProductListItem implements ProductBasicInformationsInterface
+{ /** @var  int */
     private $productId;
-    
+
     /** @var  string */
     private $name;
 
@@ -27,7 +26,7 @@ class ProductItem implements ProductBasicInformationsInterface
 
     /** @var  MediaFile */
     private $mediaFile;
-    
+
     /** @var  string */
     private $productType;
 
@@ -36,11 +35,11 @@ class ProductItem implements ProductBasicInformationsInterface
 
     /** @var  bool */
     private $isSingle = false;
-    
+
     /** @var  bool */
     private $hasVariants = false;
-    
-    /** @var  ProductVariantsIterator */
+
+    /** @var  ProductVariantItem */
     private $productVariants;
 
     /**
@@ -51,7 +50,7 @@ class ProductItem implements ProductBasicInformationsInterface
      * @param string $description
      * @param string $productType
      */
-    public function __construct(string $id, string $name, MediaFile $mediaFile, string $description, string $productType)
+    public function __construct(int $id, string $name, MediaFile $mediaFile, string $description, string $productType)
     {
         $this->productId = $id;
         $this->name = $name;
@@ -75,7 +74,7 @@ class ProductItem implements ProductBasicInformationsInterface
 
     /**
      *  this function checks if the ProductType Container or Single
-     *  when the Product is a Container it has to initiate the 
+     *  when the Product is a Container it has to initiate the
      *  product variants iteration
      */
     private function checkTypeOfProduct()
@@ -93,12 +92,11 @@ class ProductItem implements ProductBasicInformationsInterface
     }
 
     /**
-     *  this function create the variants from a specific product type
-     *  over the ProductVariantsFactory
+     *  this function call the ProductVariantsFactory to create variants from a specific product type
      */
     private function createVariants()
     {
-        $this->productVariants = new ProductVariantsIterator($this->productId);
+        $this->productVariants = new ProductListFactory();
     }
 
     /** @return string */
@@ -114,7 +112,7 @@ class ProductItem implements ProductBasicInformationsInterface
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getId()
     {

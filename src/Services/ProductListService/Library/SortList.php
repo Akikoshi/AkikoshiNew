@@ -13,6 +13,7 @@ use Class152\PizzaMamamia\Services\ProductListService\Exceptions\SortListNeedsSo
 
 final class SortList extends AbstractIterator
 {
+    //Todo: add to Filter
     /**
      * ProductList constructor.
      * @param array $array

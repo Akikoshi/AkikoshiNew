@@ -3,15 +3,13 @@
  * Created by PhpStorm.
  * User: vieteo
  * Date: 24.10.2016
- * Time: 09:31
+ * Time: 11:06
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\values;
 
 
-use Class152\PizzaMamamia\Interfaces\PriceInterface;
-
-class Price implements PriceInterface
+class Price
 {
     /** @var float */
     private $originalGrossPrice;

@@ -17,7 +17,7 @@
 	 *
 	 * @package Class152\PizzaMamamia\Interfaces\Product
 	 */
-	interface ProductVariantsIteratorInterface
+	interface ProductVariantInterface
 	{
 		/**
 		 * @return string

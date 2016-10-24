@@ -3,10 +3,10 @@
  * Created by PhpStorm.
  * User: vieteo
  * Date: 24.10.2016
- * Time: 09:36
+ * Time: 11:06
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\values;
 
 
 use Class152\PizzaMamamia\Interfaces\LinkInterface;
@@ -35,7 +35,10 @@ class Link implements LinkInterface
      */
     public function __construct(string $url,string $text,string $title,string $css)
     {
-        
+        $this->url = $url;
+        $this->text = $text;
+        $this->title = $title;
+        $this->css = $css;
     }
 
     /**

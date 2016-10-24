@@ -2,23 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: vieteo
- * Date: 17.10.2016
- * Time: 11:20
+ * Date: 24.10.2016
+ * Time: 11:06
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\values;
 
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
 class MediaFile implements MediaFileInterface
 {
-    private $mediaFileId;
-
-    public function __construct(int $mediaFileId)
-    {
-        $this->mediaFileId = $mediaFileId;
-    }
 
     /**
      * @return int

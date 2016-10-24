@@ -14,6 +14,7 @@ use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
 
 class FilterListFactory
 {
+    // Todo: must be implemented to ProductListFactory
    private $filterList;
     
     public function __construct()

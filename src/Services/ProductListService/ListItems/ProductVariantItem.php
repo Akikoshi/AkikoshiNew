@@ -3,38 +3,41 @@
  * Created by PhpStorm.
  * User: vieteo
  * Date: 24.10.2016
- * Time: 09:03
+ * Time: 11:08
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\ListItems;
+
 
 
 use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\PriceInterface;
-use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
+use Class152\PizzaMamamia\Services\ProductListService\values\Link;
+use Class152\PizzaMamamia\Services\ProductListService\values\Price;
 
-class ProductVariantsIterator implements ProductVariantsIteratorInterface
+class ProductVariantItem implements ProductVariantInterface
 {
     /**
      * Todo: Implement the private functions
      */
 
-    /** @var string  */
+    /** @var int  */
     private $parentId;
-    
+
     /** @var  string */
     private $productVariantId;
-    
+
     /** @var  string */
     private $variantName;
-    
-    /** @var Price*/
+
+    /** @var PriceInterface*/
     private $price;
-    
+
     /** @var Link */
     private $productDetailUrl;
 
-    /** @var  Link */
+    /** @var  LinkInterface */
     private $shoppingCartUrl;
 
     /** @var  Link */
@@ -42,16 +45,42 @@ class ProductVariantsIterator implements ProductVariantsIteratorInterface
 
     /** @var  Link */
     private $isConfigurable;
-    
-    public function __construct(string $parentId)
-    {
-        $this->parentId = $parentId;
-    }
-    
-    
 
     /**
-     * @return string
+     * ProductVariantsIterator constructor.
+     * @param $parentId
+     * @param $productVariantId
+     * @param $variantName
+     * @param PriceInterface $price
+     * @param LinkInterface $productDetailUrl
+     * @param LinkInterface $shoppingCartUrl
+     * @param LinkInterface $configuratorUrl
+     * @param LinkInterface $isConfigurable
+     */
+    public function __construct(
+        $parentId,
+        $productVariantId,
+        $variantName,
+        PriceInterface $price,
+        LinkInterface $productDetailUrl,
+        LinkInterface $shoppingCartUrl,
+        LinkInterface $configuratorUrl,
+        LinkInterface $isConfigurable
+    )
+    {
+        $this->parentId = $parentId;
+        $this->productVariantId = $productVariantId;
+        $this->variantName = $variantName;
+        $this->price = $price;
+        $this->productDetailUrl = $productDetailUrl;
+        $this->shoppingCartUrl = $shoppingCartUrl;
+        $this->configuratorUrl = $configuratorUrl;
+        $this->isConfigurable = $isConfigurable;
+    }
+
+
+    /**
+     * @return int
      */
     public function getId()
     {
