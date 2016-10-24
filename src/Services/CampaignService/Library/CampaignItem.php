@@ -2,98 +2,157 @@
 /**
  * Created by PhpStorm.
  * User: Heiset
- * Date: 17.10.2016
- * Time: 13:59
+ * Date: 24.10.2016
+ * Time: 11:32
  */
 
 namespace Class152\PizzaMamamia\Services\CampaignService\Library;
 
 
-class CampaignItem
+use Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterface;
+use Class152\PizzaMamamia\Interfaces\Campaign\CampaignItemListInterface;
+use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+
+class CampaignItem implements CampaignInterface
 {
-    /** @var  string */
-    private $picture;
-
-    /** @var  string */
-    private $pictureUrl;
-
-    /** @var  string */
-    private $headline;
-
-    /** @var  string */
-    private $content;
-
-    /** @var  string */
-    private $linkText;
-
-    /** @var int */
-    private $id;
 
     /**
-     * CampaignItem constructor.
-     * @param string $picture
-     * @param string $pictureUrl
-     * @param string $headline
-     * @param string $content
-     * @param string $linkText
-     * @param int $id
+     * @return string
      */
-    public function __construct($picture, $pictureUrl, $headline, $content, $linkText, $id)
+    public function getId() : string
     {
-        $this->picture = $picture;
-        $this->pictureUrl = $pictureUrl;
-        $this->headline = $headline;
-        $this->content = $content;
-        $this->linkText = $linkText;
-        $this->id = $id;
+        // TODO: Implement getId() method.
     }
 
     /**
      * @return string
      */
-    public function getPicture()
+    public function getName() : string
     {
-        return $this->picture;
+        // TODO: Implement getName() method.
     }
 
     /**
      * @return string
      */
-    public function getPictureUrl()
+    public function getDescription() : string
     {
-        return $this->pictureUrl;
+        // TODO: Implement getDescription() method.
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getHeadline()
+    public function hasBanner() : bool
     {
-        return $this->headline;
+        // TODO: Implement hasBanner() method.
     }
 
     /**
-     * @return string
+     * @return MediaFileInterface
      */
-    public function getContent()
+    public function getBanner() : MediaFileInterface
     {
-        return $this->content;
+        // TODO: Implement getBanner() method.
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getLinkText()
+    public function isActive() : bool
     {
-        return $this->linkText;
+        // TODO: Implement isActive() method.
     }
 
     /**
-     * @return int
+     * @param \DateTimeImmutable $date
+     *
+     * @return bool
      */
-    public function getId()
+    public function isActiveAtDate(\DateTimeImmutable $date) : bool
     {
-        return $this->id;
+        // TODO: Implement isActiveAtDate() method.
     }
-    
+
+    /**
+     * @return bool
+     */
+    public function isReducedByPercent() : bool
+    {
+        // TODO: Implement isReducedByPercent() method.
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReducedToFixPrice() : bool
+    {
+        // TODO: Implement isReducedToFixPrice() method.
+    }
+
+    /**
+     * percent|fixprice
+     *
+     * @return mixed
+     */
+    public function getReduceRule()
+    {
+        // TODO: Implement getReduceRule() method.
+    }
+
+    /**
+     * @return float
+     */
+    public function getReduceValue() : float
+    {
+        // TODO: Implement getReduceValue() method.
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getStartDate() : \DateTimeImmutable
+    {
+        // TODO: Implement getStartDate() method.
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getEndDate() : \DateTimeImmutable
+    {
+        // TODO: Implement getEndDate() method.
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDayTimeRule() : bool
+    {
+        // TODO: Implement hasDayTimeRule() method.
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getDayTimeStart() : \DateTimeImmutable
+    {
+        // TODO: Implement getDayTimeStart() method.
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getDayTimeEnd() : \DateTimeImmutable
+    {
+        // TODO: Implement getDayTimeEnd() method.
+    }
+
+    /**
+     * @return CampaignItemListInterface
+     */
+    public function getItems() : CampaignItemListInterface
+    {
+        // TODO: Implement getItems() method.
+    }
 }

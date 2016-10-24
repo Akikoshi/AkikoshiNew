@@ -9,7 +9,7 @@
 namespace Class152\PizzaMamamia\Services\CampaignService\Library;
 
 
-class CampaignFactory
+class CampaignListFactory
 {
 
 }

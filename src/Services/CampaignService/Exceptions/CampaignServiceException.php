@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Heiset
- * Date: 17.10.2016
- * Time: 14:00
+ * Date: 24.10.2016
+ * Time: 10:58
  */
 
 namespace Class152\PizzaMamamia\Services\CampaignService\Exceptions;
