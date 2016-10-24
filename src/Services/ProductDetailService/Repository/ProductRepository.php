@@ -12,6 +12,7 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository;
 use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NoResultException;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NotLoggedInException;
+use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\Components;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ProductEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 
@@ -132,15 +133,34 @@ class ProductRepository
 
 	public function getComponentsEntity() : ComponentsEntity
 	{
-		$sql = "SELECT  name,parentId,productGroup,GrossPrice,type FROM Products WHERE id = "
-			. $this->productId . ";";
+
+		$sql = "SELECT  
+					Comp.componentId,
+					Comp.name,
+					Comp.parentId,
+					ptc. ordering
+				FROM 
+					Components AS Comp
+				LEFT JOIN
+					ProductsToComponents AS ptc ON (ptc.componentId = comp.componentId)
+				WHERE 
+					ptc.productId = " . $this->productId .";";
 		$result = $this->db->query( $sql );
-		$product = $result->fetch_assoc();
-		if ( empty( $product ) ) {
-			throw new NotLoggedInException( 'Login failed' );
+
+		if ( empty( $result ) ) {
+			throw new NoResultException();
 		}
-		return new   ComponentsEntity( $product );
+
+		$resultItem = $result->fetch_assoc();
+
+		return new ComponentsEntity(
+			$resultItem[ 'componentId'],
+			$resultItem[ 'name'],
+			$resultItem[ 'parentId' ],
+			$resultItem[ 'ordering'	]
+		);
 	}
+
 
 	public function AddonsEntity() : ComponentsEntity
 	{

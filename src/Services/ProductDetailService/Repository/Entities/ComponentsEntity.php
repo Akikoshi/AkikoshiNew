@@ -9,6 +9,10 @@
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities;
 
 
+/**
+ * Class Components
+ * @package Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities
+ */
 class Components
 {
 
