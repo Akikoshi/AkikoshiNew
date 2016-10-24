@@ -9,6 +9,8 @@
 namespace Class152\PizzaMamamia\Services\CampaignService;
 
 
+use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignDetailFactory;
+use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignDetailItemList;
 use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignFactory;
 use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignItemList;
 
@@ -21,5 +23,15 @@ class CampaignService
     {
         $campaignFactory = new CampaignFactory();
         return $campaignFactory->getCampaignItem();
+    }
+
+    /**
+     * @param int $campaignId
+     * @return CampaignDetailItemList
+     */
+    public function getCampaignDetail( int $campaignId ) : CampaignDetailItemList
+    {
+        $campaignDetailFactory = new CampaignDetailFactory( $campaignId );
+        return $campaignDetailFactory->getCampaignDetailItem();
     }
 }

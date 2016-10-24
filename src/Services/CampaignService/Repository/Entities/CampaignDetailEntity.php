@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: Heiset
  * Date: 17.10.2016
- * Time: 13:59
+ * Time: 15:31
  */
 
-namespace Class152\PizzaMamamia\Services\CampaignService\Library;
+namespace Class152\PizzaMamamia\Services\CampaignService\Repository\Entities;
 
 
-class CampaignItem
+class CampaignDetailEntity
 {
     /** @var  string */
     private $picture;
@@ -26,26 +26,26 @@ class CampaignItem
     /** @var  string */
     private $linkText;
 
-    /** @var int */
-    private $id;
+    /** @var  int */
+    private $position;
 
     /**
-     * CampaignItem constructor.
+     * CampaignDetailEntity constructor.
      * @param string $picture
      * @param string $pictureUrl
      * @param string $headline
      * @param string $content
      * @param string $linkText
-     * @param int $id
+     * @param int $position
      */
-    public function __construct($picture, $pictureUrl, $headline, $content, $linkText, $id)
+    public function __construct($picture, $pictureUrl, $headline, $content, $linkText, $position)
     {
         $this->picture = $picture;
         $this->pictureUrl = $pictureUrl;
         $this->headline = $headline;
         $this->content = $content;
         $this->linkText = $linkText;
-        $this->id = $id;
+        $this->position = $position;
     }
 
     /**
@@ -57,11 +57,27 @@ class CampaignItem
     }
 
     /**
+     * @param string $picture
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
+    /**
      * @return string
      */
     public function getPictureUrl()
     {
         return $this->pictureUrl;
+    }
+
+    /**
+     * @param string $pictureUrl
+     */
+    public function setPictureUrl($pictureUrl)
+    {
+        $this->pictureUrl = $pictureUrl;
     }
 
     /**
@@ -73,11 +89,27 @@ class CampaignItem
     }
 
     /**
+     * @param string $headline
+     */
+    public function setHeadline($headline)
+    {
+        $this->headline = $headline;
+    }
+
+    /**
      * @return string
      */
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
     }
 
     /**
@@ -89,11 +121,26 @@ class CampaignItem
     }
 
     /**
+     * @param string $linkText
+     */
+    public function setLinkText($linkText)
+    {
+        $this->linkText = $linkText;
+    }
+
+    /**
      * @return int
      */
-    public function getId()
+    public function getPosition()
     {
-        return $this->id;
+        return $this->position;
     }
-    
+
+    /**
+     * @param int $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
 }

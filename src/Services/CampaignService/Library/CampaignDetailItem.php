@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: Heiset
  * Date: 17.10.2016
- * Time: 13:59
+ * Time: 15:29
  */
 
 namespace Class152\PizzaMamamia\Services\CampaignService\Library;
 
 
-class CampaignItem
+class CampaignDetailItem
 {
     /** @var  string */
     private $picture;
@@ -25,27 +25,27 @@ class CampaignItem
 
     /** @var  string */
     private $linkText;
-
-    /** @var int */
-    private $id;
+    
+    /** @var  int */
+    private $position;
 
     /**
-     * CampaignItem constructor.
+     * CampaignDetailItem constructor.
      * @param string $picture
      * @param string $pictureUrl
      * @param string $headline
      * @param string $content
      * @param string $linkText
-     * @param int $id
+     * @param int $position
      */
-    public function __construct($picture, $pictureUrl, $headline, $content, $linkText, $id)
+    public function __construct($picture, $pictureUrl, $headline, $content, $linkText, $position)
     {
         $this->picture = $picture;
         $this->pictureUrl = $pictureUrl;
         $this->headline = $headline;
         $this->content = $content;
         $this->linkText = $linkText;
-        $this->id = $id;
+        $this->position = $position;
     }
 
     /**
@@ -91,9 +91,8 @@ class CampaignItem
     /**
      * @return int
      */
-    public function getId()
+    public function getPosition()
     {
-        return $this->id;
+        return $this->position;
     }
-    
 }

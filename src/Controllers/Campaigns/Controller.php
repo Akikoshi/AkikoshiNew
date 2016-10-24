@@ -10,6 +10,7 @@ namespace Class152\PizzaMamamia\Controllers\Campaigns;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
+use Class152\PizzaMamamia\Exception\NotFoundException;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\CampaignService\CampaignProductListService;
 use Class152\PizzaMamamia\Services\CampaignService\CampaignService;
@@ -19,26 +20,28 @@ class Controller extends AbstractController
 {
     public function indexAction()
     {
-		
-		$menuService = new MenuService($this->request);
-		$mainMenu = $menuService->getMainMenu();
-		$accountMenu = $menuService->getAccountMenu();
-		$footerMenu = $menuService->getFooterMenu();
-		$breadcrumbMenu = $menuService->getBreadcrumbMenu();
-			
-		$campaignService = new CampaignService();
-		$campaignList = $campaignService->getCampaign();
-		
+
+        $menuService = new MenuService($this->request);
+        $mainMenu = $menuService->getMainMenu();
+        $accountMenu = $menuService->getAccountMenu();
+        $footerMenu = $menuService->getFooterMenu();
+        $breadcrumbMenu = $menuService->getBreadcrumbMenu();
+
+        $campaignService = new CampaignService();
+        $campaignList = $campaignService->getCampaign();
+
+        // TODO: Implement CampaingsDetailController
+
         new TwigRendering(
             'Campaigns/index.twig',
             [
-                'controllerName'=>'Campaigns',
+                'controllerName' => 'Campaigns',
                 'actionName' => 'index',
-								'mainMenu' => $mainMenu,
-								'footerMenu' => $footerMenu,
-								'accountMenu' => $accountMenu,
-								'breadcrumbMenu' => $breadcrumbMenu,
-								'campaignList' => $campaignList,
+                'mainMenu' => $mainMenu,
+                'footerMenu' => $footerMenu,
+                'accountMenu' => $accountMenu,
+                'breadcrumbMenu' => $breadcrumbMenu,
+                'campaignList' => $campaignList,
             ]
         );
     }
@@ -46,23 +49,34 @@ class Controller extends AbstractController
     public function detailAction()
     {
 
-		$menuService = new MenuService($this->request);
-		$mainMenu = $menuService->getMainMenu();
-		$accountMenu = $menuService->getAccountMenu();
-		$footerMenu = $menuService->getFooterMenu();
-		$breadcrumbMenu = $menuService->getBreadcrumbMenu();
+        $campaignId = (INT)$this->request->getFirstAdditionalVar();
 
-	    new TwigRendering(
-		    'Campaigns/detail.twig',
-		    [
-			    'controllerName'=>'Campaigns',
-			    'actionName' => 'detail',
-					'mainMenu' => $mainMenu,
-					'footerMenu' => $footerMenu,
-					'accountMenu' => $accountMenu,
-					'breadcrumbMenu' => $breadcrumbMenu,				
-		    ]
-	    );
+        if( 1 > $campaignId )
+        {
+            throw new NotFoundException();
+        }
+
+        $campaignService = new CampaignService();
+        $campaignDetails = $campaignService->getCampaignDetail( $campaignId );
+
+        $menuService = new MenuService($this->request);
+        $mainMenu = $menuService->getMainMenu();
+        $accountMenu = $menuService->getAccountMenu();
+        $footerMenu = $menuService->getFooterMenu();
+        $breadcrumbMenu = $menuService->getBreadcrumbMenu();
+
+        new TwigRendering(
+            'Campaigns/detail.twig',
+            [
+                'controllerName' => 'Campaigns',
+                'actionName' => 'detail',
+                'mainMenu' => $mainMenu,
+                'footerMenu' => $footerMenu,
+                'accountMenu' => $accountMenu,
+                'breadcrumbMenu' => $breadcrumbMenu,
+                'campaignDetails' => $campaignDetails,
+            ]
+        );
 
     }
 
