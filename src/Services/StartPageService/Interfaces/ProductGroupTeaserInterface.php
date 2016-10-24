@@ -19,7 +19,7 @@ interface ProductGroupTeaserInterface
     /**
      * @return array
      */
-    public function getKeys() : array;#
+    public function getKeys() : array;
 
     /**
      * @param mixed|null $key

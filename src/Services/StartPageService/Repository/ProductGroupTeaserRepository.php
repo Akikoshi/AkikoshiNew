@@ -11,18 +11,26 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Repository;
 
 use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Services\StartPageService\Repository\Entities\ProductGroupTeaserEntity;
+use Class152\PizzaMamamia\Services\StartPageService\Repository\Interfaces\ProductGroupTeaserInterface;
 
-class ProductGroupTeaserRepository
+class ProductGroupTeaserRepository implements ProductGroupTeaserInterface
 {
+    /** @var \mysqli */
     private $db;
 
+    /**
+     * ProductGroupTeaserRepository constructor.
+     */
     public function __construct()
     {
         $db = new MySql();
         $this->db = $db->getInstance();
     }
 
-    public function getProductGroupTeaserItems()
+    /**
+     * @return array
+     */
+    public function getProductGroupTeaserItems() : array
     {
         $sql = "select * from ProductGroupTeaser p where p.active = 'Y' order by p.position asc;";
         $result = $this->db->query( $sql );
@@ -34,7 +42,11 @@ class ProductGroupTeaserRepository
         return $allItems;
     }
 
-    private function askForSingleProductGroupTeaserItem( $line )
+    /**
+     * @param $line
+     * @return ProductGroupTeaserEntity
+     */
+    public function askForSingleProductGroupTeaserItem( $line ) : ProductGroupTeaserEntity
     {
         return new ProductGroupTeaserEntity(
             $line['content'],
