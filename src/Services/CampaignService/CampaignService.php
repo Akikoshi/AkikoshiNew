@@ -2,36 +2,48 @@
 /**
  * Created by PhpStorm.
  * User: Heiset
- * Date: 17.10.2016
- * Time: 13:53
+ * Date: 24.10.2016
+ * Time: 10:53
  */
 
 namespace Class152\PizzaMamamia\Services\CampaignService;
 
 
-use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignDetailFactory;
-use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignDetailItemList;
+use Class152\PizzaMamamia\Http\Request;
 use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignFactory;
-use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignItemList;
+use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignItem;
+use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignList;
+use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignListFactory;
 
 class CampaignService
 {
+    /** @var Request  */
+    private $request;
+
     /**
-     * @return CampaignItemList
+     * CampaignService constructor.
+     * @param Request $request
      */
-    public function getCampaign() : CampaignItemList
+    public function __construct(Request $request )
     {
-        $campaignFactory = new CampaignFactory();
-        return $campaignFactory->getCampaignItem();
+        $this->request = $request;
     }
 
     /**
-     * @param int $campaignId
-     * @return CampaignDetailItemList
+     * @return CampaignItem
      */
-    public function getCampaignDetail( int $campaignId ) : CampaignDetailItemList
+    public function getCampaignItem() : CampaignItem
     {
-        $campaignDetailFactory = new CampaignDetailFactory( $campaignId );
-        return $campaignDetailFactory->getCampaignDetailItem();
+        $campaignItem = new CampaignFactory();
+        return $campaignItem->getCampaignItem();
+    }
+
+    /**
+     * @return CampaignList
+     */
+    public function getCampaignList() : CampaignList
+    {
+        $campaignList = new CampaignListFactory();
+        return $campaignList->getCampaignList();
     }
 }
