@@ -36,9 +36,9 @@
 				[
 					'controllerName'=>'Home',
 					'actionName' => 'index',
-				  'mainMenu' => $mainMenu,
-				  'footerMenu' => $footerMenu,
-				  'accountMenu' => $accountMenu,
+				  	'mainMenu' => $mainMenu,
+				  	'footerMenu' => $footerMenu,
+				  	'accountMenu' => $accountMenu,
 					'breadcrumbMenu' => $breadCrumb,
 					'sliderList' => $sliderList,
 					'campaignList' => $campaignList,

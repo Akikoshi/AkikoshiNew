@@ -107,9 +107,9 @@ class Price implements PriceInterface
      * @return string
      */
     public function getGrossPriceAsHtml() : string
-{
-    return $this->grossPriceAsHtml;
-}
+    {
+        return $this->grossPriceAsHtml;
+    }
 
     /**
      * @return string
