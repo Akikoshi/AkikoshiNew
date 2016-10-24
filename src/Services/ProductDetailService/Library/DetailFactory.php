@@ -15,47 +15,76 @@ use Class152\PizzaMamamia\Services\ProductDetailService\Repository\ProductReposi
 
 class DetailFactory
 {
-    /** @var ProductRepository */
-    private $repository;
+	/** @var ProductRepository */
+	private $repository;
 
-    /** @var integer */
-    private $productID;
+	/** @var integer */
+	private $productID;
 
-    /** @var Product */
-    private $product;
+	/** @var Product */
+	private $product;
 
-    public function __construct( int $productId )
-    {
-        $this->productID = $productId;
+	/**
+	 * @var MediaFileList
+	 */
+	private $mediaFileList;
 
-        $this->repository = new ProductRepository( $productId );
-        $product = $this->repository->getProductById( $productId );
-        $mediaFile = $this->repository->getMediaFileById( $productId );
+	public function __construct( int $productId )
+	{
+		$this->productID = $productId;
 
-        $price = new Price( $product->getGrossPrice(), $product->getVatValue() );
+		$this->repository = new ProductRepository( $productId );
+		$product = $this->repository->getProductEntity();
+		$this->mediaFileList=new MediaFileList();
+		$this->generateMediaFileList();
+		$price = new Price( $product->getGrossPrice(), $product->getVatValue() );
+
 //        $this->product = new Product(
 //            $price,
-//            $mediaFile,
+//            $mediaFileList,
 //            $text,
 //            $url,
 
-        //      $Addons,
+		//      $Addons,
 //              $Components,
-        //
+		//
 //
 //
 //        );
-        
-    }
 
-    /**
-     * @return \Class152\PizzaMamamia\Services\ProductDetailService\Library\Product
-     */
-    public function getProduct() : Product
-    {
+	}
 
 
-        return $this->product;
-    }
+	private function generateMediaFileList()
+	{
+		$mediaFileGenerator = $this->repository->getMediaFiles();
+
+		foreach ( $mediaFileGenerator as $mediaEntity ) {
+			$this->mediaFileList->addItem(new MediaFile(
+				$mediaEntity->getId,
+				$mediaEntity->getMime,
+				$mediaEntity->getHeight,
+				$mediaEntity->getWidth,
+				$mediaEntity->getThumbHeight,
+				$mediaEntity->getThumbWidth,
+				$mediaEntity->getBigHeight,
+				$mediaEntity->getThumbUrl,
+				$mediaEntity->getBigWidth,
+				$mediaEntity->getUrl,
+				$mediaEntity->getBigUrl,
+				$mediaEntity->getTitleTag,
+				$mediaEntity->getAltTag
+			));
+	}
+	}
+	/**
+	 * @return \Class152\PizzaMamamia\Services\ProductDetailService\Library\Product
+	 */
+	public function getProduct() : Product
+	{
+
+
+		return $this->product;
+	}
 
 }

@@ -8,75 +8,173 @@
 
 	namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
-	use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ProductEntity;
+	use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+	use Class152\PizzaMamamia\Interfaces\Product\ProductAdditivesListInterface;
+	use Class152\PizzaMamamia\Interfaces\Product\ProductComponentsListInterface;
+	use Class152\PizzaMamamia\Interfaces\Product\ProductDetailInformationsInterface;
+	use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
+	use Class152\PizzaMamamia\Library\Price;
 
-	use Class152\PizzaMamamia\Services\ProductDetailService\Repository\ProductRepository;
-	use Class152\PizzaMamamia\Services\UserService\Exceptions\NotLoggedInException;
 
-	class Product
+	class Product implements ProductDetailInformationsInterface
 	{
-		/** @var int */
-		private $parentId;
 
-		/** @var string */
-		private $name;
-
-		/** @var int  */
-		private $productGroup;
-
-		/** @var float  */
-
-
+						
+		
+		
+		
+		/**
+		 * @var MediaFileInterface
+		 */
+		private $mediaInformation;
+		
 		private $type;
 
 		
-		public function __construct( int $productId )
+		public function __construct( )
 		{
-			$sql= new ProductRepository();
-			$productentity=$sql->getProductById(  $productId );
-			
-			$this->name = $productentity->getName();
-			$this->parentId = $productentity->getParentId();
-			$this->productGroup = $productentity->getProductGroup();
-			
-			$this->type = $productentity->getType();
+
+			// ToDo: too much to do
+//			$this->mediaInformation = $mediaFile;
+//			
+////			$sql= new ProductRepository();
+////			$productentity=$sql->getProductById(  $productId );
+////			
+//			$this->name = $productentity->getName();
+//			$this->parentId = $productentity->getParentId();
+//			$this->productGroup = $productentity->getProductGroup();
+//			
+//			$this->type = $productentity->getType();
 
 		}
 
-
-		/**
-		 * @return int
-		 */
-		public function getParentId(): int
+		
+		
+		public function getImages() : \IteratorIterator
 		{
-			return $this->parentId;
+			// TODO: Implement getImages() method.
 		}
-
 
 
 		/**
 		 * @return string
 		 */
-		public function getId(): string
+		public function getId()
 		{
-			return $this->name;
-		}
-
-
-		/**
-		 * @return int
-		 */
-		public function getProductGroup()
-		{
-			return $this->parentId;
+			// TODO: Implement getId() method.
 		}
 
 		/**
 		 * @return string
 		 */
-		public function getType()
+		public function getName()
 		{
-			return $this->type;
+			// TODO: Implement getName() method.
 		}
 
+		/**
+		 * @return MediaFileInterface
+		 */
+		public function getThumb()
+		{
+			// TODO: Implement getThumb() method.
+		}
+
+		/**
+		 * text type depends of current scope
+		 *
+		 * @return string
+		 */
+		public function getDescription()
+		{
+			// TODO: Implement getDescription() method.
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function hasDescription()
+		{
+			// TODO: Implement hasDescription() method.
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function isSingle()
+		{
+			// TODO: Implement isSingle() method.
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function hasVariants()
+		{
+			// TODO: Implement hasVariants() method.
+		}
+
+		/**
+		 * @return ProductVariantsIteratorInterface
+		 */
+		public function getVariants()
+		{
+			// TODO: Implement getVariants() method.
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function hasImages()
+		{
+			// TODO: Implement hasImages() method.
+		}
+
+		/**
+		 * @return ProductComponentsListInterface
+		 */
+		public function getComponents() : ProductComponentsListInterface
+		{
+			// TODO: Implement getComponents() method.
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function hasComponents() : bool
+		{
+			// TODO: Implement hasComponents() method.
+		}
+
+		/**
+		 * @return ProductAdditivesListInterface
+		 */
+		public function getAdditives() : ProductAdditivesListInterface
+		{
+			// TODO: Implement getAdditives() method.
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function hasAdditives() : bool
+		{
+			// TODO: Implement hasAdditives() method.
+		}
+
+		/**
+		 * @return ProductAdditivesListInterface
+		 */
+		public function getAllergics() : ProductAdditivesListInterface
+		{
+			// TODO: Implement getAllergics() method.
+		}
+
+		/**
+		 * @return bool
+		 */
+		public function hasAllergics() : bool
+		{
+			// TODO: Implement hasAllergics() method.
+		}
 	}
