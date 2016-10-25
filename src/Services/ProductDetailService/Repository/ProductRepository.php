@@ -11,31 +11,39 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository;
 
 use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NoResultException;
-use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NotLoggedInException;
+use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItem;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ProductEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 
 class ProductRepository
 {
-	/** @var Mysql */
-	private $db;
-	private $productId;
+    /** @var Mysql */
+    private $db;
 
-	public function __construct( $productId )
-	{
-		$db = new MySql();
-		$this->db = $db->getInstance();
-		$this->productId = $productId;
-	}
+    /**
+     * @var int
+     */
+    private $productId;
 
-	/**
-	 * @return ProductEntity
-	 * @throws NoResultException
-	 */
-	public function getProductEntity() : ProductEntity
-	{
+    /**
+     * ProductRepository constructor.
+     * @param $productId
+     */
+    public function __construct( int $productId )
+    {
+        $db = new MySql();
+        $this->db = $db->getInstance();
+        $this->productId = $productId;
+    }
 
-		$sql = "SELECT  
+    /**
+     * @return ProductEntity
+     * @throws NoResultException
+     */
+    public function getProductEntity() : ProductEntity
+    {
+
+        $sql = "SELECT  
 					pr1.name,
 					pr1.internalName,
 					pr1.parentId,
@@ -51,37 +59,37 @@ class ProductRepository
 					Descriptions AS de1 ON (de1.fk_products = pr1.id)
 				WHERE 
 					pr1.id = " . $this->productId .
-			" LIMIT 1;";
-		$result = $this->db->query( $sql );
+            " LIMIT 1;";
+        $result = $this->db->query( $sql );
 
-		if ( empty( $result ) ) {
-			throw new NoResultException();
-		}
+        if ( empty( $result ) ) {
+            throw new NoResultException();
+        }
 
-		$resultItem = $result->fetch_assoc();
+        $resultItem = $result->fetch_assoc();
 
-		return new ProductEntity(
-			$resultItem[ 'name' ],
-			$resultItem[ 'internalName' ],
-			$resultItem[ 'parentId' ],
-			$resultItem[ 'productGroup' ],
-			$resultItem[ 'grossPrice' ],
-			$resultItem[ 'vat' ],
-			$resultItem[ 'type' ],
-			$resultItem[ 'shortDescription' ],
-			$resultItem[ 'longDescription' ]
-		);
-	}
+        return new ProductEntity(
+            $resultItem[ 'name' ],
+            $resultItem[ 'internalName' ],
+            $resultItem[ 'parentId' ],
+            $resultItem[ 'productGroup' ],
+            $resultItem[ 'grossPrice' ],
+            $resultItem[ 'vat' ],
+            $resultItem[ 'type' ],
+            $resultItem[ 'shortDescription' ],
+            $resultItem[ 'longDescription' ]
+        );
+    }
 
-	/**
-	 * RC 1
-	 *
-	 * @return \Generator
-	 * @throws NoResultException
-	 */
-	public function getMediaFiles() : \Generator
-	{
-		$sql = "SELECT  id,
+    /**
+     * RC 1
+     *
+     * @return \Generator
+     * @throws NoResultException
+     */
+    public function getMediaFiles() : \Generator
+    {
+        $sql = "SELECT  id,
 						mime,
 						height,
 						width,
@@ -97,62 +105,124 @@ class ProductRepository
 					FROM 
 						MediaFiles 
 					WHERE  id = "
-			. $this->productId . ";";
-		$result = $this->db->query( $sql );
+            . $this->productId . ";";
+        $result = $this->db->query( $sql );
 
-		if ( empty( $result ) ) {
-			throw new NoResultException();
-		}
+        if ( empty( $result ) ) {
+            throw new NoResultException();
+        }
 
-		$resultItem = $result->fetch_assoc();
-		try {
-			foreach ( array_keys( $resultItem ) as $key ) {
-				yield new MediaFileEntity(
-					$resultItem[ $key ][ "id" ],
-					$resultItem[ $key ][ "mime" ],
-					$resultItem[ $key ][ "height" ],
-					$resultItem[ $key ][ "width" ],
-					$resultItem[ $key ][ "thumbHeight" ],
-					$resultItem[ $key ][ "thumbWidth" ],
-					$resultItem[ $key ][ "bigHeight" ],
-					$resultItem[ $key ][ "bigWidth" ],
-					$resultItem[ $key ][ "url" ],
-					$resultItem[ $key ][ "thumbUrl" ],
-					$resultItem[ $key ][ "bigUrl" ],
-					$resultItem[ $key ][ "titleTag" ],
-					$resultItem[ $key ][ "altTag" ]
+        $resultItems = $result->fetch_assoc();
+        try {
+            foreach ( array_keys( $resultItems ) as $key ) {
+                yield new MediaFileEntity(
+                    $resultItems[ $key ][ "id" ],
+                    $resultItems[ $key ][ "mime" ],
+                    $resultItems[ $key ][ "height" ],
+                    $resultItems[ $key ][ "width" ],
+                    $resultItems[ $key ][ "thumbHeight" ],
+                    $resultItems[ $key ][ "thumbWidth" ],
+                    $resultItems[ $key ][ "bigHeight" ],
+                    $resultItems[ $key ][ "bigWidth" ],
+                    $resultItems[ $key ][ "url" ],
+                    $resultItems[ $key ][ "thumbUrl" ],
+                    $resultItems[ $key ][ "bigUrl" ],
+                    $resultItems[ $key ][ "titleTag" ],
+                    $resultItems[ $key ][ "altTag" ]
 
-				);
-			}
-		} finally {
-			$result->free_result();
-		}
-	}
+                );
+            }
+        } finally {
+            $result->free_result();
+        }
+    }
 
+    /**
+     * @param int|null $componentId
+     * @return \Generator
+     * @throws NoResultException
+     */
+    public function getAdditiveEntities( int $componentId = null ) : \Generator
+    {
+        if ( $componentId == null ) {
+            $componentId = $this->productId;
+        };
+        
+        $result = $this->obtainAddendaByTypeRequest( $componentId, 'Additives' );
 
-	public function getComponentsEntity() : ComponentsEntity
-	{
-		$sql = "SELECT  name,parentId,productGroup,GrossPrice,type FROM Products WHERE id = "
-			. $this->productId . ";";
-		$result = $this->db->query( $sql );
-		$product = $result->fetch_assoc();
-		if ( empty( $product ) ) {
-			throw new NotLoggedInException( 'Login failed' );
-		}
-		return new   ComponentsEntity( $product );
-	}
+        $resultItems = $result->fetch_assoc();
 
-	public function AddonsEntity() : ComponentsEntity
-	{
-		$sql = "SELECT  name,parentId,productGroup,GrossPrice,type FROM Products WHERE id = "
-			. $this->productId . ";";
-		$result = $this->db->query( $sql );
-		$product = $result->fetch_assoc();
-		if ( empty( $product ) ) {
-			throw new NotLoggedInException( 'Login failed' );
-		}
-		return new  AddonsEntity( $product );
-	}
+        try {
+            foreach ( array_keys( $resultItems ) as $key ) {
+                yield new AddendaItem(
+                    $resultItems[ $key ][ "id" ],
+                    $resultItems[ $key ][ "type" ],
+                    $resultItems[ $key ][ "name" ],
+                    $resultItems[ $key ][ "tag" ],
+                    $componentId );
+            }
+        } finally {
+            $result->free_result();
+        }
 
+    }
 
+    /**
+     * @param int|null $componentId
+     * @return \Generator
+     * @throws NoResultException
+     */
+    public function getAllergenEntities( int $componentId = null ) : \Generator
+    {
+        if ( $componentId == null ) {
+            $componentId = $this->productId;
+        };
+        
+        $result = $this->obtainAddendaByTypeRequest( $componentId, 'Allergics' );
+
+        $resultItems = $result->fetch_assoc();
+
+        try {
+            foreach ( array_keys( $resultItems ) as $key ) {
+                yield new AddendaItem(
+                    $resultItems[ $key ][ "id" ],
+                    $resultItems[ $key ][ "type" ],
+                    $resultItems[ $key ][ "name" ],
+                    $resultItems[ $key ][ "tag" ],
+                    $componentId );
+            }
+        } finally {
+            $result->free_result();
+        }
+    }
+
+    /**
+     * @param int $componentId
+     * @param string $type
+     * @return \mysqli_result
+     * @throws NoResultException
+     */
+    private function obtainAddendaByTypeRequest( int $componentId, string $type ) : \mysqli_result
+    {
+        $sql = "SELECT
+                    a1.id,
+                    a1.`type`,
+                    a1.name,
+                    a1.tag
+                FROM
+                    Addons AS a1
+                JOIN
+                    AddonsToComponets AS atc1 ON (a1.id = atc1.fk_Addons)
+                WHERE
+                    atc1.fk_Components = " . $componentId . "
+                AND
+                    a1.`type` = '" . $type . "';";
+
+        $result = $this->db->query( $sql );
+
+        if ( empty( $result ) ) {
+            throw new NoResultException();
+        }
+        return $result;
+    }
 }
