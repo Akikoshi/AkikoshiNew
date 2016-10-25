@@ -1028,8 +1028,8 @@ ALTER TABLE `AddonsToComponets`
 --
 -- Constraints der Tabelle `Components`
 --
-ALTER TABLE `Components`
-  ADD CONSTRAINT `ComponentGroupRestriction` FOREIGN KEY (`componentGroup`) REFERENCES `ComponentGroups` (`componentGroupId`);
+-- ALTER TABLE `Components`
+--  ADD CONSTRAINT `ComponentGroupRestriction` FOREIGN KEY (`componentGroup`) REFERENCES `ComponentGroups` (`componentGroupId`);
 
 --
 -- Constraints der Tabelle `Customer`
