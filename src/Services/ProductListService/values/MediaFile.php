@@ -6,11 +6,11 @@
  * Time: 11:14
  */
 
-namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
-class MediaFile implements MediaFileInterface  
+class MediaFile implements MediaFileInterface 
 {
 	/** @var int */
 	private $id;

@@ -2,22 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: vieteo
- * Date: 14.09.2016
- * Time: 14:10
+ * Date: 24.10.2016
+ * Time: 11:48
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\Paginators;
 
 
 class ProductListPaginator
 {
     /*
      * es ist noch keine wirkliche Logik eingebaut, teils im Controller und in der Twig verdrahtet
+     * Todo: implement the paginator logig
      */
     private $productFactory;
 
     private $limit;
-    
+
     private $total;
 
     private $output;
@@ -65,5 +66,4 @@ class ProductListPaginator
     {
         return '/productlist/index';
     }
-
 }

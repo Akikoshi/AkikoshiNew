@@ -11,6 +11,8 @@ namespace Class152\PizzaMamamia\AbstractClasses\Services\ProductListService\Libr
 
 class ProductListEntity
 {
+    /** @var int  */
+    private $id;
     /** @var  string */
     private $productName;
 
@@ -38,6 +40,24 @@ class ProductListEntity
     /** @var  string */
     private $detailsUrl;
 
+    public function __construct(int $id, 
+                                int $mediaFileId, 
+                                string $productName, 
+                                string $shortDescription, 
+                                string $typeOfProduct, 
+                                float $grossPrice, 
+                                int $vat, 
+                                int $productGroupId)
+    {
+        $this->id = $id;
+        $this->mediaFileId = $mediaFileId;
+        $this->productName = $productName;
+        $this->shortDescription = $shortDescription;
+        $this->typeOfProduct = $typeOfProduct;
+        $this->grossPrice = $grossPrice;
+        $this->vat = $vat;
+        $this->productGroupId = $productGroupId;
+    }
 
     /**
      * @return int
@@ -109,13 +129,5 @@ class ProductListEntity
     public function getDetailUrl() :string
     {
         return $this->detailsUrl;
-    }
-
-    /**
-     * creates the Link to Details Site, is a hard Link can be refactored
-     */
-    private function setDetailsUrl()
-    {
-        $this->detailsUrl = "/productdetails/index/".$this->productId;
     }
 }
