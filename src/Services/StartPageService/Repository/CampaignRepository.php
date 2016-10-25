@@ -11,8 +11,9 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Repository;
 
 use Class152\PizzaMamamia\Database\MySql;
 use Class152\PizzaMamamia\Services\StartPageService\Repository\Entities\CampaignEntity;
+use Class152\PizzaMamamia\Services\StartPageService\Repository\Interfaces\CampaigneInterface;
 
-class CampaignRepository
+class CampaignRepository implements CampaigneInterface
 {
     private $db;
 
@@ -23,9 +24,9 @@ class CampaignRepository
     }
 
     /**
-     * @return CampaignEntity
+     * @return array
      */
-    public function getCampaignItems()
+    public function getCampaignItems() : array
     {
         $sql = "select * from Campaign c where c.active = 'Y' order by c.position asc limit 3;";
         $result = $this->db->query( $sql );
@@ -38,10 +39,10 @@ class CampaignRepository
     }
 
     /**
-     * @param array $line
+     * @param $line
      * @return CampaignEntity
      */
-    private function askForSingleCampaignItem( $line )
+    public function askForSingleCampaignItem( $line ) : CampaignEntity
     {
         return new CampaignEntity(
             $line['src'],
