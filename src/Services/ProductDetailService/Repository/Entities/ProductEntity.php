@@ -1,88 +1,151 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: cbiedermann
+ * Date: 22.09.2016
+ * Time: 13:19
+ */
+
+namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities;
+
+
+class ProductEntity
+{
 	/**
-	 * Created by PhpStorm.
-	 * User: cbiedermann
-	 * Date: 22.09.2016
-	 * Time: 13:19
+	 * @var string
 	 */
+	private $name;
 
-	namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities;
+	/**
+	 * @var string
+	 */
+	private $internalName;
 
+	/**
+	 * @var int
+	 */
+	private $parentId;
 
-	class ProductEntity
-	{
-		/** @var int */
-		private $parentId;
+	/** @var int */
+	private $productGroup;
 
-		/** @var string */
-		private $name;
+	/**
+	 * @var float
+	 */
+	private $GrossPrice;
 
-		/** @var int  */
-		private $productGroup;
+	/**
+	 * @var int
+	 */
+	private $vat;
 
-		/** @var float  */
+	/**
+	 * @var string
+	 */
+	private $type;
 
-		private $GrossPrice;
+	/**
+	 * @var string
+	 */
+	private $shortDescription;
 
-		/** @var string */
+	/**
+	 * @var string
+	 */
+	private $longDescription;
 
-		private $type;
-		/**
-		 * UserEntity constructor.
-		 *
-		 * @param array $userRow
-		 */
-		public function __construct( array $userRow )
-		{
-
-			$this->name = $userRow['name'];
-			$this->parentId = $userRow['parentId'];
-			$this->productGroup = $userRow['productGroup'];
-			$this->GrossPrice = $userRow['GrossPrice'];
-			$this->type = $userRow['type'];
-
-		}
-
-		/**
-		 * @return int
-		 */
-		public function getParentId(): int
-		{
-			return $this->parentId;
-		}
-
-
-
-		/**
-		 * @return string
-		 */
-		public function getId(): string
-		{
-			return $this->name;
-		}
-
-		/**
-		 * @return float
-		 */
-		public function getGrossPrice() :float
-		{
-			return $this->GrossPrice;
-		}
-
-		/**
-		 * @return int
-		 */
-		public function getProductGroup() :int
-		{
-			return $this->parentId;
-		}
-
-		/**
-		 * @return string
-		 */
-		public function getType():string
-		{
-			return $this->type;
-		}
-
+	public function __construct(
+		$name,
+		$internalName,
+		$parentId,
+		$productGroup,
+		$grossPrice,
+		$vat,
+		$type,
+		$shortDescription,
+		$longDescription
+	) {
+		$this->name 			= $name;
+		$this->internalName		= $internalName;
+		$this->parentId 		= $parentId;
+		$this->productGroup 	= $productGroup;
+		$this->GrossPrice 		= $grossPrice;
+		$this->vat				= $vat;
+		$this->type 			= $type;
+		$this->shortDescription = $shortDescription;
+		$this->longDescription 	= $longDescription;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getInternalName()
+	{
+		return $this->internalName;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getParentId()
+	{
+		return $this->parentId;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getProductGroup()
+	{
+		return $this->productGroup;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getGrossPrice()
+	{
+		return $this->GrossPrice;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getVat()
+	{
+		return $this->vat;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getType()
+	{
+		return $this->type;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getShortDescription()
+	{
+		return $this->shortDescription;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLongDescription()
+	{
+		return $this->longDescription;
+	}
+	
+}

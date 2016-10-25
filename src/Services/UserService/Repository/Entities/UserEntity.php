@@ -7,8 +7,7 @@
 	 */
 
 	namespace Class152\PizzaMamamia\Services\UserService\Repository\Entities;
-
-
+	//TODO : userrow austauscchen durch einzelne variablen bei uebergabe
 	class UserEntity
 	{
 		/** @var int */
