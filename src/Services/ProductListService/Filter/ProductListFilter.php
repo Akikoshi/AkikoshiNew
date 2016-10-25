@@ -9,7 +9,42 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Filter;
 
 
-class ProductListFilter
-{
+use Class152\PizzaMamamia\Interfaces\Product\ProductListFilterInterface;
 
+class ProductListFilter implements ProductListFilterInterface
+{
+    /** @var  string */
+    private $productGroupId;
+
+    /** @var  bool */
+    private $isSortByPrice;
+
+    /** @var  bool */
+    private $isFiteredByGroupId;
+
+    public function __construct()
+    {
+        //Todo: ist noch Hartverdrahtet, muss noch erarbeitet werden
+        $this->productGroupId = null;
+        $this->isSortByPrice = false;
+        $this->isFiteredByGroupId = false;
+    }
+
+    /** @return string */
+    public function isSortByPrice()
+    {
+        return $this->isSortByPrice;
+    }
+
+    /** @return bool */
+    public function isFilterByGroupId()
+    {
+        return $this->isFiteredByGroupId;
+    }
+
+    /** @return bool */
+    public function getGroupId()
+    {
+        return $this->productGroupId;
+    }
 }

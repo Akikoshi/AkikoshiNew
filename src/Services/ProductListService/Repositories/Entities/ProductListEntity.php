@@ -130,12 +130,4 @@ class ProductListEntity
     {
         return $this->detailsUrl;
     }
-
-    /**
-     * creates the Link to Details Site, its a hard Link, can be refactored to dynamic function
-     */
-    private function setDetailsUrl()
-    {
-        $this->detailsUrl = "/productdetails/index/".$this->productId;
-    }
 }

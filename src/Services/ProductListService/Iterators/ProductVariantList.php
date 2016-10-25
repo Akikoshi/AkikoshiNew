@@ -9,7 +9,16 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Iterators;
 
 
-class ProductVariantList
-{
+use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
+use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductVariantItem;
 
+class ProductVariantList extends AbstractIterator 
+{
+    /**
+     * @return ProductVariantItem
+     */
+    public function current() : ProductVariantItem
+    {
+        return parent::current();
+    }
 }

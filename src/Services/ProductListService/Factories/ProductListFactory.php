@@ -9,35 +9,119 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Factories;
 
 
+use Class152\PizzaMamamia\AbstractClasses\Services\ProductListService\Library\ProductListEntity;
+use Class152\PizzaMamamia\Services\ProductListService\Filter\ProductListFilter;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
+use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductVariantList;
 use Class152\PizzaMamamia\Services\ProductListService\Library\ProductListRepository;
+use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductListItem;
+use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductVariantItem;
+use Class152\PizzaMamamia\Services\ProductListService\values\MediaFile;
+use Class152\PizzaMamamia\Services\ProductListService\values\Price;
 
 class ProductListFactory
 {
     /** @var ProductListRepository */
     private $repository;
-    
+
     /** @var ProductList */
     private $productList;
 
-    public function __construct( ProductListFilter $productListFilter )
+    /** @var array */
+    private $productListItems = [];
+
+    public function __construct(ProductListFilter $productListFilter)
     {
-        $this->repository = new ProductListRepository( $productListFilter );
+        $this->repository = new ProductListRepository($productListFilter);
+        $this->iterateProductList();
+    }
+
+    private function iterateProductList()
+    {
+        $entity = $this->repository->getProductListItems();
+        /** @var ProductListEntity $elem */
+        foreach ($entity as $elem) {
+
+            $type = $elem->getTypeOfProduct();
+            if ('container' == $type) {
+                $variants = $this->loadVariants($elem->getProductId());
+            } else {
+                $variants = new ProductVariantList(
+                    [new ProductVariantItem(
+                        $elem->getProductId(),
+                        $elem->getProductName(),
+                        $elem->getTypeOfProduct(),
+                        $this->loadPrice(
+                            $elem->getGrossPrice(),
+                            $elem->getVat()),
+                        $this->loadLinks()
+                    )]
+                );
+            }
+
+            $this->loadProducts(
+                $elem->getProductId(),
+                $this->loadMediaFile( $elem->getMediaFileId() ),
+                $elem->getProductName(),
+                $elem->getShortDescription(),
+                $elem->getTypeOfProduct(),
+                $elem->getGrossPrice(),
+                $elem->getVat(),
+                $elem->getProductGroupId()
+            );
+        }
     }
     
-    public function loadProducts()
+    private function loadLinks()
+    
+    private function loadMediaFile( int $mediaFileId )
     {
+        return new MediaFile();
+    }
+    
+    private function loadPrice(float $grossPrice, int $vat)
+    {
+        return new Price($grossPrice, $vat);
+    }
+
+    public function loadProducts($id, $mediaFileId, $name, $shortDescription, $type, $grossPrice, $vat, $productGroupId)
+    {
+        $this->productListItem = new ProductListItem(
+            $id,
+            $mediaFileId,
+            $name,
+            $shortDescription,
+            $type, $grossPrice,
+            $vat,
+            $productGroupId);
+    }
+
+    public function loadVariants(int $productId)
+    {
+        $entity = $this->repository->getProductVariantArray($productId);
+
+        $variants = [];
         
-    }
-    
-    public function loadVariants()
-    {
+        foreach ($entity as $elem) {
+            $variants[] =
+                new ProductVariantItem(
+                    $elem->getProductId(),
+                    $elem->getMediaFileId(),
+                    $elem->getProductName(),
+                    $elem->getShortDescription(),
+                    $elem->getTypeOfProduct(),
+                    $elem->getGrossPrice(),
+                    $elem->getVat(),
+                    $elem->getProductGroupId()
+                );
+        }
         
+        return new ProductVariantList( $variants );
     }
-    
+
     public function composeProductList()
     {
-        
+        $this->productList = new ProductList($this->productListItems);
     }
 
     /**
@@ -115,6 +199,6 @@ class ProductListFactory
 //                LinkInterface $isConfigurable
 //            );
 //        );
-    }
-    
+
+
 }

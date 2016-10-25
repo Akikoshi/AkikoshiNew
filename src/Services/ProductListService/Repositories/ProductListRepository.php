@@ -11,71 +11,101 @@ namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 use Class152\PizzaMamamia\AbstractClasses\Services\ProductListService\Library\ProductListEntity;
 use Class152\PizzaMamamia\Database\MySql;
-use Class152\PizzaMamamia\Interfaces\ProductListRepositroryInterface;
+use Class152\PizzaMamamia\Services\ProductListService\Filter\ProductListFilter;
 
 
-class ProductListRepository implements ProductListRepositroryInterface
+class ProductListRepository
 {
     /** @var  \MySqli */
-    private $db;   
+    private $db;
+
+    /** @var  string */
+    private $orderBy;
     
-    
-    public function __construct()
+    public function __construct(ProductListFilter $productListFilter)
     {
         $db = new MySql();
         $this->db = $db->getInstance();
+        $this->checkFilterOptions($productListFilter);
+    }
+
+    private function checkFilterOptions(ProductListFilter $productListFilter)
+    {
+        /** @var
+         * $productGroupId
+         */
+        $productGroupId = $productListFilter->getGroupId();
+
+
+        if($productListFilter->isFilterByGroupId() === false )
+        {
+            $this->orderBy .= "order by pd.name;\";";
+        }
+        else
+        {
+            $this->orderBy = "AND pd.productGroup =".$productGroupId;
+        }
+
+        if( $productListFilter->isSortByPrice() === false )
+        {
+            $this->orderBy .= "order by pd.name;\";";
+        }
+        else
+        {
+            $this->orderBy .= "order by pd.price;\";";
+        }
+
+
     }
     
-    public function getContainerAndSingleProducts() :array
+    public function getProductListItems() : \Generator
     {
-        $sql = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
-        from Products as pd join Descriptions as ds on pd.id = ds.fk_products
-        where pd.`type` like '%ontain%' || pd.`type` like '%ingl%'
-        order by pd.type;";
+        $sql = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup "
+            . "from Products as pd join Descriptions as ds on pd.id = ds.fk_products "
+            . "where (pd.`type` like '%ontain%' OR pd.`type` like '%ingl%') "
+            . $this->orderBy;
 
         $result = $this->db->query($sql);
-        $return = $result->fetch_all();
-
-        foreach( array_keys($return) as $key )
+        $x = $result->fetch_assoc();
+       foreach($x as $item)
         {
-            $return[$key] = new ProductListEntity(
-                $return[$key][0],
-                $return[$key][1],
-                $return[$key][3],
-                $return[$key][4],
-                $return[$key][5],
-                $return[$key][6],
-                $return[$key][7],
-                $return[$key][8]
+            yield new ProductListEntity(
+                $item['id'],
+                $item['mediaFileId'],
+                $item['name'],
+                $item['shortDescription'],
+                $item['type'],
+                $item['grossPrice'],
+                $item['vat'],
+                $item['productGroup']
             );
         }
-        return $return;
     }
 
-    public function getChildProducts(int $parentId) :array
+    public function getProductVariantArray(int $parentId) : \Generator
     {
+        //Todo: Sql question change
         $sql = "select pd.id, pd.mediaFileId, pd.name, ds.shortDescription, pd.type, pd.grossPrice, pd.vat, pd.productGroup Descriptions
         from Products as pd join Descriptions as ds on pd.id = ds.fk_products
         where pd.parentId = ".$parentId."
-        order by pd.type;";
+        order by pd.price;";
 
         $result = $this->db->query($sql);
         $return = $result->fetch_all();
 
-        foreach( array_keys($return) as $key )
+        foreach( array_keys($return) as $item )
         {
-            $return[$key] = new ProductListEntity(
-                $return[$key][0],
-                $return[$key][1],
-                $return[$key][3],
-                $return[$key][4],
-                $return[$key][5],
-                $return[$key][6],
-                $return[$key][7],
-                $return[$key][8]
+            yield new ProductListEntity(
+                $item['id'],
+                $item['mediaFileId'],
+                $item['name'],
+                $item['shortDescription'],
+                $item['type'],
+                $item['grossPrice'],
+                $item['vat'],
+                $item['productGroup']
             );
         }
-        return $return;
     }
 
 //    private function askForProductList( string $sql )

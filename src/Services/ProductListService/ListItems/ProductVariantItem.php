@@ -18,10 +18,6 @@ use Class152\PizzaMamamia\Services\ProductListService\values\Price;
 
 class ProductVariantItem implements ProductVariantInterface
 {
-    /**
-     * Todo: Implement the private functions
-     */
-
     /** @var int  */
     private $parentId;
 

@@ -9,10 +9,8 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\ListItems;
 
 
-use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
-use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
-use Class152\PizzaMamamia\Services\ProductListService\Factories\ProductListFactory;
+use Class152\PizzaMamamia\Services\ProductListService\values\MediaFile;
 
 class ProductListItem implements ProductBasicInformationsInterface
 { /** @var  int */
@@ -43,8 +41,8 @@ class ProductListItem implements ProductBasicInformationsInterface
     private $productVariants;
 
     /**
-     * ProductItem constructor.
-     * @param string $id
+     * ProductListItem constructor.
+     * @param int $id
      * @param string $name
      * @param MediaFile $mediaFile
      * @param string $description
@@ -87,16 +85,7 @@ class ProductListItem implements ProductBasicInformationsInterface
         else
         {
             $this->hasVariants = true;
-            $this->createVariants();
         }
-    }
-
-    /**
-     *  this function call the ProductVariantsFactory to create variants from a specific product type
-     */
-    private function createVariants()
-    {
-        $this->productVariants = new ProductListFactory();
     }
 
     /** @return string */
@@ -152,10 +141,18 @@ class ProductListItem implements ProductBasicInformationsInterface
     }
 
     /**
-     * @return ProductVariantsIteratorInterface
+     * @return ProductVariantItem
      */
     public function getVariants()
     {
         return $this->productVariants;
+    }
+
+    /**
+     * @param ProductVariantItem $productVariantItem
+     */
+    public function setVariants(ProductVariantItem $productVariantItem)
+    {
+        $this->productVariants = $productVariantItem;
     }
 }
