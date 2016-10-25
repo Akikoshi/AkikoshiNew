@@ -10,8 +10,6 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaItemList;
 use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItem;
-use Class152\PizzaMamamia\Services\ProductDetailService\Library\Price;
-use Class152\PizzaMamamia\Services\ProductDetailService\Library\Product;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\AddendaEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\ProductRepository;
@@ -38,15 +36,7 @@ class DetailFactory
 	 */
 	private $componentList;
 	
-    /**
-     * @var AddendaItemList
-     */
-    private $additiveItemList;
-
-    /**
-     * @var AddendaItemList
-     */
-    private $allergicItemList;
+  
 
     public function __construct( int $productId )
     {
@@ -61,20 +51,21 @@ class DetailFactory
 		$this->componentList = new ComponentList();
 		$this->generateComponentList();
 
-
 		$price = new Price(
 			$productEntity->getGrossPrice(),
 			$productEntity->getVat()
 		);
 
-		
         $this->product = new Product(
+            $this->productID,
+            $productEntity->getName(),
+            $productEntity->getInternalName(),
+            $productEntity->getLongDescription(),
+            $productEntity->getParentId(),
+            $productEntity->getType(),
             $price,
             $this->mediaFileList,
-			$productEntity->getLongDescription()   // 
-
-		
-
+            $this->componentList
         );
 
 	}
@@ -104,7 +95,10 @@ class DetailFactory
 		}
 	}
 
-	private function generateComponentList()
+    /**
+     * @throws \Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NoResultException
+     */
+    private function generateComponentList()
 	{
 		$componentGenerator = $this->repository->getComponentsEntity();
 
@@ -128,33 +122,33 @@ class DetailFactory
 				$mediaEntity->getTitleTag(),
 				$mediaEntity->getAltTag()
 			) ;
+            
 			$this->componentList->addItem( new Component(
 				$componentEntity->getComponentId,
 				$componentEntity->getName,
 				$componentEntity->getComponentGroup,
 				$mediaFile,
-				$componentEntity->getOrdering
+				$componentEntity->getOrdering,
+                $this->generateAdditiveList($componentEntity->getComponentId),
+                $this->generateAlergicList($componentEntity->getComponentId)
 			));
 		}
 	}
-	
-	
-	/**
-	 * @return \Class152\PizzaMamamia\Services\ProductDetailService\Library\Product
-	 */
-	public function getProduct() : Product
-	{
+
 
     /**
      * @param int $componentId
+     * @return AddendaItemList
      */
-    private function generateAdditiveList( int $componentId )
+    private function generateAdditiveList( int $componentId ) : AddendaItemList
     {
+        $componentAdditivList = new AddendaItemList();
+
         $additiveGenerator = $this->repository->getAdditiveEntities( $componentId );
 
         /** @var AddendaEntity $additiveEntity */
         foreach ( $additiveGenerator as $additiveEntity ) {
-            $this->additiveItemList->addItem( new AddendaItem(
+            $componentAdditivList->addItem( new AddendaItem(
                 $additiveEntity->getId(),
                 $additiveEntity->getType(),
                 $additiveEntity->getName(),
@@ -162,19 +156,23 @@ class DetailFactory
                 $additiveEntity->getComponentId()
             ) );
         }
+        return $componentAdditivList;
     }
 
 
     /**
      * @param int $componentId
+     * @return AddendaItemList
      */
-    private function generateAlergicList( int $componentId )
+    private function generateAlergicList( int $componentId ) : AddendaItemList
     {
+        $componentAlergicList = new AddendaItemList();
+
         $allergicGenerator = $this->repository->getAdditiveEntities( $componentId );
 
         /** @var AddendaEntity $allergicEntity */
         foreach ( $allergicGenerator as $allergicEntity ) {
-            $this->allergicItemList->addItem( new AddendaItem(
+            $componentAlergicList->addItem( new AddendaItem(
                 $allergicEntity->getId(),
                 $allergicEntity->getType(),
                 $allergicEntity->getName(),
@@ -182,6 +180,7 @@ class DetailFactory
                 $allergicEntity->getComponentId()
             ) );
         }
+        return $componentAlergicList;
     }
 
 
@@ -190,8 +189,6 @@ class DetailFactory
      */
     public function getProduct() : Product
     {
-
-
 		return $this->product;
 	}
 

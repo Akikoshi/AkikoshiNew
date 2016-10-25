@@ -10,15 +10,15 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
-use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\ComponentListNeedsComponentException;
 
 class ComponentList extends AbstractIterator
 {
-    
+
     /**
      * ComponentList constructor.
      * @param array|null $array
+     * @throws \Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\ComponentListNeedsComponentException
      */
     public function __construct(array $array = null )
     {
@@ -35,7 +35,7 @@ class ComponentList extends AbstractIterator
             )
             {
                 throw new ComponentListNeedsComponentException(
-                    'constructor of MediaFileList can only use MenuFile objects'
+                    'constructor of ComponentList can only use Component objects'
                 );
             }
         }
@@ -43,7 +43,7 @@ class ComponentList extends AbstractIterator
     }
 
     /**
-     * @param MediaFile $mediaFile
+     * @param Component $Component
      */
     public function addItem( Component $Component )
     {
