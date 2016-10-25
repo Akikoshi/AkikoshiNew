@@ -11,5 +11,6 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entitie
 
 class AddonsEntity
 {
+    
 
 }

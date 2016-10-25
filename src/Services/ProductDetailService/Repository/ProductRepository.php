@@ -20,6 +20,9 @@ class ProductRepository
 {
 	/** @var Mysql */
 	private $db;
+	/**
+	 * @var int
+	 */
 	private $productId;
 
 	public function __construct( $productId )
@@ -74,13 +77,7 @@ class ProductRepository
 		);
 	}
 
-	/**
-	 * RC 1
-	 *
-	 * @return \Generator
-	 * @throws NoResultException
-	 */
-	public function getMediaFiles() : \Generator
+	private function getMediaFileResult( $id=null )
 	{
 		$sql = "SELECT  id,
 						mime,
@@ -98,30 +95,71 @@ class ProductRepository
 					FROM 
 						MediaFiles 
 					WHERE  id = "
-			. $this->productId . ";";
+			. ( is_null( $id ) ? $this->productId : $id ) . ";";
+
 		$result = $this->db->query( $sql );
 
 		if ( empty( $result ) ) {
 			throw new NoResultException();
 		}
 
+		return $result;
+	}
+
+	/**
+	 * @param null $id
+	 * @return MediaFileEntity
+	 * @throws NoResultException
+	 */
+	public function getMediaFile( $id=null ) : MediaFileEntity
+	{
+		$result = $this->getMediaFileResult( $id );
 		$resultItem = $result->fetch_assoc();
+
+		return new MediaFileEntity(
+			$resultItem[ "id" ],
+			$resultItem[ "mime" ],
+			$resultItem[ "height" ],
+			$resultItem[ "width" ],
+			$resultItem[ "thumbHeight" ],
+			$resultItem[ "thumbWidth" ],
+			$resultItem[ "bigHeight" ],
+			$resultItem[ "bigWidth" ],
+			$resultItem[ "url" ],
+			$resultItem[ "thumbUrl" ],
+			$resultItem[ "bigUrl" ],
+			$resultItem[ "titleTag" ],
+			$resultItem[ "altTag" ]
+
+		);
+	}
+
+	/**
+	 * RC 1
+	 *
+	 * @return \Generator
+	 * @throws NoResultException
+	 */
+	public function getMediaFiles( $id = null ) : \Generator
+	{
+		$result = $this->getMediaFileResult( $id );
+
 		try {
-			foreach ( array_keys( $resultItem ) as $key ) {
+			while ( false !== ( $resultItem = $result->fetch_assoc() ) ) {
 				yield new MediaFileEntity(
-					$resultItem[ $key ][ "id" ],
-					$resultItem[ $key ][ "mime" ],
-					$resultItem[ $key ][ "height" ],
-					$resultItem[ $key ][ "width" ],
-					$resultItem[ $key ][ "thumbHeight" ],
-					$resultItem[ $key ][ "thumbWidth" ],
-					$resultItem[ $key ][ "bigHeight" ],
-					$resultItem[ $key ][ "bigWidth" ],
-					$resultItem[ $key ][ "url" ],
-					$resultItem[ $key ][ "thumbUrl" ],
-					$resultItem[ $key ][ "bigUrl" ],
-					$resultItem[ $key ][ "titleTag" ],
-					$resultItem[ $key ][ "altTag" ]
+					$resultItem[ "id" ],
+					$resultItem[ "mime" ],
+					$resultItem[ "height" ],
+					$resultItem[ "width" ],
+					$resultItem[ "thumbHeight" ],
+					$resultItem[ "thumbWidth" ],
+					$resultItem[ "bigHeight" ],
+					$resultItem[ "bigWidth" ],
+					$resultItem[ "url" ],
+					$resultItem[ "thumbUrl" ],
+					$resultItem[ "bigUrl" ],
+					$resultItem[ "titleTag" ],
+					$resultItem[ "altTag" ]
 
 				);
 			}
@@ -137,7 +175,8 @@ class ProductRepository
 		$sql = "SELECT  
 					Comp.componentId,
 					Comp.name,
-					Comp.parentId,
+					Comp.componentGroup,
+					Comp.fk_MediaFiles,
 					ptc. ordering
 				FROM 
 					Components AS Comp
@@ -153,12 +192,20 @@ class ProductRepository
 
 		$resultItem = $result->fetch_assoc();
 
-		return new ComponentsEntity(
-			$resultItem[ 'componentId'],
-			$resultItem[ 'name'],
-			$resultItem[ 'parentId' ],
-			$resultItem[ 'ordering'	]
-		);
+		try {
+			foreach ( array_keys( $resultItem ) as $key ) {
+				yield new ComponentsEntity(
+					$resultItem[ 'componentId'],
+					$resultItem[ 'name'],
+					$resultItem[ 'componentGroup' ],
+					$resultItem[ 'fk_MediaFiles' ],
+					$resultItem[ 'ordering'	]
+				);
+			}
+		} finally {
+			$result->free_result();
+		}
+	
 	}
 
 
