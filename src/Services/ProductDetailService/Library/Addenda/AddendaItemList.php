@@ -15,6 +15,11 @@ use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaI
 
 class AddendaItemList extends AbstractIterator
 {
+    /**
+     * AddendaItemList constructor.
+     * @param array|null $array
+     * @throws \Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\AddendaItemListNeedsAddendaItemsException
+     */
 	public function __construct(array $array = null)
 	{
 		if (is_null($array)) {

@@ -9,39 +9,76 @@
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
+use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaItemList;
+
 class Component
 {
+    /**
+     * @var int
+     */
+    private $componentId;
 
-private $componentId;
-    
-private $name;
-    
-private $componentGroup;
+    /**
+     * @var string
+     */
+    private $name;
 
-private $MediaFile;    
-    
-private $ordering;
+    /**
+     * @var int
+     */
+    private $componentGroupId;
 
+    /**
+     * @var MediaFile
+     */
+    private $MediaFile;
 
+    /**
+     * @var int
+     */
+    private $ordering;
+
+    /**
+     * @var AddendaItemList
+     */
+    private $additiveList;
+
+    /**
+     * @var AddendaItemList
+     */
+    private $allergicList;
+
+    /**
+     * Component constructor.
+     * @param $componentId
+     * @param $name
+     * @param $componentGroupId
+     * @param $MediaFile
+     * @param $ordering
+     * @param $additiveList
+     * @param $allergicList
+     */
     public function __construct(
         $componentId,
         $name,
-        $componentGroup,
+        $componentGroupId,
         $MediaFile,
-        $ordering
-    )
-    {
+        $ordering,
+        $additiveList,
+        $allergicList
+    ) {
 
-        $this->componentId =    $componentId;
-        $this->name     =       $name;
-        $this->componentGroup = $componentGroup;
-        $this->MediaFile =   $MediaFile;
-        $this->ordering =       $ordering;
-
+        $this->componentId = $componentId;
+        $this->name = $name;
+        $this->componentGroupId = $componentGroupId;
+        $this->MediaFile = $MediaFile;
+        $this->ordering = $ordering;
+        $this->$additiveList = $additiveList;
+        $this->$allergicList = $allergicList;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getComponentId()
     {
@@ -49,16 +86,23 @@ private $ordering;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
         return $this->name;
     }
 
-   
     /**
-     * @return mixed
+     * @return int
+     */
+    public function getComponentGroupId()
+    {
+        return $this->componentGroupId;
+    }
+
+    /**
+     * @return MediaFile
      */
     public function getMediaFile()
     {
@@ -66,19 +110,26 @@ private $ordering;
     }
 
     /**
-     * @return mixed
-     */
-    public function getComponentGroup()
-    {
-        return $this->componentGroup;
-    }
-    
-    /**
-     * @return mixed
+     * @return int
      */
     public function getOrdering()
     {
         return $this->ordering;
     }
-    
+
+    /**
+     * @return AddendaItemList
+     */
+    public function getAdditiveList()
+    {
+        return $this->additiveList;
+    }
+
+    /**
+     * @return AddendaItemList
+     */
+    public function getAllergicList()
+    {
+        return $this->allergicList;
+    }
 }
