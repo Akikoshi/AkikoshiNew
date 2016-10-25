@@ -12,6 +12,7 @@ use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaIte
 use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItem;
 use Class152\PizzaMamamia\Services\ProductDetailService\Library\Price;
 use Class152\PizzaMamamia\Services\ProductDetailService\Library\Product;
+use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\AddendaEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\ProductRepository;
 
@@ -27,11 +28,16 @@ class DetailFactory
     /** @var Product */
     private $product;
 
-    /**
-     * @var MediaFileList
-     */
-    private $mediaFileList;
+	/**
+	 * @var MediaFileList
+	 */
+	private $mediaFileList;
 
+	/**
+	 * @var ComponentList
+	 */
+	private $componentList;
+	
     /**
      * @var AddendaItemList
      */
@@ -52,49 +58,92 @@ class DetailFactory
         $this->mediaFileList = new MediaFileList();
         $this->generateMediaFileList();
 
-        $price = new Price(
-            $productEntity->getGrossPrice(),
-            $productEntity->getVat()
-        );
+		$this->componentList = new ComponentList();
+		$this->generateComponentList();
 
 
+		$price = new Price(
+			$productEntity->getGrossPrice(),
+			$productEntity->getVat()
+		);
+
+		
         $this->product = new Product(
             $price,
             $this->mediaFileList,
-            $productEntity->getLongDescription()   //
+			$productEntity->getLongDescription()   // 
+
+		
 
         );
 
-    }
+	}
 
-    /**
-     * Generates the list of media files for a product.
-     *
-     * @throws \Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NoResultException
-     */
-    private function generateMediaFileList()
-    {
-        $mediaFileGenerator = $this->repository->getMediaFiles();
 
-        foreach ( $mediaFileGenerator as $mediaEntity ) {
-            $this->mediaFileList->addItem( new MediaFile(
-                $mediaEntity->getId,
-                $mediaEntity->getMime,
-                $mediaEntity->getHeight,
-                $mediaEntity->getWidth,
-                $mediaEntity->getThumbHeight,
-                $mediaEntity->getThumbWidth,
-                $mediaEntity->getBigHeight,
-                $mediaEntity->getThumbUrl,
-                $mediaEntity->getBigWidth,
-                $mediaEntity->getUrl,
-                $mediaEntity->getBigUrl,
-                $mediaEntity->getTitleTag,
-                $mediaEntity->getAltTag
-            ) );
-        }
-    }
+	private function generateMediaFileList()
+	{
+		$mediaFileGenerator = $this->repository->getMediaFiles();
 
+		/** @var MediaFileEntity $mediaEntity */
+		foreach ( $mediaFileGenerator as $mediaEntity ) {
+			$this->mediaFileList->addItem( new MediaFile(
+				$this->productID,
+				$mediaEntity->getMime(),
+				$mediaEntity->getHeight(),
+				$mediaEntity->getWidth(),
+				$mediaEntity->getThumbHeight(),
+				$mediaEntity->getThumbWidth(),
+				$mediaEntity->getBigHeight(),
+				$mediaEntity->getThumbUrl(),
+				$mediaEntity->getBigWidth(),
+				$mediaEntity->getUrl(),
+				$mediaEntity->getBigUrl(),
+				$mediaEntity->getTitleTag(),
+				$mediaEntity->getAltTag()
+			) );
+		}
+	}
+
+	private function generateComponentList()
+	{
+		$componentGenerator = $this->repository->getComponentsEntity();
+
+		foreach ( $componentGenerator as $componentEntity ) {
+
+			/** @var MediaFileEntity $mediaEntity */
+			$mediaEntity=$this->repository->getMediaFile($componentEntity->getFkMediaFiles);
+
+			$mediaFile=new MediaFile(
+				$componentEntity->getFkMediaFiles,
+				$mediaEntity->getMime(),
+				$mediaEntity->getHeight(),
+				$mediaEntity->getWidth(),
+				$mediaEntity->getThumbHeight(),
+				$mediaEntity->getThumbWidth(),
+				$mediaEntity->getBigHeight(),
+				$mediaEntity->getThumbUrl(),
+				$mediaEntity->getBigWidth(),
+				$mediaEntity->getUrl(),
+				$mediaEntity->getBigUrl(),
+				$mediaEntity->getTitleTag(),
+				$mediaEntity->getAltTag()
+			) ;
+			$this->componentList->addItem( new Component(
+				$componentEntity->getComponentId,
+				$componentEntity->getName,
+				$componentEntity->getComponentGroup,
+				$mediaFile,
+				$componentEntity->getOrdering
+			));
+		}
+	}
+	
+	
+	/**
+	 * @return \Class152\PizzaMamamia\Services\ProductDetailService\Library\Product
+	 */
+	public function getProduct() : Product
+	{
 
     /**
      * @param int $componentId
@@ -143,7 +192,7 @@ class DetailFactory
     {
 
 
-        return $this->product;
-    }
+		return $this->product;
+	}
 
 }
