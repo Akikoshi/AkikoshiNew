@@ -1,224 +1,263 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: vieteo
- * Date: 24.10.2016
- * Time: 11:06
+ * User: frankenfeldtp
+ * Date: 26.09.2016
+ * Time: 11:14
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\values;
-
+namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
-class MediaFile implements MediaFileInterface
+class MediaFile implements MediaFileInterface 
 {
+	/** @var int */
+	private $id;
 
-    /**
-     * @return int
-     */
-    public function getId() : int
-    {
-        // TODO: Implement getId() method.
-    }
+	/** @var string */
+	private $mime;
 
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        // TODO: Implement setId() method.
-    }
+	/** @var int */
+	private $height;
 
-    /**
-     * @return string
-     */
-    public function getMime() : string
-    {
-        // TODO: Implement getMime() method.
-    }
+	/** @var int */
+	private $width;
 
-    /**
-     * @param string $mime
-     */
-    public function setMime($mime)
-    {
-        // TODO: Implement setMime() method.
-    }
+	/** @var  int */
+	private $thumbHeight;
 
-    /**
-     * @return int
-     */
-    public function getHeight() : int
-    {
-        // TODO: Implement getHeight() method.
-    }
+	/** @var int */
+	private $thumbWidth;
 
-    /**
-     * @param int $height
-     */
-    public function setHeight($height)
-    {
-        // TODO: Implement setHeight() method.
-    }
+	/** @var int */
+	private $bigHeight;
 
-    /**
-     * @return int
-     */
-    public function getWidth() : int
-    {
-        // TODO: Implement getWidth() method.
-    }
+	/** @var int */
+	private $bigWidth;
 
-    /**
-     * @param int $width
-     */
-    public function setWidth($width)
-    {
-        // TODO: Implement setWidth() method.
-    }
+	/** @var string */
+	private $url;
 
-    /**
-     * @return int
-     */
-    public function getThumbHeight() : int
-    {
-        // TODO: Implement getThumbHeight() method.
-    }
+	/** @var string */
+	private $thumbUrl;
 
-    /**
-     * @param int $thumbHeight
-     */
-    public function setThumbHeight($thumbHeight)
-    {
-        // TODO: Implement setThumbHeight() method.
-    }
+	/** @var string */
+	private $bigUrl;
 
-    /**
-     * @return int
-     */
-    public function getThumbWidth() : int
-    {
-        // TODO: Implement getThumbWidth() method.
-    }
+	/** @var string */
+	private $titleTag;
 
-    /**
-     * @param int $thumbWidth
-     */
-    public function setThumbWidth($thumbWidth)
-    {
-        // TODO: Implement setThumbWidth() method.
-    }
+	/** @var string */
+	private $altTag;
 
-    /**
-     * @return int
-     */
-    public function getBigHeight() : int
-    {
-        // TODO: Implement getBigHeight() method.
-    }
 
-    /**
-     * @param int $bigHeight
-     */
-    public function setBigHeight($bigHeight)
-    {
-        // TODO: Implement setBigHeight() method.
-    }
 
-    /**
-     * @return int
-     */
-    public function getBigWidth() : int
-    {
-        // TODO: Implement getBigWidth() method.
-    }
+	/**
+	 * @return int
+	 */
+	public function getId() : int
+	{
+		return $this->id;
+	}
 
-    /**
-     * @param int $bigWidth
-     */
-    public function setBigWidth($bigWidth)
-    {
-        // TODO: Implement setBigWidth() method.
-    }
+	/**
+	 * @param int $id
+	 */
+	public function setId( $id )
+	{
+		$this->id = $id;
+	}
 
-    /**
-     * @return string
-     */
-    public function getUrl() : string
-    {
-        // TODO: Implement getUrl() method.
-    }
+	/**
+	 * @return string
+	 */
+	public function getMime() : string
+	{
+		return $this->mime;
+	}
 
-    /**
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        // TODO: Implement setUrl() method.
-    }
+	/**
+	 * @param string $mime
+	 */
+	public function setMime( $mime )
+	{
+		$this->mime = $mime;
+	}
 
-    /**
-     * @return string
-     */
-    public function getThumbUrl() : string
-    {
-        // TODO: Implement getThumbUrl() method.
-    }
+	/**
+	 * @return int
+	 */
+	public function getHeight() : int
+	{
+		return $this->height;
+	}
 
-    /**
-     * @param string $thumbUrl
-     */
-    public function setThumbUrl($thumbUrl)
-    {
-        // TODO: Implement setThumbUrl() method.
-    }
+	/**
+	 * @param int $height
+	 */
+	public function setHeight( $height )
+	{
+		$this->height = $height;
+	}
 
-    /**
-     * @return string
-     */
-    public function getBigUrl() : string
-    {
-        // TODO: Implement getBigUrl() method.
-    }
+	/**
+	 * @return int
+	 */
+	public function getWidth() : int
+	{
+		return $this->width;
+	}
 
-    /**
-     * @param string $bigUrl
-     */
-    public function setBigUrl($bigUrl)
-    {
-        // TODO: Implement setBigUrl() method.
-    }
+	/**
+	 * @param int $width
+	 */
+	public function setWidth( $width )
+	{
+		$this->width = $width;
+	}
 
-    /**
-     * @return string
-     */
-    public function getTitleTag() : string
-    {
-        // TODO: Implement getTitleTag() method.
-    }
+	/**
+	 * @return int
+	 */
+	public function getThumbHeight() : int
+	{
+		return $this->thumbHeight;
+	}
 
-    /**
-     * @param string $titleTag
-     */
-    public function setTitleTag($titleTag)
-    {
-        // TODO: Implement setTitleTag() method.
-    }
+	/**
+	 * @param int $thumbHeight
+	 */
+	public function setThumbHeight( $thumbHeight )
+	{
+		$this->thumbHeight = $thumbHeight;
+	}
 
-    /**
-     * @return string
-     */
-    public function getAltTag() : string
-    {
-        // TODO: Implement getAltTag() method.
-    }
+	/**
+	 * @return int
+	 */
+	public function getThumbWidth() : int
+	{
+		return $this->thumbWidth;
+	}
 
-    /**
-     * @param string $altTag
-     */
-    public function setAltTag($altTag)
-    {
-        // TODO: Implement setAltTag() method.
-    }
+	/**
+	 * @param int $thumbWidth
+	 */
+	public function setThumbWidth( $thumbWidth )
+	{
+		$this->thumbWidth = $thumbWidth;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getBigHeight() : int
+	{
+		return $this->bigHeight;
+	}
+
+	/**
+	 * @param int $bigHeight
+	 */
+	public function setBigHeight( $bigHeight )
+	{
+		$this->bigHeight = $bigHeight;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getBigWidth() : int
+	{
+		return $this->bigWidth;
+	}
+
+	/**
+	 * @param int $bigWidth
+	 */
+	public function setBigWidth( $bigWidth )
+	{
+		$this->bigWidth = $bigWidth;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUrl() : string
+	{
+		return $this->url;
+	}
+
+	/**
+	 * @param string $url
+	 */
+	public function setUrl( $url )
+	{
+		$this->url = $url;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getThumbUrl() : string
+	{
+		return $this->thumbUrl;
+	}
+
+	/**
+	 * @param string $thumbUrl
+	 */
+	public function setThumbUrl( $thumbUrl )
+	{
+		$this->thumbUrl = $thumbUrl;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBigUrl() : string
+	{
+		return $this->bigUrl;
+	}
+
+	/**
+	 * @param string $bigUrl
+	 */
+	public function setBigUrl( $bigUrl )
+	{
+		$this->bigUrl = $bigUrl;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTitleTag() : string
+	{
+		return $this->titleTag;
+	}
+
+	/**
+	 * @param string $titleTag
+	 */
+	public function setTitleTag( $titleTag )
+	{
+		$this->titleTag = $titleTag;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAltTag() : string
+	{
+		return $this->altTag;
+	}
+
+	/**
+	 * @param string $altTag
+	 */
+	public function setAltTag( $altTag )
+	{
+		$this->altTag = $altTag;
+	}
 }
