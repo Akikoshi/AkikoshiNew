@@ -296,17 +296,17 @@ INSERT INTO `ComponentGroups` (`componentGroupId`, `name`) VALUES
 --
 DROP TABLE IF EXISTS `Components`;
 CREATE TABLE IF NOT EXISTS `Components` (
-  `componentId` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) NOT NULL,
-  `internalName` varchar(512) NOT NULL,
-  `unitType` enum('g','kg','l','ml','cl','stk','unit') NOT NULL DEFAULT 'stk',
-  `perUnit` int(7) DEFAULT NULL,
-  `perUnitType` enum('g','kg','l','ml','cl','stk','unit') DEFAULT NULL,
-  `unitSize` int(7) NOT NULL DEFAULT '1',
-  `unitPrice` float(7,2) NOT NULL DEFAULT '0.00',
-  `componentGroup` int(10) unsigned NOT NULL DEFAULT '1',
-  `internalComponentId` varchar(50) DEFAULT NULL,
-  `fk_MediaFiles` int(10) unsigned NOT NULL,
+  `componentId`         INT(10) UNSIGNED                                 NOT NULL AUTO_INCREMENT,
+  `name`                VARCHAR(150)                                     NOT NULL,
+  `internalName`        VARCHAR(512)                                     NOT NULL,
+  `unitType`            ENUM ('g', 'kg', 'l', 'ml', 'cl', 'stk', 'unit') NOT NULL DEFAULT 'stk',
+  `perUnit`             INT(7)                                                    DEFAULT NULL,
+  `perUnitType`         ENUM ('g', 'kg', 'l', 'ml', 'cl', 'stk', 'unit')          DEFAULT NULL,
+  `unitSize`            INT(7)                                           NOT NULL DEFAULT '1',
+  `unitPrice`           FLOAT(7, 2)                                      NOT NULL DEFAULT '0.00',
+  `componentGroup`      INT(10) UNSIGNED                                 NOT NULL DEFAULT '1',
+  `internalComponentId` VARCHAR(50)                                               DEFAULT NULL,
+  `fk_MediaFiles`       INT(10) UNSIGNED                                 NOT NULL,
   PRIMARY KEY (`componentId`),
   KEY `materialGroup` (`componentGroup`),
   KEY `FK_Components_MediaFiles` (`fk_MediaFiles`),
@@ -323,8 +323,10 @@ TRUNCATE TABLE `Components`;
 -- Daten für Tabelle `Components`
 --
 DELETE FROM `Components`;
-/*!40000 ALTER TABLE `Components` DISABLE KEYS */;
-INSERT INTO `Components` (`componentId`, `name`, `internalName`, `unitType`, `perUnit`, `perUnitType`, `unitSize`, `unitPrice`, `componentGroup`, `internalComponentId`, `fk_MediaFiles`) VALUES
+/*!40000 ALTER TABLE `Components`
+  DISABLE KEYS */;
+INSERT INTO `Components` (`componentId`, `name`, `internalName`, `unitType`, `perUnit`, `perUnitType`, `unitSize`, `unitPrice`, `componentGroup`, `internalComponentId`, `fk_MediaFiles`)
+VALUES
   (1, 'Tomaten', 'Tomaten in Scheiben', 'stk', NULL, 'stk', 1, 0.02, 5, NULL, 1),
   (2, 'Käse', 'Mozarella gerieben', 'unit', 200, 'g', 1, 1.46, 7, NULL, 1),
   (3, 'Oregano', 'Oregano gerebelt', 'g', 1, 'stk', 1000, 8.00, 8, NULL, 1),
@@ -398,7 +400,8 @@ INSERT INTO `Components` (`componentId`, `name`, `internalName`, `unitType`, `pe
   (71, 'Teig', 'Hefeteig, vorgegangen', 'kg', NULL, NULL, 1, 1.20, 10, NULL, 1),
   (72, 'Pizzasoße', 'Pizzasoße, Tomate', 'kg', NULL, NULL, 1, 4.00, 1, NULL, 1),
   (73, 'Cherrytomaten', 'Cherrytomaten', 'stk', NULL, NULL, 1, 0.05, 5, NULL, 1);
-/*!40000 ALTER TABLE `Components` ENABLE KEYS */;
+/*!40000 ALTER TABLE `Components`
+  ENABLE KEYS */;
 
 -- --------------------------------------------------------
 

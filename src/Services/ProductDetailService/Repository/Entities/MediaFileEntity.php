@@ -84,21 +84,22 @@ class MediaFileEntity
 		$thumbUrl,
 		$bigUrl,
 		$titleTag,
-		$altTag )
+		$altTag
+	)
 	{
 
 		$this->mime = $mime;
 		$this->height = $height;
 		$this->width = $width;
-		$this->thumbHeight =$thumbHeight;
-        $this->thumbWidth = $thumbWidth;
-        $this->bigHeight = $bigHeight;
-        $this->thumbUrl = $bigWidth;
-        $this->bigWidth = $url;
-        $this->url = $thumbUrl;
-        $this->bigUrl = $bigUrl;
-        $this->titleTag = $titleTag;
-        $this->altTag = $altTag;
+		$this->thumbHeight = $thumbHeight;
+		$this->thumbWidth = $thumbWidth;
+		$this->bigHeight = $bigHeight;
+		$this->thumbUrl = $bigWidth;
+		$this->bigWidth = $url;
+		$this->url = $thumbUrl;
+		$this->bigUrl = $bigUrl;
+		$this->titleTag = $titleTag;
+		$this->altTag = $altTag;
     }
 
 	/**
