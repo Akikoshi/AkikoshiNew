@@ -33,7 +33,7 @@ class Link implements LinkInterface
      * @param string $title
      * @param string $css
      */
-    public function __construct(string $url,string $text,string $title,string $css)
+    public function __construct($url, $text, $title = '', $css = '')
     {
         $this->url = $url;
         $this->text = $text;
@@ -46,7 +46,7 @@ class Link implements LinkInterface
      */
     public function getTitle() : string
     {
-        // TODO: Implement getTitle() method.
+        return $this->title;
     }
 
     /**
@@ -54,7 +54,7 @@ class Link implements LinkInterface
      */
     public function getText() : string
     {
-        // TODO: Implement getText() method.
+        return $this->text;
     }
 
     /**
@@ -62,7 +62,7 @@ class Link implements LinkInterface
      */
     public function getUrl() : string
     {
-        // TODO: Implement getUrl() method.
+        return $this->url;
     }
 
     /**
@@ -70,6 +70,8 @@ class Link implements LinkInterface
      */
     public function getCss() : string
     {
-        // TODO: Implement getCss() method.
+        return $this->css;
     }
 }
+
+    

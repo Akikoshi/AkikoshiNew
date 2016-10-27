@@ -51,7 +51,7 @@ class ProductVariantItem implements ProductVariantInterface
      * @param LinkInterface $productDetailUrl
      * @param LinkInterface $shoppingCartUrl
      * @param LinkInterface $configuratorUrl
-     * @param LinkInterface $isConfigurable
+     * @param bool $isConfigurable
      */
     public function __construct(
         $parentId,
@@ -61,7 +61,7 @@ class ProductVariantItem implements ProductVariantInterface
         LinkInterface $productDetailUrl,
         LinkInterface $shoppingCartUrl,
         LinkInterface $configuratorUrl,
-        LinkInterface $isConfigurable
+        bool $isConfigurable
     )
     {
         $this->parentId = $parentId;

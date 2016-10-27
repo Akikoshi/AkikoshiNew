@@ -9,13 +9,14 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Factories;
 
 
-use Class152\PizzaMamamia\AbstractClasses\Services\ProductListService\Library\ProductListEntity;
+use \Class152\PizzaMamamia\Services\ProductListService\Repositories\Entities\ProductListEntity;
 use Class152\PizzaMamamia\Services\ProductListService\Filter\ProductListFilter;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductVariantList;
-use Class152\PizzaMamamia\Services\ProductListService\Library\ProductListRepository;
 use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductListItem;
 use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductVariantItem;
+use Class152\PizzaMamamia\Services\ProductListService\Repositories\ProductListRepository;
+use Class152\PizzaMamamia\Services\ProductListService\values\Link;
 use Class152\PizzaMamamia\Services\ProductListService\values\MediaFile;
 use Class152\PizzaMamamia\Services\ProductListService\values\Price;
 
@@ -44,56 +45,59 @@ class ProductListFactory
 
             $type = $elem->getTypeOfProduct();
             if ('container' == $type) {
-                $variants = $this->loadVariants($elem->getProductId());
+                $variants[] = $this->loadVariants($elem->getProductId());
             } else {
-                $variants = new ProductVariantList(
+                $variants[] = new ProductVariantList(
                     [new ProductVariantItem(
                         $elem->getProductId(),
                         $elem->getProductName(),
                         $elem->getTypeOfProduct(),
-                        $this->loadPrice(
-                            $elem->getGrossPrice(),
-                            $elem->getVat()),
-                        $this->loadLinks()
+                        new Price( $elem->getGrossPrice(), $elem->getVat() ),
+                        new Link("/productdetails/index/" . $elem->getProductId(),"Details"),//Todo: hartverdrahtet
+                        new Link("/shoppingcart/index/" . $elem->getProductId(),"Warenkorb"),
+                        new Link("/configurator/index/" . $elem->getProductId(),"konfigurieren"),
+                        $this->isConfigurable(true) // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen                    
                     )]
                 );
             }
 
             $this->loadProducts(
                 $elem->getProductId(),
-                $this->loadMediaFile( $elem->getMediaFileId() ),
+                new MediaFile( $elem->getMediaFileId() ),
                 $elem->getProductName(),
                 $elem->getShortDescription(),
                 $elem->getTypeOfProduct(),
                 $elem->getGrossPrice(),
                 $elem->getVat(),
-                $elem->getProductGroupId()
+                $elem->getProductGroupId(),
+                $variants
             );
         }
     }
     
-    private function loadLinks()
-    
-    private function loadMediaFile( int $mediaFileId )
+    private function isConfigurable($boolean)
     {
-        return new MediaFile();
+        return $boolean; // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
     }
     
-    private function loadPrice(float $grossPrice, int $vat)
-    {
-        return new Price($grossPrice, $vat);
-    }
-
-    public function loadProducts($id, $mediaFileId, $name, $shortDescription, $type, $grossPrice, $vat, $productGroupId)
+    public function loadProducts($id,
+                                 $mediaFileId,
+                                 $name,
+                                 $shortDescription,
+                                 $type, $grossPrice,
+                                 $vat, $productGroupId,
+                                 $productVariantsList)
     {
         $this->productListItem = new ProductListItem(
             $id,
-            $mediaFileId,
             $name,
+            $mediaFileId,
             $shortDescription,
-            $type, $grossPrice,
+            $type,
+            $grossPrice,
             $vat,
-            $productGroupId);
+            $productGroupId,
+            $productVariantsList);
     }
 
     public function loadVariants(int $productId)
@@ -101,18 +105,18 @@ class ProductListFactory
         $entity = $this->repository->getProductVariantArray($productId);
 
         $variants = [];
-        
+        /** @var ProductListEntity $elem */
         foreach ($entity as $elem) {
             $variants[] =
                 new ProductVariantItem(
                     $elem->getProductId(),
-                    $elem->getMediaFileId(),
                     $elem->getProductName(),
-                    $elem->getShortDescription(),
                     $elem->getTypeOfProduct(),
-                    $elem->getGrossPrice(),
-                    $elem->getVat(),
-                    $elem->getProductGroupId()
+                    new Price( $elem->getGrossPrice(), $elem->getVat() ),
+                    new Link("/productdetails/index/" . $elem->getProductId(),"Details"),//Todo: hartverdrahtet
+                    new Link("/shoppingcart/index/" . $elem->getProductId(),"Warenkorb"),
+                    new Link("/configurator/index/" . $elem->getProductId(),"konfigurieren"),
+                    $this->isConfigurable(true) // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
                 );
         }
         

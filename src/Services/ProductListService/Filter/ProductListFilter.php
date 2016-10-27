@@ -22,12 +22,12 @@ class ProductListFilter implements ProductListFilterInterface
     /** @var  bool */
     private $isFiteredByGroupId;
 
-    public function __construct()
+    public function __construct($productGroupId, $isSortByPrice, $isFilteredByGroupId)
     {
         //Todo: ist noch Hartverdrahtet, muss noch erarbeitet werden
-        $this->productGroupId = null;
-        $this->isSortByPrice = false;
-        $this->isFiteredByGroupId = false;
+        $this->productGroupId = $productGroupId;
+        $this->isSortByPrice = $isSortByPrice;
+        $this->isFiteredByGroupId = $isFilteredByGroupId;
     }
 
     /** @return string */

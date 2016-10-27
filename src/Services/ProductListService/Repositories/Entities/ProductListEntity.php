@@ -6,7 +6,7 @@
  * Time: 15:02
  */
 
-namespace Class152\PizzaMamamia\AbstractClasses\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\Repositories\Entities;
 
 
 class ProductListEntity
@@ -34,29 +34,32 @@ class ProductListEntity
     /** @var  int */
     private $vat;
 
-    /** @var  int */
-    private $productId;
-
     /** @var  string */
     private $detailsUrl;
 
-    public function __construct(int $id, 
-                                int $mediaFileId, 
-                                string $productName, 
-                                string $shortDescription, 
-                                string $typeOfProduct, 
-                                float $grossPrice, 
-                                int $vat, 
-                                int $productGroupId)
+    /** @var  int */
+    private $parentId;
+
+    public function __construct($id,
+                                $mediaFileId,
+                                $productName,
+                                $shortDescription,
+                                $typeOfProduct,
+                                $grossPrice,
+                                $vat,
+                                $productGroupId,
+                                $parentId)
     {
         $this->id = $id;
         $this->mediaFileId = $mediaFileId;
         $this->productName = $productName;
-        $this->shortDescription = $shortDescription;
+        $this->shortDescription = ( is_null($shortDescription) ? "" : $shortDescription);
         $this->typeOfProduct = $typeOfProduct;
-        $this->grossPrice = $grossPrice;
-        $this->vat = $vat;
+        $this->grossPrice = ( is_null($grossPrice) ? 0.00 : $grossPrice );
+        $this->vat = ( is_null($vat) ? 19 : $vat );
         $this->productGroupId = $productGroupId;
+        $this->parentId = ( is_null( $parentId ) ? '' : $parentId );
+
     }
 
     /**
@@ -64,7 +67,7 @@ class ProductListEntity
      */
     public function getProductId() :int
     {
-        return $this->productId;
+        return $this->id;
     }
 
     /**
@@ -129,5 +132,10 @@ class ProductListEntity
     public function getDetailUrl() :string
     {
         return $this->detailsUrl;
+    }
+
+    public function getParentId()
+    {
+        return $this->parentId;
     }
 }

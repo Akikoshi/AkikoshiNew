@@ -9,7 +9,10 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\ListItems;
 
 
+use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
+use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductVariantList;
 use Class152\PizzaMamamia\Services\ProductListService\values\MediaFile;
 
 class ProductListItem implements ProductBasicInformationsInterface
@@ -22,7 +25,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /** @var  string */
     private $description;
 
-    /** @var  MediaFile */
+    /** @var  MediaFileInterface */
     private $mediaFile;
 
     /** @var  string */
@@ -37,7 +40,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /** @var  bool */
     private $hasVariants = false;
 
-    /** @var  ProductVariantItem */
+    /** @var  ProductVariantList */
     private $productVariants;
 
     /**
@@ -47,8 +50,16 @@ class ProductListItem implements ProductBasicInformationsInterface
      * @param MediaFile $mediaFile
      * @param string $description
      * @param string $productType
+     * @param ProductVariantList $productVariants
      */
-    public function __construct(int $id, string $name, MediaFile $mediaFile, string $description, string $productType)
+    public function __construct(
+        int $id,
+        string $name,
+        MediaFile $mediaFile,
+        string $description,
+        string $productType,
+        ProductVariantList $productVariants
+    )
     {
         $this->productId = $id;
         $this->name = $name;
@@ -57,6 +68,7 @@ class ProductListItem implements ProductBasicInformationsInterface
         $this->productType = $productType;
         $this->checkIfDescriptionExists();
         $this->checkTypeOfProduct();
+        $this->productVariants = $productVariants;
     }
 
     /**
@@ -101,11 +113,11 @@ class ProductListItem implements ProductBasicInformationsInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId()
+    public function getId() : string
     {
-        return $this->productId;
+        return (STRING)$this->productId;
     }
 
     /**
@@ -141,18 +153,18 @@ class ProductListItem implements ProductBasicInformationsInterface
     }
 
     /**
-     * @return ProductVariantItem
+     * @return ProductVariantList
      */
-    public function getVariants()
+    public function getVariants() : ProductVariantList
     {
         return $this->productVariants;
     }
 
     /**
-     * @param ProductVariantItem $productVariantItem
+     * @return ProductVariantItem
      */
-    public function setVariants(ProductVariantItem $productVariantItem)
+    public function getDefaultVariant() : ProductVariantItem
     {
-        $this->productVariants = $productVariantItem;
+        return $this->productVariants->getElement(0);
     }
 }
