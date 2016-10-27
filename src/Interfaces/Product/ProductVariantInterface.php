@@ -53,9 +53,4 @@
 		 * @return bool
 		 */
 		public function isConfigurable();
-		
-		/**
-		 * @return ProductVariantInterface
-		 */
-		public function current() : ProductVariantInterface;
 	}

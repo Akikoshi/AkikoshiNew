@@ -9,7 +9,9 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\values;
 
 
-class Price
+use Class152\PizzaMamamia\Interfaces\PriceInterface;
+
+class Price implements PriceInterface
 {
     /** @var float */
     private $originalGrossPrice;

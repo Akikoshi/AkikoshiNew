@@ -6,7 +6,7 @@
  * Time: 11:14
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\Library;
+namespace Class152\PizzaMamamia\Services\ProductListService\values;
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
