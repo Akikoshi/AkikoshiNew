@@ -22,6 +22,10 @@ class ShoppingCartList extends AbstractIterator implements ShoppingCartInterface
     /** @var float */
     private $summaryPrice = 0;
 
+    /**
+     * ShoppingCartList constructor.
+     * @param array $shoppingCartItemsArray
+     */
     public function __construct(array $shoppingCartItemsArray )
     {
         
@@ -30,7 +34,10 @@ class ShoppingCartList extends AbstractIterator implements ShoppingCartInterface
         /** @var ProductBasicInformationsInterface $shoppingCartItem */
         foreach( $this->iteratorArray as $shoppingCartItem )
         {
-            $this->summaryPrice += $shoppingCartItem->getVariants()->getPrice()->getGrossPriceValue();
+            $this->summaryPrice += $shoppingCartItem
+                ->getDefaultVariant()
+                ->getPrice()
+                ->getGrossPriceValue();
         }
     }
 

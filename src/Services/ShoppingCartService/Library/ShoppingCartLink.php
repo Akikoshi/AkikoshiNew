@@ -29,7 +29,7 @@ class ShoppingCartLink implements LinkInterface
      * @param string $text
      * @param string $title
      */
-    public function __construct( $url, $text, $title = '', $css = '' )
+    public function __construct( $url, $text, $title = 'a', $css = 'b' )
     {
         $this->css = $css;
         $this->url = $url;
@@ -40,7 +40,7 @@ class ShoppingCartLink implements LinkInterface
     /**
      * @return string
      */
-    public function getCss()
+    public function getCss() : string 
     {
         return $this->css;
     }
@@ -48,7 +48,7 @@ class ShoppingCartLink implements LinkInterface
     /**
      * @return string
      */
-    public function getUrl()
+    public function getUrl() : string
     {
         return $this->url;
     }
@@ -56,7 +56,7 @@ class ShoppingCartLink implements LinkInterface
     /**
      * @return string
      */
-    public function getText()
+    public function getText() : string
     {
         return $this->text;
     }
@@ -64,7 +64,7 @@ class ShoppingCartLink implements LinkInterface
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }

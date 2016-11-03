@@ -21,6 +21,7 @@ class ShoppingCartService
     public function getShoppingCart() : ShoppingCartList
     {
         $factory = new ShoppingCartFactory();
+        //var_dump( $factory->getAggregate() ); die();
         return $factory->getAggregate();
     }
 }

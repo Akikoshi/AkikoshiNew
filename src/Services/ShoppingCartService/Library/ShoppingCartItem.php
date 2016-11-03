@@ -11,6 +11,7 @@ namespace Class152\PizzaMamamia\Services\ShoppingCartService\Library;
 
 use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
 use Class152\PizzaMamamia\Interfaces\ShoppingCart\ShoppingCartItemInterface;
 
@@ -118,7 +119,7 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     /**
      * @return string
      */
-    public function getId()
+    public function getId() : string
     {
         return $this->id;
     }
@@ -126,7 +127,7 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -134,7 +135,7 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     /**
      * @return MediaFileInterface
      */
-    public function getThumb()
+    public function getThumb() : MediaFileInterface
     {
         return $this->thumb;
     }
@@ -144,7 +145,7 @@ class ShoppingCartItem implements ShoppingCartItemInterface
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription() : string
     {
         return $this->description;
     }
@@ -152,7 +153,7 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     /**
      * @return bool
      */
-    public function hasDescription()
+    public function hasDescription() : bool
     {
         return $this->hasDescription;
     }
@@ -160,7 +161,7 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     /**
      * @return bool
      */
-    public function isSingle()
+    public function isSingle() : bool
     {
         return $this->isSingle;
     }
@@ -168,15 +169,23 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     /**
      * @return bool
      */
-    public function hasVariants()
+    public function hasVariants() : bool
     {
         return $this->hasVariants;
     }
 
     /**
+     * @return ProductVariantInterface
+     */
+    public function getDefaultVariant() : ProductVariantInterface
+    {
+        return $this->variants->getElement(0);
+    }
+
+    /**
      * @return ProductVariantsIteratorInterface
      */
-    public function getVariants()
+    public function getVariants() : ProductVariantsIteratorInterface
     {
         return $this->variants;
     }

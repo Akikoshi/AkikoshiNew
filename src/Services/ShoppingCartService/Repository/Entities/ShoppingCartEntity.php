@@ -54,7 +54,7 @@ class ShoppingCartEntity
     /**
      * @return string
      */
-    public function getId(): string
+    public function getName(): string
     {
         return $this->name;
     }
