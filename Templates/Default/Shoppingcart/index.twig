@@ -1,5 +1,33 @@
 {% extends '/_layouts/pageWithSidebar.twig' %}
 
 {% block content %}
-	{{ controllerName }} {{ actionName }}
+
+<div class="container">
+	<div class="row">
+	{% for shoppingCartItem in shoppingCart  %}
+
+		<div class="col-xs-3" style="background-color: #00b3ee">
+
+			<p>{{ shoppingCartItem.getName }}</p>
+			<p>{{ shoppingCartItem.getDescription }}</p>
+			<p>Anzahl: {{ shoppingCartItem.getAmount }}</p>
+			<p>{{ shoppingCartItemVariant.getPrice }}</p>
+
+			<button type="button" class="btn btn-default">&#128465;
+				{{ shoppingCartLink.getRemoveItemUrl }}
+			</button>
+			<button type="button" class="btn btn-default">-
+				{{ shoppingCartLink.getDecreaseItemUrl }}
+			</button>
+			<button type="button" class="btn btn-default">+
+				{{ shoppingCartLink.getIncreaseItemUrl }}
+			</button>
+
+		</div>
+
+	{% endfor %}
+	</div>
+
+</div>
+
 {% endblock %}
