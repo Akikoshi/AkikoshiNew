@@ -10,48 +10,103 @@ namespace Class152\PizzaMamamia\Services\ProductListService\values;
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
-class MediaFile implements MediaFileInterface 
+class MediaFile implements MediaFileInterface
 {
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $id;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $mime;
 
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $height;
 
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $width;
 
-	/** @var  int */
+	/**
+	 * @var int
+	 */
 	private $thumbHeight;
 
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $thumbWidth;
 
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $bigHeight;
 
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $bigWidth;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $url;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $thumbUrl;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $bigUrl;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $titleTag;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $altTag;
 
 
+	public function __construct(
+		$id,
+		$mime,
+		$height,
+		$width,
+		$thumbHeight,
+		$thumbWidth,
+		$bigHeight,
+		$bigWidth,
+		$url,
+		$thumbUrl,
+		$bigUrl,
+		$titleTag,
+		$altTag)
+	{
+		$this->id = $id;
+		$this->mime = $mime;
+		$this->height = $height;
+		$this->width = $width;
+		$this->thumbHeight = $thumbHeight;
+		$this->thumbWidth = $thumbWidth;
+		$this->bigHeight = $bigHeight;
+		$this->thumbUrl = $bigWidth;
+		$this->bigWidth = $url;
+		$this->url = $thumbUrl;
+		$this->bigUrl = $bigUrl;
+		$this->titleTag = $titleTag;
+		$this->altTag = $altTag;
+	}
 
 	/**
 	 * @return int
@@ -59,14 +114,6 @@ class MediaFile implements MediaFileInterface
 	public function getId() : int
 	{
 		return $this->id;
-	}
-
-	/**
-	 * @param int $id
-	 */
-	public function setId( $id )
-	{
-		$this->id = $id;
 	}
 
 	/**
@@ -78,27 +125,11 @@ class MediaFile implements MediaFileInterface
 	}
 
 	/**
-	 * @param string $mime
-	 */
-	public function setMime( $mime )
-	{
-		$this->mime = $mime;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getHeight() : int
 	{
 		return $this->height;
-	}
-
-	/**
-	 * @param int $height
-	 */
-	public function setHeight( $height )
-	{
-		$this->height = $height;
 	}
 
 	/**
@@ -110,27 +141,11 @@ class MediaFile implements MediaFileInterface
 	}
 
 	/**
-	 * @param int $width
-	 */
-	public function setWidth( $width )
-	{
-		$this->width = $width;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getThumbHeight() : int
 	{
 		return $this->thumbHeight;
-	}
-
-	/**
-	 * @param int $thumbHeight
-	 */
-	public function setThumbHeight( $thumbHeight )
-	{
-		$this->thumbHeight = $thumbHeight;
 	}
 
 	/**
@@ -142,27 +157,11 @@ class MediaFile implements MediaFileInterface
 	}
 
 	/**
-	 * @param int $thumbWidth
-	 */
-	public function setThumbWidth( $thumbWidth )
-	{
-		$this->thumbWidth = $thumbWidth;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getBigHeight() : int
 	{
 		return $this->bigHeight;
-	}
-
-	/**
-	 * @param int $bigHeight
-	 */
-	public function setBigHeight( $bigHeight )
-	{
-		$this->bigHeight = $bigHeight;
 	}
 
 	/**
@@ -174,27 +173,11 @@ class MediaFile implements MediaFileInterface
 	}
 
 	/**
-	 * @param int $bigWidth
-	 */
-	public function setBigWidth( $bigWidth )
-	{
-		$this->bigWidth = $bigWidth;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getUrl() : string
 	{
 		return $this->url;
-	}
-
-	/**
-	 * @param string $url
-	 */
-	public function setUrl( $url )
-	{
-		$this->url = $url;
 	}
 
 	/**
@@ -206,27 +189,11 @@ class MediaFile implements MediaFileInterface
 	}
 
 	/**
-	 * @param string $thumbUrl
-	 */
-	public function setThumbUrl( $thumbUrl )
-	{
-		$this->thumbUrl = $thumbUrl;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getBigUrl() : string
 	{
 		return $this->bigUrl;
-	}
-
-	/**
-	 * @param string $bigUrl
-	 */
-	public function setBigUrl( $bigUrl )
-	{
-		$this->bigUrl = $bigUrl;
 	}
 
 	/**
@@ -238,26 +205,10 @@ class MediaFile implements MediaFileInterface
 	}
 
 	/**
-	 * @param string $titleTag
-	 */
-	public function setTitleTag( $titleTag )
-	{
-		$this->titleTag = $titleTag;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getAltTag() : string
 	{
 		return $this->altTag;
-	}
-
-	/**
-	 * @param string $altTag
-	 */
-	public function setAltTag( $altTag )
-	{
-		$this->altTag = $altTag;
 	}
 }
