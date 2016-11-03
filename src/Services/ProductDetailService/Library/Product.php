@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: cbiedermann
- * Date: 19.09.2016
- * Time: 13:53
+ * User: Jens Johannes, Peter Frankenfeldt
+ * Date: 03.11.2016
+ * Time: 12:00
  */
 
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
@@ -12,6 +12,7 @@ use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductAdditivesListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductComponentsListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductDetailInformationsInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
 use Class152\PizzaMamamia\Library\Price;
 
@@ -127,33 +128,28 @@ class Product implements ProductDetailInformationsInterface
 
     }
 
-
-    public
-    function getImages() : \IteratorIterator
+    /**
+     * @return string
+     */
+    public function getId() : string
     {
-        return $this->mediaFileList;
-    }
-
-
-    function getId()
-    {
-        return $this->productID;
+        // TODO: Implement getId() method.
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
-        return $this->name;
+        // TODO: Implement getName() method.
     }
 
-    /**TODO : testen getElement liefert erstes Element von mediafilelist
+    /**
      * @return MediaFileInterface
      */
-    public function getThumb()
+    public function getThumb() : MediaFileInterface
     {
-        return $this->mediaFileList->getElement(0);
+        // TODO: Implement getThumb() method.
     }
 
     /**
@@ -161,23 +157,23 @@ class Product implements ProductDetailInformationsInterface
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription() : string
     {
-       return $this->longDescription;
+        // TODO: Implement getDescription() method.
     }
 
     /**
      * @return bool
      */
-    public function hasDescription()
+    public function hasDescription() : bool
     {
-        return $this->hasDescription();
+        // TODO: Implement hasDescription() method.
     }
 
-    /** 
+    /**
      * @return bool
      */
-    public function isSingle()
+    public function isSingle() : bool
     {
         // TODO: Implement isSingle() method.
     }
@@ -185,7 +181,7 @@ class Product implements ProductDetailInformationsInterface
     /**
      * @return bool
      */
-    public function hasVariants()
+    public function hasVariants() : bool
     {
         // TODO: Implement hasVariants() method.
     }
@@ -193,9 +189,22 @@ class Product implements ProductDetailInformationsInterface
     /**
      * @return ProductVariantsIteratorInterface
      */
-    public function getVariants()
+    public function getVariants() : ProductVariantsIteratorInterface
     {
         // TODO: Implement getVariants() method.
+    }
+
+    public function getDefaultVariant() : ProductVariantInterface
+    {
+        // TODO: Implement getDefaultVariant() method.
+    }
+
+    /**
+     * @return \IteratorIterator
+     */
+    public function getImages() : \IteratorIterator
+    {
+        // TODO: Implement getImages() method.
     }
 
     /**
@@ -203,7 +212,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function hasImages()
     {
-        return $this->hasImages();
+        // TODO: Implement hasImages() method.
     }
 
     /**
@@ -211,7 +220,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function getComponents() : ProductComponentsListInterface
     {
-        return $this->componentList;
+        // TODO: Implement getComponents() method.
     }
 
     /**
@@ -219,7 +228,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function hasComponents() : bool
     {
-       return $this->hasComponents();
+        // TODO: Implement hasComponents() method.
     }
 
     /**

@@ -130,7 +130,7 @@ class DetailFactory
 				$mediaFile,
 				$componentEntity->getOrdering,
                 $this->generateAdditiveList($componentEntity->getComponentId),
-                $this->generateAlergicList($componentEntity->getComponentId)
+                $this->generateAllergicList($componentEntity->getComponentId)
 			));
 		}
 	}
@@ -142,13 +142,13 @@ class DetailFactory
      */
     private function generateAdditiveList( int $componentId ) : AddendaItemList
     {
-        $componentAdditivList = new AddendaItemList();
+        $componentAdditiveList = new AddendaItemList();
 
         $additiveGenerator = $this->repository->getAdditiveEntities( $componentId );
 
         /** @var AddendaEntity $additiveEntity */
         foreach ( $additiveGenerator as $additiveEntity ) {
-            $componentAdditivList->addItem( new AddendaItem(
+			$componentAdditiveList->addItem( new AddendaItem(
                 $additiveEntity->getId(),
                 $additiveEntity->getType(),
                 $additiveEntity->getName(),
@@ -156,7 +156,7 @@ class DetailFactory
                 $additiveEntity->getComponentId()
             ) );
         }
-        return $componentAdditivList;
+        return $componentAdditiveList;
     }
 
 
@@ -164,15 +164,15 @@ class DetailFactory
      * @param int $componentId
      * @return AddendaItemList
      */
-    private function generateAlergicList( int $componentId ) : AddendaItemList
+    private function generateAllergicList( int $componentId ) : AddendaItemList
     {
-        $componentAlergicList = new AddendaItemList();
+        $componentAllergicList = new AddendaItemList();
 
         $allergicGenerator = $this->repository->getAdditiveEntities( $componentId );
 
         /** @var AddendaEntity $allergicEntity */
         foreach ( $allergicGenerator as $allergicEntity ) {
-            $componentAlergicList->addItem( new AddendaItem(
+			$componentAllergicList->addItem( new AddendaItem(
                 $allergicEntity->getId(),
                 $allergicEntity->getType(),
                 $allergicEntity->getName(),
@@ -180,7 +180,7 @@ class DetailFactory
                 $allergicEntity->getComponentId()
             ) );
         }
-        return $componentAlergicList;
+        return $componentAllergicList;
     }
 
 
