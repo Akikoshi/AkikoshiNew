@@ -11,6 +11,7 @@ namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 class SortListFactory
 {
+    //Todo: add to Filter
     private $sortList;
 
     public function __construct()

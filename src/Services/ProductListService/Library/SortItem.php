@@ -11,6 +11,7 @@ namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 class SortItem
 {
+    //Todo: add to Filter
     /** @var  float */
     private $price;
 

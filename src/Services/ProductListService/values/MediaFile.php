@@ -1,16 +1,22 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: johannesj
- * Date: 17.10.2016
- * Time: 13:11
+ * User: frankenfeldtp
+ * Date: 26.09.2016
+ * Time: 11:14
  */
 
-namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities;
+namespace Class152\PizzaMamamia\Services\ProductListService\values;
 
+use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
-class MediaFileEntity
+class MediaFile implements MediaFileInterface
 {
+	/**
+	 * @var int
+	 */
+	private $id;
+
 	/**
 	 * @var string
 	 */
@@ -73,6 +79,7 @@ class MediaFileEntity
 
 
 	public function __construct(
+		$id,
 		$mime,
 		$height,
 		$width,
@@ -84,10 +91,9 @@ class MediaFileEntity
 		$thumbUrl,
 		$bigUrl,
 		$titleTag,
-		$altTag
-	)
+		$altTag)
 	{
-
+		$this->id = $id;
 		$this->mime = $mime;
 		$this->height = $height;
 		$this->width = $width;
@@ -100,104 +106,109 @@ class MediaFileEntity
 		$this->bigUrl = $bigUrl;
 		$this->titleTag = $titleTag;
 		$this->altTag = $altTag;
-    }
+	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getMime()
+	public function getId() : int
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMime() : string
 	{
 		return $this->mime;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getHeight()
+	public function getHeight() : int
 	{
 		return $this->height;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getWidth()
+	public function getWidth() : int
 	{
 		return $this->width;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getThumbHeight()
+	public function getThumbHeight() : int
 	{
 		return $this->thumbHeight;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getThumbWidth()
+	public function getThumbWidth() : int
 	{
 		return $this->thumbWidth;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getBigHeight()
+	public function getBigHeight() : int
 	{
 		return $this->bigHeight;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getBigWidth()
+	public function getBigWidth() : int
 	{
 		return $this->bigWidth;
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
-	public function getUrl()
+	public function getUrl() : string
 	{
 		return $this->url;
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
-	public function getThumbUrl()
+	public function getThumbUrl() : string
 	{
 		return $this->thumbUrl;
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
-	public function getBigUrl()
+	public function getBigUrl() : string
 	{
 		return $this->bigUrl;
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
-	public function getTitleTag()
+	public function getTitleTag() : string
 	{
 		return $this->titleTag;
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
-	public function getAltTag()
+	public function getAltTag() : string
 	{
 		return $this->altTag;
 	}
-
-
-	
 }
