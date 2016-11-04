@@ -31,8 +31,8 @@ class Controller extends AbstractController
         $productListService = new ProductListService();
         $productList = $productListService->getProductList();
 
-        $sortList = $productListService->getSortList();
-        $paginator = new ProductListPaginator(14);
+        // $sortList = $productListService->getSortList();
+        // $paginator = new ProductListPaginator(14);
 
         new TwigRendering(
             'Productlist/index.twig',
@@ -44,8 +44,6 @@ class Controller extends AbstractController
                 'accountMenu' => $accountMenu,
                 'productList'=> $productList,
                 'breadcrumbMenu' => $breadcrumbMenu,
-                'sortList' => $sortList,
-                'paginator' => $paginator,
                 'sidebar' => $footerMenu,
             ]
         );
