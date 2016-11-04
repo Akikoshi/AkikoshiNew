@@ -34,12 +34,6 @@ class Product implements ProductDetailInformationsInterface
      */
     private $componentList;
 
-// WTF wofuer/woher ist das
-//    /**
-//     * @var MediaFileInterface
-//     */
-//    private $mediaInformation;
-
     /**
      * @var \Class152\PizzaMamamia\Services\ProductDetailService\Library\Price
      */
@@ -109,19 +103,19 @@ class Product implements ProductDetailInformationsInterface
         $this->componentList = $componentList;
 
         $this->hasDescription = true;
-        if($this->longDescription==null) 
+        if( nul == $this->longDescription)
         {
             $this->hasDescription = false;
         }
         
         $this->hasImages = true;
-        if(  $this->mediaFileList->getElement(0)==null)
+        if( null == $this->mediaFileList->getElement(0))
         {
             $this->hasImages = false;
         }
 
         $this->hasComponents = true;
-        if(  $this->componentList->getElement(0)==null)
+        if( null == $this->componentList->getElement(0))
         {
             $this->hasComponents = false;
         }
@@ -186,6 +180,8 @@ class Product implements ProductDetailInformationsInterface
         // TODO: Implement hasVariants() method.
     }
 
+
+    // ToDo: old, check the Dev for new ProductBasicInformationInterface
     /**
      * @return ProductVariantsIteratorInterface
      */
