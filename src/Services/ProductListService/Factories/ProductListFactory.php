@@ -63,7 +63,22 @@ class ProductListFactory
 
             $this->loadProducts(
                 $elem->getProductId(),
-                new MediaFile( $elem->getMediaFileId() ),
+                new MediaFile
+                (
+                    $elem->getMediaFileId(),
+                    $elem->getMime(),
+                    $elem->getHeight(),
+                    $elem->getWidth(),
+                    $elem->getThumbHeight(),
+                    $elem->getThumbWidth(),
+                    $elem->getBigHeight(),
+                    $elem->getBigWidth(),
+                    $elem->getUrl(),
+                    $elem->getThumbUrl(),
+                    $elem->getBigUrl(),
+                    $elem->getTitleTag(),
+                    $elem->getAltTag()
+                ),
                 $elem->getProductName(),
                 $elem->getShortDescription(),
                 $elem->getTypeOfProduct(),
@@ -135,74 +150,4 @@ class ProductListFactory
     {
         return $this->productList;
     }
-
-
-// ALTER CODE AUS DER FACTORY; WIRD HIER NOCHMALS HINTERLEGT
-//    private $productList;
-//
-//    private $repository;
-//
-//
-//
-//    public function __construct()
-//    {
-//        $this->repository = new ProductListRepository();
-//        $this->productList = new ProductList();
-//    }
-//
-//    private function createMediaFile(int $mediaFileId)
-//    {
-//        $this->mediaFile = new MediaFile($mediaFileId);
-//    }
-//
-//    private function craeteNewProductList()
-//    {
-//        $this->productList = new ProductList();
-//        $this->productList->addItem(
-//            new ProductItem($this->productName, $this->shortDescription, $this->mediaFile, $this->detailUrl, $this->grossPrice)
-//        );
-//    }
-//
-//    public function getProductList()
-//    {
-//        return $this->productList;
-//    }
-
-//      ALTER CODE AUS DER VARIANTSFACTORY Todo: muss noch implementiert werden  
-//
-//    /** @var  ProductListVariantsRepository */
-//    private $repository;
-//
-//    /** @var  ProductList */
-//    private $productList;
-//
-//    public function __construct(int $parentId)
-//    {
-//        $this->createProductVariants($parentId);
-//        $this->repository = new ProductListVariantsRepository( $parentId );
-//    }
-//
-//    private function createProductVariants(int $parentId)
-//    {
-//        $this->productList = new ProductList();
-//        $product = $this->repository->getProductById();
-//
-//        $productVarantsIterator = new ProductVariantIterator();
-//
-//
-//        $this->productList->addItem(
-//            new ProductVariantsIterator
-//            (
-//                $product->getParentId(),
-//                $product->getProductVariantId(),
-//                $variantName,
-//                PriceInterface $price,
-//                LinkInterface $productDetailUrl,
-//                LinkInterface $shoppingCartUrl,
-//                LinkInterface $configuratorUrl,
-//                LinkInterface $isConfigurable
-//            );
-//        );
-
-
 }

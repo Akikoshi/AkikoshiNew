@@ -56,9 +56,9 @@
 		public function hasVariants() : bool;
 
 		/**
-		 * @return ProductVariantsIteratorInterface
+		 * @return ProductVariantListInterface
 		 */
-		public function getVariants() : ProductVariantsIteratorInterface;
+		public function getVariants() : ProductVariantListInterface;
 
 		public function getDefaultVariant() : ProductVariantInterface;
 

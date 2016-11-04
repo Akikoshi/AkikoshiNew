@@ -62,16 +62,30 @@ class ProductListRepository
     public function getProductListItems() : \Generator
     {
         $sql = "select 
-                p.id as id, 
-                p.mediaFileId as mediaFileId, 
+                p.id as id,  
                 p.name as name, 
                 d.shortDescription as shortDescription, 
                 p.type as type, 
                 p.grossPrice as grossPrice, 
                 p.vat as vat, 
                 p.productGroup as productGroup, 
-                p.parentId as parentId"
-            . " FROM Products as p LEFT JOIN Descriptions as d ON p.id = d.fk_products"
+                p.parentId as parentId,
+                mf.id as mediaFileId,
+				mf.mime as mime,
+				mf.height as height,
+				mf.width as width,
+				mf.thumbHeight as thumbHeight,
+				mf.thumbWidth as thumbWidth, 
+				mf.bigHeight as bigHeight, 
+				mf.bigWidth as bigWidth, 
+				mf.url as url, 
+				mf.thumbUrl as thumbUrl, 
+				mf.bigUrl as bigUrl, 
+				mf.titleTag as titleTag, 
+				mf.altTag as altTag"
+            . " FROM Products as p LEFT JOIN Descriptions as d 
+                ON p.id = d.fk_products RIGHT JOIN MediaFiles as mf 
+                ON p.mediaFileId = mf.id"
             . " WHERE p.type = \"Container\" OR p.type = \"Single\""
             . $this->orderBy;
 
@@ -79,16 +93,29 @@ class ProductListRepository
 
         while( null !== ( $item = $result->fetch_assoc() ) )
         {
+            var_dump($item);
             yield new ProductListEntity(
                 $item['id'],
-                $item['mediaFileId'],
                 $item['name'],
                 $item['shortDescription'],
                 $item['type'],
                 $item['grossPrice'],
                 $item['vat'],
                 $item['productGroup'],
-                $item['parentId']
+                $item['parentId'],
+                $item['mediaFileId'],
+                $item['mime'],
+                $item['height'],
+                $item['width'],
+                $item['thumbHeight'],
+                $item['thumbWidth'],
+                $item['bigHeight'],
+                $item['bigWidth'],
+                $item['url'],
+                $item['thumbUrl'],
+                $item['bigUrl'],
+                $item['titleTag'],
+                $item['altTag']
             );
         }
     }
@@ -105,8 +132,23 @@ class ProductListRepository
                 p.grossPrice as grossPrice, 
                 p.vat as vat, 
                 p.productGroup as productGroup, 
-                p.parentId as parentId"
-            . " FROM Products as p LEFT JOIN Descriptions as d ON p.id = d.fk_products"
+                p.parentId as parentId,
+                mf.id as mediaFileId,
+				mf.mime as mime,
+				mf.height as height,
+				mf.width as width,
+				mf.thumbHeight as thumbHeight,
+				mf.thumbWidth as thumbWidth, 
+				mf.bigHeight as bigHeight, 
+				mf.bigWidth as bigWidth, 
+				mf.url as url, 
+				mf.thumbUrl as thumbUrl, 
+				mf.bigUrl as bigUrl, 
+				mf.titleTag as titleTag, 
+				mf.altTag as altTag"
+            . " FROM Products as p LEFT JOIN Descriptions as d 
+                ON p.id = d.fk_products RIGHT JOIN MediaFiles as mf 
+                ON p.mediaFileId = mf.id"
             . " where p.parentId = ".$parentId
             . " order by p.grossPrice;";
 
@@ -116,14 +158,26 @@ class ProductListRepository
         {
             yield new ProductListEntity(
                 $item['id'],
-                $item['mediaFileId'],
                 $item['name'],
                 $item['shortDescription'],
                 $item['type'],
                 $item['grossPrice'],
                 $item['vat'],
                 $item['productGroup'],
-                $item['parentId']
+                $item['parentId'],
+                $item['mediaFileId'],
+                $item['mime'],
+                $item['height'],
+                $item['width'],
+                $item['thumbHeight'],
+                $item['thumbWidth'],
+                $item['bigHeight'],
+                $item['bigWidth'],
+                $item['url'],
+                $item['thumbUrl'],
+                $item['bigUrl'],
+                $item['titleTag'],
+                $item['altTag']
             );
         }
     }
