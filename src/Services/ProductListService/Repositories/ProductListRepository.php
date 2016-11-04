@@ -93,7 +93,6 @@ class ProductListRepository
 
         while( null !== ( $item = $result->fetch_assoc() ) )
         {
-            var_dump($item);
             yield new ProductListEntity(
                 $item['id'],
                 $item['name'],

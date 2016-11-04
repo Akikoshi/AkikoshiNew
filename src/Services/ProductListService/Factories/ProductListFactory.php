@@ -45,9 +45,11 @@ class ProductListFactory
 
             $type = $elem->getTypeOfProduct();
             if ('container' == $type) {
-                $variants[] = $this->loadVariants($elem->getProductId());
+                $variants = new ProductVariantList(
+                    [$this->loadVariants($elem->getProductId())]
+                );
             } else {
-                $variants[] = new ProductVariantList(
+                $variants = new ProductVariantList(
                     [new ProductVariantItem(
                         $elem->getProductId(),
                         $elem->getProductName(),
@@ -63,6 +65,7 @@ class ProductListFactory
 
             $this->loadProducts(
                 $elem->getProductId(),
+                $elem->getProductName(),
                 new MediaFile
                 (
                     $elem->getMediaFileId(),
@@ -79,12 +82,8 @@ class ProductListFactory
                     $elem->getTitleTag(),
                     $elem->getAltTag()
                 ),
-                $elem->getProductName(),
                 $elem->getShortDescription(),
                 $elem->getTypeOfProduct(),
-                $elem->getGrossPrice(),
-                $elem->getVat(),
-                $elem->getProductGroupId(),
                 $variants
             );
         }
@@ -96,11 +95,10 @@ class ProductListFactory
     }
     
     public function loadProducts($id,
-                                 $mediaFileId,
                                  $name,
+                                 $mediaFileId,
                                  $shortDescription,
-                                 $type, $grossPrice,
-                                 $vat, $productGroupId,
+                                 $type,
                                  $productVariantsList)
     {
         $this->productListItem = new ProductListItem(
@@ -109,9 +107,6 @@ class ProductListFactory
             $mediaFileId,
             $shortDescription,
             $type,
-            $grossPrice,
-            $vat,
-            $productGroupId,
             $productVariantsList);
     }
 
