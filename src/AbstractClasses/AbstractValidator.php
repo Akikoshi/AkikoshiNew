@@ -74,7 +74,7 @@ abstract class AbstractValidator
      * @return bool
      * @throws ValidatorUsageFailException
      */
-    public function hasThisFieldErrors(string $keyName) : bool
+    public final function hasThisFieldErrors(string $keyName) : bool
     {
 
         if (!in_array($keyName, $this->expectedKeys)) {
@@ -96,7 +96,7 @@ abstract class AbstractValidator
      * @return array
      * @throws ValidatorUsageFailException
      */
-    public function readFieldErrors(string $keyName) : array
+    public final function readFieldErrors(string $keyName) : array
     {
 
         if (!in_array($keyName, $this->expectedKeys)) {
@@ -114,11 +114,19 @@ abstract class AbstractValidator
     }
 
     /**
+     * @return array
+     */
+    public final function readAllErrors() : array
+    {
+        return $this->errors;
+    }
+
+    /**
      * @param string $keyName
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfEmpty(string $keyName, string $customErrorString = '')
+    protected final function errorIfEmpty(string $keyName, string $customErrorString = '')
     {
         if (!in_array($keyName, $this->expectedKeys)) {
             throw new ValidatorUsageFailException(
@@ -140,7 +148,7 @@ abstract class AbstractValidator
      * @param string $defaultErrorMessage
      * @param string $customErrorMessage
      */
-    private function writeErrorEntry(
+    private final function writeErrorEntry(
         string $keyName,
         string $defaultErrorMessage,
         string $customErrorMessage = ''
@@ -165,7 +173,7 @@ abstract class AbstractValidator
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfValueNotInArray(
+    protected final function errorIfValueNotInArray(
         string $keyName,
         array $allowedValues,
         string $customErrorString = ''
@@ -200,7 +208,7 @@ abstract class AbstractValidator
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfNotThisValue(
+    protected final function errorIfNotThisValue(
         string $keyName,
         string $expectedValue,
         string $customErrorString = ''
@@ -228,7 +236,7 @@ abstract class AbstractValidator
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfNotBoolean(
+    protected final function errorIfNotBoolean(
         string $keyName,
         string $customErrorString = ''
     )
@@ -311,12 +319,16 @@ abstract class AbstractValidator
             );
         }
 
-        $float = filter_var($this->$keyName, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND);
+        $float = filter_var(
+            $this->$keyName,
+            FILTER_VALIDATE_FLOAT,
+            FILTER_FLAG_ALLOW_THOUSAND
+        );
 
         if (false === $float) {
             $this->writeErrorEntry(
                 $keyName,
-                'Dieses Feld muss eine Fliesszahl enthalten.',
+                'Dieses Feld muss eine Fliesskommazahl enthalten.',
                 $customErrorString
             );
         }

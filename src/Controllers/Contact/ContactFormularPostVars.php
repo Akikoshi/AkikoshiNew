@@ -47,11 +47,15 @@ class ContactFormularPostVars extends AbstractValidator
         );
 
         $this->errorIfEmpty(
-            'department',
-            'An welche Abteilung wollen Sie die Message senden'
+            'name',
+            'Bitte geben Sie Ihren Namen ein'
         );
 
-        $this->errorIfNotThisValue('department', 'keine', 'An welche Abteilung wollen Sie die Message senden');
+        $this->errorIfNotThisValue(
+            'department',
+            'keine',
+            'An welche Abteilung wollen Sie die Message senden'
+        );
 
         $this->errorIfValueNotInArray(
             'department',
@@ -59,7 +63,7 @@ class ContactFormularPostVars extends AbstractValidator
             'Bitte geben Sie die Abteilung an'
         );
 
-        $this->throwExceptionWhenErrors();
+        // $this->throwExceptionWhenErrors();
 
     }
 
