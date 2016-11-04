@@ -10,6 +10,8 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
+use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaItemList;
+use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AllergenAdditiveItem;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\ComponentListNeedsComponentException;
 
 class ComponentList extends AbstractIterator
@@ -20,20 +22,17 @@ class ComponentList extends AbstractIterator
      * @param array|null $array
      * @throws \Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\ComponentListNeedsComponentException
      */
-    public function __construct(array $array = null )
+    public function __construct(array $array = null)
     {
-        if( is_null( $array ) )
-        {
+        if (is_null($array)) {
             return;
         }
 
-        foreach (array_keys($array) as $keys )
-        {
-            if(
-                ! is_object( $array[$keys] )
-                || ! is_a( $array[$keys], 'Component' )
-            )
-            {
+        foreach (array_keys($array) as $keys) {
+            if (
+                !is_object($array[$keys])
+                || !is_a($array[$keys], 'Component')
+            ) {
                 throw new ComponentListNeedsComponentException(
                     'constructor of ComponentList can only use Component objects'
                 );
@@ -45,9 +44,61 @@ class ComponentList extends AbstractIterator
     /**
      * @param Component $Component
      */
-    public function addItem( Component $Component )
+    public function addItem(Component $Component)
     {
         $this->iteratorArray[] = $Component;
+    }
+
+
+    public function getCompleteAdditiveList():string
+    {
+        $additiveAsStringArray[] = null;
+        foreach (array_keys($this->iteratorArray) as $Keys)
+        {
+            /**
+             * @var $additiveList AddendaItemList
+             */
+            $additiveList = $this->iteratorArray[$Keys]->getadditiveList();
+
+            foreach ($additiveList->getKeys() as $moreKeys)
+            {
+                $additiveAsStringArray[] = $additiveList->getElement($moreKeys)->getTag();
+            }
+        }
+        $additiveAsStringArray = array_unique($additiveAsStringArray);
+
+        $additiveAsString = $additiveAsStringArray[0];
+
+        for ($i = 1; $i < count($additiveAsStringArray); $i++)
+        {
+            $additiveAsString = $additiveAsString . "," . $additiveAsStringArray[$i];
+        }
+    }
+
+    
+    public function getCompleteAllergicList():string
+    {
+        $allergicAsStringArray[] = null;
+        foreach (array_keys($this->iteratorArray) as $Keys)
+        {
+            /**
+             * @var $allergicList AddendaItemList
+             */
+            $allergicList = $this->iteratorArray[$Keys]->getAllergicList();
+
+            foreach ($allergicList->getKeys() as $moreKeys)
+            {
+                $allergicAsStringArray[] = $allergicList->getElement($moreKeys)->getTag();
+            }
+        }
+        $allergicAsStringArray = array_unique($allergicAsStringArray);
+
+        $allergicAsString = $allergicAsStringArray[0];
+
+        for ($i = 1; $i < count($allergicAsStringArray); $i++)
+        {
+            $allergicAsString = $allergicAsString . "," . $allergicAsStringArray[$i];
+        }
     }
 
     /**

@@ -48,10 +48,27 @@ class AddendaItemList extends AbstractIterator
 	}
 
 	/**
-	 * @return ComponentItem
+	 * @return $AddendaItem
 	 */
-	public function current() : ComponentItem
+	public function current() : AddendaItem
 	{
 		return parent::current();
 	}
+
+
+	/**
+	 * @param mixed $key
+	 *
+	 * @return $AddendaItem
+	 */
+	public function getElement( $key = null ):AddendaItem
+	{
+		if ( !isset( $this->iteratorArray[ $key ] ) ) {
+			return null;
+		}
+
+		return $this->iteratorArray[ $key ];
+	}
+	
+	
 }

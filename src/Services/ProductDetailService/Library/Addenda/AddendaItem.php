@@ -63,7 +63,7 @@
 		/**
 		 * @return int
 		 */
-		public function getId()
+		public function getId() :int
 		{
 			return $this->id;
 		}
@@ -71,7 +71,7 @@
 		/**
 		 * @return string
 		 */
-		public function getType()
+		public function getType() :string
 		{
 			return $this->type;
 		}
@@ -79,7 +79,7 @@
 		/**
 		 * @return string
 		 */
-		public function getName()
+		public function getName() :string
 		{
 			return $this->name;
 		}
@@ -87,7 +87,7 @@
 		/**
 		 * @return string
 		 */
-		public function getTag()
+		public function getTag():string
 		{
 			return $this->tag;
 		}
@@ -95,7 +95,7 @@
 		/**
 		 * @return int
 		 */
-		public function getComponentId()
+		public function getComponentId() :int
 		{
 			return $this->componentId;
 		}
