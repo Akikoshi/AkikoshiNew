@@ -14,9 +14,12 @@
 	use Class152\PizzaMamamia\Exception\RedirectException;
 	use Class152\PizzaMamamia\Http\Request;
 
+	
 	class Init
 	{
-
+		
+		
+	
 		public function __construct()
 		{
 			try {

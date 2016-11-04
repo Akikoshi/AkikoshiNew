@@ -15,6 +15,8 @@ use Class152\PizzaMamamia\Services\ProductListService\Exceptions\FilterListNeeds
 final class FilterList extends AbstractIterator
 {
     /**
+     * 
+     * Todo: move to his own Folder
      * ProductList constructor.
      * @param array $array
      * @throws \Class152\PizzaMamamia\Services\ProductListService\Exceptions\FilterListNeedsFilterItemsException

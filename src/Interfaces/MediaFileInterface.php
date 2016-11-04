@@ -15,19 +15,9 @@ interface MediaFileInterface
 	public function getId() : int;
 
 	/**
-	 * @param int $id
-	 */
-	public function setId( $id );
-
-	/**
 	 * @return string
 	 */
 	public function getMime() : string;
-
-	/**
-	 * @param string $mime
-	 */
-	public function setMime( $mime );
 
 	/**
 	 * @return int
@@ -35,19 +25,9 @@ interface MediaFileInterface
 	public function getHeight() : int;
 
 	/**
-	 * @param int $height
-	 */
-	public function setHeight( $height );
-
-	/**
 	 * @return int
 	 */
 	public function getWidth() : int;
-
-	/**
-	 * @param int $width
-	 */
-	public function setWidth( $width );
 
 	/**
 	 * @return int
@@ -55,19 +35,9 @@ interface MediaFileInterface
 	public function getThumbHeight() : int;
 
 	/**
-	 * @param int $thumbHeight
-	 */
-	public function setThumbHeight( $thumbHeight );
-
-	/**
 	 * @return int
 	 */
 	public function getThumbWidth() : int;
-
-	/**
-	 * @param int $thumbWidth
-	 */
-	public function setThumbWidth( $thumbWidth );
 
 	/**
 	 * @return int
@@ -75,19 +45,9 @@ interface MediaFileInterface
 	public function getBigHeight() : int;
 
 	/**
-	 * @param int $bigHeight
-	 */
-	public function setBigHeight( $bigHeight );
-
-	/**
 	 * @return int
 	 */
 	public function getBigWidth() : int;
-
-	/**
-	 * @param int $bigWidth
-	 */
-	public function setBigWidth( $bigWidth );
 
 	/**
 	 * @return string
@@ -95,19 +55,9 @@ interface MediaFileInterface
 	public function getUrl() : string;
 
 	/**
-	 * @param string $url
-	 */
-	public function setUrl( $url );
-
-	/**
 	 * @return string
 	 */
 	public function getThumbUrl() : string;
-
-	/**
-	 * @param string $thumbUrl
-	 */
-	public function setThumbUrl( $thumbUrl );
 
 	/**
 	 * @return string
@@ -115,27 +65,12 @@ interface MediaFileInterface
 	public function getBigUrl() : string;
 
 	/**
-	 * @param string $bigUrl
-	 */
-	public function setBigUrl( $bigUrl );
-
-	/**
 	 * @return string
 	 */
 	public function getTitleTag() : string;
 
 	/**
-	 * @param string $titleTag
-	 */
-	public function setTitleTag( $titleTag );
-
-	/**
 	 * @return string
 	 */
 	public function getAltTag() : string;
-
-	/**
-	 * @param string $altTag
-	 */
-	public function setAltTag( $altTag );
 }

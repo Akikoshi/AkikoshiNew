@@ -11,6 +11,8 @@ namespace Class152\PizzaMamamia\Services\ProductListService\Library;
 
 class FilterItem
 {
+    //Todo: logic must be implement to Filter class
+    
     /** @var  int */
     private $groupId;
 

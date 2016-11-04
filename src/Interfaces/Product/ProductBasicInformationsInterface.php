@@ -21,43 +21,45 @@
 		/**
 		 * @return string
 		 */
-		public function getId();
+		public function getId() : string;
 
 		/**
 		 * @return string
 		 */
-		public function getName();
+		public function getName() : string;
 
 		/**
 		 * @return MediaFileInterface
 		 */
-		public function getThumb();
+		public function getThumb() : MediaFileInterface;
 
 		/**
 		 * text type depends of current scope
 		 *
 		 * @return string
 		 */
-		public function getDescription();
+		public function getDescription() : string;
 
 		/**
 		 * @return bool
 		 */
-		public function hasDescription();
+		public function hasDescription() : bool;
 
 		/**
 		 * @return bool
 		 */
-		public function isSingle();
+		public function isSingle() : bool;
 
 		/**
 		 * @return bool
 		 */
-		public function hasVariants();
+		public function hasVariants() : bool;
 
 		/**
 		 * @return ProductVariantsIteratorInterface
 		 */
-		public function getVariants();
+		public function getVariants() : ProductVariantsIteratorInterface;
+
+		public function getDefaultVariant() : ProductVariantInterface;
 
 	}
