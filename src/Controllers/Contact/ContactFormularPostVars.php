@@ -13,11 +13,6 @@ use Class152\PizzaMamamia\AbstractClasses\AbstractValidator;
 
 class ContactFormularPostVars extends AbstractValidator
 {
-    /** @var bool */
-    protected $isSent;
-
-    /** @var bool */
-    protected $isValid;
 
     /** @var string */
     protected $department;
@@ -63,6 +58,8 @@ class ContactFormularPostVars extends AbstractValidator
             ['chef', 'account'],
             'Bitte geben Sie die Abteilung an'
         );
+
+        $this->throwExceptionWhenErrors();
 
     }
 

@@ -9,6 +9,7 @@
 namespace Class152\PizzaMamamia\AbstractClasses;
 
 
+use Class152\PizzaMamamia\Exception\FormValidationFailedException;
 use Class152\PizzaMamamia\Exception\ValidatorUsageFailException;
 
 abstract class AbstractValidator
@@ -66,6 +67,50 @@ abstract class AbstractValidator
     public final function isValid(): bool
     {
         return $this->isValid;
+    }
+
+    /**
+     * @param string $keyName
+     * @return bool
+     * @throws ValidatorUsageFailException
+     */
+    public function hasThisFieldErrors(string $keyName) : bool
+    {
+
+        if (!in_array($keyName, $this->expectedKeys)) {
+            throw new ValidatorUsageFailException(
+                'Key ' . $keyName . ' not defined in expectedKeys'
+            );
+        }
+
+        if (isset($this->errors[$keyName])) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    /**
+     * @param string $keyName
+     * @return array
+     * @throws ValidatorUsageFailException
+     */
+    public function readFieldErrors(string $keyName) : array
+    {
+
+        if (!in_array($keyName, $this->expectedKeys)) {
+            throw new ValidatorUsageFailException(
+                'Key ' . $keyName . ' not defined in expectedKeys'
+            );
+        }
+
+        if (isset($this->errors[$keyName])) {
+            return $this->errors[$keyName];
+        }
+
+        return [];
+
     }
 
     /**
@@ -278,6 +323,17 @@ abstract class AbstractValidator
 
         $this->$keyName = $float;
 
+    }
+
+    /**
+     * @throws FormValidationFailedException
+     */
+    protected function throwExceptionWhenErrors()
+    {
+        if (!empty($this->errors)) {
+            $exception = new FormValidationFailedException();
+            throw $exception;
+        }
     }
 
 }
