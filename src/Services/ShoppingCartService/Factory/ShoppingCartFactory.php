@@ -47,7 +47,7 @@ class ShoppingCartFactory
             $this->shoppingCartItems[$key] = new ShoppingCartItem(
                 // TODO: just Fakedata
 
-                '5',                                  //ID
+                '5',                                //ID
                 'Pizza Tonno',                      //Name
                 'MediaFile',                        //thumb
                 'Fischpizza vom feinsten aus dem Meer',            //description

@@ -27,7 +27,7 @@ class Controller extends AbstractController
         $shoppingCartService = new ShoppingCartService();
         $shoppingCart = $shoppingCartService->getShoppingCart();
 
-        var_dump( $shoppingCart ); die();
+        // var_dump( $shoppingCart ); die();
         
         new TwigRendering(
             'Shoppingcart/index.twig',
