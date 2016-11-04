@@ -464,39 +464,34 @@ INSERT INTO `CustomerGroups` (`id`, `name`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Tabellenstruktur für Tabelle `MediaFiles`
---
-
-DROP TABLE IF EXISTS `MediaFiles`;
+-- Exportiere Struktur von Tabelle vagrant.MediaFiles
 CREATE TABLE IF NOT EXISTS `MediaFiles` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fk_product` int(10) unsigned NOT NULL,
   `mime` varchar(150) NOT NULL,
-  `height` int(5) UNSIGNED NOT NULL,
-  `width` int(5) UNSIGNED NOT NULL,
-  `thumbHeight` int(5) UNSIGNED NOT NULL,
-  `thumbWidth` int(5) UNSIGNED NOT NULL,
-  `bigHeight` int(5) UNSIGNED NOT NULL,
-  `bigWidth` int(5) UNSIGNED NOT NULL,
+  `height` int(5) unsigned NOT NULL,
+  `width` int(5) unsigned NOT NULL,
+  `thumbHeight` int(5) unsigned NOT NULL,
+  `thumbWidth` int(5) unsigned NOT NULL,
+  `bigHeight` int(5) unsigned NOT NULL,
+  `bigWidth` int(5) unsigned NOT NULL,
   `url` varchar(250) NOT NULL,
   `thumbUrl` varchar(250) NOT NULL,
   `bigUrl` varchar(250) NOT NULL,
   `titleTag` varchar(250) NOT NULL,
   `altTag` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='the db of all image files';
+  PRIMARY KEY (`id`),
+  KEY `FK_MediaFiles_Products` (`fk_product`),
+  CONSTRAINT `FK_MediaFiles_Products` FOREIGN KEY (`fk_product`) REFERENCES `Products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='the db of all image files';
 
---
--- TRUNCATE Tabelle vor dem Einfügen `MediaFiles`
---
-
-TRUNCATE TABLE `MediaFiles`;
---
--- Daten für Tabelle `MediaFiles`
---
-
-INSERT INTO `MediaFiles` (`id`, `mime`, `height`, `width`, `thumbHeight`, `thumbWidth`, `bigHeight`, `bigWidth`, `url`, `thumbUrl`, `bigUrl`, `titleTag`, `altTag`) VALUES
-  (1, 'image/jpeg', 450, 450, 100, 100, 1000, 1000, '/img/teller.jpg', '/img/teller-thumb.jpg', '/img/teller-big.jpg', 'Das ist ein Testbild', 'noImage');
+-- Exportiere Daten aus Tabelle vagrant.MediaFiles: ~2 rows (ungefähr)
+DELETE FROM `MediaFiles`;
+/*!40000 ALTER TABLE `MediaFiles` DISABLE KEYS */;
+INSERT INTO `MediaFiles` (`id`, `fk_product`, `mime`, `height`, `width`, `thumbHeight`, `thumbWidth`, `bigHeight`, `bigWidth`, `url`, `thumbUrl`, `bigUrl`, `titleTag`, `altTag`) VALUES
+  (1, 1, 'image/jpeg', 450, 450, 100, 100, 1000, 1000, '/img/teller.jpg', '/img/teller-thumb.jpg', '/img/teller-big.jpg', 'Das ist ein Testbild', 'noImage'),
+  (2, 1, 'image/jpeg', 800, 800, 100, 100, 1500, 1500, '/img/glass.jpg', '/img.bla.jpg', '/img/big.jpg', 'Das auch', 'a Tag');
+/*!40000 ALTER TABLE `MediaFiles` ENABLE KEYS */;
 
 -- --------------------------------------------------------
 

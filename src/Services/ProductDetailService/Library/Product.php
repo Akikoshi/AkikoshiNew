@@ -34,11 +34,11 @@ class Product implements ProductDetailInformationsInterface
      */
     private $componentList;
 
-
-    /**
-     * @var MediaFileInterface
-     */
-    private $mediaInformation;
+// WTF wofuer/woher ist das
+//    /**
+//     * @var MediaFileInterface
+//     */
+//    private $mediaInformation;
 
     /**
      * @var \Class152\PizzaMamamia\Services\ProductDetailService\Library\Price
