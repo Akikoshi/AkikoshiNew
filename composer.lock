@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "c9aac2403c5d9e7249cb4954ea11b7f893eaa9b7"
+                "reference": "3ff5abf75bf2fb9b9bffcc15c4384e08d0763c7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c9aac2403c5d9e7249cb4954ea11b7f893eaa9b7",
-                "reference": "c9aac2403c5d9e7249cb4954ea11b7f893eaa9b7",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3ff5abf75bf2fb9b9bffcc15c4384e08d0763c7f",
+                "reference": "3ff5abf75bf2fb9b9bffcc15c4384e08d0763c7f",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.25-dev"
+                    "dev-master": "1.27-dev"
                 }
             },
             "autoload": {
@@ -66,7 +66,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-09-21 23:20:10"
+            "time": "2016-10-25 19:28:14"
         }
     ],
     "packages-dev": [],

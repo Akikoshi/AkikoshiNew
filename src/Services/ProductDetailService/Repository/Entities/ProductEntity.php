@@ -11,60 +11,108 @@
 
 	class ProductEntity
 	{
-		/** @var int */
-		private $parentId;
-
-		/** @var string */
+		/**
+		 * @var string
+		 */
 		private $name;
 
-		/** @var int  */
+		/**
+		 * @var string
+		 */
+		private $internalName;
+
+		/**
+		 * @var int
+		 */
+		private $parentId;
+
+		/** @var int */
 		private $productGroup;
 
-		/** @var float  */
-
+		/**
+		 * @var float
+		 */
 		private $GrossPrice;
 
-		/** @var string */
+		/**
+		 * @var int
+		 */
+		private $vat;
 
+		/**
+		 * @var string
+		 */
 		private $type;
-		/**
-		 * UserEntity constructor.
-		 *
-		 * @param array $userRow
-		 */
-		public function __construct( array $userRow )
-		{
-
-			$this->name = $userRow['name'];
-			$this->parentId = $userRow['parentId'];
-			$this->productGroup = $userRow['productGroup'];
-			$this->GrossPrice = $userRow['GrossPrice'];
-			$this->type = $userRow['type'];
-
-		}
 
 		/**
-		 * @return int
+		 * @var string
 		 */
-		public function getParentId(): int
+		private $shortDescription;
+
+		/**
+		 * @var string
+		 */
+		private $longDescription;
+
+		public function __construct(
+			$name,
+			$internalName,
+			$parentId,
+			$productGroup,
+			$grossPrice,
+			$vat,
+			$type,
+			$shortDescription,
+			$longDescription
+		)
 		{
-			return $this->parentId;
+			$this->name = $name;
+			$this->internalName = $internalName;
+			$this->parentId = $parentId;
+			$this->productGroup = $productGroup;
+			$this->GrossPrice = $grossPrice;
+			$this->vat = $vat;
+			$this->type = $type;
+			$this->shortDescription = $shortDescription;
+			$this->longDescription = $longDescription;
 		}
-
-
 
 		/**
 		 * @return string
 		 */
-		public function getId(): string
+		public function getName()
 		{
 			return $this->name;
 		}
 
 		/**
+		 * @return string
+		 */
+		public function getInternalName()
+		{
+			return $this->internalName;
+		}
+
+		/**
+		 * @return int
+		 */
+		public function getParentId()
+		{
+			return $this->parentId;
+		}
+
+		/**
+		 * @return int
+		 */
+		public function getProductGroup()
+		{
+			return $this->productGroup;
+		}
+
+		/**
 		 * @return float
 		 */
-		public function getGrossPrice() :float
+		public function getGrossPrice()
 		{
 			return $this->GrossPrice;
 		}
@@ -72,17 +120,33 @@
 		/**
 		 * @return int
 		 */
-		public function getProductGroup() :int
+		public function getVat()
 		{
-			return $this->parentId;
+			return $this->vat;
 		}
 
 		/**
 		 * @return string
 		 */
-		public function getType():string
+		public function getType()
 		{
 			return $this->type;
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getShortDescription()
+		{
+			return $this->shortDescription;
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getLongDescription()
+		{
+			return $this->longDescription;
 		}
 
 	}

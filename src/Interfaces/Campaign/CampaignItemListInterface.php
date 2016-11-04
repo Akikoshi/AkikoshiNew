@@ -14,14 +14,23 @@
 
 	interface CampaignItemListInterface extends AbstractIteratorInterface
 	{
+		/**
+		 * @param int $amount
+		 */
 		public function filterByRandom( int $amount );
 
+		/**
+		 * @param int $productGroupId
+		 */
 		public function filterByProductGroupId( int $productGroupId );
-
+		
 		public function sortByPrice();
 
 		public function sortByProductGroup();
 
+		/**
+		 * @param int $productId
+		 */
 		public function isThisProductIdInThisCampaign( int $productId );
 
 		/**
