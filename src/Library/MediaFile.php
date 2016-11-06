@@ -105,21 +105,36 @@ class MediaFile implements MediaFileInterface
      */
     private $altTag;
 
-
+    /**
+     * MediaFile constructor.
+     * @param int $id
+     * @param string $mime
+     * @param int $height
+     * @param int $width
+     * @param int $thumbHeight
+     * @param int $thumbWidth
+     * @param int $bigHeight
+     * @param int $bigWidth
+     * @param LinkInterface $url
+     * @param LinkInterface $thumbUrl
+     * @param LinkInterface $bigUrl
+     * @param string $titleTag
+     * @param string $altTag
+     */
     public function __construct(
-        $id,
-        $mime,
-        $height,
-        $width,
-        $thumbHeight,
-        $thumbWidth,
-        $bigHeight,
-        $bigWidth,
-        $url,
-        $thumbUrl,
-        $bigUrl,
-        $titleTag,
-        $altTag)
+        int $id,
+        string $mime,
+        int $height,
+        int $width,
+        int $thumbHeight,
+        int $thumbWidth,
+        int $bigHeight,
+        int $bigWidth,
+        LinkInterface $url,
+        LinkInterface $thumbUrl,
+        LinkInterface $bigUrl,
+        string $titleTag,
+        string $altTag)
     {
         $this->id = $id;
         $this->mime = $mime;
