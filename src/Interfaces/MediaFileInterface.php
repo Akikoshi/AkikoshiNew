@@ -50,19 +50,19 @@ interface MediaFileInterface
     public function getBigWidth() : int;
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getUrl() : LinkInterface;
+    public function getUrl() : string;
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getThumbUrl() : LinkInterface;
+    public function getThumbUrl() : string;
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getBigUrl() : LinkInterface;
+    public function getBigUrl() : string;
 
     /**
      * @return string

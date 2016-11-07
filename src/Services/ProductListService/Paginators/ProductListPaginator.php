@@ -9,6 +9,8 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Paginators;
 
 
+use Class152\PizzaMamamia\Services\ProductListService\Factories\ProductListFactory;
+
 class ProductListPaginator
 {
     /*

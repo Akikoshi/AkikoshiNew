@@ -53,7 +53,7 @@ class MediaFileList extends AbstractIterator
     /**
      * overloads the current method for restricted type of return value
      *
-     * @return \Class152\PizzaMamamia\Services\ProductDetailService\Library\MediaFile
+     * @return MediaFile
      */
     public function current() : MediaFile
     {
