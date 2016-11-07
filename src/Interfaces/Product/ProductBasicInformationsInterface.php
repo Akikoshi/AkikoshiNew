@@ -60,6 +60,9 @@
 		 */
 		public function getVariants() : ProductVariantListInterface;
 
+		/**
+		 * @return ProductVariantInterface
+		 */
 		public function getDefaultVariant() : ProductVariantInterface;
 
 	}
