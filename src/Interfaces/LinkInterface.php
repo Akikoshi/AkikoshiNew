@@ -23,7 +23,7 @@
 		 * @param string $title
 		 * @param string $css
 		 */
-		public function __construct( $url, $text, $title = '', $css = '' );
+		public function __construct( string $url, string $text, string $title = '', string $css = '' );
 
 		/**
 		 * @return string
