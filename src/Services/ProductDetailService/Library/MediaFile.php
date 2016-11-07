@@ -12,6 +12,7 @@ use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
 class MediaFile implements MediaFileInterface
 {
+    // ToDo: Link zu LinkInterface aendern
     /**
      * Hold the Id of the MediaFile
      *
