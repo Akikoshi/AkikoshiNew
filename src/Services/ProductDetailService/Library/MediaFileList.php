@@ -5,7 +5,7 @@
  * Time: 09:19
  */
 
-namespace Class152\PizzaMamamia\Services\ProductDetailService;
+namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;

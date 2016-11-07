@@ -6,7 +6,7 @@
  * Time: 11:06
  */
 
-namespace Class152\PizzaMamamia\Services\ProductDetailService;
+namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
 use Class152\PizzaMamamia\Interfaces\LinkInterface;

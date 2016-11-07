@@ -10,6 +10,7 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaItemList;
 use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItem;
+use Class152\PizzaMamamia\Services\ProductDetailService\MediaFileList;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\AddendaEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\ProductRepository;

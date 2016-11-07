@@ -6,12 +6,11 @@
  * Time: 11:55
  */
 
-namespace Class152\PizzaMamamia\Services\ProductConfiguratorService\Library;
+namespace Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\AddendaItemListNeedsAddendaItemsException;
-use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItem;
 
 class AddendaItemList extends AbstractIterator
 {
@@ -50,7 +49,7 @@ class AddendaItemList extends AbstractIterator
     /**
      * @return AddendaItem
      */
-    public function current() : AddendaItem
+    public function current(): AddendaItem
     {
         return parent::current();
     }
@@ -60,7 +59,7 @@ class AddendaItemList extends AbstractIterator
      * @param null $key
      * @return AddendaItem
      */
-    public function getElement($key = null):AddendaItem
+    public function getElement($key = null): AddendaItem
     {
         if (!isset($this->iteratorArray[$key])) {
             return null;
