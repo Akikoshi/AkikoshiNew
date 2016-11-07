@@ -11,7 +11,6 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
 use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaItemList;
-use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AllergenAdditiveItem;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\ComponentListNeedsComponentException;
 
 class ComponentList extends AbstractIterator
@@ -49,19 +48,19 @@ class ComponentList extends AbstractIterator
         $this->iteratorArray[] = $Component;
     }
 
-
+    /**
+     * @return string
+     */
     public function getCompleteAdditiveList():string
     {
         $additiveAsStringArray[] = null;
-        foreach (array_keys($this->iteratorArray) as $Keys)
-        {
+        foreach (array_keys($this->iteratorArray) as $Keys) {
             /**
              * @var $additiveList AddendaItemList
              */
             $additiveList = $this->iteratorArray[$Keys]->getadditiveList();
 
-            foreach ($additiveList->getKeys() as $moreKeys)
-            {
+            foreach ($additiveList->getKeys() as $moreKeys) {
                 $additiveAsStringArray[] = $additiveList->getElement($moreKeys)->getTag();
             }
         }
@@ -69,25 +68,24 @@ class ComponentList extends AbstractIterator
 
         $additiveAsString = $additiveAsStringArray[0];
 
-        for ($i = 1; $i < count($additiveAsStringArray); $i++)
-        {
+        for ($i = 1; $i < count($additiveAsStringArray); $i++) {
             $additiveAsString = $additiveAsString . "," . $additiveAsStringArray[$i];
         }
     }
 
-    
+    /**
+     * @return string
+     */
     public function getCompleteAllergicList():string
     {
         $allergicAsStringArray[] = null;
-        foreach (array_keys($this->iteratorArray) as $Keys)
-        {
+        foreach (array_keys($this->iteratorArray) as $Keys) {
             /**
              * @var $allergicList AddendaItemList
              */
             $allergicList = $this->iteratorArray[$Keys]->getAllergicList();
 
-            foreach ($allergicList->getKeys() as $moreKeys)
-            {
+            foreach ($allergicList->getKeys() as $moreKeys) {
                 $allergicAsStringArray[] = $allergicList->getElement($moreKeys)->getTag();
             }
         }
@@ -95,8 +93,7 @@ class ComponentList extends AbstractIterator
 
         $allergicAsString = $allergicAsStringArray[0];
 
-        for ($i = 1; $i < count($allergicAsStringArray); $i++)
-        {
+        for ($i = 1; $i < count($allergicAsStringArray); $i++) {
             $allergicAsString = $allergicAsString . "," . $allergicAsStringArray[$i];
         }
     }

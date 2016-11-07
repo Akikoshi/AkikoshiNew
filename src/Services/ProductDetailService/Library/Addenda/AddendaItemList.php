@@ -20,55 +20,52 @@ class AddendaItemList extends AbstractIterator
      * @param array|null $array
      * @throws \Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\AddendaItemListNeedsAddendaItemsException
      */
-	public function __construct(array $array = null)
-	{
-		if (is_null($array)) {
-			return;
-		}
+    public function __construct(array $array = null)
+    {
+        if (is_null($array)) {
+            return;
+        }
 
-		foreach (array_keys($array) as $keys) {
-			if (
-				!is_object($array[$keys])
-				|| !is_a($array[$keys], 'AddendaItem')
-			) {
-				throw new AddendaItemListNeedsAddendaItemsException(
-					'Constructor of AddendaItemList can only use AddendaItem objects.'
-				);
-			}
-		}
-		$this->iteratorArray = $array;
-	}
+        foreach (array_keys($array) as $keys) {
+            if (
+                !is_object($array[$keys])
+                || !is_a($array[$keys], 'AddendaItem')
+            ) {
+                throw new AddendaItemListNeedsAddendaItemsException(
+                    'Constructor of AddendaItemList can only use AddendaItem objects.'
+                );
+            }
+        }
+        $this->iteratorArray = $array;
+    }
 
-	/**
-	 * @param AddendaItem $AddendaItem
-	 */	
-	public function addItem(AddendaItem $AddendaItem)
-	{
-		$this->iteratorArray[] = $AddendaItem;
-	}
+    /**
+     * @param AddendaItem $AddendaItem
+     */
+    public function addItem(AddendaItem $AddendaItem)
+    {
+        $this->iteratorArray[] = $AddendaItem;
+    }
 
-	/**
-	 * @return $AddendaItem
-	 */
-	public function current() : AddendaItem
-	{
-		return parent::current();
-	}
+    /**
+     * @return AddendaItem
+     */
+    public function current() : AddendaItem
+    {
+        return parent::current();
+    }
 
 
-	/**
-	 * @param mixed $key
-	 *
-	 * @return $AddendaItem
-	 */
-	public function getElement( $key = null ):AddendaItem
-	{
-		if ( !isset( $this->iteratorArray[ $key ] ) ) {
-			return null;
-		}
+    /**
+     * @param null $key
+     * @return AddendaItem
+     */
+    public function getElement($key = null):AddendaItem
+    {
+        if (!isset($this->iteratorArray[$key])) {
+            return null;
+        }
 
-		return $this->iteratorArray[ $key ];
-	}
-	
-	
+        return $this->iteratorArray[$key];
+    }
 }
