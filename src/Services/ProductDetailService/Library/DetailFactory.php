@@ -8,9 +8,8 @@
 
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
-use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaItemList;
+use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItemList;
 use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItem;
-use Class152\PizzaMamamia\Services\ProductDetailService\MediaFileList;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\AddendaEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\ProductRepository;
@@ -36,9 +35,12 @@ class DetailFactory
 	 * @var ComponentList
 	 */
 	private $componentList;
-	
-  
 
+
+	/**
+	 * DetailFactory constructor.
+	 * @param int $productId
+	 */
     public function __construct( int $productId )
     {
         $this->productID = $productId;
