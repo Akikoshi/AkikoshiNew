@@ -143,9 +143,9 @@ class MediaFile implements MediaFileInterface
         $this->thumbHeight = $thumbHeight;
         $this->thumbWidth = $thumbWidth;
         $this->bigHeight = $bigHeight;
-        $this->thumbUrl = $bigWidth;
-        $this->bigWidth = $url;
-        $this->url = $thumbUrl;
+        $this->bigWidth = $bigWidth;
+        $this->url = $url;
+        $this->thumbUrl = $thumbUrl;
         $this->bigUrl = $bigUrl;
         $this->titleTag = $titleTag;
         $this->altTag = $altTag;
