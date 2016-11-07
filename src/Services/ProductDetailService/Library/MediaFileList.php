@@ -9,6 +9,7 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
+use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileListInterface;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\MediaFileListNeedsMediaFileException;
 
@@ -66,9 +67,9 @@ class MediaFileList extends AbstractIterator implements MediaFileListInterface
     /**
      * overloads the current method for restricted type of return value
      *
-     * @return MediaFile
+     * @return MediaFileInterface
      */
-    public function current() : MediaFile
+    public function current() : MediaFileInterface
     {
         return parent::current();
     }
@@ -89,9 +90,9 @@ class MediaFileList extends AbstractIterator implements MediaFileListInterface
      * The default thumb is the thumb of the default MediaFile.
      * Hardcoded: array index 0 holds the default MediaFile.
      *
-     * @return MediaFile
+     * @return MediaFileInterface
      */
-    public function getDefault(): MediaFile
+    public function getDefault(): MediaFileInterface
     {
         return $this->getElement(0);
     }
