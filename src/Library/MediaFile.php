@@ -8,7 +8,6 @@
 
 namespace Class152\PizzaMamamia\Library;
 
-use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
 class MediaFile implements MediaFileInterface
@@ -73,21 +72,21 @@ class MediaFile implements MediaFileInterface
     /**
      * Hold url of the normal image version.
      *
-     * @var LinkInterface
+     * @var string
      */
     private $url;
 
     /**
      * Hold url of the thumb image version.
      *
-     * @var LinkInterface
+     * @var string
      */
     private $thumbUrl;
 
     /**
      * Hold url of the large image version.
      *
-     * @var LinkInterface
+     * @var string
      */
     private $bigUrl;
 
@@ -115,9 +114,9 @@ class MediaFile implements MediaFileInterface
      * @param int $thumbWidth
      * @param int $bigHeight
      * @param int $bigWidth
-     * @param LinkInterface $url
-     * @param LinkInterface $thumbUrl
-     * @param LinkInterface $bigUrl
+     * @param string $url
+     * @param string $thumbUrl
+     * @param string $bigUrl
      * @param string $titleTag
      * @param string $altTag
      */
@@ -130,9 +129,9 @@ class MediaFile implements MediaFileInterface
         int $thumbWidth,
         int $bigHeight,
         int $bigWidth,
-        LinkInterface $url,
-        LinkInterface $thumbUrl,
-        LinkInterface $bigUrl,
+        string $url,
+        string $thumbUrl,
+        string $bigUrl,
         string $titleTag,
         string $altTag)
     {
@@ -216,25 +215,25 @@ class MediaFile implements MediaFileInterface
     }
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getUrl() : LinkInterface
+    public function getUrl() : string
     {
         return $this->url;
     }
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getThumbUrl() : LinkInterface
+    public function getThumbUrl() : string
     {
         return $this->thumbUrl;
     }
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getBigUrl() : LinkInterface
+    public function getBigUrl() : string
     {
         return $this->bigUrl;
     }
