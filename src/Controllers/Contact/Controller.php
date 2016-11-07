@@ -10,7 +10,6 @@
 
 
 	use Class152\PizzaMamamia\AbstractClasses\AbstractController;
-    use Class152\PizzaMamamia\Exception\FormValidationFailedException;
     use Class152\PizzaMamamia\Library\TwigRendering;
     use Class152\PizzaMamamia\Services\MenuService\MenuService;
 
@@ -21,16 +20,26 @@
             $template = 'Contact/index.twig';
             $postVars = null;
 
-            try {
-                $postVars = new ContactFormularPostVars($_POST);
-            } catch (FormValidationFailedException $e) {
-                $template = 'Contact/error.twig';
-            }
+            // try {
+            //    $postVars = new ContactFormularPostVars($_POST);
+            // } catch (FormValidationFailedException $e) {
+            // var_dump( $e->getTrace() );die();
+            // $template = 'Contact/error.twig';
+            // }
 
-            if (!is_null($postVars) && $postVars->isSent() && $postVars->isValid()) {
-                // Formular wegschreiben
-                // $writeService = new WriteService();
-                // $writeService->save( $postVars );
+            $postVars = new ContactFormularPostVars($_POST);
+
+            if ($postVars->isSent()) {
+                if ($postVars->isValid()) {
+                    // Formular wegschreiben
+                    // $writeService = new WriteService();
+                    // $writeService->save( $postVars );
+                    // Zeige danke
+                    // return;
+                } else {
+                    var_dump($postVars->readAllErrors());
+                    die();
+                }
             }
 
 			$menuService = new MenuService($this->request);
