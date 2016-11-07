@@ -40,9 +40,9 @@ class MediaFileList extends AbstractIterator implements MediaFileListInterface
                 450, 450,
                 100, 100,
                 1000, 1000,
-                "/img/noImage.jpg",
-                "/img/noImage-thumb.jpg",
-                "/img/noImage-big.jpg",
+                new Link("/img/noImage.jpg","no image","no image"),
+                new Link("/img/noImage-thumb.jpg","no thumb","no thumb"),
+                new Link("/img/noImage-big.jpg","no big image","no big image"),
                 "No image found.",
                 "no image found");
             $this->hasItems = false;
