@@ -47,31 +47,32 @@ class ShoppingCartFactory
             $this->shoppingCartItems[$key] = new ShoppingCartItem(
                 // TODO: just Fakedata
 
-                '5',                                //ID
-                'Pizza Tonno',                      //Name
-                'MediaFile',                        //thumb
-                'Fischpizza vom feinsten aus dem Meer',            //description
-                new ShoppingCartItemVariantList($this->loadVariants()),  //variants
-                3,                                  //amount
-                10,                                 //maxamount
-                false,                              //ReducedByCampaign
-                new ShoppingCartLink('a','bla1'),    //ShoppingCartLink $removeItemUrl
-                new ShoppingCartLink('b','bla2'),    //ShoppingCartLink $increaseItemUrl
-                new ShoppingCartLink('c','bla3')     //ShoppingCartLink $decreaseItemUrl
+                '5',                                                    //ID
+                'Pizza Tonno',                                          //Name
+                'MediaFile',                                            //thumb
+                'Fischpizza vom Feinsten aus dem Meer',                 //description
+                new ShoppingCartItemVariantList($this->loadVariants()), //variants
+                3,                                                      //amount
+                10,                                                     //maxamount
+                false,                                                  //ReducedByCampaign
+                new ShoppingCartLink('ItemLoeschen','bla1'),            //ShoppingCartLink $removeItemUrl
+                new ShoppingCartLink('ItemHinzufuegen','bla2'),         //ShoppingCartLink $increaseItemUrl
+                new ShoppingCartLink('ItemVerringern','bla3')           //ShoppingCartLink $decreaseItemUrl
             );
         }
     }
 
+
     private function loadVariants()
     {
         $variant = new ShoppingCartItemVariant(
-            '3',
-            '',
-            new ShoppingCartPrice( 12.20, 19 ),
-            new ShoppingCartLink('/productdetails/index/3','Posten entfernen'),
-            new ShoppingCartLink('/shoppingcart/index/3','+1'),
-            new ShoppingCartLink('/productconfigurator/index/3','-1'),
-            false
+            '3',                                                                    //ID
+            'Pizza Tonno mittel',                                                   //Name
+            new ShoppingCartPrice( 8.90, 19 ),                                     //Price
+            new ShoppingCartLink('/productdetails/index/3','Posten entfernen'),     //ProductDetailUrl
+            new ShoppingCartLink('/shoppingcart/index/3','+1'),                     //AddToShoppingCartUrl
+            new ShoppingCartLink('/productconfigurator/index/3','-1'),              //ConfigurationUrl
+            false                                                                   //IsConfigurable
         );
         return [$variant];
     }

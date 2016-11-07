@@ -52,7 +52,8 @@ class ShoppingCartItemVariant implements ProductVariantInterface
         LinkInterface $productDetailUrl,
         LinkInterface $addToShoppingCartUrl,
         LinkInterface $configurationUrl,
-        $isConfigurable)
+        $isConfigurable
+    )
     {
         $this->id = $id;
         $this->name = $name;

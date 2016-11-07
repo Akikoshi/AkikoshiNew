@@ -40,7 +40,6 @@ class ShoppingCartEntity
         $this->productGroup = $userRow['productGroup'];
         $this->GrossPrice = $userRow['GrossPrice'];
         $this->type = $userRow['type'];
-
     }
 
     /**

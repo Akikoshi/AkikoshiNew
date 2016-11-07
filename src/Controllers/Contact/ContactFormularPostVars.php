@@ -56,7 +56,11 @@ class ContactFormularPostVars extends AbstractValidator
             'An welche Abteilung wollen Sie die Message senden'
         );
 
-        $this->errorIfNotThisValue('department', 'keine', 'An welche Abteilung wollen Sie die Message senden');
+        $this->errorIfNotThisValue(
+            'department',
+            'keine',
+            'An welche Abteilung wollen Sie die Message senden'
+        );
 
         $this->errorIfValueNotInArray(
             'department',

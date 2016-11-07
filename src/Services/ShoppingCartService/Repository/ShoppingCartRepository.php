@@ -23,14 +23,14 @@ class ShoppingCartRepository
         $db = new MySql();
         $this->db = $db->getInstance();
     }
-    
+
+    // TODO: wozu ??
     public function getItems()
     {
         $items = [
             new ShoppingCartEntity()
         ];
     }
-
     
     public function  getProductById( int $productId ) : ShoppingCartEntity
     {
