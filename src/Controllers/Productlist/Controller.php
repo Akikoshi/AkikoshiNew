@@ -30,9 +30,24 @@ class Controller extends AbstractController
         $footerMenu = $menuService->getFooterMenu();
         $breadcrumbMenu = $menuService->getBreadcrumbMenu();
 
-        
+
         $productListService = new ProductListService();
-        $productList = $productListService->getProductList();
+
+        $productGroupId = (INT)$this->request->getFirstAdditionalVar();
+
+        $getVars = new FilterGetVars( $_GET );
+
+        $productListFilter = $productListService->getProductListFilter(
+            $productGroupId
+        );
+
+        if( empty( $getVars->getSortBy() ) )
+        {
+            $productListFilter->isSortByPrice();
+        }
+
+
+        $productList = $productListService->getProductList( $productListFilter );
 
         new TwigRendering(
             'Productlist/index.twig',

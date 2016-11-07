@@ -22,6 +22,9 @@ class ProductListRepository
 
     /** @var  string */
     private $orderBy;
+
+    /** @var  string */
+    private $groupId = '';
     
     public function __construct(ProductListFilter $productListFilter)
     {
@@ -37,8 +40,12 @@ class ProductListRepository
          */
         $productGroupId = $productListFilter->getGroupId();
 
+        if($productListFilter->isFilteredByGroupId() !== false)
+        {
+            $this->groupId = "AND p.productGroup = ".$productListFilter->getGroupId();
+        }
 
-        if($productListFilter->isFilterByGroupId() === false )
+        if($productListFilter->isFilteredByGroupId() === false )
         {
             $this->orderBy = " order by p.name;"; // Todo: Feheler bei .= syntax in der Mysqlabfrage
         }
@@ -53,7 +60,7 @@ class ProductListRepository
         }
         else
         {
-            $this->orderBy = " order by p.price;";
+            $this->orderBy = " order by p.grossPrice;";
         }
 
 
@@ -86,7 +93,8 @@ class ProductListRepository
             . " FROM Products as p LEFT JOIN Descriptions as d 
                 ON p.id = d.fk_products RIGHT JOIN MediaFiles as mf 
                 ON p.mediaFileId = mf.id"
-            . " WHERE p.type = \"Container\" OR p.type = \"Single\""
+            . " WHERE (p.type = \"Container\" OR p.type = \"Single\")"
+            . $this->groupId
             . $this->orderBy;
 
         $result = $this->db->query($sql);
