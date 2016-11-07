@@ -197,7 +197,4 @@ class MediaFileEntity
 	{
 		return $this->altTag;
 	}
-
-
-	
 }

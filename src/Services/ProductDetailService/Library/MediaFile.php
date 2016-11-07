@@ -1,97 +1,140 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: johannesj
- * Date: 17.10.2016
- * Time: 13:12
+ * User: frankenfeldtp
+ * Date: 07.11.2016
+ * Time: 08:12
  */
 
-namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
+namespace Class152\PizzaMamamia\Services\ProductDetailService;
 
+use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
 class MediaFile implements MediaFileInterface
 {
     /**
+     * Hold the Id of the MediaFile
+     *
      * @var int
      */
     private $id;
 
     /**
+     * Hold the mime-type of the images.
+     * All images must have the same mime-type.
+     *
      * @var string
      */
     private $mime;
 
     /**
+     * Hold the height in pixel of the standard image version.
+     *
      * @var int
      */
     private $height;
 
     /**
+     * Hold the width in pixel of the standard image version.
+     *
      * @var int
      */
     private $width;
 
     /**
+     * Hold the height in pixel of the thumb image version.
+     *
      * @var int
      */
     private $thumbHeight;
 
     /**
+     * Hold the width in pixel of the thumb image version.
+     *
      * @var int
      */
     private $thumbWidth;
 
     /**
+     * Hold the height in pixel of the large image version.
+     *
      * @var int
      */
     private $bigHeight;
 
     /**
+     * Hold the width in pixel of the large image version.
+     *
      * @var int
      */
     private $bigWidth;
 
     /**
-     * @var string
+     * Hold url of the normal image version.
+     *
+     * @var LinkInterface
      */
     private $url;
 
     /**
-     * @var string
+     * Hold url of the thumb image version.
+     *
+     * @var LinkInterface
      */
     private $thumbUrl;
 
     /**
-     * @var string
+     * Hold url of the large image version.
+     *
+     * @var LinkInterface
      */
     private $bigUrl;
 
     /**
+     * Hold the title-text for this MediaFile.
+     *
      * @var string
      */
     private $titleTag;
 
     /**
+     * Hold the alt-text for this MediaFile.
+     *
      * @var string
      */
     private $altTag;
 
-
+    /**
+     * MediaFile constructor.
+     * @param int $id
+     * @param string $mime
+     * @param int $height
+     * @param int $width
+     * @param int $thumbHeight
+     * @param int $thumbWidth
+     * @param int $bigHeight
+     * @param int $bigWidth
+     * @param Link $url
+     * @param Link $thumbUrl
+     * @param Link $bigUrl
+     * @param string $titleTag
+     * @param string $altTag
+     */
     public function __construct(
-        $id,
-        $mime,
-        $height,
-        $width,
-        $thumbHeight,
-        $thumbWidth,
-        $bigHeight,
-        $bigWidth,
-        $url,
-        $thumbUrl,
-        $bigUrl,
-        $titleTag,
-        $altTag)
+        int $id,
+        string $mime,
+        int $height,
+        int $width,
+        int $thumbHeight,
+        int $thumbWidth,
+        int $bigHeight,
+        int $bigWidth,
+        Link $url,
+        Link $thumbUrl,
+        Link $bigUrl,
+        string $titleTag,
+        string $altTag)
     {
         $this->id = $id;
         $this->mime = $mime;
@@ -173,25 +216,25 @@ class MediaFile implements MediaFileInterface
     }
 
     /**
-     * @return string
+     * @return Link
      */
-    public function getUrl() : string
+    public function getUrl() : Link
     {
         return $this->url;
     }
 
     /**
-     * @return string
+     * @return Link
      */
-    public function getThumbUrl() : string
+    public function getThumbUrl() : Link
     {
         return $this->thumbUrl;
     }
 
     /**
-     * @return string
+     * @return Link
      */
-    public function getBigUrl() : string
+    public function getBigUrl() : Link
     {
         return $this->bigUrl;
     }
