@@ -8,7 +8,6 @@
 
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
-use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
 class MediaFile implements MediaFileInterface
@@ -73,21 +72,21 @@ class MediaFile implements MediaFileInterface
     /**
      * Hold url of the normal image version.
      *
-     * @var LinkInterface
+     * @var Link
      */
     private $url;
 
     /**
      * Hold url of the thumb image version.
      *
-     * @var LinkInterface
+     * @var Link
      */
     private $thumbUrl;
 
     /**
      * Hold url of the large image version.
      *
-     * @var LinkInterface
+     * @var Link
      */
     private $bigUrl;
 
@@ -143,9 +142,9 @@ class MediaFile implements MediaFileInterface
         $this->thumbHeight = $thumbHeight;
         $this->thumbWidth = $thumbWidth;
         $this->bigHeight = $bigHeight;
-        $this->thumbUrl = $bigWidth;
-        $this->bigWidth = $url;
-        $this->url = $thumbUrl;
+        $this->bigWidth = $bigWidth;
+        $this->url = $url;
+        $this->thumbUrl = $thumbUrl;
         $this->bigUrl = $bigUrl;
         $this->titleTag = $titleTag;
         $this->altTag = $altTag;
