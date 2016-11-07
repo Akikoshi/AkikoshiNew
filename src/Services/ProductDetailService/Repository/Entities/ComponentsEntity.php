@@ -1,114 +1,105 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: johannesj
-	 * Date: 18.10.2016
-	 * Time: 09:24
-	 */
+/**
+ * Created by PhpStorm.
+ * User: johannesj
+ * Date: 18.10.2016
+ * Time: 09:24
+ */
 
-	namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities;
-
-
-	/**
-	 * Class Components
-	 *
-	 * @package Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities
-	 */
-	class Components
-	{
-		/**
-		 * @var int
-		 */
-		private $componentId;
-
-		/**
-		 * @var string
-		 */
-		private $name;
-
-		/**
-		 * @var int
-		 */
-		private $componentGroup;
-
-		/**
-		 * @var int
-		 */
-		private $ordering;
-
-		/**
-		 * @var int
-		 */
-		private $fkMediaFiles;
+namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities;
 
 
-		/**
-		 * Components constructor.
-		 *
-		 * @param $componentId
-		 * @param $name
-		 * @param $componentGroup
-		 * @param $fkMediaFiles
-		 * @param $ordering
-		 */
-		public function __construct(
-			$componentId,
-			$name,
-			$componentGroup,
-			$fkMediaFiles,
-			$ordering
-		)
-		{
+class ComponentsEntity
+{
+    /**
+     * @var int
+     */
+    private $componentId;
 
-			$this->componentId = $componentId;
-			$this->name = $name;
-			$this->componentGroup = $componentGroup;
-			$this->fkMediaFiles = $fkMediaFiles;
-			$this->ordering = $ordering;
+    /**
+     * @var string
+     */
+    private $name;
 
-		}
+    /**
+     * @var int
+     */
+    private $componentGroup;
 
-		/**
-		 * @return mixed
-		 */
-		public function getComponentId()
-		{
-			return $this->componentId;
-		}
+    /**
+     * @var int
+     */
+    private $ordering;
 
-		/**
-		 * @return mixed
-		 */
-		public function getName()
-		{
-			return $this->name;
-		}
+    /**
+     * @var int
+     */
+    private $fkMediaFiles;
 
 
-		/**
-		 * @return mixed
-		 */
-		public function getOrdering()
-		{
-			return $this->ordering;
-		}
+    /**
+     * Components constructor.
+     *
+     * @param $componentId
+     * @param $name
+     * @param $componentGroup
+     * @param $fkMediaFiles
+     * @param $ordering
+     */
+    public function __construct(
+        $componentId,
+        $name,
+        $componentGroup,
+        $fkMediaFiles,
+        $ordering
+    )
+    {
 
-		/**
-		 * @return int
-		 */
-		public function getComponentGroup()
-		{
-			return $this->componentGroup;
-		}
+        $this->componentId = $componentId;
+        $this->name = $name;
+        $this->componentGroup = $componentGroup;
+        $this->fkMediaFiles = $fkMediaFiles;
+        $this->ordering = $ordering;
 
+    }
 
-		/**
-		 * @return int
-		 */
-		public function getFkMediaFiles()
-		{
-			return $this->fkMediaFiles;
-		}
+    /**
+     * @return int
+     */
+    public function getComponentId(): int
+    {
+        return $this->componentId;
+    }
 
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-	}
+    /**
+     * @return int
+     */
+    public function getOrdering(): int
+    {
+        return $this->ordering;
+    }
+
+    /**
+     * @return int
+     */
+    public function getComponentGroup(): int
+    {
+        return $this->componentGroup;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFkMediaFiles(): int
+    {
+        return $this->fkMediaFiles;
+    }
+}

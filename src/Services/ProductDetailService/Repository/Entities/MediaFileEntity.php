@@ -11,190 +11,219 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entitie
 
 class MediaFileEntity
 {
-	/**
-	 * @var string
-	 */
-	private $mime;
+    /**
+     * @var int
+     */
+    private $id;
 
-	/**
-	 * @var int
-	 */
-	private $height;
+    /**
+     * @var string
+     */
+    private $mime;
 
-	/**
-	 * @var int
-	 */
-	private $width;
+    /**
+     * @var int
+     */
+    private $height;
 
-	/**
-	 * @var int
-	 */
-	private $thumbHeight;
+    /**
+     * @var int
+     */
+    private $width;
 
-	/**
-	 * @var int
-	 */
-	private $thumbWidth;
+    /**
+     * @var int
+     */
+    private $thumbHeight;
 
-	/**
-	 * @var int
-	 */
-	private $bigHeight;
+    /**
+     * @var int
+     */
+    private $thumbWidth;
 
-	/**
-	 * @var int
-	 */
-	private $bigWidth;
+    /**
+     * @var int
+     */
+    private $bigHeight;
 
-	/**
-	 * @var string
-	 */
-	private $url;
+    /**
+     * @var int
+     */
+    private $bigWidth;
 
-	/**
-	 * @var string
-	 */
-	private $thumbUrl;
+    /**
+     * @var string
+     */
+    private $url;
 
-	/**
-	 * @var string
-	 */
-	private $bigUrl;
+    /**
+     * @var string
+     */
+    private $thumbUrl;
 
-	/**
-	 * @var string
-	 */
-	private $titleTag;
+    /**
+     * @var string
+     */
+    private $bigUrl;
 
-	/**
-	 * @var string
-	 */
-	private $altTag;
+    /**
+     * @var string
+     */
+    private $titleTag;
 
+    /**
+     * @var string
+     */
+    private $altTag;
 
-	public function __construct(
-		$mime,
-		$height,
-		$width,
-		$thumbHeight,
-		$thumbWidth,
-		$bigHeight,
-		$bigWidth,
-		$url,
-		$thumbUrl,
-		$bigUrl,
-		$titleTag,
-		$altTag
-	)
-	{
-
-		$this->mime = $mime;
-		$this->height = $height;
-		$this->width = $width;
-		$this->thumbHeight = $thumbHeight;
-		$this->thumbWidth = $thumbWidth;
-		$this->bigHeight = $bigHeight;
-		$this->thumbUrl = $bigWidth;
-		$this->bigWidth = $url;
-		$this->url = $thumbUrl;
-		$this->bigUrl = $bigUrl;
-		$this->titleTag = $titleTag;
-		$this->altTag = $altTag;
+    /**
+     * MediaFileEntity constructor.
+     * @param $id
+     * @param $mime
+     * @param $height
+     * @param $width
+     * @param $thumbHeight
+     * @param $thumbWidth
+     * @param $bigHeight
+     * @param $bigWidth
+     * @param $url
+     * @param $thumbUrl
+     * @param $bigUrl
+     * @param $titleTag
+     * @param $altTag
+     */
+    public function __construct(
+        $id,
+        $mime,
+        $height,
+        $width,
+        $thumbHeight,
+        $thumbWidth,
+        $bigHeight,
+        $bigWidth,
+        $url,
+        $thumbUrl,
+        $bigUrl,
+        $titleTag,
+        $altTag
+    )
+    {
+        $this->id = $id;
+        $this->mime = $mime;
+        $this->height = $height;
+        $this->width = $width;
+        $this->thumbHeight = $thumbHeight;
+        $this->thumbWidth = $thumbWidth;
+        $this->bigHeight = $bigHeight;
+        $this->thumbUrl = $bigWidth;
+        $this->bigWidth = $url;
+        $this->url = $thumbUrl;
+        $this->bigUrl = $bigUrl;
+        $this->titleTag = $titleTag;
+        $this->altTag = $altTag;
     }
 
-	/**
-	 * @return mixed
-	 */
-	public function getMime()
-	{
-		return $this->mime;
-	}
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getHeight()
-	{
-		return $this->height;
-	}
+    /**
+     * @return string
+     */
+    public function getMime() : string
+    {
+        return $this->mime;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getWidth()
-	{
-		return $this->width;
-	}
+    /**
+     * @return int
+     */
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getThumbHeight()
-	{
-		return $this->thumbHeight;
-	}
+    /**
+     * @return int
+     */
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getThumbWidth()
-	{
-		return $this->thumbWidth;
-	}
+    /**
+     * @return int
+     */
+    public function getThumbHeight(): int
+    {
+        return $this->thumbHeight;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getBigHeight()
-	{
-		return $this->bigHeight;
-	}
+    /**
+     * @return int
+     */
+    public function getThumbWidth() : int
+    {
+        return $this->thumbWidth;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getBigWidth()
-	{
-		return $this->bigWidth;
-	}
+    /**
+     * @return int
+     */
+    public function getBigHeight(): int
+    {
+        return $this->bigHeight;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getUrl()
-	{
-		return $this->url;
-	}
+    /**
+     * @return int
+     */
+    public function getBigWidth(): int
+    {
+        return $this->bigWidth;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getThumbUrl()
-	{
-		return $this->thumbUrl;
-	}
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getBigUrl()
-	{
-		return $this->bigUrl;
-	}
+    /**
+     * @return string
+     */
+    public function getThumbUrl(): string
+    {
+        return $this->thumbUrl;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getTitleTag()
-	{
-		return $this->titleTag;
-	}
+    /**
+     * @return string
+     */
+    public function getBigUrl(): string
+    {
+        return $this->bigUrl;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getAltTag()
-	{
-		return $this->altTag;
-	}
+    /**
+     * @return string
+     */
+    public function getTitleTag(): string
+    {
+        return $this->titleTag;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAltTag(): string
+    {
+        return $this->altTag;
+    }
 }
