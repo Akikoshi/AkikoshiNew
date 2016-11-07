@@ -45,9 +45,11 @@ class ProductListFactory
 
             $type = $elem->getTypeOfProduct();
             if ('container' == $type) {
-                $variants[] = $this->loadVariants($elem->getProductId());
+                $variants = new ProductVariantList(
+                    [$this->loadVariants($elem->getProductId())]
+                );
             } else {
-                $variants[] = new ProductVariantList(
+                $variants = new ProductVariantList(
                     [new ProductVariantItem(
                         $elem->getProductId(),
                         $elem->getProductName(),
@@ -63,13 +65,25 @@ class ProductListFactory
 
             $this->loadProducts(
                 $elem->getProductId(),
-                new MediaFile( $elem->getMediaFileId() ),
                 $elem->getProductName(),
+                new MediaFile
+                (
+                    $elem->getMediaFileId(),
+                    $elem->getMime(),
+                    $elem->getHeight(),
+                    $elem->getWidth(),
+                    $elem->getThumbHeight(),
+                    $elem->getThumbWidth(),
+                    $elem->getBigHeight(),
+                    $elem->getBigWidth(),
+                    $elem->getUrl(),
+                    $elem->getThumbUrl(),
+                    $elem->getBigUrl(),
+                    $elem->getTitleTag(),
+                    $elem->getAltTag()
+                ),
                 $elem->getShortDescription(),
                 $elem->getTypeOfProduct(),
-                $elem->getGrossPrice(),
-                $elem->getVat(),
-                $elem->getProductGroupId(),
                 $variants
             );
         }
@@ -81,11 +95,10 @@ class ProductListFactory
     }
     
     public function loadProducts($id,
-                                 $mediaFileId,
                                  $name,
+                                 $mediaFileId,
                                  $shortDescription,
-                                 $type, $grossPrice,
-                                 $vat, $productGroupId,
+                                 $type,
                                  $productVariantsList)
     {
         $this->productListItem = new ProductListItem(
@@ -94,9 +107,6 @@ class ProductListFactory
             $mediaFileId,
             $shortDescription,
             $type,
-            $grossPrice,
-            $vat,
-            $productGroupId,
             $productVariantsList);
     }
 
@@ -135,74 +145,4 @@ class ProductListFactory
     {
         return $this->productList;
     }
-
-
-// ALTER CODE AUS DER FACTORY; WIRD HIER NOCHMALS HINTERLEGT
-//    private $productList;
-//
-//    private $repository;
-//
-//
-//
-//    public function __construct()
-//    {
-//        $this->repository = new ProductListRepository();
-//        $this->productList = new ProductList();
-//    }
-//
-//    private function createMediaFile(int $mediaFileId)
-//    {
-//        $this->mediaFile = new MediaFile($mediaFileId);
-//    }
-//
-//    private function craeteNewProductList()
-//    {
-//        $this->productList = new ProductList();
-//        $this->productList->addItem(
-//            new ProductItem($this->productName, $this->shortDescription, $this->mediaFile, $this->detailUrl, $this->grossPrice)
-//        );
-//    }
-//
-//    public function getProductList()
-//    {
-//        return $this->productList;
-//    }
-
-//      ALTER CODE AUS DER VARIANTSFACTORY Todo: muss noch implementiert werden  
-//
-//    /** @var  ProductListVariantsRepository */
-//    private $repository;
-//
-//    /** @var  ProductList */
-//    private $productList;
-//
-//    public function __construct(int $parentId)
-//    {
-//        $this->createProductVariants($parentId);
-//        $this->repository = new ProductListVariantsRepository( $parentId );
-//    }
-//
-//    private function createProductVariants(int $parentId)
-//    {
-//        $this->productList = new ProductList();
-//        $product = $this->repository->getProductById();
-//
-//        $productVarantsIterator = new ProductVariantIterator();
-//
-//
-//        $this->productList->addItem(
-//            new ProductVariantsIterator
-//            (
-//                $product->getParentId(),
-//                $product->getProductVariantId(),
-//                $variantName,
-//                PriceInterface $price,
-//                LinkInterface $productDetailUrl,
-//                LinkInterface $shoppingCartUrl,
-//                LinkInterface $configuratorUrl,
-//                LinkInterface $isConfigurable
-//            );
-//        );
-
-
 }
