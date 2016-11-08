@@ -20,7 +20,7 @@ class ShoppingCartItemVariant implements ProductVariantInterface
     /** @var  string */
     private $name;
 
-    /** @var  PriceInterface */
+    /** @var ShoppingCartPrice  */
     private $price;
 
     /** @var  LinkInterface */

@@ -163,5 +163,4 @@ class ShoppingCartPrice implements PriceInterface
         $this->removeReduction();
         $this->calculate($targetPrice, $this->vat);
     }
-
 }

@@ -29,7 +29,7 @@ class ShoppingCartLink implements LinkInterface
      * @param string $text
      * @param string $title
      */
-    public function __construct( $url, $text, $title = 'a', $css = 'b' )
+    public function __construct( string $url, string $text, string $title = 'a', string $css = 'b' )
     {
         $this->css = $css;
         $this->url = $url;

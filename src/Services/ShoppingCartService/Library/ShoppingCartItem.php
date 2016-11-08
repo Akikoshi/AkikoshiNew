@@ -11,8 +11,9 @@ namespace Class152\PizzaMamamia\Services\ShoppingCartService\Library;
 
 use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
-use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
 use Class152\PizzaMamamia\Interfaces\ShoppingCart\ShoppingCartItemInterface;
 
 class ShoppingCartItem implements ShoppingCartItemInterface
@@ -38,7 +39,7 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     /** @var  bool */
     private $hasVariants = false;
 
-    /** @var  ProductVariantsIteratorInterface */
+    /** @var ProductBasicInformationsInterface  */
     private $variants;
 
     /** @var  int */
@@ -183,9 +184,9 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     }
 
     /**
-     * @return ProductVariantsIteratorInterface
+     * @return ProductVariantListInterface
      */
-    public function getVariants() : ProductVariantsIteratorInterface
+    public function getVariants() : ProductVariantListInterface
     {
         return $this->variants;
     }
