@@ -12,6 +12,7 @@ namespace Class152\PizzaMamamia\Services\ProductListService\ListItems;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductVariantList;
 use Class152\PizzaMamamia\Services\ProductListService\values\MediaFile;
 
@@ -123,7 +124,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /**
      * @return MediaFile
      */
-    public function getThumb() : MediaFile
+    public function getThumb() : MediaFileInterface
     {
         return $this->mediaFile;
     }
@@ -131,7 +132,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /**
      * @return bool
      */
-    public function hasDescription()
+    public function hasDescription() :bool
     {
         return $this->hasDescription;
     }
@@ -139,7 +140,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /**
      * @return bool
      */
-    public function isSingle()
+    public function isSingle() :bool
     {
         return $this->isSingle;
     }
@@ -147,7 +148,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /**
      * @return bool
      */
-    public function hasVariants()
+    public function hasVariants() :bool
     {
         return $this->hasVariants;
     }
@@ -155,7 +156,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /**
      * @return ProductVariantList
      */
-    public function getVariants() : ProductVariantList
+    public function getVariants() : ProductVariantListInterface
     {
         return $this->productVariants;
     }
@@ -163,7 +164,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     /**
      * @return ProductVariantItem
      */
-    public function getDefaultVariant() : ProductVariantItem
+    public function getDefaultVariant() : ProductVariantInterface
     {
         return $this->productVariants->getElement(0);
     }
