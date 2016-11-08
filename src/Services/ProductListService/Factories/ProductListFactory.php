@@ -28,8 +28,8 @@ class ProductListFactory
     /** @var ProductList */
     private $productList;
 
-    /** @var array */
-    private $productListItems = [];
+    /** @var  ProductListItem */
+    private $productListItem;
 
     public function __construct(ProductListFilter $productListFilter)
     {
@@ -40,14 +40,16 @@ class ProductListFactory
     private function iterateProductList()
     {
         $entity = $this->repository->getProductListItems();
+        $this->productList = new ProductList([]);
+
+        $items = [];
+
         /** @var ProductListEntity $elem */
         foreach ($entity as $elem) {
 
             $type = $elem->getTypeOfProduct();
             if ('container' == $type) {
-                $variants = new ProductVariantList(
-                    [$this->loadVariants($elem->getProductId())]
-                );
+                $variants = $this->loadVariants($elem->getProductId());
             } else {
                 $variants = new ProductVariantList(
                     [new ProductVariantItem(
@@ -58,12 +60,24 @@ class ProductListFactory
                         new Link("/productdetails/index/" . $elem->getProductId(),"Details"),//Todo: hartverdrahtet
                         new Link("/shoppingcart/index/" . $elem->getProductId(),"Warenkorb"),
                         new Link("/configurator/index/" . $elem->getProductId(),"konfigurieren"),
-                        $this->isConfigurable(true) // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen                    
+                        $this->isConfigurable(true) // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
                     )]
                 );
             }
 
-            $this->loadProducts(
+            $items[] = new ProductVariantItem(
+                $elem->getProductId(),
+                $elem->getProductName(),
+                $elem->getTypeOfProduct(),
+                new Price( $elem->getGrossPrice(), $elem->getVat() ),
+                new Link("/productdetails/index/" . $elem->getProductId(),"Details"),//Todo: hartverdrahtet
+                new Link("/shoppingcart/index/" . $elem->getProductId(),"Warenkorb"),
+                new Link("/configurator/index/" . $elem->getProductId(),"konfigurieren"),
+                $this->isConfigurable(true) // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
+            );
+
+
+            $this->productListItem = new ProductListItem(
                 $elem->getProductId(),
                 $elem->getProductName(),
                 new MediaFile
@@ -86,28 +100,16 @@ class ProductListFactory
                 $elem->getTypeOfProduct(),
                 $variants
             );
+            $this->productList->addItem( $this->productListItem );
         }
+
+
+
     }
     
     private function isConfigurable($boolean)
     {
         return $boolean; // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
-    }
-    
-    public function loadProducts($id,
-                                 $name,
-                                 $mediaFileId,
-                                 $shortDescription,
-                                 $type,
-                                 $productVariantsList)
-    {
-        $this->productListItem = new ProductListItem(
-            $id,
-            $name,
-            $mediaFileId,
-            $shortDescription,
-            $type,
-            $productVariantsList);
     }
 
     public function loadVariants(int $productId)
@@ -133,15 +135,10 @@ class ProductListFactory
         return new ProductVariantList( $variants );
     }
 
-    public function composeProductList()
-    {
-        $this->productList = new ProductList($this->productListItems);
-    }
-
     /**
      * @return ProductList
      */
-    public function getInstance()
+    public function getInstance() :ProductList
     {
         return $this->productList;
     }

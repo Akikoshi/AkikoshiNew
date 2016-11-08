@@ -8,7 +8,6 @@
 
 namespace Class152\PizzaMamamia\Library;
 
-use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
 class MediaFile implements MediaFileInterface
@@ -73,21 +72,21 @@ class MediaFile implements MediaFileInterface
     /**
      * Hold url of the normal image version.
      *
-     * @var LinkInterface
+     * @var string
      */
     private $url;
 
     /**
      * Hold url of the thumb image version.
      *
-     * @var LinkInterface
+     * @var string
      */
     private $thumbUrl;
 
     /**
      * Hold url of the large image version.
      *
-     * @var LinkInterface
+     * @var string
      */
     private $bigUrl;
 
@@ -105,21 +104,36 @@ class MediaFile implements MediaFileInterface
      */
     private $altTag;
 
-
+    /**
+     * MediaFile constructor.
+     * @param int $id
+     * @param string $mime
+     * @param int $height
+     * @param int $width
+     * @param int $thumbHeight
+     * @param int $thumbWidth
+     * @param int $bigHeight
+     * @param int $bigWidth
+     * @param string $url
+     * @param string $thumbUrl
+     * @param string $bigUrl
+     * @param string $titleTag
+     * @param string $altTag
+     */
     public function __construct(
-        $id,
-        $mime,
-        $height,
-        $width,
-        $thumbHeight,
-        $thumbWidth,
-        $bigHeight,
-        $bigWidth,
-        $url,
-        $thumbUrl,
-        $bigUrl,
-        $titleTag,
-        $altTag)
+        int $id,
+        string $mime,
+        int $height,
+        int $width,
+        int $thumbHeight,
+        int $thumbWidth,
+        int $bigHeight,
+        int $bigWidth,
+        string $url,
+        string $thumbUrl,
+        string $bigUrl,
+        string $titleTag,
+        string $altTag)
     {
         $this->id = $id;
         $this->mime = $mime;
@@ -128,9 +142,9 @@ class MediaFile implements MediaFileInterface
         $this->thumbHeight = $thumbHeight;
         $this->thumbWidth = $thumbWidth;
         $this->bigHeight = $bigHeight;
-        $this->thumbUrl = $bigWidth;
-        $this->bigWidth = $url;
-        $this->url = $thumbUrl;
+        $this->bigWidth = $bigWidth;
+        $this->url = $url;
+        $this->thumbUrl = $thumbUrl;
         $this->bigUrl = $bigUrl;
         $this->titleTag = $titleTag;
         $this->altTag = $altTag;
@@ -201,25 +215,25 @@ class MediaFile implements MediaFileInterface
     }
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getUrl() : LinkInterface
+    public function getUrl() : string
     {
         return $this->url;
     }
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getThumbUrl() : LinkInterface
+    public function getThumbUrl() : string
     {
         return $this->thumbUrl;
     }
 
     /**
-     * @return LinkInterface
+     * @return string
      */
-    public function getBigUrl() : LinkInterface
+    public function getBigUrl() : string
     {
         return $this->bigUrl;
     }

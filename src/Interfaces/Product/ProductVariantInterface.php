@@ -11,6 +11,8 @@
 
 	use Class152\PizzaMamamia\Interfaces\LinkInterface;
 	use Class152\PizzaMamamia\Interfaces\PriceInterface;
+	use Class152\PizzaMamamia\Services\ProductListService\values\Link;
+	use Class152\PizzaMamamia\Services\ProductListService\values\Price;
 
 	/**
 	 * Interface ProductVariantsIteratorInterface
@@ -22,35 +24,35 @@
 		/**
 		 * @return string
 		 */
-		public function getId();
+		public function getId() : string;
 
 		/**
 		 * @return string
 		 */
-		public function getName();
+		public function getName() : string;
 
 		/**
-		 * @return PriceInterface
+		 * @return Price
 		 */
-		public function getPrice();
+		public function getPrice() : Price;
 
 		/**
-		 * @return LinkInterface
+		 * @return Link
 		 */
-		public function getProductDetailUrl();
+		public function getProductDetailUrl() : Link;
 
 		/**
-		 * @return LinkInterface
+		 * @return Link
 		 */
-		public function getAddToShoppingCartUrl();
+		public function getAddToShoppingCartUrl() : Link;
 
 		/**
-		 * @return LinkInterface
+		 * @return Link
 		 */
-		public function getConfigurationUrl();
+		public function getConfigurationUrl() : Link;
 
 		/**
 		 * @return bool
 		 */
-		public function isConfigurable();
+		public function isConfigurable() : bool;
 	}
