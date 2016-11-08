@@ -11,5 +11,8 @@ namespace Class152\PizzaMamamia\Services\CampaignService\Library;
 
 class CampaignListFactory
 {
-
+    function getCampaignList()
+    {
+        
+    }
 }
