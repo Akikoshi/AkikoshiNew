@@ -11,7 +11,7 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Iterators;
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
-use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductVariantItem;
+use Class152\PizzaMamamia\Services\ProductDetailService\ListItems\ProductVariantItem;
 
 class ProductVariantList extends AbstractIterator implements ProductVariantListInterface
 {

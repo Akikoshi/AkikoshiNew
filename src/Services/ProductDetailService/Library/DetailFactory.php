@@ -26,38 +26,37 @@ class DetailFactory
     /** @var Product */
     private $product;
 
-	/**
-	 * @var MediaFileList
-	 */
-	private $mediaFileList;
+    /**
+     * @var MediaFileList
+     */
+    private $mediaFileList;
 
-	/**
-	 * @var ComponentList
-	 */
-	private $componentList;
+    /**
+     * @var ComponentList
+     */
+    private $componentList;
 
 
-	/**
-	 * DetailFactory constructor.
-	 * @param int $productId
-	 */
-    public function __construct( int $productId )
+    /**
+     * DetailFactory constructor.
+     * @param int $productId
+     */
+    public function __construct(int $productId)
     {
         $this->productID = $productId;
 
-        $this->repository = new ProductRepository( $productId );
+        $this->repository = new ProductRepository($productId);
         $productEntity = $this->repository->getProductEntity();
 
-        $this->mediaFileList = new MediaFileList();
-        $this->generateMediaFileList();
+        // $this->mediaFileList = new MediaFileList($this->generateMediaFileList());
 
-		$this->componentList = new ComponentList();
-		$this->generateComponentList();
+        $this->componentList = new ComponentList();
+        $this->generateComponentList();
 
-		$price = new Price(
-			$productEntity->getGrossPrice(),
-			$productEntity->getVat()
-		);
+        $price = new Price(
+            $productEntity->getGrossPrice(),
+            $productEntity->getVat()
+        );
 
         $this->product = new Product(
             $this->productID,
@@ -67,97 +66,101 @@ class DetailFactory
             $productEntity->getParentId(),
             $productEntity->getType(),
             $price,
-            $this->mediaFileList,
+            new MediaFileList($this->generateMediaFileList()),
             $this->componentList
         );
 
-	}
+    }
 
+    /**
+     * @return array
+     */
+    private function generateMediaFileList() : array
+    {
+        $medieFileItemArray = array();
+        $mediaFileGenerator = $this->repository->getMediaFiles($this->productID);
 
-	private function generateMediaFileList()
-	{
-		$mediaFileGenerator = $this->repository->getMediaFiles();
-
-		/** @var MediaFileEntity $mediaEntity */
-		foreach ( $mediaFileGenerator as $mediaEntity ) {
-			$this->mediaFileList->addItem( new MediaFile(
-				$this->productID,
-				$mediaEntity->getMime(),
-				$mediaEntity->getHeight(),
-				$mediaEntity->getWidth(),
-				$mediaEntity->getThumbHeight(),
-				$mediaEntity->getThumbWidth(),
-				$mediaEntity->getBigHeight(),
-				$mediaEntity->getThumbUrl(),
-				$mediaEntity->getBigWidth(),
-				$mediaEntity->getUrl(),
-				$mediaEntity->getBigUrl(),
-				$mediaEntity->getTitleTag(),
-				$mediaEntity->getAltTag()
-			) );
-		}
-	}
+        /** @var MediaFileEntity $mediaEntity */
+        foreach ($mediaFileGenerator as $mediaEntity) {
+            $medieFileItemArray[] = new MediaFile(
+                $this->productID,
+                $mediaEntity->getMime(),
+                $mediaEntity->getHeight(),
+                $mediaEntity->getWidth(),
+                $mediaEntity->getThumbHeight(),
+                $mediaEntity->getThumbWidth(),
+                $mediaEntity->getBigHeight(),
+                $mediaEntity->getThumbUrl(),
+                $mediaEntity->getBigWidth(),
+                $mediaEntity->getUrl(),
+                $mediaEntity->getBigUrl(),
+                $mediaEntity->getTitleTag(),
+                $mediaEntity->getAltTag()
+            );
+        }
+        return $medieFileItemArray;
+    }
 
     /**
      * @throws \Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\NoResultException
      */
     private function generateComponentList()
-	{
-		$componentGenerator = $this->repository->getComponentsEntity();
+    {
+        $componentGenerator = $this->repository->getComponentsEntity();
 
-		foreach ( $componentGenerator as $componentEntity ) {
+        foreach ($componentGenerator as $componentEntity) {
 
-			/** @var MediaFileEntity $mediaEntity */
-			$mediaEntity=$this->repository->getMediaFile($componentEntity->getFkMediaFiles);
+            /** @var MediaFileEntity $mediaEntity */
+            $mediaEntity = $this->repository->getMediaFile($componentEntity->getFkMediaFiles);
 
-			$mediaFile=new MediaFile(
-				$componentEntity->getFkMediaFiles,
-				$mediaEntity->getMime(),
-				$mediaEntity->getHeight(),
-				$mediaEntity->getWidth(),
-				$mediaEntity->getThumbHeight(),
-				$mediaEntity->getThumbWidth(),
-				$mediaEntity->getBigHeight(),
-				$mediaEntity->getThumbUrl(),
-				$mediaEntity->getBigWidth(),
-				$mediaEntity->getUrl(),
-				$mediaEntity->getBigUrl(),
-				$mediaEntity->getTitleTag(),
-				$mediaEntity->getAltTag()
-			) ;
-            
-			$this->componentList->addItem( new Component(
-				$componentEntity->getComponentId,
-				$componentEntity->getName,
-				$componentEntity->getComponentGroup,
-				$mediaFile,
-				$componentEntity->getOrdering,
+            $mediaFile = new MediaFile(
+                $componentEntity->getFkMediaFiles,
+                $mediaEntity->getMime(),
+                $mediaEntity->getHeight(),
+                $mediaEntity->getWidth(),
+                $mediaEntity->getThumbHeight(),
+                $mediaEntity->getThumbWidth(),
+                $mediaEntity->getBigHeight(),
+                $mediaEntity->getThumbUrl(),
+                $mediaEntity->getBigWidth(),
+                $mediaEntity->getUrl(),
+                $mediaEntity->getBigUrl(),
+                $mediaEntity->getTitleTag(),
+                $mediaEntity->getAltTag()
+            );
+
+            $this->componentList->addItem(new Component(
+                $componentEntity->getComponentId,
+                $componentEntity->getName,
+                $componentEntity->getComponentGroup,
+                $mediaFile,
+                $componentEntity->getOrdering,
                 $this->generateAdditiveList($componentEntity->getComponentId),
                 $this->generateAllergicList($componentEntity->getComponentId)
-			));
-		}
-	}
+            ));
+        }
+    }
 
 
     /**
      * @param int $componentId
      * @return AddendaItemList
      */
-    private function generateAdditiveList( int $componentId ) : AddendaItemList
+    private function generateAdditiveList(int $componentId) : AddendaItemList
     {
         $componentAdditiveList = new AddendaItemList();
 
-        $additiveGenerator = $this->repository->getAdditiveEntities( $componentId );
+        $additiveGenerator = $this->repository->getAdditiveEntities($componentId);
 
         /** @var AddendaEntity $additiveEntity */
-        foreach ( $additiveGenerator as $additiveEntity ) {
-			$componentAdditiveList->addItem( new AddendaItem(
+        foreach ($additiveGenerator as $additiveEntity) {
+            $componentAdditiveList->addItem(new AddendaItem(
                 $additiveEntity->getId(),
                 $additiveEntity->getType(),
                 $additiveEntity->getName(),
                 $additiveEntity->getTag(),
                 $additiveEntity->getComponentId()
-            ) );
+            ));
         }
         return $componentAdditiveList;
     }
@@ -167,21 +170,21 @@ class DetailFactory
      * @param int $componentId
      * @return AddendaItemList
      */
-    private function generateAllergicList( int $componentId ) : AddendaItemList
+    private function generateAllergicList(int $componentId) : AddendaItemList
     {
         $componentAllergicList = new AddendaItemList();
 
-        $allergicGenerator = $this->repository->getAdditiveEntities( $componentId );
+        $allergicGenerator = $this->repository->getAdditiveEntities($componentId);
 
         /** @var AddendaEntity $allergicEntity */
-        foreach ( $allergicGenerator as $allergicEntity ) {
-			$componentAllergicList->addItem( new AddendaItem(
+        foreach ($allergicGenerator as $allergicEntity) {
+            $componentAllergicList->addItem(new AddendaItem(
                 $allergicEntity->getId(),
                 $allergicEntity->getType(),
                 $allergicEntity->getName(),
                 $allergicEntity->getTag(),
                 $allergicEntity->getComponentId()
-            ) );
+            ));
         }
         return $componentAllergicList;
     }
@@ -192,7 +195,7 @@ class DetailFactory
      */
     public function getProduct() : Product
     {
-		return $this->product;
-	}
+        return $this->product;
+    }
 
 }

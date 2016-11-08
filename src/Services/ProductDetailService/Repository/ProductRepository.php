@@ -206,6 +206,37 @@ class ProductRepository
     }
 
     /**
+     * @param int|null $componentId
+     *
+     * @return \Generator
+     * @throws NoResultException
+     */
+    public function getAllergenEntities(int $componentId = null) : \Generator
+    {
+        if ($componentId == null) {
+            $componentId = $this->productId;
+        };
+
+        $result = $this->obtainAddendaByTypeRequest($componentId, 'Allergics');
+
+        $resultItems = $result->fetch_assoc();
+
+        try {
+            foreach (array_keys($resultItems) as $key) {
+                yield new AddendaItem(
+                    $resultItems[$key]["id"],
+                    $resultItems[$key]["type"],
+                    $resultItems[$key]["name"],
+                    $resultItems[$key]["tag"],
+                    $componentId
+                );
+            }
+        } finally {
+            $result->free_result();
+        }
+    }
+
+    /**
      * @param int $componentId
      * @param string $type
      *
@@ -238,29 +269,40 @@ class ProductRepository
     }
 
     /**
-     * @param int|null $componentId
-     *
-     * @return \Generator
+     * @return ComponentsEntity
      * @throws NoResultException
+     * ToDo: reCheck this stuff
      */
-    public function getAllergenEntities(int $componentId = null) : \Generator
+    public function getComponentsEntity() : ComponentsEntity
     {
-        if ($componentId == null) {
-            $componentId = $this->productId;
-        };
+        $sql = "SELECT  
+					Comp.componentId,
+					Comp.name,
+					Comp.componentGroup,
+					Comp.fk_MediaFiles,
+					ptc. ordering
+				FROM 
+					Components AS Comp
+				LEFT JOIN
+					ProductsToComponents AS ptc ON (ptc.componentId = comp.componentId)
+				WHERE 
+					ptc.productId = " . $this->productId . ";";
+        $result = $this->db->query($sql);
 
-        $result = $this->obtainAddendaByTypeRequest($componentId, 'Allergics');
+        if (empty($result)) {
+            throw new NoResultException();
+        }
 
-        $resultItems = $result->fetch_assoc();
+        $resultItem = $result->fetch_assoc();
 
         try {
-            foreach (array_keys($resultItems) as $key) {
-                yield new AddendaItem(
-                    $resultItems[$key]["id"],
-                    $resultItems[$key]["type"],
-                    $resultItems[$key]["name"],
-                    $resultItems[$key]["tag"],
-                    $componentId
+            foreach (array_keys($resultItem) as $key) {
+                yield new ComponentsEntity(
+                    $resultItem['componentId'],
+                    $resultItem['name'],
+                    $resultItem['componentGroup'],
+                    $resultItem['fk_MediaFiles'],
+                    $resultItem['ordering']
                 );
             }
         } finally {
@@ -273,7 +315,50 @@ class ProductRepository
      * @throws NoResultException
      * ToDo: reCheck this stuff
      */
-    public function getComponentsEntity() : ComponentsEntity
+    public function getComponentsForSingleEntity() : ComponentsEntity
+    {
+        $sql = "SELECT  
+					Comp.componentId,
+					Comp.name,
+					Comp.componentGroup,
+					Comp.fk_MediaFiles,
+					ptc. ordering
+				FROM 
+					Components AS Comp
+				LEFT JOIN
+					ProductsToComponents AS ptc ON (ptc.componentId = comp.componentId)
+				WHERE 
+					ptc.productId = " . $this->productId . ";";
+        $result = $this->db->query($sql);
+
+        if (empty($result)) {
+            throw new NoResultException();
+        }
+
+        $resultItem = $result->fetch_assoc();
+
+        try {
+            foreach (array_keys($resultItem) as $key) {
+                yield new ComponentsEntity(
+                    $resultItem['componentId'],
+                    $resultItem['name'],
+                    $resultItem['componentGroup'],
+                    $resultItem['fk_MediaFiles'],
+                    $resultItem['ordering']
+                );
+            }
+        } finally {
+            $result->free_result();
+        }
+    }
+
+
+    /**
+     * @return ComponentsEntity
+     * @throws NoResultException
+     * ToDo: reCheck this stuff
+     */
+    public function getComponentsForBundleEntity() : ComponentsEntity
     {
         $sql = "SELECT  
 					Comp.componentId,

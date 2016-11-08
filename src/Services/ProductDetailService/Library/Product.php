@@ -14,7 +14,6 @@ use Class152\PizzaMamamia\Interfaces\Product\ProductComponentsListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductDetailInformationsInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
-use Class152\PizzaMamamia\Library\Price;
 
 
 class Product implements ProductDetailInformationsInterface
@@ -103,7 +102,7 @@ class Product implements ProductDetailInformationsInterface
         $this->componentList = $componentList;
 
         $this->hasDescription = true;
-        if( nul == $this->longDescription)
+        if( null == $this->longDescription)
         {
             $this->hasDescription = false;
         }

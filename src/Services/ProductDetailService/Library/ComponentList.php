@@ -10,7 +10,7 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
-use Class152\PizzaMamamia\Services\ProductConfiguratorService\Library\AddendaItemList;
+use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItemList;
 use Class152\PizzaMamamia\Services\ProductDetailService\Exceptions\ComponentListNeedsComponentException;
 
 class ComponentList extends AbstractIterator
