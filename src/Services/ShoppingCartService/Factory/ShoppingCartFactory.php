@@ -9,8 +9,6 @@
 namespace Class152\PizzaMamamia\Services\ShoppingCartService\Factory;
 
 
-use Class152\PizzaMamamia\Services\ProductDetailService\Library\MediaFile;
-use Class152\PizzaMamamia\Services\ProductDetailService\Library\Price;
 use Class152\PizzaMamamia\Services\ShoppingCartService\Library\ShoppingCartItem;
 use Class152\PizzaMamamia\Services\ShoppingCartService\Library\ShoppingCartItemVariant;
 use Class152\PizzaMamamia\Services\ShoppingCartService\Library\ShoppingCartItemVariantList;
