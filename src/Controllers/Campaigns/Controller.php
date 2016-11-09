@@ -27,8 +27,8 @@ class Controller extends AbstractController
         $footerMenu = $menuService->getFooterMenu();
         $breadcrumbMenu = $menuService->getBreadcrumbMenu();
 
-        $campaignService = new CampaignService();
-        $campaignList = $campaignService->getCampaign();
+        $campaignService = new CampaignService($this->request);
+        $campaignList = $campaignService->getCampaignList();
 
         // TODO: Implement CampaingsDetailController
 

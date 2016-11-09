@@ -22,4 +22,13 @@ class ProductVariantList extends AbstractIterator implements ProductVariantListI
     {
         return parent::current();
     }
+
+    /**
+     * @param null $key
+     * @return ProductVariantInterface
+     */
+    public function getElement($key = null) : ProductVariantInterface
+    {
+        return parent::getElement($key);
+    }
 }

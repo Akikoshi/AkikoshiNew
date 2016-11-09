@@ -35,16 +35,17 @@
             <div class="row">
                 <div class="row">
                     {% for productListItem in productList %}
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="{{ productListItem.getThumb.getThumbUrl }}" alt="{{ productList.current.getThumb.getAltTag }}">
-                            <div class="caption">
-                                <h3>{{ productList.current.getName }}</h3>
-                                <p>{{ productList.current.getDescription }}</p>
-                                <p><a href="#" class="btn btn-primary" role="button">bestellen</a></p>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ productListItem.getThumb.getThumbUrl }}"
+                                     alt="{{ productList.current.getThumb.getAltTag }}">
+                                <div class="caption">
+                                    <h3>{{ productList.current.getName }}</h3>
+                                    <p>{{ productList.current.getDescription }}</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">bestellen</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
             </div>

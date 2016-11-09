@@ -9,10 +9,18 @@
 namespace Class152\PizzaMamamia\Interfaces\Product;
 
 
-interface ProductVariantListInterface
+use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
+
+interface ProductVariantListInterface extends AbstractIteratorInterface
 {
     /**
      * @return ProductVariantInterface
      */
     public function current() : ProductVariantInterface;
+
+    /**
+     * @param null|string|int $key
+     * @return ProductVariantInterface
+     */
+    public function getElement($key = null) : ProductVariantInterface;
 }

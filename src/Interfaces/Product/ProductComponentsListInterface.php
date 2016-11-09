@@ -10,9 +10,9 @@
 
 
 	use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
-	use Class152\PizzaMamamia\Interfaces\PriceInterface;
+    use Class152\PizzaMamamia\Interfaces\PriceInterface;
 
-	/**
+    /**
 	 * Interface ProductComponentsListInterface
 	 * TODO: implement this interface
 	 *
@@ -25,7 +25,13 @@
 		 */
 		public function current() : ProductComponentInterface;
 
-		/**
+        /**
+         * @param null $key
+         * @return ProductComponentInterface
+         */
+        public function getElement($key = null) : ProductComponentInterface;
+
+        /**
 		 * @return \Class152\PizzaMamamia\Interfaces\PriceInterface
 		 */
 		public function getAdditionalPrice() : PriceInterface;

@@ -10,9 +10,11 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Library;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
+use Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterface;
+use Class152\PizzaMamamia\Interfaces\Campaign\CampaignItemListInterface;
 use Class152\PizzaMamamia\Services\StartPageService\Exceptions\CampaignListNeedsCampaignItemException;
 
-class CampaignItemList extends AbstractIterator
+class CampaignItemList extends AbstractIterator implements CampaignItemListInterface
 {
     /**
      * CampaignItemList constructor.
@@ -54,8 +56,42 @@ class CampaignItemList extends AbstractIterator
     /**
      * @return CampaignItem
      */
-    public function current() : CampaignItem
+    public function current() : CampaignInterface
     {
         return parent::current();
+    }
+
+    /**
+     * @param int $amount
+     */
+    public function filterByRandom(int $amount)
+    {
+        // TODO: Implement filterByRandom() method.
+    }
+
+    /**
+     * @param int $productGroupId
+     */
+    public function filterByProductGroupId(int $productGroupId)
+    {
+        // TODO: Implement filterByProductGroupId() method.
+    }
+
+    public function sortByPrice()
+    {
+        // TODO: Implement sortByPrice() method.
+    }
+
+    public function sortByProductGroup()
+    {
+        // TODO: Implement sortByProductGroup() method.
+    }
+
+    /**
+     * @param int $productId
+     */
+    public function isThisProductIdInThisCampaign(int $productId)
+    {
+        // TODO: Implement isThisProductIdInThisCampaign() method.
     }
 }
