@@ -9,6 +9,7 @@
 namespace Class152\PizzaMamamia\AbstractClasses;
 
 
+use Class152\PizzaMamamia\Exception\FormValidationFailedException;
 use Class152\PizzaMamamia\Exception\ValidatorUsageFailException;
 
 abstract class AbstractValidator
@@ -70,10 +71,62 @@ abstract class AbstractValidator
 
     /**
      * @param string $keyName
+     * @return bool
+     * @throws ValidatorUsageFailException
+     */
+    public final function hasThisFieldErrors(string $keyName) : bool
+    {
+
+        if (!in_array($keyName, $this->expectedKeys)) {
+            throw new ValidatorUsageFailException(
+                'Key ' . $keyName . ' not defined in expectedKeys'
+            );
+        }
+
+        if (isset($this->errors[$keyName])) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    /**
+     * @param string $keyName
+     * @return array
+     * @throws ValidatorUsageFailException
+     */
+    public final function readFieldErrors(string $keyName) : array
+    {
+
+        if (!in_array($keyName, $this->expectedKeys)) {
+            throw new ValidatorUsageFailException(
+                'Key ' . $keyName . ' not defined in expectedKeys'
+            );
+        }
+
+        if (isset($this->errors[$keyName])) {
+            return $this->errors[$keyName];
+        }
+
+        return [];
+
+    }
+
+    /**
+     * @return array
+     */
+    public final function readAllErrors() : array
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @param string $keyName
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfEmpty(string $keyName, string $customErrorString = '')
+    protected final function errorIfEmpty(string $keyName, string $customErrorString = '')
     {
         if (!in_array($keyName, $this->expectedKeys)) {
             throw new ValidatorUsageFailException(
@@ -95,7 +148,7 @@ abstract class AbstractValidator
      * @param string $defaultErrorMessage
      * @param string $customErrorMessage
      */
-    private function writeErrorEntry(
+    private final function writeErrorEntry(
         string $keyName,
         string $defaultErrorMessage,
         string $customErrorMessage = ''
@@ -120,7 +173,7 @@ abstract class AbstractValidator
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfValueNotInArray(
+    protected final function errorIfValueNotInArray(
         string $keyName,
         array $allowedValues,
         string $customErrorString = ''
@@ -155,7 +208,7 @@ abstract class AbstractValidator
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfNotThisValue(
+    protected final function errorIfNotThisValue(
         string $keyName,
         string $expectedValue,
         string $customErrorString = ''
@@ -183,7 +236,7 @@ abstract class AbstractValidator
      * @param string $customErrorString
      * @throws ValidatorUsageFailException
      */
-    protected function errorIfNotBoolean(
+    protected final function errorIfNotBoolean(
         string $keyName,
         string $customErrorString = ''
     )
@@ -266,18 +319,33 @@ abstract class AbstractValidator
             );
         }
 
-        $float = filter_var($this->$keyName, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND);
+        $float = filter_var(
+            $this->$keyName,
+            FILTER_VALIDATE_FLOAT,
+            FILTER_FLAG_ALLOW_THOUSAND
+        );
 
         if (false === $float) {
             $this->writeErrorEntry(
                 $keyName,
-                'Dieses Feld muss eine Fliesszahl enthalten.',
+                'Dieses Feld muss eine Fliesskommazahl enthalten.',
                 $customErrorString
             );
         }
 
         $this->$keyName = $float;
 
+    }
+
+    /**
+     * @throws FormValidationFailedException
+     */
+    protected function throwExceptionWhenErrors()
+    {
+        if (!empty($this->errors)) {
+            $exception = new FormValidationFailedException();
+            throw $exception;
+        }
     }
 
 }
