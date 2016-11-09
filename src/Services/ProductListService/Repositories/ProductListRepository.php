@@ -47,7 +47,7 @@ class ProductListRepository
 
         if($productListFilter->isFilteredByGroupId() === false )
         {
-            $this->orderBy = " order by p.name;"; // Todo: Feheler bei .= syntax in der Mysqlabfrage
+            $this->orderBy = " order by p.name;"; 
         }
         else
         {
@@ -127,9 +127,9 @@ class ProductListRepository
         }
     }
 
-    public function getProductVariantArray(int $parentId) : \Generator //Todo: umbenennen
+    public function getProductVariantArray(int $parentId) : \Generator
     {
-        //Todo: Sql question change
+
         $sql = "select 
                 p.id as id, 
                 p.mediaFileId as mediaFileId, 
