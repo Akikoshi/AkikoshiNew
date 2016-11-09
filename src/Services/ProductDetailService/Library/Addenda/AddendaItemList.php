@@ -41,9 +41,9 @@ class AddendaItemList extends AbstractIterator
     /**
      * @param AddendaItem $AddendaItem
      */
-    public function addItem(AddendaItem $AddendaItem)
+    public function addItem(AddendaItem $addendaItem)
     {
-        $this->iteratorArray[] = $AddendaItem;
+        $this->iteratorArray[] = $addendaItem;
     }
 
     /**
