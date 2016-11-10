@@ -8,7 +8,9 @@
 
 	namespace Class152\PizzaMamamia\Interfaces\Product;
 
-	/**
+    use Class152\PizzaMamamia\Interfaces\MediaFileListInterface;
+
+    /**
 	 * Interface ProductDetailInformationsInterface
 	 *
 	 * @package Class152\PizzaMamamia\Interfaces\Product
@@ -16,10 +18,10 @@
 	interface ProductDetailInformationsInterface extends ProductBasicInformationsInterface
 	{
 
-		/**
-		 * @return \IteratorIterator
-		 */
-		public function getImages() : \IteratorIterator;
+        /**
+         * @return MediaFileListInterface
+         */
+        public function getImages() : MediaFileListInterface;
 
 		/**
 		 * @return bool

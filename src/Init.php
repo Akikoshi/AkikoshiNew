@@ -8,7 +8,6 @@
 
 	namespace Class152\PizzaMamamia;
 
-
 	use Class152\PizzaMamamia\ControllerFactory\ControllerFactory;
 	use Class152\PizzaMamamia\Exception\NotFoundException;
 	use Class152\PizzaMamamia\Exception\RedirectException;
@@ -17,12 +16,10 @@
 	
 	class Init
 	{
-		
-		
-	
 		public function __construct()
 		{
-			try {
+			try
+			{
 				$request = new Request($_SERVER['REQUEST_URI']);
 				$controller = new ControllerFactory( __NAMESPACE__, $request );
 			}

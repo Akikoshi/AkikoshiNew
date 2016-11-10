@@ -19,6 +19,12 @@ interface ProductListInterface extends AbstractIteratorInterface
     public function current() : ProductBasicInformationsInterface;
 
     /**
+     * @param null $key
+     * @return ProductBasicInformationsInterface
+     */
+    public function getElement($key = null) : ProductBasicInformationsInterface;
+
+    /**
      * @return ProductListPaginatorInterface
      */
     public function getPaginator() : ProductListPaginatorInterface;

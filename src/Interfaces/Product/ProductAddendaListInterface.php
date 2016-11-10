@@ -11,7 +11,7 @@
 
 	use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
 
-	/**
+    /**
 	 * Interface ProductAddonsListInterface
 	 * TODO: implement addItem method
 	 *
@@ -19,5 +19,14 @@
 	 */
 	interface ProductAdditivesListInterface extends AbstractIteratorInterface
 	{
+        /**
+         * @return ProductAddendaInterface
+         */
+        public function current() : ProductAddendaInterface;
 
-	}
+        /**
+         * @param null|string|int $key
+         * @return ProductAddendaInterface
+         */
+        public function getElement($key = null) : ProductAddendaInterface;
+    }

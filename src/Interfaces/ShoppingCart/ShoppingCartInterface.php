@@ -10,10 +10,10 @@
 
 
 	use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
-	use Class152\PizzaMamamia\Interfaces\LinkInterface;
-	use Class152\PizzaMamamia\Interfaces\PriceInterface;
+    use Class152\PizzaMamamia\Interfaces\LinkInterface;
+    use Class152\PizzaMamamia\Interfaces\PriceInterface;
 
-	/**
+    /**
 	 * Interface ShoppingCartInterface
 	 *
 	 * @package Class152\PizzaMamamia\Interfaces\ShoppingCart
@@ -31,7 +31,13 @@
 		 */
 		public function current() : ShoppingCartItemInterface;
 
-		/**
+        /**
+         * @param null|string|int $key
+         * @return ShoppingCartItemInterface
+         */
+        public function getElement($key = null) : ShoppingCartItemInterface;
+
+        /**
 		 * @return \Class152\PizzaMamamia\Interfaces\LinkInterface
 		 */
 		public function getCheckoutUrl() : LinkInterface;

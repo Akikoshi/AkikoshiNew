@@ -1,40 +1,46 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: cbiedermann
-	 * Date: 24.10.2016
-	 * Time: 08:51
-	 */
+/**
+ * Created by PhpStorm.
+ * User: cbiedermann
+ * Date: 24.10.2016
+ * Time: 08:51
+ */
 
-	namespace Class152\PizzaMamamia\Interfaces\Campaign;
+namespace Class152\PizzaMamamia\Interfaces\Campaign;
 
 
-	use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
-	use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
+use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
 
-	interface CampaignItemListInterface extends AbstractIteratorInterface
-	{
-		/**
-		 * @param int $amount
-		 */
-		public function filterByRandom( int $amount );
+interface CampaignItemListInterface extends AbstractIteratorInterface
+{
+    /**
+     * @param int $amount
+     */
+    public function filterByRandom(int $amount);
 
-		/**
-		 * @param int $productGroupId
-		 */
-		public function filterByProductGroupId( int $productGroupId );
-		
-		public function sortByPrice();
+    /**
+     * @param int $productGroupId
+     */
+    public function filterByProductGroupId(int $productGroupId);
 
-		public function sortByProductGroup();
+    public function sortByPrice();
 
-		/**
-		 * @param int $productId
-		 */
-		public function isThisProductIdInThisCampaign( int $productId );
+    public function sortByProductGroup();
 
-		/**
-		 * @return ProductBasicInformationsInterface
-		 */
-		public function current() : ProductBasicInformationsInterface;
-	}
+    /**
+     * @param int $productId
+     */
+    public function isThisProductIdInThisCampaign(int $productId);
+
+    /**
+     * @return ProductBasicInformationsInterface
+     */
+    public function current() : ProductBasicInformationsInterface;
+
+    /**
+     * @param null|string|int $key
+     * @return ProductBasicInformationsInterface
+     */
+    public function getElement($key = null) : ProductBasicInformationsInterface;
+}

@@ -8,7 +8,6 @@
 
 namespace Class152\PizzaMamamia\Services\CampaignService;
 
-
 use Class152\PizzaMamamia\Http\Request;
 use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignFactory;
 use Class152\PizzaMamamia\Services\CampaignService\Library\CampaignItem;
@@ -45,5 +44,10 @@ class CampaignService
     {
         $campaignList = new CampaignListFactory();
         return $campaignList->getCampaignList();
+    }
+
+    public function getCampaignDetail($campaignId)
+    {
+        return $this->getCampaignDetail();
     }
 }
