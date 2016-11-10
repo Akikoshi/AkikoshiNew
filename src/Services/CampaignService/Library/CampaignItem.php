@@ -12,16 +12,34 @@ namespace Class152\PizzaMamamia\Services\CampaignService\Library;
 use Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterface;
 use Class152\PizzaMamamia\Interfaces\Campaign\CampaignItemListInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+use Class152\PizzaMamamia\Services\StartPageService\Library\CampaignItemList;
 
 class CampaignItem implements CampaignInterface
 {
+    /** @var string */
+    private $id;
+
+    /** @var string */
+    private $name;
+
+    /** @var string */
+    private $description;
+
+    /** @var MediaFileInterface */
+    private $banner;
+
+    /** @var bool */
+    private $hasBanner;
+
+    /** @var bool */
+    private $isActive;
 
     /**
      * @return string
      */
     public function getId() : string
     {
-        // TODO: Implement getId() method.
+        return $this->id;
     }
 
     /**
@@ -29,7 +47,7 @@ class CampaignItem implements CampaignInterface
      */
     public function getName() : string
     {
-        // TODO: Implement getName() method.
+        return $this->name;
     }
 
     /**
@@ -37,7 +55,7 @@ class CampaignItem implements CampaignInterface
      */
     public function getDescription() : string
     {
-        // TODO: Implement getDescription() method.
+        return $this->description;
     }
 
     /**
@@ -45,7 +63,7 @@ class CampaignItem implements CampaignInterface
      */
     public function hasBanner() : bool
     {
-        // TODO: Implement hasBanner() method.
+        return $this->hasBanner;
     }
 
     /**
@@ -53,7 +71,7 @@ class CampaignItem implements CampaignInterface
      */
     public function getBanner() : MediaFileInterface
     {
-        // TODO: Implement getBanner() method.
+        return $this->banner;
     }
 
     /**
@@ -61,7 +79,7 @@ class CampaignItem implements CampaignInterface
      */
     public function isActive() : bool
     {
-        // TODO: Implement isActive() method.
+        return $this->isActive;
     }
 
     /**
@@ -72,6 +90,7 @@ class CampaignItem implements CampaignInterface
     public function isActiveAtDate(\DateTimeImmutable $date) : bool
     {
         // TODO: Implement isActiveAtDate() method.
+        return false;
     }
 
     /**
@@ -80,6 +99,7 @@ class CampaignItem implements CampaignInterface
     public function isReducedByPercent() : bool
     {
         // TODO: Implement isReducedByPercent() method.
+        return false;
     }
 
     /**
@@ -88,6 +108,7 @@ class CampaignItem implements CampaignInterface
     public function isReducedToFixPrice() : bool
     {
         // TODO: Implement isReducedToFixPrice() method.
+        return false;
     }
 
     /**
@@ -98,6 +119,7 @@ class CampaignItem implements CampaignInterface
     public function getReduceRule()
     {
         // TODO: Implement getReduceRule() method.
+        return false;
     }
 
     /**
@@ -106,6 +128,7 @@ class CampaignItem implements CampaignInterface
     public function getReduceValue() : float
     {
         // TODO: Implement getReduceValue() method.
+        return 0;
     }
 
     /**
@@ -114,6 +137,7 @@ class CampaignItem implements CampaignInterface
     public function getStartDate() : \DateTimeImmutable
     {
         // TODO: Implement getStartDate() method.
+        return new \DateTimeImmutable();
     }
 
     /**
@@ -122,6 +146,7 @@ class CampaignItem implements CampaignInterface
     public function getEndDate() : \DateTimeImmutable
     {
         // TODO: Implement getEndDate() method.
+        return new \DateTimeImmutable();
     }
 
     /**
@@ -130,6 +155,7 @@ class CampaignItem implements CampaignInterface
     public function hasDayTimeRule() : bool
     {
         // TODO: Implement hasDayTimeRule() method.
+        return false;
     }
 
     /**
@@ -138,6 +164,7 @@ class CampaignItem implements CampaignInterface
     public function getDayTimeStart() : \DateTimeImmutable
     {
         // TODO: Implement getDayTimeStart() method.
+        return new \DateTimeImmutable();
     }
 
     /**
@@ -146,6 +173,7 @@ class CampaignItem implements CampaignInterface
     public function getDayTimeEnd() : \DateTimeImmutable
     {
         // TODO: Implement getDayTimeEnd() method.
+        return new \DateTimeImmutable();
     }
 
     /**
@@ -154,5 +182,6 @@ class CampaignItem implements CampaignInterface
     public function getItems() : CampaignItemListInterface
     {
         // TODO: Implement getItems() method.
+        return new CampaignItemList([]);
     }
 }

@@ -11,11 +11,16 @@
 
 	use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
 
-	interface CampaignListInterface extends AbstractIteratorInterface
+    interface CampaignListInterface extends AbstractIteratorInterface
 	{
-
-		/**
-		 * @return \Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterface
-		 */
+        /**
+         * @return CampaignInterface
+         */
 		public function current() : CampaignInterface;
-	}
+
+        /**
+         * @param null $key
+         * @return CampaignInterface
+         */
+        public function getElement($key = null) : CampaignInterface;
+    }

@@ -17,6 +17,12 @@ interface MediaFileListInterface extends AbstractIteratorInterface
     public function current() : MediaFileInterface;
 
     /**
+     * @param null $key
+     * @return MediaFileListInterface
+     */
+    public function getElement($key = null) : MediaFileListInterface;
+
+    /**
      * Returns FALSE if list empty.
      * Returns TRUE if list not empty.
      *

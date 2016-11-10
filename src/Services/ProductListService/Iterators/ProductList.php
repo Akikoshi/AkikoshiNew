@@ -40,6 +40,15 @@ class ProductList extends AbstractIterator implements ProductListInterface
     }
 
     /**
+     * @param null $key
+     * @return ProductBasicInformationsInterface
+     */
+    public function getElement($key = null) : ProductBasicInformationsInterface
+    {
+        return parent::getElement($key);
+    }
+
+    /**
      * @return ProductListPaginatorInterface
      */
     public function getPaginator() : ProductListPaginatorInterface

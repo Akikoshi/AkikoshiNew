@@ -27,8 +27,8 @@ class Controller extends AbstractController
         $footerMenu = $menuService->getFooterMenu();
         $breadcrumbMenu = $menuService->getBreadcrumbMenu();
 
-        $campaignService = new CampaignService();
-        $campaignList = $campaignService->getCampaign();
+        $campaignService = new CampaignService($this->request);
+        $campaignList = $campaignService->getCampaignList();
 
         // TODO: Implement CampaingsDetailController
 
@@ -56,7 +56,7 @@ class Controller extends AbstractController
             throw new NotFoundException();
         }
 
-        $campaignService = new CampaignService();
+        $campaignService = new CampaignService($this->request);
         $campaignDetails = $campaignService->getCampaignDetail( $campaignId );
 
         $menuService = new MenuService($this->request);

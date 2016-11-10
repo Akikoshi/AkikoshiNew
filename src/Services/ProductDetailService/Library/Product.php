@@ -9,27 +9,28 @@
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+use Class152\PizzaMamamia\Interfaces\MediaFileListInterface;
+use Class152\PizzaMamamia\Interfaces\PriceInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductAdditivesListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductComponentsListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductDetailInformationsInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
-use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
-use Class152\PizzaMamamia\Library\Price;
 
 
 class Product implements ProductDetailInformationsInterface
 {
+
     /** @var integer */
     private $productID;
 
     /**
-     * @var MediaFileList
+     * @var MediaFileListInterface
      */
     private $mediaFileList;
 
     /**
-     * @var ComponentList
+     * @var ProductComponentsListInterface
      */
     private $componentList;
 
@@ -40,7 +41,7 @@ class Product implements ProductDetailInformationsInterface
     private $mediaInformation;
 
     /**
-     * @var \Class152\PizzaMamamia\Services\ProductDetailService\Library\Price
+     * @var PriceInterface
      */
     private $price;
 
@@ -87,15 +88,15 @@ class Product implements ProductDetailInformationsInterface
     
     
     public function __construct(
-        $productID,
-        $name,
-        $internalName,
-        $longDescription,
-        $parentId,
-        $type,
-        $price,
-        $mediaFileList,
-        $componentList
+        string $productID,
+        string $name,
+        string $internalName,
+        string $longDescription,
+        string $parentId,
+        string $type,
+        Price $price,
+        MediaFileListInterface $mediaFileList,
+        ProductComponentsListInterface $componentList
     ) {
         $this->productID = $productID;
         $this->name = $name;
@@ -128,14 +129,16 @@ class Product implements ProductDetailInformationsInterface
     }
 
 
-    public
-    function getImages() : \IteratorIterator
+    /**
+     * @return MediaFileListInterface
+     */
+    public function getImages() : MediaFileListInterface
     {
         return $this->mediaFileList;
     }
 
 
-    function getId()
+    public function getId() : string
     {
         return $this->productID;
     }
@@ -143,7 +146,7 @@ class Product implements ProductDetailInformationsInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -151,7 +154,7 @@ class Product implements ProductDetailInformationsInterface
     /**TODO : testen getElement liefert erstes Element von mediafilelist
      * @return MediaFileInterface
      */
-    public function getThumb()
+    public function getThumb() : MediaFileInterface
     {
         return $this->mediaFileList->getElement(0);
     }
@@ -161,7 +164,7 @@ class Product implements ProductDetailInformationsInterface
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription() : string
     {
        return $this->longDescription;
     }
@@ -169,7 +172,7 @@ class Product implements ProductDetailInformationsInterface
     /**
      * @return bool
      */
-    public function hasDescription()
+    public function hasDescription() : bool
     {
         return $this->hasDescription();
     }
@@ -177,7 +180,7 @@ class Product implements ProductDetailInformationsInterface
     /** 
      * @return bool
      */
-    public function isSingle()
+    public function isSingle() : bool
     {
         // TODO: Implement isSingle() method.
     }
@@ -185,7 +188,7 @@ class Product implements ProductDetailInformationsInterface
     /**
      * @return bool
      */
-    public function hasVariants()
+    public function hasVariants() : bool
     {
         // TODO: Implement hasVariants() method.
     }
@@ -193,7 +196,7 @@ class Product implements ProductDetailInformationsInterface
     /**
      * @return ProductVariantListInterface
      */
-    public function getVariants()
+    public function getVariants() : ProductVariantListInterface
     {
         // TODO: Implement getVariants() method.
     }
@@ -201,7 +204,7 @@ class Product implements ProductDetailInformationsInterface
     /**
      * @return bool
      */
-    public function hasImages()
+    public function hasImages() : bool
     {
         return $this->hasImages();
     }
