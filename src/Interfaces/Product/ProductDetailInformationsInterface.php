@@ -33,7 +33,7 @@
 		 */
 		public function getComponents() : ProductComponentsListInterface;
 
-		/**
+		/*
 		 * @return bool
 		 */
 		public function hasComponents() : bool;

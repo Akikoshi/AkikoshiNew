@@ -589,7 +589,8 @@ CREATE TABLE IF NOT EXISTS `Products` (
 -- Exportiere Daten aus Tabelle vagrant.Products: ~160 rows (ungefähr)
 DELETE FROM `Products`;
 /*!40000 ALTER TABLE `Products` DISABLE KEYS */;
-INSERT INTO `Products` (`id`, `parentId`, `productGroup`, `name`, `nameExtension`, `mediaFileId`, `internalName`, `grossPrice`, `vat`, `type`) VALUES
+INSERT INTO `Products` (`id`, `parentId`, `productGroup`, `name`, `nameExtension`,
+                        `mediaFileId`, `internalName`, `grossPrice`, `vat`, `type`) VALUES
   (1, NULL, 3, 'Pizza Salami', NULL, 1, 'Pizza Salami', NULL, NULL, 'container'),
   (2, 1, 3, 'Pizza Salami, klein', 'klein', 1, 'Pizza Salami, 22cm', 3.70, 19, 'bundle'),
   (3, 1, 3, 'Pizza Salami, gross', 'gross', 1, 'Pizza Salami, 26cm', 5.50, 19, 'bundle'),

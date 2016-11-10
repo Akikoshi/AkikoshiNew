@@ -34,12 +34,6 @@ class Product implements ProductDetailInformationsInterface
      */
     private $componentList;
 
-
-    /**
-     * @var MediaFileInterface
-     */
-    private $mediaInformation;
-
     /**
      * @var PriceInterface
      */
@@ -85,8 +79,12 @@ class Product implements ProductDetailInformationsInterface
      */
     private $hasComponents;
 
-    
-    
+    /**
+     * @var bool
+     */
+    private $isSingle;
+
+
     public function __construct(
         string $productID,
         string $name,
@@ -125,6 +123,13 @@ class Product implements ProductDetailInformationsInterface
         {
             $this->hasComponents = false;
         }
+
+        if(  $this->componentList->getElement(1)==null)
+        {
+            $this->isSingle= true;
+        }
+        
+      
 
     }
 
@@ -182,7 +187,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function isSingle() : bool
     {
-        // TODO: Implement isSingle() method.
+        $this->isSingle;
     }
 
     /**
@@ -190,7 +195,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function hasVariants() : bool
     {
-        // TODO: Implement hasVariants() method.
+        return false;
     }
 
     /**
@@ -198,7 +203,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function getVariants() : ProductVariantListInterface
     {
-        // TODO: Implement getVariants() method.
+        return new ProductVariantList([]);
     }
 
     /**
@@ -257,11 +262,12 @@ class Product implements ProductDetailInformationsInterface
         // TODO: Implement hasAllergics() method.
     }
 
+
     /**
      * @return ProductVariantInterface
      */
     public function getDefaultVariant() : ProductVariantInterface
     {
-        // TODO: Implement getDefaultVariant() method.
+            return new ProductVariantItemMock();
     }
 }
