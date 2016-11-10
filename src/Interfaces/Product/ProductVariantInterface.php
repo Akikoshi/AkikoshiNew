@@ -32,24 +32,24 @@
 		public function getName() : string;
 
 		/**
-		 * @return Price
+		 * @return PriceInterface
 		 */
-		public function getPrice() : Price;
+		public function getPrice() : PriceInterface;
 
 		/**
-		 * @return Link
+		 * @return LinkInterface
 		 */
-		public function getProductDetailUrl() : Link;
+		public function getProductDetailUrl() : LinkInterface;
 
 		/**
-		 * @return Link
+		 * @return LinkInterface
 		 */
-		public function getAddToShoppingCartUrl() : Link;
+		public function getAddToShoppingCartUrl() : LinkInterface;
 
 		/**
-		 * @return Link
+		 * @return LinkInterface
 		 */
-		public function getConfigurationUrl() : Link;
+		public function getConfigurationUrl() : LinkInterface;
 
 		/**
 		 * @return bool

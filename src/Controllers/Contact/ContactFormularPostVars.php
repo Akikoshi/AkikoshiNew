@@ -13,6 +13,11 @@ use Class152\PizzaMamamia\AbstractClasses\AbstractValidator;
 
 class ContactFormularPostVars extends AbstractValidator
 {
+    /** @var bool */
+    protected $isSent;
+
+    /** @var bool */
+    protected $isValid;
 
     /** @var string */
     protected $department;

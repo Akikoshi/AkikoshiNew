@@ -1,5 +1,52 @@
 {% extends '/_layouts/pageWithSidebar.twig' %}
 
 {% block content %}
-	{{ controllerName }} {{ actionName }}
+
+    <div class="container">
+        <div class="row">
+            {% for shoppingCartItem in shoppingCart %}
+                {% set price = shoppingCartItem.getDefaultVariant.getPrice %}
+
+                <div class="col-xs-3">
+
+                    <p>{{ shoppingCartItem.getName }}</p>
+                    <p>{{ shoppingCartItem.getDescription }}</p>
+                    <p>Anzahl: {{ shoppingCartItem.getAmount }} </p>
+                    <p>MaxAnzahl:{{ shoppingCartItem.getMaxAmount }}</p>
+
+                    <p>{{ price.getGrossPriceAsHtml| raw }}</p>
+
+                    <p>{{ shoppingCartItem.getDefaultVariant.getName }}</p>
+                    <p>{{ shoppingCartItem.getDefaultVariant.getId }}</p>
+
+                    <form style="display: inline-block" action="{{ shoppingCartItem.getDecreaseItemUrl.getUrl }}" method="post">
+                        <button type="submit" name="action" value="dec"
+                                class="btn btn-default"{% if shoppingCartItem.isDecreasable %} disabled{% endif %}>
+                            -
+                        </button>
+                        <input type="hidden" name="id" value="{{ shoppingCartItem.getId }}" />
+                    </form>
+
+                    <form style="display: inline-block" action="{{ shoppingCartItem.getRemoveItemUrl.getUrl }}" method="post">
+                        <button type="submit" name="action" value="del" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <input type="hidden" name="id" value="{{ shoppingCartItem.getId }}" />
+                    </form>
+
+                    <form style="display: inline-block" action="{{ shoppingCartItem.getIncreaseItemUrl.getUrl }}" method="post">
+                        <button type="submit" name="action" value="inc"
+                                class="btn btn-default"{% if shoppingCartItem.isIncreasable %} disabled{% endif %}>
+                            +
+                        </button>
+                        <input type="hidden" name="id" value="{{ shoppingCartItem.getId }}" />
+                    </form>
+
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
 {% endblock %}
