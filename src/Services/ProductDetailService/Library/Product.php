@@ -12,14 +12,14 @@ use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductAdditivesListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductComponentsListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductDetailInformationsInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantsIteratorInterface;
 use Class152\PizzaMamamia\Library\Price;
 
 
 class Product implements ProductDetailInformationsInterface
 {
-    
-
     /** @var integer */
     private $productID;
 
@@ -191,7 +191,7 @@ class Product implements ProductDetailInformationsInterface
     }
 
     /**
-     * @return ProductVariantsIteratorInterface
+     * @return ProductVariantListInterface
      */
     public function getVariants()
     {
@@ -252,5 +252,13 @@ class Product implements ProductDetailInformationsInterface
     public function hasAllergics() : bool
     {
         // TODO: Implement hasAllergics() method.
+    }
+
+    /**
+     * @return ProductVariantInterface
+     */
+    public function getDefaultVariant() : ProductVariantInterface
+    {
+        // TODO: Implement getDefaultVariant() method.
     }
 }
