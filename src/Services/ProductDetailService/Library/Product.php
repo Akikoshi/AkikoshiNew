@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: cbiedermann
- * Date: 19.09.2016
- * Time: 13:53
+ * User: Jens Johannes, Peter Frankenfeldt
+ * Date: 03.11.2016
+ * Time: 12:00
  */
 
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
@@ -11,6 +11,7 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileListInterface;
 use Class152\PizzaMamamia\Interfaces\PriceInterface;
+use Class152\PizzaMamamia\Services\ProductDetailService\Library\Price;
 use Class152\PizzaMamamia\Interfaces\Product\ProductAdditivesListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductComponentsListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductDetailInformationsInterface;
@@ -25,17 +26,17 @@ class Product implements ProductDetailInformationsInterface
     private $productID;
 
     /**
-     * @var MediaFileListInterface
+     * @var MediaFileList
      */
     private $mediaFileList;
 
     /**
-     * @var ProductComponentsListInterface
+     * @var ProductComponentsList
      */
     private $componentList;
 
     /**
-     * @var PriceInterface
+     * @var Price
      */
     private $price;
 
@@ -107,42 +108,38 @@ class Product implements ProductDetailInformationsInterface
         $this->componentList = $componentList;
 
         $this->hasDescription = true;
-        if($this->longDescription==null) 
+        if( null == $this->longDescription)
         {
             $this->hasDescription = false;
         }
         
         $this->hasImages = true;
-        if(  $this->mediaFileList->getElement(0)==null)
+        if( null == $this->mediaFileList->getElement(0))
         {
             $this->hasImages = false;
         }
 
         $this->hasComponents = true;
-        if(  $this->componentList->getElement(0)==null)
+        if( null == $this->componentList->getElement(0))
         {
             $this->hasComponents = false;
         }
 
-        if(  $this->componentList->getElement(1)==null)
+        if( isset( $this->componentList->getElement(1) ) )
         {
             $this->isSingle= true;
         }
         
-      
-
     }
-
-
+    
     /**
-     * @return MediaFileListInterface
+     * @return MediaFileList
      */
-    public function getImages() : MediaFileListInterface
+    public function getImages() : MediaFileList
     {
         return $this->mediaFileList;
     }
-
-
+    
     public function getId() : string
     {
         return $this->productID;

@@ -10,15 +10,15 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
-use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
+use Class152\PizzaMamamia\Services\ProductDetailService\ListItems\ProductVariantItem;
 
 class ProductVariantList extends AbstractIterator implements ProductVariantListInterface
 {
     /**
-     * @return ProductVariantInterface
+     * @return ProductVariantItem
      */
-    public function current() : ProductVariantInterface
+    public function current() : ProductVariantItem
     {
         return parent::current();
     }
@@ -27,7 +27,7 @@ class ProductVariantList extends AbstractIterator implements ProductVariantListI
      * @param null $key
      * @return ProductVariantInterface
      */
-    public function getElement($key = null) : ProductVariantInterface
+    public function getElement($key = null) : ProductVariantItem
     {
         return parent::getElement($key);
     }
