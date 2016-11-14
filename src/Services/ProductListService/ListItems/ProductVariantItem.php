@@ -27,13 +27,13 @@ class ProductVariantItem implements ProductVariantInterface
     /** @var  string */
     private $variantName;
 
-    /** @var PriceInterface*/
+    /** @var Price*/
     private $price;
 
     /** @var Link */
     private $productDetailUrl;
 
-    /** @var  LinkInterface */
+    /** @var  Link*/
     private $shoppingCartUrl;
 
     /** @var  Link */
@@ -108,7 +108,7 @@ class ProductVariantItem implements ProductVariantInterface
     }
 
     /**
-     * @return LinkInterface
+     * @return Link
      */
     public function getAddToShoppingCartUrl() : Link
     {
@@ -116,7 +116,7 @@ class ProductVariantItem implements ProductVariantInterface
     }
 
     /**
-     * @return LinkInterface
+     * @return Link
      */
     public function getConfigurationUrl() : Link
     {

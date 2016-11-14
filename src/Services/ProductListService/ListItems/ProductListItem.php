@@ -10,6 +10,7 @@ namespace Class152\PizzaMamamia\Services\ProductListService\ListItems;
 
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+use Class152\PizzaMamamia\Interfaces\PriceInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
@@ -122,7 +123,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     }
 
     /**
-     * @return MediaFile
+     * @return MediaFileInterface
      */
     public function getThumb() : MediaFileInterface
     {
@@ -154,7 +155,7 @@ class ProductListItem implements ProductBasicInformationsInterface
     }
 
     /**
-     * @return ProductVariantList
+     * @return ProductVariantListInterface
      */
     public function getVariants() : ProductVariantListInterface
     {
@@ -162,10 +163,18 @@ class ProductListItem implements ProductBasicInformationsInterface
     }
 
     /**
-     * @return ProductVariantItem
+     * @return ProductVariantInterface
      */
     public function getDefaultVariant() : ProductVariantInterface
     {
         return $this->productVariants->getElement(0);
+    }
+
+    /**
+     * @return PriceInterface
+     */
+    public function getDefaultPrice() : PriceInterface
+    {
+        return $this->productVariants->getElement(0)->getPrice();
     }
 }

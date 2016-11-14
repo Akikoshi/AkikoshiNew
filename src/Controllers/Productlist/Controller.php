@@ -12,6 +12,7 @@ namespace Class152\PizzaMamamia\Controllers\Productlist;
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
+use Class152\PizzaMamamia\Services\ProductListService\Exceptions\ProductListItemHasNoVariantsException;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
 use Class152\PizzaMamamia\Services\ProductListService\Library\ProductListPaginator;
 use Class152\PizzaMamamia\Services\ProductListService\Library\SortList;
@@ -46,23 +47,22 @@ class Controller extends AbstractController
             $productListFilter->isSortByPrice();
         }
 
-
         $productList = $productListService->getProductList( $productListFilter );
 
-        new TwigRendering(
-            'Productlist/index.twig',
-            [
-                'controllerName'=>'ProductList',
-                'actionName' => 'index',
-                'mainMenu' => $mainMenu,
-                'footerMenu' => $footerMenu,
-                'accountMenu' => $accountMenu,
-                'productList'=> $productList,
-                'breadcrumbMenu' => $breadcrumbMenu,
-                'sidebar' => $footerMenu,
-                'productList' => $productList,
-            ]
-        );
+            new TwigRendering(
+                'Productlist/index.twig',
+                [
+                    'controllerName'=>'ProductList',
+                    'actionName' => 'index',
+                    'mainMenu' => $mainMenu,
+                    'footerMenu' => $footerMenu,
+                    'accountMenu' => $accountMenu,
+                    'productList'=> $productList,
+                    'breadcrumbMenu' => $breadcrumbMenu,
+                    'sidebar' => $footerMenu,
+                    'productList' => $productList,
+                ]
+            );
     }
 }
 
