@@ -39,9 +39,9 @@
 		public function hasComponents() : bool;
 
 		/**
-		 * @return ProductAdditivesListInterface
+		 * @return ProductAddendaListInterface
 		 */
-		public function getAdditives() : ProductAdditivesListInterface;
+		public function getAdditives() : ProductAddendaListInterface;
 
 		/**
 		 * @return bool
@@ -49,9 +49,9 @@
 		public function hasAdditives() : bool;
 
 		/**
-		 * @return ProductAdditivesListInterface
+		 * @return ProductAddendaListInterface
 		 */
-		public function getAllergics() : ProductAdditivesListInterface;
+		public function getAllergics() : ProductAddendaListInterface;
 
 		/**
 		 * @return bool

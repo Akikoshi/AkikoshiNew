@@ -25,12 +25,6 @@ class DetailFactory
 
     /** @var Product */
     private $product;
-
-    /**
-     * @var MediaFileList
-     */
-    private $mediaFileList;
-
     /**
      * @var ComponentList
      */
@@ -46,9 +40,8 @@ class DetailFactory
         $this->productID = $productId;
 
         $this->repository = new ProductRepository($productId);
-        $productEntity = $this->repository->getProductEntity();
 
-        // $this->mediaFileList = new MediaFileList($this->generateMediaFileList());
+        $productEntity = $this->repository->getProductEntity();
 
         $this->componentList = new ComponentList();
         $this->generateComponentList();
@@ -106,7 +99,7 @@ class DetailFactory
      */
     private function generateComponentList()
     {
-        $componentGenerator = $this->repository->getComponentsEntity();
+        $componentGenerator = $this->repository->getComponentsEntities();
 
         foreach ($componentGenerator as $componentEntity) {
 

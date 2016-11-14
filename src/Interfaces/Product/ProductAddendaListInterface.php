@@ -12,12 +12,12 @@
 	use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
 
     /**
-	 * Interface ProductAddonsListInterface
+	 * Interface ProductAddendaListInterface
 	 * TODO: implement addItem method
 	 *
 	 * @package Class152\PizzaMamamia\Interfaces\Product
 	 */
-	interface ProductAdditivesListInterface extends AbstractIteratorInterface
+	interface ProductAddendaListInterface extends AbstractIteratorInterface
 	{
         /**
          * @return ProductAddendaInterface

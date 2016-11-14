@@ -9,11 +9,12 @@
 	namespace Class152\PizzaMamamia\Services\ProductDetailService;
 
 
+	use Class152\PizzaMamamia\Services\ProductDetailService\Library\DetailFactory;
 	use Class152\PizzaMamamia\Services\SessionService\SessionService;
-	use Class152\PizzaMamamia\Services\UserService\Library\Product;
+	use Class152\PizzaMamamia\Services\ProductDetailService\Library\Product;
 	use Class152\PizzaMamamia\Services\UserService\Library\UserFactory;
 
-	class ProductService
+	class ProductDetailService
 	{
 		/** @var User */
 		private $user;
@@ -25,15 +26,13 @@
 		}
 
 		/**
-		 * @param string $username
-		 * @param string $password
-		 *
-		 * @return \Class152\PizzaMamamia\Services\UserService\Library\User
+		 * @param int $productId
+		 * @return Product
 		 */
 		public function getProductById( int $productId ) : Product
 		{
-			$product=new product($productId);
-			return $product;
+			$factory = new DetailFactory($productId);
+			return $factory->getProduct();
 		}
 
 

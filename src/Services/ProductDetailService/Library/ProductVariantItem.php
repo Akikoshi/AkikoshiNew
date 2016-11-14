@@ -13,7 +13,7 @@ namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\PriceInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
-use Class152\PizzaMamamia\Services\ProductDetailService\values\Price;
+use Class152\PizzaMamamia\Services\ProductDetailService\Library\Price;
 use Class152\PizzaMamamia\Services\ProductDetailService\Library\Link;
 
 
@@ -28,7 +28,7 @@ class ProductVariantItem implements ProductVariantInterface
     /** @var  string */
     private $variantName;
 
-    /** @var PriceInterface*/
+    /** @var Price */
     private $price;
 
     /** @var Link */

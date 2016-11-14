@@ -21,7 +21,7 @@
 		private $actionName;
 
 		/** @var string */
-		private $firstAdditionalVar = '';
+		private $firstAdditionalVar = '2';
 
 		/** @var string */
 		private $secondAdditionalVar = '';

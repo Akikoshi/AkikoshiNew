@@ -15,6 +15,7 @@ use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaI
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ComponentsEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ProductEntity;
+use TheSeer\phpDox\Generator\Generator;
 
 class ProductRepository
 {
@@ -50,7 +51,7 @@ class ProductRepository
 					pr1.internalName,
 					pr1.parentId,
 					pr1.productGroup,
-					pr1.GrossPrice,
+					pr1.grossPrice,
 					pr1.vat,
 					pr1.type,
 					de1.shortDescription,
@@ -82,6 +83,7 @@ class ProductRepository
             $resultItem['longDescription']
         );
     }
+
 
     /**
      * @param null $id
@@ -269,11 +271,73 @@ class ProductRepository
     }
 
     /**
+     * @return Generator
+     * @throws NoResultException
+     * ToDo: reCheck this stuff
+     */
+    public function getComponentsEntities($productId = null) : \Generator
+    {
+
+
+        $sql = "SELECT  
+					Comp.componentId,
+					Comp.name,
+					Comp.componentGroup,
+					Comp.fk_MediaFiles
+		FROM    
+             `Products` AS p1
+          LEFT JOIN `ProductToOptions` AS o ON o.productId = p1.id
+          LEFT JOIN `Products` AS p2 ON p2.id = o.optionProductId
+          LEFT JOIN `ProductsToComponents` AS ptc ON ptc.productId = p2.id
+          LEFT JOIN `Components` AS Comp ON Comp.componentId = ptc.componentId
+          WHERE 
+          ptc.productId = " . (is_null($productId) ? $this->productId : $productId) . ";";
+
+
+        /*
+            $sql = 
+             "SELECT
+                    Comp.componentId,
+                    Comp.name,
+                    Comp.componentGroup,
+                    Comp.fk_MediaFiles,
+        FROM
+                    Components AS Comp
+                LEFT JOIN
+                    ProductsToComponents AS ptc ON (ptc.componentId = comp.componentId)
+                WHERE 
+                    ptc.productId = " .(is_null($productId) ? $this->productId : $productId)  . ";";
+        */
+
+        $result = $this->db->query($sql);
+
+        if (empty($result)) {
+            throw new NoResultException();
+        }
+
+        $resultItem = $result->fetch_assoc();
+
+        try {
+            while ($resultItem!=null ) {
+                yield new ComponentsEntity(
+                    $resultItem['componentId'],
+                    $resultItem['name'],
+                    $resultItem['componentGroup'],
+                    $resultItem['fk_MediaFiles'],
+                    $resultItem['ordering']
+                );
+            }
+        } finally {
+            $result->free_result();
+        }
+    }
+
+    /**
      * @return ComponentsEntity
      * @throws NoResultException
      * ToDo: reCheck this stuff
      */
-    public function getComponentsEntity() : ComponentsEntity
+ /*   public function getComponentsForSingleEntity() : ComponentsEntity
     {
         $sql = "SELECT  
 					Comp.componentId,
@@ -309,55 +373,14 @@ class ProductRepository
             $result->free_result();
         }
     }
+*/
 
     /**
      * @return ComponentsEntity
      * @throws NoResultException
      * ToDo: reCheck this stuff
      */
-    public function getComponentsForSingleEntity() : ComponentsEntity
-    {
-        $sql = "SELECT  
-					Comp.componentId,
-					Comp.name,
-					Comp.componentGroup,
-					Comp.fk_MediaFiles,
-					ptc. ordering
-				FROM 
-					Components AS Comp
-				LEFT JOIN
-					ProductsToComponents AS ptc ON (ptc.componentId = comp.componentId)
-				WHERE 
-					ptc.productId = " . $this->productId . ";";
-        $result = $this->db->query($sql);
-
-        if (empty($result)) {
-            throw new NoResultException();
-        }
-
-        $resultItem = $result->fetch_assoc();
-
-        try {
-            foreach (array_keys($resultItem) as $key) {
-                yield new ComponentsEntity(
-                    $resultItem['componentId'],
-                    $resultItem['name'],
-                    $resultItem['componentGroup'],
-                    $resultItem['fk_MediaFiles'],
-                    $resultItem['ordering']
-                );
-            }
-        } finally {
-            $result->free_result();
-        }
-    }
-
-
-    /**
-     * @return ComponentsEntity
-     * @throws NoResultException
-     * ToDo: reCheck this stuff
-     */
+    /*
     public function getComponentsForBundleEntity() : ComponentsEntity
     {
         $sql = "SELECT  
@@ -394,4 +417,6 @@ class ProductRepository
             $result->free_result();
         }
     }
+
+    */
 }

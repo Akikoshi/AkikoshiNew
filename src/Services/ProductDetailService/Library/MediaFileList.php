@@ -59,7 +59,8 @@ class MediaFileList extends AbstractIterator implements MediaFileListInterface
                 );
             }
         }
-        $this->iteratorArray = $array;
+
+        parent::__construct($array);
         $this->hasItems = true;
     }
 
@@ -72,6 +73,15 @@ class MediaFileList extends AbstractIterator implements MediaFileListInterface
     public function current() : MediaFileInterface
     {
         return parent::current();
+    }
+
+    /**
+     * @param null $key
+     * @return MediaFileInterface
+     */
+    public function getElement($key = null) : MediaFileInterface
+    {
+        return parent::getElement($key);
     }
 
     /**
