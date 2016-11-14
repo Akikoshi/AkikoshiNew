@@ -17,17 +17,28 @@ class ProductListFilter implements ProductListFilterInterface
     private $productGroupId;
 
     /** @var  bool */
-    private $isSortByPrice;
+    private $isSortByPrice = false;
 
     /** @var  bool */
-    private $isFiteredByGroupId;
+    private $isFiteredByGroupId = false;
 
-    public function __construct($productGroupId, $isSortByPrice, $isFilteredByGroupId)
+    public function __construct( string $productGroupId = '' )
     {
-        //Todo: ist noch Hartverdrahtet, muss noch erarbeitet werden
         $this->productGroupId = $productGroupId;
-        $this->isSortByPrice = $isSortByPrice;
-        $this->isFiteredByGroupId = $isFilteredByGroupId;
+
+        if( ! empty( $productGroupId ) )
+        {
+            $this->isFiteredByGroupId = true;
+        }
+
+    }
+
+    /**
+     *
+     */
+    public function sortByPrice()
+    {
+        $this->isSortByPrice = true;
     }
 
     /** @return string */
@@ -37,7 +48,7 @@ class ProductListFilter implements ProductListFilterInterface
     }
 
     /** @return bool */
-    public function isFilterByGroupId()
+    public function isFilteredByGroupId()
     {
         return $this->isFiteredByGroupId;
     }

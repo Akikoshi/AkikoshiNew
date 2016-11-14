@@ -1,86 +1,75 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: vieteo
- * Date: 24.10.2016
- * Time: 11:08
+ * User: trentschc
+ * Date: 25.10.2016
+ * Time: 11:17
  */
 
-namespace Class152\PizzaMamamia\Services\ProductListService\ListItems;
-
+namespace Class152\PizzaMamamia\Services\ShoppingCartService\Library;
 
 
 use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\PriceInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
-use Class152\PizzaMamamia\Services\ProductListService\values\Link;
-use Class152\PizzaMamamia\Services\ProductListService\values\Price;
 
-class ProductVariantItem implements ProductVariantInterface
+class ShoppingCartItemVariant implements ProductVariantInterface
 {
-    /** @var int  */
-    private $parentId;
-
     /** @var  string */
-    private $productVariantId;
-
+    private $id;
     /** @var  string */
-    private $variantName;
+    private $name;
 
-    /** @var PriceInterface*/
+    /** @var ShoppingCartPrice  */
     private $price;
 
-    /** @var LinkInterface */
+    /** @var  LinkInterface */
     private $productDetailUrl;
 
     /** @var  LinkInterface */
-    private $shoppingCartUrl;
+    private $addToShoppingCartUrl;
 
     /** @var  LinkInterface */
-    private $configuratorUrl;
+    private $configurationUrl;
 
-    /** @var  LinkInterface */
+    /** @var  bool */
     private $isConfigurable;
 
     /**
-     * ProductVariantsIterator constructor.
-     * @param $parentId
-     * @param $productVariantId
-     * @param $variantName
-     * @param PriceInterface $price
+     * ShoppingCartItemVariant constructor.
+     * @param string $id
+     * @param string $name
+     * @param ShoppingCartPrice $price
      * @param LinkInterface $productDetailUrl
-     * @param LinkInterface $shoppingCartUrl
-     * @param LinkInterface $configuratorUrl
+     * @param LinkInterface $addToShoppingCartUrl
+     * @param LinkInterface $configurationUrl
      * @param bool $isConfigurable
      */
     public function __construct(
-        $parentId,
-        $productVariantId,
-        $variantName,
-        PriceInterface $price,
+        $id,
+        $name,
+        $price,
         LinkInterface $productDetailUrl,
-        LinkInterface $shoppingCartUrl,
-        LinkInterface $configuratorUrl,
-        bool $isConfigurable
+        LinkInterface $addToShoppingCartUrl,
+        LinkInterface $configurationUrl,
+        $isConfigurable
     )
     {
-        $this->parentId = $parentId;
-        $this->productVariantId = $productVariantId;
-        $this->variantName = $variantName;
+        $this->id = $id;
+        $this->name = $name;
         $this->price = $price;
         $this->productDetailUrl = $productDetailUrl;
-        $this->shoppingCartUrl = $shoppingCartUrl;
-        $this->configuratorUrl = $configuratorUrl;
+        $this->addToShoppingCartUrl = $addToShoppingCartUrl;
+        $this->configurationUrl = $configurationUrl;
         $this->isConfigurable = $isConfigurable;
     }
-
 
     /**
      * @return string
      */
     public function getId() : string
     {
-        return $this->productVariantId;
+        return $this->id;
     }
 
     /**
@@ -88,7 +77,7 @@ class ProductVariantItem implements ProductVariantInterface
      */
     public function getName() : string
     {
-        return $this->variantName;
+        return $this->name;
     }
 
     /**
@@ -112,7 +101,7 @@ class ProductVariantItem implements ProductVariantInterface
      */
     public function getAddToShoppingCartUrl() : LinkInterface
     {
-        return $this->shoppingCartUrl;
+        return $this->addToShoppingCartUrl;
     }
 
     /**
@@ -120,7 +109,7 @@ class ProductVariantItem implements ProductVariantInterface
      */
     public function getConfigurationUrl() : LinkInterface
     {
-        return $this->configuratorUrl;
+        return $this->configurationUrl;
     }
 
     /**
