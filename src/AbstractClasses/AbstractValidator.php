@@ -38,11 +38,11 @@ abstract class AbstractValidator
         $found = 0;
 
         foreach ($expectedKeys as $postVarKey) {
-            if (empty($postArray[$postVarKey])) {
+            if (empty($postVars[$postVarKey])) {
                 $this->$postVarKey = '';
             } else {
                 $found++;
-                $this->$postVarKey = $postArray[$postVarKey];
+                $this->$postVarKey = $postVars[$postVarKey];
             }
         }
 

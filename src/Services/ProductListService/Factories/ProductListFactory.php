@@ -9,6 +9,7 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Factories;
 
 
+use Class152\PizzaMamamia\Services\ProductListService\Exceptions\ProductListItemHasNoVariantsException;
 use \Class152\PizzaMamamia\Services\ProductListService\Repositories\Entities\ProductListEntity;
 use Class152\PizzaMamamia\Services\ProductListService\Filter\ProductListFilter;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
@@ -49,7 +50,17 @@ class ProductListFactory
 
             $type = $elem->getTypeOfProduct();
             if ('container' == $type) {
-                $variants = $this->loadVariants($elem->getProductId());
+                try
+                {
+                    $variants = $this->loadVariants($elem->getProductId());
+                }
+                catch (ProductListItemHasNoVariantsException $variants)
+                {
+                    if( empty( $variants ) )
+                    {
+                        throw new ProductListItemHasNoVariantsException();
+                    }
+                }
             } else {
                 $variants = new ProductVariantList(
                     [new ProductVariantItem(

@@ -17,10 +17,23 @@ use Class152\PizzaMamamia\Services\ProductListService\Library\SortListFactory;
 
 class ProductListService
 {
-    public function getProductList() :ProductList
+
+    /**
+     * @param string $productGroupId
+     * @return ProductListFilter
+     */
+    public function getProductListFilter( string $productGroupId ) : ProductListFilter
     {
-        $productListFilter = new ProductListFilter(null, false, false);
-        $productFactory = new ProductListFactory($productListFilter);
+        return new ProductListFilter($productGroupId);
+    }
+
+    /**
+     * @param ProductListFilter $productListFilter
+     * @return ProductList
+     */
+    public function getProductList( ProductListFilter $productListFilter ) :ProductList
+    {
+        $productFactory = new ProductListFactory( $productListFilter );
         return $productFactory->getInstance();
     }
 }
