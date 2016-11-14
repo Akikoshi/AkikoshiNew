@@ -66,7 +66,7 @@ class ShoppingCartFactory
         $variant = new ShoppingCartItemVariant(
             '3',                                                                    //ID
             'Pizza Tonno mittel',                                                   //Name
-            new ShoppingCartPrice( 8.90, 19 ),                                     //Price
+            new ShoppingCartPrice(8.90, 19),                                      //Price
             new ShoppingCartLink('/productdetails/index/3','Posten entfernen'),     //ProductDetailUrl
             new ShoppingCartLink('/shoppingcart/index/3','+1'),                     //AddToShoppingCartUrl
             new ShoppingCartLink('/productconfigurator/index/3','-1'),              //ConfigurationUrl

@@ -34,7 +34,7 @@ class ShoppingCartRepository
     
     public function  getProductById( int $productId ) : ShoppingCartEntity
     {
-        $sql = "SELECT  name,parentId,productGroup,GrossPrice,type FROM Products WHERE id = "
+        $sql = "SELECT  name,parentId,productGroup,GrossPrice,type,mediaFileId,vat,nameExtension FROM Products WHERE id = "
             . $productId . ";";
         $result = $this->db->query( $sql );
         $product = $result->fetch_assoc();
