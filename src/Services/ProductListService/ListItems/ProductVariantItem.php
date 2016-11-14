@@ -27,19 +27,19 @@ class ProductVariantItem implements ProductVariantInterface
     /** @var  string */
     private $variantName;
 
-    /** @var Price*/
+    /** @var PriceInterface*/
     private $price;
 
-    /** @var Link */
+    /** @var LinkInterface */
     private $productDetailUrl;
 
-    /** @var  Link*/
+    /** @var  LinkInterface */
     private $shoppingCartUrl;
 
-    /** @var  Link */
+    /** @var  LinkInterface */
     private $configuratorUrl;
 
-    /** @var  Link */
+    /** @var  LinkInterface */
     private $isConfigurable;
 
     /**
@@ -92,33 +92,33 @@ class ProductVariantItem implements ProductVariantInterface
     }
 
     /**
-     * @return Price
+     * @return PriceInterface
      */
-    public function getPrice() : Price
+    public function getPrice() : PriceInterface
     {
         return $this->price;
     }
 
     /**
-     * @return Link
+     * @return LinkInterface
      */
-    public function getProductDetailUrl() : Link
+    public function getProductDetailUrl() : LinkInterface
     {
         return $this->productDetailUrl;
     }
 
     /**
-     * @return Link
+     * @return LinkInterface
      */
-    public function getAddToShoppingCartUrl() : Link
+    public function getAddToShoppingCartUrl() : LinkInterface
     {
         return $this->shoppingCartUrl;
     }
 
     /**
-     * @return Link
+     * @return LinkInterface
      */
-    public function getConfigurationUrl() : Link
+    public function getConfigurationUrl() : LinkInterface
     {
         return $this->configuratorUrl;
     }
