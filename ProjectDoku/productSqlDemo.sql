@@ -6,4 +6,4 @@ FROM `Products` AS p1
   LEFT JOIN `Products` AS p2 ON p2.id = o.optionProductId
   LEFT JOIN `ProductsToComponents` AS pc ON pc.productId = p2.id
   LEFT JOIN `Components` AS c ON c.componentId = pc.componentId
-WHERE p1.id = 72
+WHERE p1.id = 72;
