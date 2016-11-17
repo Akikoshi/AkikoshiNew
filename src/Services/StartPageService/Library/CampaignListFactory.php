@@ -12,7 +12,30 @@ use Class152\PizzaMamamia\Services\CampaignService\Repositories\CampaignReposito
 
 class CampaignListFactory
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     private $campaignItem;
+
+    /** @var array */
+    private $campaigns = [];
 
     public function __construct()
     {

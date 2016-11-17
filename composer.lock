@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8481904fd88b8ecd35eadc4008f928f",
+    "hash": "9a38ae66f728b19a699c13e0ebdea66b",
     "content-hash": "a216b1c8340f4491b4db4ce0167b79c2",
     "packages": [
         {
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3ff5abf75bf2fb9b9bffcc15c4384e08d0763c7f"
+                "reference": "08bd6f15a5b411988d4146ab6e3b109fd632f63e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3ff5abf75bf2fb9b9bffcc15c4384e08d0763c7f",
-                "reference": "3ff5abf75bf2fb9b9bffcc15c4384e08d0763c7f",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/08bd6f15a5b411988d4146ab6e3b109fd632f63e",
+                "reference": "08bd6f15a5b411988d4146ab6e3b109fd632f63e",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.27-dev"
+                    "dev-master": "1.28-dev"
                 }
             },
             "autoload": {
@@ -66,7 +66,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-25 19:28:14"
+            "time": "2016-11-13 15:12:56"
         }
     ],
     "packages-dev": [],

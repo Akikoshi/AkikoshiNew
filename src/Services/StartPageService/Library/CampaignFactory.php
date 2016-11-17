@@ -35,7 +35,19 @@ class CampaignFactory
                     $campaign->getHeadline(),
                     $campaign->getContent(),
                     $campaign->getLinkText(),
-                    $campaign->getPrice()
+                    $campaign->getPrice(),
+                    $campaign->getName(),
+                    $campaign->getDescription(),
+                    $campaign->getHasBanner(),
+                    $campaign->getIsActive(),
+                    $campaign->getHasBanner(),
+                    $campaign->getReduceType(),
+                    $campaign->getReduceValue(),
+                    $campaign->getStartDate(),
+                    $campaign->getEndDate(),
+                    $campaign->getDayTimeStart(),
+                    $campaign->getDayTimeEnd(),
+                    $campaign->getUrl()
                 )
             );
         }

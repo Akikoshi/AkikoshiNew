@@ -45,13 +45,20 @@ class CampaignRepository implements CampaigneInterface
     public function askForSingleCampaignItem( $line ) : CampaignEntity
     {
         return new CampaignEntity(
-            $line['src'],
-            $line['pictureUrl'],
-            $line['headline'],
-            $line['content'],
-            $line['linkText'],
-            $line['price'],
-            $line['position']
+            $line['id'],
+            $line['name'],
+            $line['description'],
+            $line['hasBanner'],
+            $line['banner'],
+            $line['isActive'],
+            $line['hasDayTimeRule'],
+            $line['reduceType'],
+            $line['reduceValue'],
+            $line['startDate'],
+            $line['endDate'],
+            $line['dayTimeStart'],
+            $line['dayTimeEnd'],
+            $line['url']
         );
     }
 }

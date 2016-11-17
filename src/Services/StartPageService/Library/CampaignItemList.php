@@ -11,10 +11,11 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Library;
 
 use Class152\PizzaMamamia\AbstractClasses\AbstractIterator;
 use Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterface;
+use Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterfaceNew;
 use Class152\PizzaMamamia\Interfaces\Campaign\CampaignItemListInterface;
 use Class152\PizzaMamamia\Services\StartPageService\Exceptions\CampaignListNeedsCampaignItemException;
 
-class CampaignItemList extends AbstractIterator implements CampaignItemListInterface
+class CampaignItemList extends AbstractIterator
 {
     /**
      * CampaignItemList constructor.
@@ -54,9 +55,9 @@ class CampaignItemList extends AbstractIterator implements CampaignItemListInter
     }
 
     /**
-     * @return CampaignInterface
+     * @return CampaignInterfaceNew
      */
-    public function current() : CampaignInterface
+    public function current() : CampaignInterfaceNew
     {
         return parent::current();
     }
@@ -70,37 +71,5 @@ class CampaignItemList extends AbstractIterator implements CampaignItemListInter
         return parent::getElement($key);
     }
 
-    /**
-     * @param int $amount
-     */
-    public function filterByRandom(int $amount)
-    {
-        // TODO: Implement filterByRandom() method.
-    }
 
-    /**
-     * @param int $productGroupId
-     */
-    public function filterByProductGroupId(int $productGroupId)
-    {
-        // TODO: Implement filterByProductGroupId() method.
-    }
-
-    public function sortByPrice()
-    {
-        // TODO: Implement sortByPrice() method.
-    }
-
-    public function sortByProductGroup()
-    {
-        // TODO: Implement sortByProductGroup() method.
-    }
-
-    /**
-     * @param int $productId
-     */
-    public function isThisProductIdInThisCampaign(int $productId)
-    {
-        // TODO: Implement isThisProductIdInThisCampaign() method.
-    }
 }
