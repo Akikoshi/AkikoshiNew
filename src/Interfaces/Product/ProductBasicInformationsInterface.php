@@ -9,7 +9,6 @@
 	namespace Class152\PizzaMamamia\Interfaces\Product;
 
 	use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
-	use Class152\PizzaMamamia\Interfaces\PriceInterface;
 
 	/**
 	 * Interface ProductBasicInformationsInterface
@@ -65,10 +64,5 @@
 		 * @return ProductVariantInterface
 		 */
 		public function getDefaultVariant() : ProductVariantInterface;
-
-		/**
-		 * @return PriceInterface
-		 */
-		public function getDefaultPrice() : PriceInterface; 
 
 	}

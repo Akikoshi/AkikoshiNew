@@ -15,7 +15,6 @@ use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaI
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ComponentsEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\MediaFileEntity;
 use Class152\PizzaMamamia\Services\ProductDetailService\Repository\Entities\ProductEntity;
-use TheSeer\phpDox\Generator\Generator;
 
 class ProductRepository
 {
@@ -272,7 +271,8 @@ class ProductRepository
     }
 
     /**
-     * @return Generator
+     * @param null $productId
+     * @return \Generator
      * @throws NoResultException
      * ToDo: reCheck this stuff
      */
