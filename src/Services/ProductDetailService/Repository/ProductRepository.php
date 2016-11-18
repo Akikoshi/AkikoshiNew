@@ -56,6 +56,7 @@ class ProductRepository
 					pr1.type,
 					de1.shortDescription,
 					de1.longDescription
+					
 				FROM 
 					Products AS pr1
 				LEFT JOIN
