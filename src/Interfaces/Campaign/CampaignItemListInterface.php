@@ -10,7 +10,6 @@ namespace Class152\PizzaMamamia\Interfaces\Campaign;
 
 
 use Class152\PizzaMamamia\Interfaces\AbstractIteratorInterface;
-use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
 
 interface CampaignItemListInterface extends AbstractIteratorInterface
 {
@@ -34,13 +33,13 @@ interface CampaignItemListInterface extends AbstractIteratorInterface
     public function isThisProductIdInThisCampaign(int $productId);
 
     /**
-     * @return ProductBasicInformationsInterface
+     * @return CampaignInterface
      */
-    public function current() : ProductBasicInformationsInterface;
+    public function current() : CampaignInterface;
 
     /**
-     * @param null|string|int $key
-     * @return ProductBasicInformationsInterface
+     * @param null|int|string $key
+     * @return CampaignInterface
      */
-    public function getElement($key = null) : ProductBasicInformationsInterface;
+    public function getElement($key = null) : CampaignInterface;
 }

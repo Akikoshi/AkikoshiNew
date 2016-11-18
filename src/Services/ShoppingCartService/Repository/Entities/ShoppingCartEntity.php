@@ -21,12 +21,20 @@ class ShoppingCartEntity
     private $productGroup;
 
     /** @var float  */
-
     private $GrossPrice;
 
     /** @var string */
-
     private $type;
+
+    /** @var  int */
+    private $mediaFileId;
+
+    /** @var  int */
+    private $vat;
+
+    /** @var  string */
+    private $nameExtension;
+
     /**
      * UserEntity constructor.
      *
@@ -34,12 +42,14 @@ class ShoppingCartEntity
      */
     public function __construct( array $userRow )
     {
-
         $this->name = $userRow['name'];
         $this->parentId = $userRow['parentId'];
         $this->productGroup = $userRow['productGroup'];
         $this->GrossPrice = $userRow['GrossPrice'];
         $this->type = $userRow['type'];
+        $this->mediaFileId = $userRow['mediaFileId'];
+        $this->vat = $userRow['vat'];
+        $this->nameExtension = $userRow['nameExtension'];
     }
 
     /**
@@ -61,7 +71,7 @@ class ShoppingCartEntity
     /**
      * @return float
      */
-    public function getGrossPrice()
+    public function getGrossPrice() : float
     {
         return $this->GrossPrice;
     }
@@ -69,7 +79,7 @@ class ShoppingCartEntity
     /**
      * @return int
      */
-    public function getProductGroup()
+    public function getProductGroup() : int
     {
         return $this->parentId;
     }
@@ -77,8 +87,34 @@ class ShoppingCartEntity
     /**
      * @return string
      */
-    public function getType()
+    public function getType() : string
     {
         return $this->type;
     }
+
+    /**
+     * @return int
+     */
+    public function getMediaFileId() : int
+    {
+        return $this->mediaFileId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVat() : int
+    {
+        return $this->vat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNameExtension() : string
+    {
+        return $this->nameExtension;
+    }
+
+
 }

@@ -50,6 +50,15 @@ class ShoppingCartList extends AbstractIterator implements ShoppingCartInterface
     }
 
     /**
+     * @param null|int|string $key
+     * @return ShoppingCartItemInterface
+     */
+    public function getElement($key = NULL) : ShoppingCartItemInterface
+    {
+        return parent::getElement($key);
+    }
+
+    /**
      * @return \Class152\PizzaMamamia\Interfaces\PriceInterface
      */
     public function getSummeryPrice() : PriceInterface
