@@ -11,6 +11,7 @@ namespace Class152\PizzaMamamia\Services\ShoppingCartService\Library;
 
 use Class152\PizzaMamamia\Interfaces\LinkInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
+use Class152\PizzaMamamia\Interfaces\PriceInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductBasicInformationsInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
@@ -261,5 +262,14 @@ class ShoppingCartItem implements ShoppingCartItemInterface
     public function isDecreaseable() : bool
     {
         return $this->isDecreaseable;
+    }
+
+    /**
+     * @return PriceInterface
+     */
+    public function getDefaultPrice() : PriceInterface
+    {
+        // TODO: Implement getDefaultPrice() method.
+        return new ShoppingCartPrice(0, 19);
     }
 }

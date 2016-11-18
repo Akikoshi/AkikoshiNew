@@ -28,7 +28,7 @@ class SliderRepository implements SliderInterface
      */
     public function getSliderItems() : array
     {
-        $sql = "select * from Slider where active = 'Y' order by position asc;";
+        $sql = "SELECT * FROM Sliders WHERE active = 'Y' ORDER BY position ASC;";
         $result = $this->db->query( $sql );
         $allItems = $result->fetch_all(MYSQLI_ASSOC);
         foreach( array_keys( $allItems ) as $key )

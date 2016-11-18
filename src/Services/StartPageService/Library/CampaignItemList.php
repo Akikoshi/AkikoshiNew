@@ -52,13 +52,22 @@ class CampaignItemList extends AbstractIterator implements CampaignItemListInter
     {
         $this->iteratorArray[] = $campaignItem;
     }
-    
+
     /**
-     * @return CampaignItem
+     * @return CampaignInterface
      */
     public function current() : CampaignInterface
     {
         return parent::current();
+    }
+
+    /**
+     * @param null|int|string $key
+     * @return CampaignInterface
+     */
+    public function getElement($key = null) : CampaignInterface
+    {
+        return parent::getElement($key);
     }
 
     /**

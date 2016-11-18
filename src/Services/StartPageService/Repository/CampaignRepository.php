@@ -28,7 +28,7 @@ class CampaignRepository implements CampaigneInterface
      */
     public function getCampaignItems() : array
     {
-        $sql = "select * from Campaign c where c.active = 'Y' order by c.position asc limit 3;";
+        $sql = "SELECT * FROM Campaigns c WHERE c.active = 'Y' ORDER BY c.position ASC LIMIT 3;";
         $result = $this->db->query( $sql );
         $allItems = $result->fetch_all(MYSQLI_ASSOC);
         foreach( array_keys( $allItems ) as $key )
