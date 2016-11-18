@@ -22,7 +22,16 @@ class ProductListFilter implements ProductListFilterInterface
     /** @var  bool */
     private $isFiteredByGroupId = false;
 
-    public function __construct( string $productGroupId = '' )
+    /** @var int  */
+    private $itemsPerPage = 12;
+
+    /** @var int  */
+    private $currentPage = 1;
+    
+    /** @var  int */
+    private $itemAmount;
+
+    public function __construct( string $productGroupId = '', int $currentPage, int $itemsPerPage )
     {
         $this->productGroupId = $productGroupId;
 
@@ -31,6 +40,15 @@ class ProductListFilter implements ProductListFilterInterface
             $this->isFiteredByGroupId = true;
         }
 
+        if( ! empty($currentPage) )
+        {
+            $this->currentPage = $currentPage;
+        }
+
+        if( !empty($itemsPerPage))
+        {
+            $this->itemsPerPage = $itemsPerPage;
+        }
     }
 
     /**
@@ -41,21 +59,59 @@ class ProductListFilter implements ProductListFilterInterface
         $this->isSortByPrice = true;
     }
 
-    /** @return string */
-    public function isSortByPrice()
+    /**
+     * @return bool
+     */
+    public function isSortByPrice() : bool
     {
         return $this->isSortByPrice;
     }
 
-    /** @return bool */
-    public function isFilteredByGroupId()
+    /**
+     * @return bool
+     */
+    public function isFilteredByGroupId() : bool
     {
         return $this->isFiteredByGroupId;
     }
 
-    /** @return bool */
-    public function getGroupId()
+    /**
+     * @return bool
+     */
+    public function getGroupId() : bool
     {
         return $this->productGroupId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getItemsPerPage() : int
+    {
+        return $this->itemsPerPage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCurrentPage() : int
+    {
+        return $this->currentPage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getItemsAmount() : int
+    {
+        return $this->itemAmount;
+    }
+
+    /**
+     * @param int $itemAmount
+     */
+    public function setItemAmount(int $itemAmount)
+    {
+        $this->itemAmount = $itemAmount;
     }
 }

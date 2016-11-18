@@ -9,7 +9,7 @@ namespace Class152\PizzaMamamia\Interfaces\Product;
 
 interface ProductListFilterInterface
 {
-    public function __construct( string $productGroupId = '');
+    public function __construct( string $productGroupId = '', int $currentPage, int $ietmsPerPage);
 
     /**
      *
@@ -17,11 +17,23 @@ interface ProductListFilterInterface
     public function sortByPrice();
 
     /** @return string */
-    public function isSortByPrice();
+    public function isSortByPrice() : bool ;
 
     /** @return bool */
-    public function isFilteredByGroupId();
+    public function isFilteredByGroupId() : bool ;
 
     /** @return bool */
-    public function getGroupId();
+    public function getGroupId() : bool ;
+    
+    /** @return int */
+    public function getItemsPerPage() : int ;
+    
+    /** @return int */
+    public function getCurrentPage() : int ;
+    
+    /** @param int */
+    public function setItemAmount(int $itemAmount) ;
+    
+    /** @return int */
+    public function getItemsAmount() : int ;
 }

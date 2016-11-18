@@ -4,8 +4,8 @@
 			<a href={{ paginator.getBeforeUrl }} aria-label="Previous">
 				<span aria-hidden="true">&laquo;</span>
 			</a>
-		</li>
-		<li><a href="#">1</a></li>
+		</li>{% for paginatorItem in paginator %}
+		<li><a href="#">1</a></li>{% endfor %}
 		<li>
 			<a href={{ paginator.getNextUrl }} aria-label="Next">
 				<span aria-hidden="true">&raquo;</span>
