@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 14. Nov 2016 um 10:45
+-- Erstellungszeit: 18. Nov 2016 um 10:31
 -- Server-Version: 10.0.26-MariaDB-0+deb8u1
 -- PHP-Version: 5.6.24-0+deb8u1
 
@@ -26,15 +26,15 @@ USE `vagrant`;
 --
 -- Tabellenstruktur für Tabelle `Addenda`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Addenda`;
 CREATE TABLE IF NOT EXISTS `Addenda` (
   `id`   INT(10) UNSIGNED NOT NULL   AUTO_INCREMENT,
   `type` enum('allergic','additive') DEFAULT NULL,
-  `name` varchar(50)                 DEFAULT NULL,
-  `tag`  varchar(10)                 DEFAULT NULL,
+  `name` VARCHAR(50)                 DEFAULT NULL,
+  `tag`  VARCHAR(10)                 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='Zusatzstoffe und Alergene';
 
@@ -42,11 +42,6 @@ CREATE TABLE IF NOT EXISTS `Addenda` (
 -- RELATIONEN DER TABELLE `Addenda`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Addenda`
---
-
-TRUNCATE TABLE `Addenda`;
 --
 -- Daten für Tabelle `Addenda`
 --
@@ -91,7 +86,7 @@ INSERT INTO `Addenda` (`id`, `type`, `name`, `tag`) VALUES
 --
 -- Tabellenstruktur für Tabelle `AddendaToComponets`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `AddendaToComponets`;
@@ -112,11 +107,6 @@ CREATE TABLE IF NOT EXISTS `AddendaToComponets` (
 --       `Components` -> `componentId`
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `AddendaToComponets`
---
-
-TRUNCATE TABLE `AddendaToComponets`;
 --
 -- Daten für Tabelle `AddendaToComponets`
 --
@@ -220,20 +210,20 @@ INSERT INTO `AddendaToComponets` (`id`, `fk_Addenda`, `fk_Components`) VALUES
 --
 -- Tabellenstruktur für Tabelle `Campaigns`
 --
--- Erstellt am: 14. Nov 2016 um 09:36
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Campaigns`;
 CREATE TABLE IF NOT EXISTS `Campaigns` (
   `id`         INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `src` varchar(255) DEFAULT '0',
-  `pictureUrl` varchar(255) DEFAULT '0',
-  `headline` varchar(255) DEFAULT '0',
-  `content` varchar(255) DEFAULT '0',
-  `linkText` varchar(50) DEFAULT '0',
-  `price` float(7,2) DEFAULT '0.00',
-  `active` enum('Y','N') DEFAULT 'N',
-  `position` tinyint(4) DEFAULT '0',
+  `src`        varchar(255)              DEFAULT '0',
+  `pictureUrl` varchar(255)              DEFAULT '0',
+  `headline`   varchar(255)              DEFAULT '0',
+  `content`    varchar(255)              DEFAULT '0',
+  `linkText`   varchar(50)               DEFAULT '0',
+  `price`      float(7,2)                DEFAULT '0.00',
+  `active`     enum('Y','N')             DEFAULT 'N',
+  `position`   tinyint(4)                DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -241,11 +231,6 @@ CREATE TABLE IF NOT EXISTS `Campaigns` (
 -- RELATIONEN DER TABELLE `Campaigns`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Campaigns`
---
-
-TRUNCATE TABLE `Campaigns`;
 --
 -- Daten für Tabelle `Campaigns`
 --
@@ -262,13 +247,13 @@ VALUES
 --
 -- Tabellenstruktur für Tabelle `ComponentGroups`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `ComponentGroups`;
 CREATE TABLE IF NOT EXISTS `ComponentGroups` (
   `componentGroupId` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name`             varchar(150)     NOT NULL,
+  `name`             VARCHAR(150)     NOT NULL,
   PRIMARY KEY (`componentGroupId`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='a hierarchy for the material library';
@@ -277,11 +262,6 @@ CREATE TABLE IF NOT EXISTS `ComponentGroups` (
 -- RELATIONEN DER TABELLE `ComponentGroups`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `ComponentGroups`
---
-
-TRUNCATE TABLE `ComponentGroups`;
 --
 -- Daten für Tabelle `ComponentGroups`
 --
@@ -307,22 +287,22 @@ INSERT INTO `ComponentGroups` (`componentGroupId`, `name`) VALUES
 --
 -- Tabellenstruktur für Tabelle `Components`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Components`;
 CREATE TABLE IF NOT EXISTS `Components` (
-  `componentId`         INT(10) UNSIGNED                          NOT NULL AUTO_INCREMENT,
-  `name`                varchar(150)                              NOT NULL,
-  `internalName`        varchar(512)                              NOT NULL,
-  `unitType`            enum('g','kg','l','ml','cl','stk','unit') NOT NULL DEFAULT 'stk',
-  `perUnit`             int(7)                                             DEFAULT NULL,
-  `perUnitType`         enum('g','kg','l','ml','cl','stk','unit')          DEFAULT NULL,
-  `unitSize`            int(7)                                    NOT NULL DEFAULT '1',
-  `unitPrice`           float(7,2)                                NOT NULL DEFAULT '0.00',
-  `componentGroup`      INT(10) UNSIGNED                          NOT NULL DEFAULT '1',
-  `internalComponentId` varchar(50)                                        DEFAULT NULL,
-  `fk_MediaFiles`       INT(10) UNSIGNED                          NOT NULL,
+  `componentId`         INT(10) UNSIGNED                                 NOT NULL AUTO_INCREMENT,
+  `name`                VARCHAR(150)                                     NOT NULL,
+  `internalName`        VARCHAR(512)                                     NOT NULL,
+  `unitType`            ENUM ('g', 'kg', 'l', 'ml', 'cl', 'stk', 'unit') NOT NULL DEFAULT 'stk',
+  `perUnit`             INT(7)                                                    DEFAULT NULL,
+  `perUnitType`         ENUM ('g', 'kg', 'l', 'ml', 'cl', 'stk', 'unit')          DEFAULT NULL,
+  `unitSize`            INT(7)                                           NOT NULL DEFAULT '1',
+  `unitPrice`           FLOAT(7, 2)                                      NOT NULL DEFAULT '0.00',
+  `componentGroup`      INT(10) UNSIGNED                                 NOT NULL DEFAULT '1',
+  `internalComponentId` VARCHAR(50)                                               DEFAULT NULL,
+  `fk_MediaFiles`       INT(10) UNSIGNED                                 NOT NULL,
   PRIMARY KEY (`componentId`),
   KEY `materialGroup` (`componentGroup`),
   KEY `FK_Components_MediaFiles` (`fk_MediaFiles`)
@@ -336,11 +316,6 @@ CREATE TABLE IF NOT EXISTS `Components` (
 --       `MediaFiles` -> `id`
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Components`
---
-
-TRUNCATE TABLE `Components`;
 --
 -- Daten für Tabelle `Components`
 --
@@ -425,7 +400,7 @@ INSERT INTO `Components` (`componentId`, `name`, `internalName`, `unitType`, `pe
 --
 -- Tabellenstruktur für Tabelle `CustomerGroups`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `CustomerGroups`;
@@ -443,11 +418,6 @@ CREATE TABLE IF NOT EXISTS `CustomerGroups` (
 --
 
 --
--- TRUNCATE Tabelle vor dem Einfügen `CustomerGroups`
---
-
-TRUNCATE TABLE `CustomerGroups`;
---
 -- Daten für Tabelle `CustomerGroups`
 --
 
@@ -459,21 +429,21 @@ INSERT INTO `CustomerGroups` (`id`, `name`) VALUES
 --
 -- Tabellenstruktur für Tabelle `Customers`
 --
--- Erstellt am: 14. Nov 2016 um 09:35
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Customers`;
 CREATE TABLE IF NOT EXISTS `Customers` (
-  `id`            INT(10) UNSIGNED            NOT NULL AUTO_INCREMENT,
-  `type`          enum('customer','employee') NOT NULL DEFAULT 'customer',
-  `customerGroup` INT(10) UNSIGNED            NOT NULL DEFAULT '1',
-  `active`        enum('Y','N')               NOT NULL DEFAULT 'Y',
-  `blocked`       enum('N','Y')               NOT NULL DEFAULT 'N',
-  `lastVisit`     datetime                             DEFAULT NULL,
-  `userPhone`     varchar(100)                NOT NULL,
-  `userEmail`     varchar(150)                NOT NULL,
-  `userName`      varchar(250)                NOT NULL,
-  `userPass`      varchar(250)                NOT NULL,
+  `id`            INT(10) UNSIGNED              NOT NULL AUTO_INCREMENT,
+  `type`          ENUM ('customer', 'employee') NOT NULL DEFAULT 'customer',
+  `customerGroup` INT(10) UNSIGNED              NOT NULL DEFAULT '1',
+  `active`        ENUM ('Y', 'N')               NOT NULL DEFAULT 'Y',
+  `blocked`       ENUM ('N', 'Y')               NOT NULL DEFAULT 'N',
+  `lastVisit`     DATETIME                               DEFAULT NULL,
+  `userPhone`     VARCHAR(100)                  NOT NULL,
+  `userEmail`     VARCHAR(150)                  NOT NULL,
+  `userName`      VARCHAR(250)                  NOT NULL,
+  `userPass`      VARCHAR(250)                  NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customerGroup` (`customerGroup`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -484,11 +454,6 @@ CREATE TABLE IF NOT EXISTS `Customers` (
 --       `CustomerGroups` -> `id`
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Customers`
---
-
-TRUNCATE TABLE `Customers`;
 --
 -- Daten für Tabelle `Customers`
 --
@@ -502,14 +467,14 @@ VALUES
 --
 -- Tabellenstruktur für Tabelle `Descriptions`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Descriptions`;
 CREATE TABLE IF NOT EXISTS `Descriptions` (
-  `id`               int(11)          NOT NULL AUTO_INCREMENT,
-  `shortDescription` text             NOT NULL,
-  `longDescription`  text             NOT NULL,
+  `id`               INT(11)          NOT NULL AUTO_INCREMENT,
+  `shortDescription` TEXT             NOT NULL,
+  `longDescription`  TEXT             NOT NULL,
   `fk_products`      INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_Descriptions_Products` (`fk_products`)
@@ -521,34 +486,29 @@ CREATE TABLE IF NOT EXISTS `Descriptions` (
 --       `Products` -> `id`
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Descriptions`
---
-
-TRUNCATE TABLE `Descriptions`;
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `MediaFiles`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `MediaFiles`;
 CREATE TABLE IF NOT EXISTS `MediaFiles` (
   `id`          INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `mime`        varchar(150)     NOT NULL,
+  `mime`        VARCHAR(150)     NOT NULL,
   `height`      INT(5) UNSIGNED  NOT NULL,
   `width`       INT(5) UNSIGNED  NOT NULL,
   `thumbHeight` INT(5) UNSIGNED  NOT NULL,
   `thumbWidth`  INT(5) UNSIGNED  NOT NULL,
   `bigHeight`   INT(5) UNSIGNED  NOT NULL,
   `bigWidth`    INT(5) UNSIGNED  NOT NULL,
-  `url`         varchar(250)     NOT NULL,
-  `thumbUrl`    varchar(250)     NOT NULL,
-  `bigUrl`      varchar(250)     NOT NULL,
-  `titleTag`    varchar(250)     NOT NULL,
-  `altTag`      varchar(250)     NOT NULL,
+  `url`         VARCHAR(250)     NOT NULL,
+  `thumbUrl`    VARCHAR(250)     NOT NULL,
+  `bigUrl`      VARCHAR(250)     NOT NULL,
+  `titleTag`    VARCHAR(250)     NOT NULL,
+  `altTag`      VARCHAR(250)     NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='the db of all image files';
 
@@ -556,11 +516,6 @@ CREATE TABLE IF NOT EXISTS `MediaFiles` (
 -- RELATIONEN DER TABELLE `MediaFiles`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `MediaFiles`
---
-
-TRUNCATE TABLE `MediaFiles`;
 --
 -- Daten für Tabelle `MediaFiles`
 --
@@ -573,16 +528,16 @@ INSERT INTO `MediaFiles` (`id`, `mime`, `height`, `width`, `thumbHeight`, `thumb
 --
 -- Tabellenstruktur für Tabelle `Menus`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Menus`;
 CREATE TABLE IF NOT EXISTS `Menus` (
   `id`       INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `parentId` INT(10) UNSIGNED          DEFAULT NULL,
-  `position` int(3)                    DEFAULT '0',
-  `name`     varchar(255)     NOT NULL,
-  `url`      varchar(255)     NOT NULL,
+  `position` INT(3)                    DEFAULT '0',
+  `name`     VARCHAR(255)     NOT NULL,
+  `url`      VARCHAR(255)     NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
@@ -590,11 +545,6 @@ CREATE TABLE IF NOT EXISTS `Menus` (
 -- RELATIONEN DER TABELLE `Menus`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Menus`
---
-
-TRUNCATE TABLE `Menus`;
 --
 -- Daten für Tabelle `Menus`
 --
@@ -664,7 +614,7 @@ INSERT INTO `Menus` (`id`, `parentId`, `position`, `name`, `url`) VALUES
 --
 -- Tabellenstruktur für Tabelle `ProductComponentReplaceable`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `ProductComponentReplaceable`;
@@ -686,11 +636,6 @@ CREATE TABLE IF NOT EXISTS `ProductComponentReplaceable` (
 --
 
 --
--- TRUNCATE Tabelle vor dem Einfügen `ProductComponentReplaceable`
---
-
-TRUNCATE TABLE `ProductComponentReplaceable`;
---
 -- Daten für Tabelle `ProductComponentReplaceable`
 --
 
@@ -702,15 +647,15 @@ INSERT INTO `ProductComponentReplaceable` (`id`, `fk_ProductComponent`, `fk_Comp
 --
 -- Tabellenstruktur für Tabelle `ProductGroups`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `ProductGroups`;
 CREATE TABLE IF NOT EXISTS `ProductGroups` (
   `productGroupId`   INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `productGroupPath` varchar(150)     NOT NULL,
-  `isIntern`         enum('Y','N')    NOT NULL DEFAULT 'Y',
-  `name`             varchar(150)     NOT NULL,
+  `productGroupPath` VARCHAR(150)     NOT NULL,
+  `isIntern`         ENUM ('Y', 'N')  NOT NULL DEFAULT 'Y',
+  `name`             VARCHAR(150)     NOT NULL,
   `parentId`         INT(10) UNSIGNED          DEFAULT NULL,
   PRIMARY KEY (`productGroupId`),
   KEY `parentId` (`parentId`)
@@ -720,11 +665,6 @@ CREATE TABLE IF NOT EXISTS `ProductGroups` (
 -- RELATIONEN DER TABELLE `ProductGroups`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `ProductGroups`
---
-
-TRUNCATE TABLE `ProductGroups`;
 --
 -- Daten für Tabelle `ProductGroups`
 --
@@ -741,17 +681,17 @@ INSERT INTO `ProductGroups` (`productGroupId`, `productGroupPath`, `isIntern`, `
 --
 -- Tabellenstruktur für Tabelle `ProductGroupTeaser`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `ProductGroupTeaser`;
 CREATE TABLE IF NOT EXISTS `ProductGroupTeaser` (
   `id`         INT(10) UNSIGNED    NOT NULL AUTO_INCREMENT,
-  `content`    varchar(255)        NOT NULL DEFAULT '0',
-  `headline`   varchar(50)         NOT NULL DEFAULT '0',
-  `linkText`   varchar(255)        NOT NULL DEFAULT '0',
-  `pictureUrl` varchar(255)        NOT NULL DEFAULT '0',
-  `active`     enum('Y','N')       NOT NULL DEFAULT 'N',
+  `content`    VARCHAR(255)        NOT NULL DEFAULT '0',
+  `headline`   VARCHAR(50)         NOT NULL DEFAULT '0',
+  `linkText`   VARCHAR(255)        NOT NULL DEFAULT '0',
+  `pictureUrl` VARCHAR(255)        NOT NULL DEFAULT '0',
+  `active`     ENUM ('Y', 'N')     NOT NULL DEFAULT 'N',
   `position`   TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -760,11 +700,6 @@ CREATE TABLE IF NOT EXISTS `ProductGroupTeaser` (
 -- RELATIONEN DER TABELLE `ProductGroupTeaser`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `ProductGroupTeaser`
---
-
-TRUNCATE TABLE `ProductGroupTeaser`;
 --
 -- Daten für Tabelle `ProductGroupTeaser`
 --
@@ -780,21 +715,21 @@ INSERT INTO `ProductGroupTeaser` (`id`, `content`, `headline`, `linkText`, `pict
 --
 -- Tabellenstruktur für Tabelle `Products`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Products`;
 CREATE TABLE IF NOT EXISTS `Products` (
-  `id`            INT(10) UNSIGNED                            NOT NULL AUTO_INCREMENT,
-  `parentId`      INT(10) UNSIGNED                                     DEFAULT NULL,
-  `productGroup`  INT(10) UNSIGNED                            NOT NULL DEFAULT '1',
-  `name`          varchar(150)                                NOT NULL,
-  `nameExtension` varchar(150)                                         DEFAULT NULL,
-  `mediaFileId`   INT(10) UNSIGNED                                     DEFAULT NULL,
-  `internalName`  varchar(512)                                NOT NULL,
-  `grossPrice`    float(7,2)                                           DEFAULT NULL,
-  `vat`           INT(3) UNSIGNED                                      DEFAULT '19',
-  `type`          enum('basic','bundle','container','single') NOT NULL,
+  `id`            INT(10) UNSIGNED                                NOT NULL AUTO_INCREMENT,
+  `parentId`      INT(10) UNSIGNED                                         DEFAULT NULL,
+  `productGroup`  INT(10) UNSIGNED                                NOT NULL DEFAULT '1',
+  `name`          VARCHAR(150)                                    NOT NULL,
+  `nameExtension` VARCHAR(150)                                             DEFAULT NULL,
+  `mediaFileId`   INT(10) UNSIGNED                                         DEFAULT NULL,
+  `internalName`  VARCHAR(512)                                    NOT NULL,
+  `grossPrice`    FLOAT(7, 2)                                              DEFAULT NULL,
+  `vat`           INT(3) UNSIGNED                                          DEFAULT '19',
+  `type`          ENUM ('basic', 'bundle', 'container', 'single') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `productType` (`type`),
   KEY `parentId` (`parentId`),
@@ -807,11 +742,6 @@ CREATE TABLE IF NOT EXISTS `Products` (
 --       `MediaFiles` -> `id`
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Products`
---
-
-TRUNCATE TABLE `Products`;
 --
 -- Daten für Tabelle `Products`
 --
@@ -983,7 +913,7 @@ INSERT INTO `Products` (`id`, `parentId`, `productGroup`, `name`, `nameExtension
 --
 -- Tabellenstruktur für Tabelle `ProductsToBasicProducts`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `ProductsToBasicProducts`;
@@ -1007,11 +937,6 @@ CREATE TABLE IF NOT EXISTS `ProductsToBasicProducts` (
 --       `Products` -> `id`
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `ProductsToBasicProducts`
---
-
-TRUNCATE TABLE `ProductsToBasicProducts`;
 --
 -- Daten für Tabelle `ProductsToBasicProducts`
 --
@@ -1040,7 +965,7 @@ INSERT INTO `ProductsToBasicProducts` (`id`, `productId`, `basicProductId`, `uni
 --
 -- Tabellenstruktur für Tabelle `ProductsToComponents`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `ProductsToComponents`;
@@ -1050,8 +975,8 @@ CREATE TABLE IF NOT EXISTS `ProductsToComponents` (
   `componentId` INT(10) UNSIGNED      NOT NULL,
   `unitAmount`  FLOAT(10, 4) UNSIGNED NOT NULL,
   `ordering`    INT(10) UNSIGNED      NOT NULL DEFAULT '1',
-  `replaceable` enum('N','Y')         NOT NULL DEFAULT 'N',
-  `removable`   enum('N','Y')         NOT NULL DEFAULT 'N',
+  `replaceable` ENUM ('N', 'Y')       NOT NULL DEFAULT 'N',
+  `removable`   ENUM ('N', 'Y')       NOT NULL DEFAULT 'N',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniqueForce` (`id`,`productId`),
   KEY `productId` (`productId`),
@@ -1066,11 +991,6 @@ CREATE TABLE IF NOT EXISTS `ProductsToComponents` (
 --       `Products` -> `id`
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `ProductsToComponents`
---
-
-TRUNCATE TABLE `ProductsToComponents`;
 --
 -- Daten für Tabelle `ProductsToComponents`
 --
@@ -1091,7 +1011,7 @@ INSERT INTO `ProductsToComponents` (`id`, `productId`, `componentId`, `unitAmoun
 --
 -- Tabellenstruktur für Tabelle `ProductsToProductGroups`
 --
--- Erstellt am: 14. Nov 2016 um 09:33
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `ProductsToProductGroups`;
@@ -1112,11 +1032,6 @@ CREATE TABLE IF NOT EXISTS `ProductsToProductGroups` (
 --
 
 --
--- TRUNCATE Tabelle vor dem Einfügen `ProductsToProductGroups`
---
-
-TRUNCATE TABLE `ProductsToProductGroups`;
---
 -- Daten für Tabelle `ProductsToProductGroups`
 --
 
@@ -1126,21 +1041,61 @@ INSERT INTO `ProductsToProductGroups` (`productId`, `productGroupId`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `ShoppingCartItems`
+--
+-- Erstellt am: 18. Nov 2016 um 09:29
+--
+
+DROP TABLE IF EXISTS `ShoppingCartItems`;
+CREATE TABLE IF NOT EXISTS `ShoppingCartItems` (
+  `id`         INT(11)          NOT NULL AUTO_INCREMENT,
+  `sessID`     CHAR(50)
+               COLLATE utf8_bin NOT NULL,
+  `name`       VARCHAR(50)
+               COLLATE utf8_bin          DEFAULT NULL,
+  `product_Id` INT(11)                   DEFAULT NULL,
+  `amount`     INT(11)                   DEFAULT NULL,
+  `grossPrice` DECIMAL(10, 2)            DEFAULT NULL,
+  `datum`      TIMESTAMP        NULL     DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `SessId` (`sessID`) USING BTREE
+)
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_bin
+  COMMENT = 'zum ablegen des Inhaltes aus dem Einkaufswagen';
+
+--
+-- RELATIONEN DER TABELLE `ShoppingCartItems`:
+--
+
+--
+-- Daten für Tabelle `ShoppingCartItems`
+--
+
+INSERT INTO `ShoppingCartItems` (`id`, `sessID`, `name`, `product_Id`, `amount`, `grossPrice`, `datum`) VALUES
+  (1, '', 'Pizza Salami', 2, 5, 3.70, '2016-11-18 09:11:20'),
+  (2, '', 'kleine Magharita', 17, 3, 3.70, '2016-11-18 09:14:45');
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `Sliders`
 --
--- Erstellt am: 14. Nov 2016 um 09:35
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Sliders`;
 CREATE TABLE IF NOT EXISTS `Sliders` (
   `ID`       INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `src`      varchar(255)              DEFAULT '0',
-  `headline` varchar(50)               DEFAULT '0',
-  `content`  varchar(255)              DEFAULT '0',
-  `button`   varchar(50)               DEFAULT '0',
-  `picUrl`   varchar(255)              DEFAULT '0',
+  `src`      VARCHAR(255)              DEFAULT '0',
+  `headline` VARCHAR(50)               DEFAULT '0',
+  `content`  VARCHAR(255)              DEFAULT '0',
+  `button`   VARCHAR(50)               DEFAULT '0',
+  `picUrl`   VARCHAR(255)              DEFAULT '0',
   `position` TINYINT(3) UNSIGNED       DEFAULT '0',
-  `active`   enum('Y','N')             DEFAULT 'N',
+  `active`   ENUM ('Y', 'N')           DEFAULT 'N',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
@@ -1148,11 +1103,6 @@ CREATE TABLE IF NOT EXISTS `Sliders` (
 -- RELATIONEN DER TABELLE `Sliders`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Sliders`
---
-
-TRUNCATE TABLE `Sliders`;
 --
 -- Daten für Tabelle `Sliders`
 --
@@ -1169,15 +1119,15 @@ INSERT INTO `Sliders` (`ID`, `src`, `headline`, `content`, `button`, `picUrl`, `
 --
 -- Tabellenstruktur für Tabelle `Users`
 --
--- Erstellt am: 14. Nov 2016 um 09:35
+-- Erstellt am: 14. Nov 2016 um 09:59
 --
 
 DROP TABLE IF EXISTS `Users`;
 CREATE TABLE IF NOT EXISTS `Users` (
   `id`       INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `name`     varchar(255)     NOT NULL,
+  `username` varchar(100)     NOT NULL,
+  `password` varchar(100)     NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Logins and Stuff';
 
@@ -1185,11 +1135,6 @@ CREATE TABLE IF NOT EXISTS `Users` (
 -- RELATIONEN DER TABELLE `Users`:
 --
 
---
--- TRUNCATE Tabelle vor dem Einfügen `Users`
---
-
-TRUNCATE TABLE `Users`;
 --
 -- Constraints der exportierten Tabellen
 --
@@ -1253,6 +1198,5 @@ ALTER TABLE `ProductsToComponents`
 ALTER TABLE `ProductsToProductGroups`
   ADD CONSTRAINT `ProductGroupRestiction` FOREIGN KEY (`productGroupId`) REFERENCES `ProductGroups` (`productGroupId`),
   ADD CONSTRAINT `ProductId` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`);
-
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
