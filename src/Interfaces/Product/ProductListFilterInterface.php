@@ -2,26 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: vieteo
- * Date: 07.11.2016
- * Time: 11:51
+ * Date: 24.10.2016
+ * Time: 13:02
  */
+
 namespace Class152\PizzaMamamia\Interfaces\Product;
+
 
 interface ProductListFilterInterface
 {
-    public function __construct( string $productGroupId = '');
-
-    /**
-     *
-     */
-    public function sortByPrice();
-
-    /** @return string */
-    public function isSortByPrice();
-
-    /** @return bool */
-    public function isFilteredByGroupId();
-
-    /** @return bool */
+    public function isSortByPrice(); //Todo: mit Herr Biedermann absprechen
+    
+    public function isFilterByGroupId();
+    
     public function getGroupId();
 }
