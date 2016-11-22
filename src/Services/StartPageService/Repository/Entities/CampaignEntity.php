@@ -11,23 +11,10 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Repository\Entities;
 
 class CampaignEntity
 {
-    /** @var  string */
-    private $picture;
-
-    /** @var  string */
-    private $pictureUrl;
-
-    /** @var  string */
-    private $headline;
-
-    /** @var  string */
-    private $content;
-
-    /** @var  string */
-    private $linkText;
-
-    /** @var  string */
-    private $price;
+    /**
+     * @var string
+     */
+    private $id;
 
     /**
      * @var string
@@ -43,6 +30,11 @@ class CampaignEntity
      * @var string
      */
     private $hasBanner;
+
+    /**
+     * @var string
+     */
+    private $banner;
 
     /**
      * @var string
@@ -91,15 +83,11 @@ class CampaignEntity
 
     /**
      * CampaignEntity constructor.
-     * @param string $picture
-     * @param string $pictureUrl
-     * @param string $headline
-     * @param string $content
-     * @param string $linkText
-     * @param string $price
+     * @param string $id
      * @param string $name
      * @param string $description
      * @param string $hasBanner
+     * @param string $banner
      * @param string $isActive
      * @param string $hasDayTimeRule
      * @param string $reduceType
@@ -110,23 +98,13 @@ class CampaignEntity
      * @param string $dayTimeEnd
      * @param string $url
      */
-    public function __construct(
-        $name,
-        $description,
-        $hasBanner,
-        $isActive,
-        $hasDayTimeRule,
-        $reduceType,
-        $reduceValue,
-        $startDate,
-        $endDate,
-        $dayTimeStart,
-        $dayTimeEnd,
-        $url)
+    public function __construct($id, $name, $description, $hasBanner, $banner, $isActive, $hasDayTimeRule, $reduceType, $reduceValue, $startDate, $endDate, $dayTimeStart, $dayTimeEnd, $url)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->hasBanner = $hasBanner;
+        $this->banner = $banner;
         $this->isActive = $isActive;
         $this->hasDayTimeRule = $hasDayTimeRule;
         $this->reduceType = $reduceType;
@@ -141,49 +119,9 @@ class CampaignEntity
     /**
      * @return string
      */
-    public function getPicture()
+    public function getId()
     {
-        return $this->picture;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPictureUrl()
-    {
-        return $this->pictureUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHeadline()
-    {
-        return $this->headline;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLinkText()
-    {
-        return $this->linkText;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrice()
-    {
-        return $this->price;
+        return $this->id;
     }
 
     /**
@@ -208,6 +146,14 @@ class CampaignEntity
     public function getHasBanner()
     {
         return $this->hasBanner;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBanner()
+    {
+        return $this->banner;
     }
 
     /**
@@ -281,6 +227,4 @@ class CampaignEntity
     {
         return $this->url;
     }
-
-
 }

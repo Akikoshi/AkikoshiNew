@@ -45,9 +45,4 @@ class CampaignService
         $campaignList = new CampaignListFactory();
         return $campaignList->getCampaignList();
     }
-
-    public function getCampaignDetail($campaignId)
-    {
-        return $this->getCampaignDetail();
-    }
 }

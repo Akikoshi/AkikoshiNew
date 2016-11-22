@@ -12,57 +12,81 @@ use Class152\PizzaMamamia\Services\CampaignService\Repositories\CampaignReposito
 
 class CampaignListFactory
 {
-    private $campaignItem;
+    /**
+     * @var CampaignList
+     */
+    private $campaignList;
 
+    /**
+     * CampaignListFactory constructor.
+     */
     public function __construct()
     {
-        $this->campaignItem = new CampaignItem();
         $repository = new CampaignRepository();
         $campaigns = $repository->getCampaigns();
 
-        foreach (array_keys($campaigns) as $key) {
+        foreach (array_keys($campaigns) as $key)
+        {
             $campaigns[$key] = new CampaignItem(
-                $campaigns[$key]['id'],
-                $campaigns[$key]['name'],
-                $campaigns[$key]['$description'],
-                $campaigns[$key]['$hasBanner'],
-                $campaigns[$key]['MediaFile $banner'],
-                $campaigns[$key]['$isActive'],
-                $campaigns[$key]['$isActiveAtDate'],
-                $campaigns[$key]['$hasTimeRule'],
-                $campaigns[$key]['$isReduceByPercent'],
-                $campaigns[$key]['$isReduceToFixPrice'],
-                $campaigns[$key]['$reduceRule'],
-                $campaigns[$key]['$reduceValue'],
-                $campaigns[$key]['$startDate'],
-                $campaigns[$key]['$endDate'],
-                $campaigns[$key]['$dayTimeStart'],
-                $campaigns[$key]['$dayTimeEnd'],
-                new CampaignMediaFile(
-                    $campaigns[$key]['id'],
-                    $campaigns[$key]['mime'],
-                    $campaigns[$key]['height'],
-                    $campaigns[$key]['width'],
-                    $campaigns[$key]['height'],
-                    $campaigns[$key]['thumbHeight'],
-                    $campaigns[$key]['thumbWidth'],
-                    $campaigns[$key]['bigHeight'],
-                    $campaigns[$key]['bigWidth'],
-                    $campaigns[$key]['url'],
-                    $campaigns[$key]['thumbUrl'],
-                    $campaigns[$key]['bigUrl'],
-                    $campaigns[$key]['titleTag'],
-                    $campaigns[$key]['altTag']
-                )
+                $campaigns[$key]->getId(),
+                $campaigns[$key]->getName(),
+                $campaigns[$key]->getDescription(),
+                $this->convertBool( $campaigns[$key]->getHasBanner() ),
+                $campaigns[$key]->getBanner(),
+                $this->convertBool( $campaigns[$key]->getIsActive() ),
+                $this->convertBool( $campaigns[$key]->getHasDayTimeRule() ),
+                $campaigns[$key]->getReduceType(),
+                $this->convertFloat( $campaigns[$key]->getReduceValue() ),
+                new \DateTimeImmutable( $campaigns[$key]->getStartDate() ),
+                new \DateTimeImmutable( $campaigns[$key]->getEndDate() ),
+                new \DateTimeImmutable( $campaigns[$key]->getDayTimeStart() ),
+                new \DateTimeImmutable( $campaigns[$key]->getDayTimeEnd() ),
+                $campaigns[$key]->getUrl()
+//                $campaigns[$key]['id'],
+//                $campaigns[$key]['name'],
+//                $campaigns[$key]['description'],
+//                $campaigns[$key]['hasBanner'],
+//                $campaigns[$key]['banner'],
+//                $campaigns[$key]['isActive'],
+//                $campaigns[$key]['hasDayTimeRule'],
+//                $campaigns[$key]['reduceType'],
+//                $campaigns[$key]['reduceValue'],
+//                $campaigns[$key]['startDate'],
+//                $campaigns[$key]['endDate'],
+//                $campaigns[$key]['dayTimeStart'],
+//                $campaigns[$key]['dayTimeEnd'],
+//                $campaigns[$key]['url']
             );
         }
+        $this->campaignList = new CampaignList($campaigns);
+        //var_dump($this->campaignList);
+        //die();
     }
 
     /**
-     * @return CampaignItem
+     * @param string $value
+     * @return bool
      */
-    public function getCampaignItem() : CampaignItem
+    private function convertBool( string $value ) : bool
     {
-        return $this->campaignItem;
+        if( $value == 'Y' || $value == 'percent' ) return true;
+        return false;
+    }
+
+    /**
+     * @param string $value
+     * @return float
+     */
+    private function convertFloat( string $value ) : float
+    {
+        return floatval($value);
+    }
+
+    /**
+     * @return CampaignList
+     */
+    public function getCampaignList() : CampaignList
+    {
+        return $this->campaignList;
     }
 }

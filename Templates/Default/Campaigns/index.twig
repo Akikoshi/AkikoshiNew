@@ -8,11 +8,11 @@
 		{% for campaignItem in campaignList %}
 			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
-					<img src="{{ campaignItem.getPicture }}" alt="Generisches Platzhalter-Bild" width="140" height="140">
+					<img src="{{ campaignItem.getUrl }}" alt="Generisches Platzhalter-Bild" width="140" height="140">
 					<div class="caption">
-						<h3>{{ campaignItem.getHeadline }}</h3>
-						<p>{{ campaignItem.getContent }}</p>
-						<p><a href="/campaigns/Detail/{{ campaignItem.getId }}" class="btn btn-primary" role="button">{{ campaignItem.getLinkText }}</a></p>
+						<h3>{{ campaignItem.getName }}</h3>
+						<p>{{ campaignItem.getDescription }}</p>
+						<p><a href="/campaigns/Detail/{{ campaignItem.getId }}" class="btn btn-primary" role="button">{{ campaignItem.getName }}</a></p>
 					</div>
 				</div>
 			</div>

@@ -31,41 +31,27 @@
 		/**
 		 * @return bool
 		 */
-		public function hasBanner() : bool;
+		public function getHasBanner() : bool;
 
 		/**
-		 * @return MediaFileInterface
+		 * @return string
 		 */
-		public function getBanner() : MediaFileInterface;
-
-		/**
-		 * @return bool
-		 */
-		public function isActive() : bool;
-
-		/**
-		 * @param \DateTimeImmutable $date
-		 *
-		 * @return bool
-		 */
-		public function isActiveAtDate( \DateTimeImmutable $date ) : bool;
+		public function getBanner() : string;
 
 		/**
 		 * @return bool
 		 */
-		public function isReducedByPercent() : bool;
+		public function getIsActive() : bool;
 
 		/**
 		 * @return bool
 		 */
-		public function isReducedToFixPrice() : bool;
+		public function getHasDayTimeRule() : bool;
 
 		/**
-		 * percent|fixprice
-		 *
-		 * @return mixed
+		 * @return bool
 		 */
-		public function getReduceRule();
+		public function getReduceType() : bool;
 
 		/**
 		 * @return float
@@ -83,11 +69,6 @@
 		public function getEndDate() : \DateTimeImmutable;
 
 		/**
-		 * @return bool
-		 */
-		public function hasDayTimeRule() : bool;
-
-		/**
 		 * @return \DateTimeImmutable
 		 */
 		public function getDayTimeStart() : \DateTimeImmutable;
@@ -96,6 +77,11 @@
 		 * @return \DateTimeImmutable
 		 */
 		public function getDayTimeEnd() : \DateTimeImmutable;
+
+		/**
+		 * @return string
+		 */
+		public function getUrl() : string;
 
 		/**
 		 * @return CampaignItemListInterface

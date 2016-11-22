@@ -55,9 +55,9 @@ class CampaignItemList extends AbstractIterator
     }
 
     /**
-     * @return CampaignInterfaceNew
+     * @return CampaignInterface
      */
-    public function current() : CampaignInterfaceNew
+    public function current() : CampaignInterface
     {
         return parent::current();
     }

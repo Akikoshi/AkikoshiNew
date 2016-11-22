@@ -28,7 +28,10 @@ class CampaignRepository implements CampaigneInterface
      */
     public function getCampaignItems() : array
     {
-        $sql = "SELECT * FROM Campaigns c WHERE c.active = 'Y' ORDER BY c.position ASC LIMIT 3;";
+        $sql = "select c.id,c.position,c.name,c.description,c.hasBanner,c.banner,c.isActive,c.hasDayTimeRule,c.reduceType,c.reduceValue,c.startDate,c.endDate,c.dayTimeStart,c.dayTimeEnd,c.url
+                from Campaigns c
+                where (c.startDate <= date(now()) and c.endDate >= date(now()))
+                or c.startDate <= (date(now()) + INTERVAL 14 DAY);";
         $result = $this->db->query( $sql );
         $allItems = $result->fetch_all(MYSQLI_ASSOC);
         foreach( array_keys( $allItems ) as $key )

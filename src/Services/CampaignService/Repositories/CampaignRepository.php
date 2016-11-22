@@ -33,18 +33,18 @@ class CampaignRepository
      */
     public function getCampaigns(): array
     {
-        $sql = "select c.id,c.name,c.description,c.hasBanner,c.banner,c.isActive,c.hasDayTimeRule,c.reduceType,c.reduceValue,c.startDate,c.endDate,c.dayTimeStart,c.dayTimeEnd,m.url
-                from Campaigns c join MediaFiles m ON m.id = c.id
+        $sql = "select c.id,c.position,c.name,c.description,c.hasBanner,c.banner,c.isActive,c.hasDayTimeRule,c.reduceType,c.reduceValue,c.startDate,c.endDate,c.dayTimeStart,c.dayTimeEnd,c.url
+                from Campaigns c
                 where (c.startDate <= date(now()) and c.endDate >= date(now()))
                 or c.startDate <= (date(now()) + INTERVAL 14 DAY);";
         $result = $this->db->query( $sql );
+
         $allItems = $result->fetch_all( MYSQLI_ASSOC );
 
         foreach ( array_keys( $allItems ) as $key )
         {
             $allItems[ $key ] = $this->askForSingleItem( $allItems[$key] );
         }
-
         return $allItems;
     }
 
@@ -65,7 +65,6 @@ class CampaignRepository
             $line['dayTimeStart'],
             $line['dayTimeEnd'],
             $line['url']
-            // TODO: fix Error Argument 13
         );
     }
 

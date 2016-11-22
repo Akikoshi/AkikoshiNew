@@ -14,59 +14,76 @@ use Class152\PizzaMamamia\Services\ProductDetailService\Library\MediaFile;
 
 class CampaignEntity
 {
-    /** @var  string */
+
+    /**
+     * @var string
+     */
     private $id;
 
-    /** @var  string */
+    /**
+     * @var string
+     */
     private $name;
 
-    /** @var  string */
+    /**
+     * @var string
+     */
     private $description;
 
-    /** @var  bool */
+    /**
+     * @var string
+     */
     private $hasBanner;
 
-    /** @var  string */
+    /**
+     * @var string
+     */
     private $banner;
 
-    /** @var  MediaFile */
-    private $url;
-
-    /** @var  bool */
+    /**
+     * @var string
+     */
     private $isActive;
 
-    /** @var  bool */
-    private $isActiveAtDate = false;
-
-    /** @var bool */
+    /**
+     * @var string
+     */
     private $hasDayTimeRule;
 
-    /** @var  bool */
-    private $isReduceByPercent;
+    /**
+     * @var string
+     */
+    private $reduceType;
 
-    /** @var  bool */
-    private $isReduceToFixPrice;
-
-    /** @var  string */
-    private $reduceRule;
-
-    /** @var  string */
+    /**
+     * @var string
+     */
     private $reduceValue;
 
-    /** @var  \DateTimeImmutable */
+    /**
+     * @var string
+     */
     private $startDate;
 
-    /** @var  \DateTimeImmutable */
+    /**
+     * @var string
+     */
     private $endDate;
 
-    /** @var  \DateTimeImmutable */
+    /**
+     * @var string
+     */
     private $dayTimeStart;
 
-    /** @var  \DateTimeImmutable */
+    /**
+     * @var string
+     */
     private $dayTimeEnd;
 
-    /** @var  CampaignItemList */
-    private $itemList;
+    /**
+     * @var string
+     */
+    private $url;
 
     /**
      * CampaignEntity constructor.
@@ -75,39 +92,17 @@ class CampaignEntity
      * @param string $description
      * @param string $hasBanner
      * @param string $banner
-     * @param string $url
      * @param string $isActive
-     * @param string $isActiveAtDate
      * @param string $hasDayTimeRule
-     * @param string $isReduceByPercent
-     * @param string $isReduceToFixPrice
-     * @param string $reduceRule
+     * @param string $reduceType
      * @param string $reduceValue
      * @param string $startDate
      * @param string $endDate
      * @param string $dayTimeStart
      * @param string $dayTimeEnd
-     * @param string $itemList
+     * @param string $url
      */
-    public function __construct(
-        string $id,
-        string $name,
-        string $description,
-        string $hasBanner,
-        string $banner,
-        string $url,
-        string $isActive,
-        string $isActiveAtDate,
-        string $hasDayTimeRule,
-        string $isReduceByPercent,
-        string $isReduceToFixPrice,
-        string $reduceRule,
-        string $reduceValue,
-        string $startDate,
-        string $endDate,
-        string $dayTimeStart,
-        string $dayTimeEnd,
-        string $itemList)
+    public function __construct($id, $name, $description, $hasBanner, $banner, $isActive, $hasDayTimeRule, $reduceType, $reduceValue, $startDate, $endDate, $dayTimeStart, $dayTimeEnd, $url)
     {
         $this->id = $id;
         $this->name = $name;
@@ -115,21 +110,15 @@ class CampaignEntity
         $this->hasBanner = $hasBanner;
         $this->banner = $banner;
         $this->isActive = $isActive;
-        $this->isActiveAtDate = $isActiveAtDate;
         $this->hasDayTimeRule = $hasDayTimeRule;
-        $this->isReduceByPercent = $isReduceByPercent;
-        $this->isReduceToFixPrice = $isReduceToFixPrice;
-        $this->reduceRule = $reduceRule;
+        $this->reduceType = $reduceType;
         $this->reduceValue = $reduceValue;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->dayTimeStart = $dayTimeStart;
         $this->dayTimeEnd = $dayTimeEnd;
-        $this->itemList = $itemList;
         $this->url = $url;
-        // TODO: fix error on Argument 13
     }
-
 
     /**
      * @return string
@@ -180,15 +169,15 @@ class CampaignEntity
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isHasBanner()
+    public function getHasBanner()
     {
         return $this->hasBanner;
     }
 
     /**
-     * @param boolean $hasBanner
+     * @param string $hasBanner
      */
     public function setHasBanner($hasBanner)
     {
@@ -196,7 +185,7 @@ class CampaignEntity
     }
 
     /**
-     * @return MediaFile
+     * @return string
      */
     public function getBanner()
     {
@@ -204,7 +193,7 @@ class CampaignEntity
     }
 
     /**
-     * @param MediaFile $banner
+     * @param string $banner
      */
     public function setBanner($banner)
     {
@@ -212,15 +201,15 @@ class CampaignEntity
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isIsActive()
+    public function getIsActive()
     {
         return $this->isActive;
     }
 
     /**
-     * @param boolean $isActive
+     * @param string $isActive
      */
     public function setIsActive($isActive)
     {
@@ -228,31 +217,15 @@ class CampaignEntity
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isIsActiveAtDate()
-    {
-        return $this->isActiveAtDate;
-    }
-
-    /**
-     * @param boolean $isActiveAtDate
-     */
-    public function setIsActiveAtDate($isActiveAtDate)
-    {
-        $this->isActiveAtDate = $isActiveAtDate;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isHasDayTimeRule()
+    public function getHasDayTimeRule()
     {
         return $this->hasDayTimeRule;
     }
 
     /**
-     * @param boolean $hasDayTimeRule
+     * @param string $hasDayTimeRule
      */
     public function setHasDayTimeRule($hasDayTimeRule)
     {
@@ -260,51 +233,19 @@ class CampaignEntity
     }
 
     /**
-     * @return boolean
-     */
-    public function isIsReduceByPercent()
-    {
-        return $this->isReduceByPercent;
-    }
-
-    /**
-     * @param boolean $isReduceByPercent
-     */
-    public function setIsReduceByPercent($isReduceByPercent)
-    {
-        $this->isReduceByPercent = $isReduceByPercent;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isIsReduceToFixPrice()
-    {
-        return $this->isReduceToFixPrice;
-    }
-
-    /**
-     * @param boolean $isReduceToFixPrice
-     */
-    public function setIsReduceToFixPrice($isReduceToFixPrice)
-    {
-        $this->isReduceToFixPrice = $isReduceToFixPrice;
-    }
-
-    /**
      * @return string
      */
-    public function getReduceRule()
+    public function getReduceType()
     {
-        return $this->reduceRule;
+        return $this->reduceType;
     }
 
     /**
-     * @param string $reduceRule
+     * @param string $reduceType
      */
-    public function setReduceRule($reduceRule)
+    public function setReduceType($reduceType)
     {
-        $this->reduceRule = $reduceRule;
+        $this->reduceType = $reduceType;
     }
 
     /**
@@ -316,7 +257,7 @@ class CampaignEntity
     }
 
     /**
-     * @param float $reduceValue
+     * @param string $reduceValue
      */
     public function setReduceValue($reduceValue)
     {
@@ -324,7 +265,7 @@ class CampaignEntity
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return string
      */
     public function getStartDate()
     {
@@ -332,7 +273,7 @@ class CampaignEntity
     }
 
     /**
-     * @param \DateTimeImmutable $startDate
+     * @param string $startDate
      */
     public function setStartDate($startDate)
     {
@@ -340,7 +281,7 @@ class CampaignEntity
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return string
      */
     public function getEndDate()
     {
@@ -348,7 +289,7 @@ class CampaignEntity
     }
 
     /**
-     * @param \DateTimeImmutable $endDate
+     * @param string $endDate
      */
     public function setEndDate($endDate)
     {
@@ -356,7 +297,7 @@ class CampaignEntity
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return string
      */
     public function getDayTimeStart()
     {
@@ -364,7 +305,7 @@ class CampaignEntity
     }
 
     /**
-     * @param \DateTimeImmutable $dayTimeStart
+     * @param string $dayTimeStart
      */
     public function setDayTimeStart($dayTimeStart)
     {
@@ -372,7 +313,7 @@ class CampaignEntity
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return string
      */
     public function getDayTimeEnd()
     {
@@ -380,7 +321,7 @@ class CampaignEntity
     }
 
     /**
-     * @param \DateTimeImmutable $dayTimeEnd
+     * @param string $dayTimeEnd
      */
     public function setDayTimeEnd($dayTimeEnd)
     {
@@ -388,7 +329,7 @@ class CampaignEntity
     }
 
     /**
-     * @return MediaFile
+     * @return string
      */
     public function getUrl()
     {
@@ -396,26 +337,10 @@ class CampaignEntity
     }
 
     /**
-     * @param MediaFile $url
+     * @param string $url
      */
     public function setUrl($url)
     {
         $this->url = $url;
-    }
-
-    /**
-     * @return CampaignItemList
-     */
-    public function getItemList()
-    {
-        return $this->itemList;
-    }
-
-    /**
-     * @param CampaignItemList $itemList
-     */
-    public function setItemList($itemList)
-    {
-        $this->itemList = $itemList;
     }
 }

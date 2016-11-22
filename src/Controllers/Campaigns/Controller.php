@@ -29,6 +29,8 @@ class Controller extends AbstractController
 
         $campaignService = new CampaignService($this->request);
         $campaignList = $campaignService->getCampaignList();
+//        var_dump($campaignList);
+//        die();
 
         // TODO: Implement CampaingsDetailController
 
