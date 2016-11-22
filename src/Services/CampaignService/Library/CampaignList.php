@@ -15,6 +15,11 @@ use Class152\PizzaMamamia\Interfaces\Campaign\CampaignListInterface;
 
 class CampaignList extends AbstractIterator implements CampaignListInterface
 {
+    public function __construct( array $array = null )
+    {
+        $this->iteratorArray = $array;
+    }
+
     /**
      * @return CampaignInterface
      */
@@ -24,12 +29,11 @@ class CampaignList extends AbstractIterator implements CampaignListInterface
     }
 
     /**
-     * @param null $key
+     * @param null|int|string $key
      * @return CampaignInterface
      */
-    public function getElement($key = null) : CampaignInterface
+    public function getElement( $key = null ) : CampaignInterface
     {
         return parent::getElement($key);
     }
-
 }

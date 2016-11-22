@@ -1,22 +1,22 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: cbiedermann
- * Date: 19.09.2016
- * Time: 13:53
+ * User: Jens Johannes, Peter Frankenfeldt
+ * Date: 03.11.2016
+ * Time: 12:00
  */
 
 namespace Class152\PizzaMamamia\Services\ProductDetailService\Library;
 
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileListInterface;
-use Class152\PizzaMamamia\Interfaces\PriceInterface;
-use Class152\PizzaMamamia\Interfaces\Product\ProductAdditivesListInterface;
+use Class152\PizzaMamamia\Interfaces\Product\ProductAddendaListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductComponentsListInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductDetailInformationsInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantInterface;
 use Class152\PizzaMamamia\Interfaces\Product\ProductVariantListInterface;
-
+use Class152\PizzaMamamia\Interfaces\PriceInterface;
+use Class152\PizzaMamamia\Services\ProductDetailService\Library\Addenda\AddendaItemList;
 
 class Product implements ProductDetailInformationsInterface
 {
@@ -25,23 +25,17 @@ class Product implements ProductDetailInformationsInterface
     private $productID;
 
     /**
-     * @var MediaFileListInterface
+     * @var MediaFileList
      */
     private $mediaFileList;
 
     /**
-     * @var ProductComponentsListInterface
+     * @var ComponentList
      */
     private $componentList;
 
-
     /**
-     * @var MediaFileInterface
-     */
-    private $mediaInformation;
-
-    /**
-     * @var PriceInterface
+     * @var Price
      */
     private $price;
 
@@ -85,8 +79,22 @@ class Product implements ProductDetailInformationsInterface
      */
     private $hasComponents;
 
-    
-    
+    /**
+     * @var bool
+     */
+    private $isSingle;
+
+    /**
+     * @var bool
+     */
+    private $hasAdditives;
+
+    /**
+     * @var bool
+     */
+    private $hasAllergics;
+
+
     public function __construct(
         string $productID,
         string $name,
@@ -96,7 +104,7 @@ class Product implements ProductDetailInformationsInterface
         string $type,
         Price $price,
         MediaFileListInterface $mediaFileList,
-        ProductComponentsListInterface $componentList
+        ComponentList $componentList
     ) {
         $this->productID = $productID;
         $this->name = $name;
@@ -109,35 +117,50 @@ class Product implements ProductDetailInformationsInterface
         $this->componentList = $componentList;
 
         $this->hasDescription = true;
-        if($this->longDescription==null) 
+        if( null == $this->longDescription)
         {
             $this->hasDescription = false;
         }
         
         $this->hasImages = true;
-        if(  $this->mediaFileList->getElement(0)==null)
+        if( null == $this->mediaFileList->getElement(0))
         {
             $this->hasImages = false;
         }
 
         $this->hasComponents = true;
-        if(  $this->componentList->getElement(0)==null)
+        if( null == $this->componentList->getElement(0))
         {
             $this->hasComponents = false;
         }
 
+   //   TODO:
+// vermutlich logik fehler ; durch  isset($this->componentList->getElement(1)) ersetzen
+        $this->isSingle= false;
+        if( $this->componentList->getElement(1)==null )
+        {
+            $this->isSingle= true;
+        }
+        $this->hasAllergics=false;
+        if( $this->componentList->getCompleteAdditiveList()=="" )
+        {
+            $this->hasAllergics= true;
+        }
+        $this->hasAdditives=false;
+        if( $this->componentList->getElement(1)==null )
+        {
+            $this->hasAdditives= true;
+        }
     }
-
-
+    
     /**
-     * @return MediaFileListInterface
+     * @return MediaFileList
      */
     public function getImages() : MediaFileListInterface
     {
         return $this->mediaFileList;
     }
-
-
+    
     public function getId() : string
     {
         return $this->productID;
@@ -182,7 +205,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function isSingle() : bool
     {
-        // TODO: Implement isSingle() method.
+        $this->isSingle;
     }
 
     /**
@@ -190,7 +213,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function hasVariants() : bool
     {
-        // TODO: Implement hasVariants() method.
+        return false;
     }
 
     /**
@@ -198,7 +221,7 @@ class Product implements ProductDetailInformationsInterface
      */
     public function getVariants() : ProductVariantListInterface
     {
-        // TODO: Implement getVariants() method.
+        return new ProductVariantList([]);
     }
 
     /**
@@ -226,11 +249,11 @@ class Product implements ProductDetailInformationsInterface
     }
 
     /**
-     * @return ProductAdditivesListInterface
+     * @return  ProductAddendaListInterface
      */
-    public function getAdditives() : ProductAdditivesListInterface
+    public function getAdditives() :  ProductAddendaListInterface
     {
-        // TODO: Implement getAdditives() method.
+        $this->componentList->getCompleteAdditiveList();
     }
 
     /**
@@ -238,15 +261,15 @@ class Product implements ProductDetailInformationsInterface
      */
     public function hasAdditives() : bool
     {
-        // TODO: Implement hasAdditives() method.
+        return $this->hasAdditives;
     }
 
     /**
-     * @return ProductAdditivesListInterface
+     * @return  ProductAddendaListInterface
      */
-    public function getAllergics() : ProductAdditivesListInterface
+    public function getAllergics() :  ProductAddendaListInterface
     {
-        // TODO: Implement getAllergics() method.
+        $this->componentList->getCompleteAdditiveList();
     }
 
     /**
@@ -254,14 +277,20 @@ class Product implements ProductDetailInformationsInterface
      */
     public function hasAllergics() : bool
     {
-        // TODO: Implement hasAllergics() method.
+       return $this->hasAllergics;
     }
+
 
     /**
      * @return ProductVariantInterface
      */
     public function getDefaultVariant() : ProductVariantInterface
     {
-        // TODO: Implement getDefaultVariant() method.
+            return new ProductVariantItemMock();
+    }
+
+    public function getDefaultPrice() : PriceInterface
+    {
+        return $this->price;
     }
 }

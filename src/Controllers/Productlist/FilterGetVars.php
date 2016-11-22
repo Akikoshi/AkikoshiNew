@@ -16,9 +16,12 @@ class FilterGetVars extends AbstractValidator
     /** @var string */
     protected $sortby;
 
+    /** @var int */
+    protected $currentPage;
+
     public function __construct(array $getVars )
     {
-        parent::__construct($_GET, ['sortby'] );
+        parent::__construct($_GET, ['sortby', 'currentPage']);
 
     }
 
@@ -29,5 +32,14 @@ class FilterGetVars extends AbstractValidator
     {
         return $this->sortby;
     }
+
+    /**
+     * @return int
+     */
+    public function getCurrentPage() : int
+    {
+        return (INT)$this->currentPage;
+    }
+
 
 }

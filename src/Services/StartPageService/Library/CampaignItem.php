@@ -10,100 +10,119 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Library;
 
 
 use Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterface;
+use Class152\PizzaMamamia\Interfaces\Campaign\CampaignInterfaceNew;
 use Class152\PizzaMamamia\Interfaces\Campaign\CampaignItemListInterface;
 use Class152\PizzaMamamia\Interfaces\MediaFileInterface;
 
+/**
+ * Class CampaignItem
+ * @package Class152\PizzaMamamia\Services\StartPageService\Library
+ */
 class CampaignItem implements CampaignInterface
 {
-    /** @var  string */
-    private $picture;
-    
-    /** @var  string */
-    private $pictureUrl;
-    
-    /** @var  string */
-    private $headline;
-    
-    /** @var  string */
-    private $content;
-    
-    /** @var  string */
-    private $linkText;
-    
-    /** @var  string */
-    private $price;
+    /**
+     * @var string
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var bool
+     */
+    private $hasBanner;
+
+    /**
+     * @var string
+     */
+    private $banner;
+
+    /**
+     * @var bool
+     */
+    private $isActive;
+
+    /**
+     * @var bool
+     */
+    private $hasDayTimeRule;
+
+    /**
+     * @var bool
+     */
+    private $reduceType;
+
+    /**
+     * @var float
+     */
+    private $reduceValue;
+
+    /**
+     * @var \DateTimeImmutable
+     */
+    private $startDate;
+
+    /**
+     * @var \DateTimeImmutable
+     */
+    private $endDate;
+
+    /**
+     * @var \DateTimeImmutable
+     */
+    private $dayTimeStart;
+
+    /**
+     * @var \DateTimeImmutable
+     */
+    private $dayTimeEnd;
+
+    /**
+     * @var string
+     */
+    private $url;
 
     /**
      * CampaignItem constructor.
-     * @param string $picture
-     * @param string $pictureUrl
-     * @param string $headline
-     * @param string $content
-     * @param string $linkText
-     * @param string $price
+     * @param string $id
+     * @param string $name
+     * @param string $description
+     * @param bool $hasBanner
+     * @param string $banner
+     * @param bool $isActive
+     * @param bool $hasDayTimeRule
+     * @param bool $reduceType
+     * @param float $reduceValue
+     * @param \DateTimeImmutable $startDate
+     * @param \DateTimeImmutable $endDate
+     * @param \DateTimeImmutable $dayTimeStart
+     * @param \DateTimeImmutable $dayTimeEnd
+     * @param string $url
      */
-    public function __construct(
-        string $picture,
-        string $pictureUrl,
-        string $headline,
-        string $content,
-        string $linkText,
-        string $price)
+    public function __construct($id, $name, $description, $hasBanner, $banner, $isActive, $hasDayTimeRule, $reduceType, $reduceValue, \DateTimeImmutable $startDate, \DateTimeImmutable $endDate, \DateTimeImmutable $dayTimeStart, \DateTimeImmutable $dayTimeEnd, $url)
     {
-        $this->picture = $picture;
-        $this->pictureUrl = $pictureUrl;
-        $this->headline = $headline;
-        $this->content = $content;
-        $this->linkText = $linkText;
-        $this->price = $price;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPicture() : string
-    {
-        return $this->picture;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPictureUrl() : string
-    {
-        return $this->pictureUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHeadline() : string
-    {
-        return $this->headline;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent() : string
-    {
-        return $this->content;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLinkText() : string
-    {
-        return $this->linkText;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrice() : string
-    {
-        return $this->price;
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->hasBanner = $hasBanner;
+        $this->banner = $banner;
+        $this->isActive = $isActive;
+        $this->hasDayTimeRule = $hasDayTimeRule;
+        $this->reduceType = $reduceType;
+        $this->reduceValue = $reduceValue;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
+        $this->dayTimeStart = $dayTimeStart;
+        $this->dayTimeEnd = $dayTimeEnd;
+        $this->url = $url;
     }
 
     /**
@@ -111,7 +130,15 @@ class CampaignItem implements CampaignInterface
      */
     public function getId() : string
     {
-        // TODO: Implement getId() method.
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -119,7 +146,15 @@ class CampaignItem implements CampaignInterface
      */
     public function getName() : string
     {
-        // TODO: Implement getName() method.
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -127,67 +162,95 @@ class CampaignItem implements CampaignInterface
      */
     public function getDescription() : string
     {
-        // TODO: Implement getDescription() method.
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
      * @return bool
      */
-    public function hasBanner() : bool
+    public function getHasBanner() : bool
     {
-        // TODO: Implement hasBanner() method.
+        return $this->hasBanner;
     }
 
     /**
-     * @return MediaFileInterface
+     * @param boolean $hasBanner
      */
-    public function getBanner() : MediaFileInterface
+    public function setHasBanner($hasBanner)
     {
-        // TODO: Implement getBanner() method.
+        $this->hasBanner = $hasBanner;
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function isActive() : bool
+    public function getBanner() : string
     {
-        // TODO: Implement isActive() method.
+        return $this->banner;
     }
 
     /**
-     * @param \DateTimeImmutable $date
-     *
-     * @return bool
+     * @param string $banner
      */
-    public function isActiveAtDate(\DateTimeImmutable $date) : bool
+    public function setBanner($banner)
     {
-        // TODO: Implement isActiveAtDate() method.
-    }
-
-    /**
-     * @return bool
-     */
-    public function isReducedByPercent() : bool
-    {
-        // TODO: Implement isReducedByPercent() method.
+        $this->banner = $banner;
     }
 
     /**
      * @return bool
      */
-    public function isReducedToFixPrice() : bool
+    public function getIsActive() : bool
     {
-        // TODO: Implement isReducedToFixPrice() method.
+        return $this->isActive;
     }
 
     /**
-     * percent|fixprice
-     *
-     * @return mixed
+     * @param boolean $isActive
      */
-    public function getReduceRule()
+    public function setIsActive($isActive)
     {
-        // TODO: Implement getReduceRule() method.
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHasDayTimeRule() : bool
+    {
+        return $this->hasDayTimeRule;
+    }
+
+    /**
+     * @param boolean $hasDayTimeRule
+     */
+    public function setHasDayTimeRule($hasDayTimeRule)
+    {
+        $this->hasDayTimeRule = $hasDayTimeRule;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getReduceType() : bool
+    {
+        return $this->reduceType;
+    }
+
+    /**
+     * @param boolean $reduceType
+     */
+    public function setReduceType($reduceType)
+    {
+        $this->reduceType = $reduceType;
     }
 
     /**
@@ -195,7 +258,15 @@ class CampaignItem implements CampaignInterface
      */
     public function getReduceValue() : float
     {
-        // TODO: Implement getReduceValue() method.
+        return $this->reduceValue;
+    }
+
+    /**
+     * @param float $reduceValue
+     */
+    public function setReduceValue($reduceValue)
+    {
+        $this->reduceValue = $reduceValue;
     }
 
     /**
@@ -203,7 +274,15 @@ class CampaignItem implements CampaignInterface
      */
     public function getStartDate() : \DateTimeImmutable
     {
-        // TODO: Implement getStartDate() method.
+        return $this->startDate;
+    }
+
+    /**
+     * @param \DateTimeImmutable $startDate
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
     }
 
     /**
@@ -211,15 +290,15 @@ class CampaignItem implements CampaignInterface
      */
     public function getEndDate() : \DateTimeImmutable
     {
-        // TODO: Implement getEndDate() method.
+        return $this->endDate;
     }
 
     /**
-     * @return bool
+     * @param \DateTimeImmutable $endDate
      */
-    public function hasDayTimeRule() : bool
+    public function setEndDate($endDate)
     {
-        // TODO: Implement hasDayTimeRule() method.
+        $this->endDate = $endDate;
     }
 
     /**
@@ -227,7 +306,15 @@ class CampaignItem implements CampaignInterface
      */
     public function getDayTimeStart() : \DateTimeImmutable
     {
-        // TODO: Implement getDayTimeStart() method.
+        return $this->dayTimeStart;
+    }
+
+    /**
+     * @param \DateTimeImmutable $dayTimeStart
+     */
+    public function setDayTimeStart($dayTimeStart)
+    {
+        $this->dayTimeStart = $dayTimeStart;
     }
 
     /**
@@ -235,7 +322,31 @@ class CampaignItem implements CampaignInterface
      */
     public function getDayTimeEnd() : \DateTimeImmutable
     {
-        // TODO: Implement getDayTimeEnd() method.
+        return $this->dayTimeEnd;
+    }
+
+    /**
+     * @param \DateTimeImmutable $dayTimeEnd
+     */
+    public function setDayTimeEnd($dayTimeEnd)
+    {
+        $this->dayTimeEnd = $dayTimeEnd;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl() : string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
     }
 
     /**

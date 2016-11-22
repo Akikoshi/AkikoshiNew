@@ -31,10 +31,11 @@
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
-                </ul>
+                </ul>{#
+                {% include './Parts/Paginator.twig' with { 'paginator':productList.getPaginator } %}#}
 
                 <div class="pull-right">
-                    <a href="/productlist/index/?sortby=price" >Price^</a>
+                    <a href="/productlist/index/?sortby=price">Price^</a>
                 </div>
 
             </div>

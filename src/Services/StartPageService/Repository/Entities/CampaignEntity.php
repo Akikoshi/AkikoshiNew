@@ -11,136 +11,220 @@ namespace Class152\PizzaMamamia\Services\StartPageService\Repository\Entities;
 
 class CampaignEntity
 {
-    /** @var  string */
-    private $picture;
+    /**
+     * @var string
+     */
+    private $id;
 
-    /** @var  string */
-    private $pictureUrl;
+    /**
+     * @var string
+     */
+    private $name;
 
-    /** @var  string */
-    private $headline;
+    /**
+     * @var string
+     */
+    private $description;
 
-    /** @var  string */
-    private $content;
+    /**
+     * @var string
+     */
+    private $hasBanner;
 
-    /** @var  string */
-    private $linkText;
+    /**
+     * @var string
+     */
+    private $banner;
 
-    /** @var  string */
-    private $price;
+    /**
+     * @var string
+     */
+    private $isActive;
+
+    /**
+     * @var string
+     */
+    private $hasDayTimeRule;
+
+    /**
+     * @var string
+     */
+    private $reduceType;
+
+    /**
+     * @var string
+     */
+    private $reduceValue;
+
+    /**
+     * @var string
+     */
+    private $startDate;
+
+    /**
+     * @var string
+     */
+    private $endDate;
+
+    /**
+     * @var string
+     */
+    private $dayTimeStart;
+
+    /**
+     * @var string
+     */
+    private $dayTimeEnd;
+
+    /**
+     * @var string
+     */
+    private $url;
 
     /**
      * CampaignEntity constructor.
-     * @param string $picture
-     * @param string $pictureUrl
-     * @param string $headline
-     * @param string $content
-     * @param string $linkText
-     * @param string $price
+     * @param string $id
+     * @param string $name
+     * @param string $description
+     * @param string $hasBanner
+     * @param string $banner
+     * @param string $isActive
+     * @param string $hasDayTimeRule
+     * @param string $reduceType
+     * @param string $reduceValue
+     * @param string $startDate
+     * @param string $endDate
+     * @param string $dayTimeStart
+     * @param string $dayTimeEnd
+     * @param string $url
      */
-    public function __construct($picture, $pictureUrl, $headline, $content, $linkText, $price)
+    public function __construct($id, $name, $description, $hasBanner, $banner, $isActive, $hasDayTimeRule, $reduceType, $reduceValue, $startDate, $endDate, $dayTimeStart, $dayTimeEnd, $url)
     {
-        $this->picture = $picture;
-        $this->pictureUrl = $pictureUrl;
-        $this->headline = $headline;
-        $this->content = $content;
-        $this->linkText = $linkText;
-        $this->price = $price;
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->hasBanner = $hasBanner;
+        $this->banner = $banner;
+        $this->isActive = $isActive;
+        $this->hasDayTimeRule = $hasDayTimeRule;
+        $this->reduceType = $reduceType;
+        $this->reduceValue = $reduceValue;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
+        $this->dayTimeStart = $dayTimeStart;
+        $this->dayTimeEnd = $dayTimeEnd;
+        $this->url = $url;
     }
 
     /**
      * @return string
      */
-    public function getPicture()
+    public function getId()
     {
-        return $this->picture;
-    }
-
-    /**
-     * @param string $picture
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
+        return $this->id;
     }
 
     /**
      * @return string
      */
-    public function getPictureUrl()
+    public function getName()
     {
-        return $this->pictureUrl;
-    }
-
-    /**
-     * @param string $pictureUrl
-     */
-    public function setPictureUrl($pictureUrl)
-    {
-        $this->pictureUrl = $pictureUrl;
+        return $this->name;
     }
 
     /**
      * @return string
      */
-    public function getHeadline()
+    public function getDescription()
     {
-        return $this->headline;
-    }
-
-    /**
-     * @param string $headline
-     */
-    public function setHeadline($headline)
-    {
-        $this->headline = $headline;
+        return $this->description;
     }
 
     /**
      * @return string
      */
-    public function getContent()
+    public function getHasBanner()
     {
-        return $this->content;
-    }
-
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
+        return $this->hasBanner;
     }
 
     /**
      * @return string
      */
-    public function getLinkText()
+    public function getBanner()
     {
-        return $this->linkText;
-    }
-
-    /**
-     * @param string $linkText
-     */
-    public function setLinkText($linkText)
-    {
-        $this->linkText = $linkText;
+        return $this->banner;
     }
 
     /**
      * @return string
      */
-    public function getPrice()
+    public function getIsActive()
     {
-        return $this->price;
+        return $this->isActive;
     }
 
     /**
-     * @param string $price
+     * @return string
      */
-    public function setPrice($price)
+    public function getHasDayTimeRule()
     {
-        $this->price = $price;
+        return $this->hasDayTimeRule;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReduceType()
+    {
+        return $this->reduceType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReduceValue()
+    {
+        return $this->reduceValue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDayTimeStart()
+    {
+        return $this->dayTimeStart;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDayTimeEnd()
+    {
+        return $this->dayTimeEnd;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

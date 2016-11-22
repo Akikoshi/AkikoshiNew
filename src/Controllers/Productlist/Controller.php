@@ -12,13 +12,8 @@ namespace Class152\PizzaMamamia\Controllers\Productlist;
 use Class152\PizzaMamamia\AbstractClasses\AbstractController;
 use Class152\PizzaMamamia\Library\TwigRendering;
 use Class152\PizzaMamamia\Services\MenuService\MenuService;
-use Class152\PizzaMamamia\Services\ProductListService\Exceptions\ProductListItemHasNoVariantsException;
-use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
-use Class152\PizzaMamamia\Services\ProductListService\Library\ProductListPaginator;
-use Class152\PizzaMamamia\Services\ProductListService\Library\SortList;
-use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductListItem;
 use Class152\PizzaMamamia\Services\ProductListService\ProductListService;
-use Class152\PizzaMamamia\Services\StartPageService\StartPageService;
+
 
 class Controller extends AbstractController
 {
@@ -38,14 +33,19 @@ class Controller extends AbstractController
 
         $getVars = new FilterGetVars( $_GET );
 
+
         $productListFilter = $productListService->getProductListFilter(
-            $productGroupId
+            $productGroupId,
+            $getVars->getCurrentPage(),
+            12 // Todo: ItemsPerPage muss noch vom HtmL kommen
         );
 
         if( empty( $getVars->getSortBy() ) )
         {
             $productListFilter->isSortByPrice();
         }
+
+        $pagination = $productListService->getPagination($productListFilter);
 
         $productList = $productListService->getProductList( $productListFilter );
 

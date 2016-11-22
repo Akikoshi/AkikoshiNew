@@ -30,12 +30,20 @@ class CampaignFactory
         {
             $this->campaignItemList->addItem(
                 new CampaignItem(
-                    $campaign->getPicture(),
-                    $campaign->getPictureUrl(),
-                    $campaign->getHeadline(),
-                    $campaign->getContent(),
-                    $campaign->getLinkText(),
-                    $campaign->getPrice()
+                $campaign->getId(),
+                $campaign->getName(),
+                $campaign->getDescription(),
+                $campaign->getHasBanner(),
+                $campaign->getBanner(),
+                $campaign->getIsActive(),
+                $campaign->getHasDayTimeRule(),
+                $campaign->getReduceType(),
+                $campaign->getReduceValue(),
+                new \DateTimeImmutable($campaign->getStartDate()),
+                new \DateTimeImmutable($campaign->getEndDate()),
+                new \DateTimeImmutable($campaign->getDayTimeStart()),
+                new \DateTimeImmutable($campaign->getDayTimeEnd()),
+                $campaign->getUrl()
                 )
             );
         }

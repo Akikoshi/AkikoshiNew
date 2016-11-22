@@ -28,7 +28,10 @@ class CampaignRepository implements CampaigneInterface
      */
     public function getCampaignItems() : array
     {
-        $sql = "SELECT * FROM Campaigns c WHERE c.active = 'Y' ORDER BY c.position ASC LIMIT 3;";
+        $sql = "select c.id,c.position,c.name,c.description,c.hasBanner,c.banner,c.isActive,c.hasDayTimeRule,c.reduceType,c.reduceValue,c.startDate,c.endDate,c.dayTimeStart,c.dayTimeEnd,c.url
+                from Campaigns c
+                where (c.startDate <= date(now()) and c.endDate >= date(now()))
+                or c.startDate <= (date(now()) + INTERVAL 14 DAY);";
         $result = $this->db->query( $sql );
         $allItems = $result->fetch_all(MYSQLI_ASSOC);
         foreach( array_keys( $allItems ) as $key )
@@ -45,13 +48,20 @@ class CampaignRepository implements CampaigneInterface
     public function askForSingleCampaignItem( $line ) : CampaignEntity
     {
         return new CampaignEntity(
-            $line['src'],
-            $line['pictureUrl'],
-            $line['headline'],
-            $line['content'],
-            $line['linkText'],
-            $line['price'],
-            $line['position']
+            $line['id'],
+            $line['name'],
+            $line['description'],
+            $line['hasBanner'],
+            $line['banner'],
+            $line['isActive'],
+            $line['hasDayTimeRule'],
+            $line['reduceType'],
+            $line['reduceValue'],
+            $line['startDate'],
+            $line['endDate'],
+            $line['dayTimeStart'],
+            $line['dayTimeEnd'],
+            $line['url']
         );
     }
 }

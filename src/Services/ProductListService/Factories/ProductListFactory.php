@@ -9,13 +9,17 @@
 namespace Class152\PizzaMamamia\Services\ProductListService\Factories;
 
 
+use Class152\PizzaMamamia\Controllers\Productlist\GetPaginator;
+use Class152\PizzaMamamia\Services\ProductListService\Exceptions\PaginatorResultIsEmptyException;
 use Class152\PizzaMamamia\Services\ProductListService\Exceptions\ProductListItemHasNoVariantsException;
-use \Class152\PizzaMamamia\Services\ProductListService\Repositories\Entities\ProductListEntity;
 use Class152\PizzaMamamia\Services\ProductListService\Filter\ProductListFilter;
+use Class152\PizzaMamamia\Services\ProductListService\Filter\ProductListPaginatorFilter;
+use Class152\PizzaMamamia\Services\ProductListService\Iterators\Paginator;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductList;
 use Class152\PizzaMamamia\Services\ProductListService\Iterators\ProductVariantList;
 use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductListItem;
 use Class152\PizzaMamamia\Services\ProductListService\ListItems\ProductVariantItem;
+use Class152\PizzaMamamia\Services\ProductListService\Repositories\Entities\ProductListEntity;
 use Class152\PizzaMamamia\Services\ProductListService\Repositories\ProductListRepository;
 use Class152\PizzaMamamia\Services\ProductListService\values\Link;
 use Class152\PizzaMamamia\Services\ProductListService\values\MediaFile;
@@ -32,15 +36,52 @@ class ProductListFactory
     /** @var  ProductListItem */
     private $productListItem;
 
-    public function __construct(ProductListFilter $productListFilter)
+    /** @var  Paginator */
+    private $paginator;
+
+    /** @var ProductListFilter */
+    private $productListFilter;
+
+    /**
+     * ProductListFactory constructor.
+     * @param ProductListFilter $productListFilter
+     */
+    public function __construct(
+        ProductListFilter $productListFilter
+    )
     {
+        $this->productListFilter = $productListFilter;
+        $this->createPaginator();
         $this->repository = new ProductListRepository($productListFilter);
         $this->iterateProductList();
     }
 
+    /**
+     * @param ProductListFilter $productListFilter
+     * @throws PaginatorResultIsEmptyException
+     */
+    private function createPaginator()
+    {
+        $pagination = new ProductListRepository($this->productListFilter);
+        $pagination->getItemsAmount($this->productListFilter);
+        $this->paginator = new Paginator
+        (
+            $pagination->getPaginationArray()
+            , $this->productListFilter->getItemsAmount()
+            , $this->productListFilter->getCurrentPage()
+            , $this->productListFilter->getItemsPerPage()
+        );
+    }
+
+    /**
+     * @throws ProductListItemHasNoVariantsException
+     */
     private function iterateProductList()
     {
-        $entity = $this->repository->getProductListItems();
+        $entity = $this->repository->getProductListItems(
+            $this->productListFilter->getCurrentPage(),
+            $this->productListFilter->getItemsPerPage()
+        );
         $this->productList = new ProductList([]);
 
         $items = [];
@@ -117,12 +158,11 @@ class ProductListFactory
 
 
     }
-    
-    private function isConfigurable($boolean)
-    {
-        return $boolean; // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
-    }
 
+    /**
+     * @param int $productId
+     * @return ProductVariantList
+     */
     public function loadVariants(int $productId)
     {
         $entity = $this->repository->getProductVariantArray($productId);
@@ -142,8 +182,17 @@ class ProductListFactory
                     $this->isConfigurable(true) // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
                 );
         }
-        
+
         return new ProductVariantList( $variants );
+    }
+
+    /**
+     * @param $boolean
+     * @return mixed
+     */
+    private function isConfigurable($boolean)
+    {
+        return $boolean; // Todo: Ist hartverdrahtet muss noch aus der DatenBAnk kommen
     }
 
     /**
@@ -152,5 +201,10 @@ class ProductListFactory
     public function getInstance() :ProductList
     {
         return $this->productList;
+    }
+
+    public function getPaginator()
+    {
+        return $this->paginator;
     }
 }

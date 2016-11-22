@@ -2,12 +2,12 @@
 <div class="row">
 	{% for campaignItem in campaignList %}
 	<div class="col-md-4">
-		<img class="img-circle" src="{{ campaignItem.getPicture }}" alt="Generisches Platzhalter-Bild" width="140" height="140">
-		<h2>{{ campaignItem.getHeadline }}</h2>
-		<p>{{ campaignItem.getContent }}</p>
+		<img class="img-circle" src="{{ campaignItem.getUrl }}" alt="Generisches Platzhalter-Bild" width="140" height="140">
+		<h2>{{ campaignItem.getName }}</h2>
+		<p>{{ campaignItem.getDescription }}</p>
 		<div class="row">
-			<div class="col-xs-12 col-sm-6"><a class="btn btn-default btn-block" href="#" role="button">{{ campaignItem.getLinkText }}</a></div>
-			<div class="col-xs-12 col-sm-6">{{ campaignItem.getPrice }} €</div>
+			<div class="col-xs-12 col-sm-6"><a class="btn btn-default btn-block" href="#" role="button">{{ campaignItem.getName }}</a></div>
+			<div class="col-xs-12 col-sm-6">{{ campaignItem.getReduceValue }} €</div>
 		</div>
 	</div><!-- /.col-lg-4 -->
 	{% endfor %}
